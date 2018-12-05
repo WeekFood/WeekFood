@@ -1,0 +1,19 @@
+{
+  "name": "weekfood",
+  "version": "0.0.1",
+  "description": "Proyecto WeekFood para 2º curso de Desarrollo de Aplicaciones Web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WeekFood/WeekFood.git"
+  },
+  "author": "WeekFood",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WeekFood/WeekFood/issues"
+  },
+  "homepage": "https://github.com/WeekFood/WeekFood#readme"
+}
