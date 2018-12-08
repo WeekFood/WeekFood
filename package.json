@@ -4,7 +4,7 @@
   "description": "Proyecto WeekFood para 2º curso de Desarrollo de Aplicaciones Web",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "bash ./build/build.sh"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/WeekFood/WeekFood/issues"
   },
-  "homepage": "https://github.com/WeekFood/WeekFood#readme"
+  "homepage": "https://github.com/WeekFood/WeekFood#readme",
+  "devDependencies": {
+    "node-sass": "^4.10.0",
+    "typescript": "^3.2.2"
+  }
 }
