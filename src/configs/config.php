@@ -3,6 +3,12 @@
     define('ROOT', $_SERVER['DOCUMENT_ROOT']);    
 
     return [
+        'db' => [
+            'name' => '',
+            'host' => 'localhost',
+            'user' => '',
+            'password' => ''
+        ],
         'site' => [
             'coreMVC' => ROOT . DS . 'core' . DS . 'MVC' . DS,
             'configs' => ROOT . DS . 'configs' . DS,
