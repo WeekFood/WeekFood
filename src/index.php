@@ -21,7 +21,7 @@
     
     require_once("./core/AutoLoad.php");
 
-    use \core;
+    //use \core;
     use \core\MVC\Controller;
     
     $globals = core\Globals::getInstance();
