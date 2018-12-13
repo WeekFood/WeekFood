@@ -24,9 +24,7 @@ DROP TABLE IF EXISTS `Carrusel`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Carrusel` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ruta` varchar(20) NOT NULL,
-  `direccion` varchar(20) DEFAULT NULL,
-  `pieFoto` varchar(20) DEFAULT NULL,
+  `ruta` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -37,7 +35,7 @@ CREATE TABLE `Carrusel` (
 
 LOCK TABLES `Carrusel` WRITE;
 /*!40000 ALTER TABLE `Carrusel` DISABLE KEYS */;
-INSERT INTO `Carrusel` VALUES (1,'productos/lomo-asado',NULL,NULL),(2,'productos/macarrones',NULL,NULL),(3,'productos/paella-mar',NULL,NULL),(4,'productos/pechuga-de',NULL,NULL);
+INSERT INTO `Carrusel` VALUES (1,'productos/lomo-asado.jpg'),(2,'productos/macarrones-boloñesa.jpg'),(3,'productos/paella-marisco.jpg'),(4,'productos/pechuga-de-pollo.jpg');
 /*!40000 ALTER TABLE `Carrusel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,7 +49,6 @@ DROP TABLE IF EXISTS `Categorias`;
 CREATE TABLE `Categorias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `valor` varchar(20) NOT NULL,
-  `direccion` varchar(20) NOT NULL
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
