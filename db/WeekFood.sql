@@ -42,28 +42,27 @@ INSERT INTO `Carrusel` VALUES (1,'productos/lomo-asado',NULL,NULL),(2,'productos
 UNLOCK TABLES;
 
 --
--- Table structure for table `Menu`
+-- Table structure for table `Categorias`
 --
 
-DROP TABLE IF EXISTS `Menu`;
+DROP TABLE IF EXISTS `Categorias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Menu` (
+CREATE TABLE `Categorias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `valor` varchar(20) NOT NULL,
-  `direccion` varchar(20) NOT NULL,
-  `idDelPadre` int(11) DEFAULT NULL,
+  `direccion` varchar(20) NOT NULL
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Menu`
+-- Dumping data for table `Categorias`
 --
 
-LOCK TABLES `Menu` WRITE;
-/*!40000 ALTER TABLE `Menu` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Menu` ENABLE KEYS */;
+LOCK TABLES `Categorias` WRITE;
+/*!40000 ALTER TABLE `Categorias` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
