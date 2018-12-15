@@ -1,7 +1,14 @@
 <?php
 
 return [	
-	"routes" => [],
+	"routes" => [
+		
+        "/" => array(
+            "route" => "/",
+            "controller" => "portada",
+            "action" => "portada",
+        )
+	],
 	"error" => "error.php"
 ];
 

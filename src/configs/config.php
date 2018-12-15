@@ -4,10 +4,10 @@
 
     return [
         'db' => [
-            'name' => '',
+            'name' => 'WeekFood',
             'host' => 'localhost',
-            'user' => '',
-            'password' => ''
+            'user' => 'WeekFood',
+            'password' => 'SQITBAxsMBPuQtaZ'
         ],
         'site' => [
             'coreMVC' => ROOT . DS . 'core' . DS . 'MVC' . DS,
