@@ -1,6 +1,7 @@
 <?php
     define('DS', DIRECTORY_SEPARATOR);
-    define('ROOT', $_SERVER['DOCUMENT_ROOT']);    
+    define('ROOT', $_SERVER['DOCUMENT_ROOT']);
+    define('CSS', 'css');
 
     return [
         'db' => [
@@ -17,4 +18,4 @@
             'views' => ROOT . DS . 'app' . DS . 'views' . DS,
             'errorPage' => ROOT . DS . 'app' . DS . 'views' . DS . 'errorPage.php'
         ]
-    ];
+    ]; 
