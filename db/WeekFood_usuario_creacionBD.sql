@@ -20,7 +20,6 @@ SET time_zone = "+00:00";
 -- Base de datos: `WeekFood`
 --
 CREATE DATABASE IF NOT EXISTS `WeekFood` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `WeekFood`;
 
 DELETE FROM mysql.user WHERE User = 'WeekFood';
 
