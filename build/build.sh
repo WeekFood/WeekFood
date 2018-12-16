@@ -14,17 +14,19 @@ printf "\t> Creando directorio dist/\n"
 
 printf "\t> Copiando archivos\n"
     cp -r src/* dist/
-	# borrar directorios copiados que se tienen que construir en vez de copiar
-    rm -r dist/vista/cliente/{scss,ts}
+
+    mv dist/app/views/cliente/imagenes dist/imagenes
+    # borrar directorios copiados que se tienen que construir en vez de copiar/mover
+    rm -r dist/app/views/cliente/{scss,ts}
 
 printf "\t> Compilando Sass\n"
-	node-sass --quiet --output-style expanded --source-map true src/vista/cliente/scss/estilo.scss --output dist/css
-	printf "\t\t> Sass compilado.\n"
+    node-sass --quiet --output-style expanded --source-map true src/app/views/cliente/scss/estilo.scss --output dist/css
+    printf "\t\t> Sass compilado.\n"
 
 printf "\t> Compilando TypeScript\n"
-	# ** recorre directorios recursivamente
-	tsc src/vista/cliente/ts/**/*.ts --out dist/js/script.js
-	printf "\t\t> TypeScript compilado.\n\n"
+    # ** recorre directorios recursivamente
+    tsc src/app/views/cliente/ts/**/*.ts --out dist/js/script.js
+    printf "\t\t> TypeScript compilado.\n\n"
 
 du -h dist
 
