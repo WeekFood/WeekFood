@@ -10,6 +10,7 @@ abstract class Action
     protected $model;
 
     public function run($action, $controller) {
+        $this->globals = core\Globals::getInstance();
         $this->controller = $controller;
         $this->$action();
     }
