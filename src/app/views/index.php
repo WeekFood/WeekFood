@@ -6,8 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>WeekFood</title>
-	<link rel="stylesheet" type="text/css" media="screen" href="<?=CSS . DS?>estilo.css"
-	/>
+	<link rel="stylesheet" type="text/css" media="screen" href="css/estilo.css"/>
 </head>
 
 <body>

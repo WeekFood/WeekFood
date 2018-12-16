@@ -5,8 +5,8 @@ return [
 		
         "/" => array(
             "route" => "/",
-            "controller" => "portada",
-            "action" => "portada",
+            "controller" => "principal",
+            "action" => "index",
         )
 	],
 	"error" => "error.php"
