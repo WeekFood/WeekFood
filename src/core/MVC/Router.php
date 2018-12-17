@@ -49,10 +49,7 @@ class Router
         //$uri = trim($uri_parts[0], "/");
         //buscar la ruta en el array $routes
         foreach ($this->routers as $currentRoute) {
-            $route = explode("*", trim($currentRoute["route"], "/"))[0];
-            echo "bus ";
-            var_dump($route);
-            echo "<br>"; //debug
+            $route = trim($currentRoute["route"], "/");
             $routerPattern = "#^" . preg_replace('/\\\:[a-zA-Z0-9\_\-]+/', '([a-zA-Z0-9\-\_]+)', preg_quote($route)) . "$#D";
 
             // Params values that will be assigned to there respective keys
