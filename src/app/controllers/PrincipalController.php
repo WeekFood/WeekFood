@@ -13,6 +13,8 @@ class PrincipalController extends core\MVC\Action
             $model = $this->getModel('api', 'Menu');
             $this->params["funcion"] = 'menu';
             $this->params["datos"] = $model->select("*");
+        } else {
+            $this->params["funcion"] = false;
         }
         $this->setView("api", $this->params);
         $this->renderView();

@@ -1,12 +1,7 @@
 <?php
-if ($this->params["funcion"] == "menu") {
+if ($this->params["funcion"]) {
     header('Content-Type: application/json');
-    $json = '{"Menu":[';
-    /*
-    $json .= '"Inicio",';
-    $json .= '"Ofertas",';
-    $json .= '"Menús"';
-     */
+    $json = '{"' . ucfirst($this->params["funcion"]) . '":[';
     $lineaNum = 1;
     foreach ($this->params["datos"]["data"] as $linea) {
         $json .= "{";
@@ -29,7 +24,8 @@ if ($this->params["funcion"] == "menu") {
         $lineaNum++;
     }
     $json .= ']}';
-    str_replace(',}', '}', $json);
-    str_replace(',]', ']', $json);
-    echo json_encode($json);
+} else {
+
+    $json = '{}';
 }
+echo json_encode($json);
