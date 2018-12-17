@@ -32,7 +32,9 @@ DROP TABLE IF EXISTS `Carrusel`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Carrusel` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ruta` varchar(100) NOT NULL,
+  `ruta` varchar(20) NOT NULL,
+  `direccion` varchar(20) DEFAULT NULL,
+  `pieFoto` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -43,31 +45,34 @@ CREATE TABLE `Carrusel` (
 
 LOCK TABLES `Carrusel` WRITE;
 /*!40000 ALTER TABLE `Carrusel` DISABLE KEYS */;
-INSERT INTO `Carrusel` VALUES (1,'productos/lomo-asado.jpg'),(2,'productos/macarrones-boloñesa.jpg'),(3,'productos/paella-marisco.jpg'),(4,'productos/pechuga-de-pollo.jpg');
+INSERT INTO `Carrusel` VALUES (1,'productos/lomo-asado',NULL,NULL),(2,'productos/macarrones',NULL,NULL),(3,'productos/paella-mar',NULL,NULL),(4,'productos/pechuga-de',NULL,NULL);
 /*!40000 ALTER TABLE `Carrusel` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Categorias`
+-- Table structure for table `Menu`
 --
 
-DROP TABLE IF EXISTS `Categorias`;
+DROP TABLE IF EXISTS `Menu`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Categorias` (
+CREATE TABLE `Menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `valor` varchar(20) NOT NULL,
+  `direccion` varchar(20) NOT NULL,
+  `idDelPadre` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Categorias`
+-- Dumping data for table `Menu`
 --
 
-LOCK TABLES `Categorias` WRITE;
-/*!40000 ALTER TABLE `Categorias` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Categorias` ENABLE KEYS */;
+LOCK TABLES `Menu` WRITE;
+/*!40000 ALTER TABLE `Menu` DISABLE KEYS */;
+INSERT INTO `Menu` VALUES (1,'Ofertas Destacadas','ofertas',NULL),(2,'Menús Recomendados','recomendados',NULL),(3,'Alérgenos','alergenos',NULL);
+/*!40000 ALTER TABLE `Menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -104,4 +109,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-15 19:52:59
+-- Dump completed on 2018-12-17 13:23:10
