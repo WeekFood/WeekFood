@@ -1,14 +1,18 @@
 <?php
 
-return [	
-	"routes" => [
-		
+return [
+    "routes" => [
+
         "/" => array(
             "route" => "/",
             "controller" => "principal",
             "action" => "index",
-        )
-	],
-	"error" => "error.php"
+        ),
+        "API" => array(
+            "route" => "api",
+            "controller" => "principal",
+            "action" => "api",
+        ),
+    ],
+    "error" => "error.php",
 ];
-
