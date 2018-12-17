@@ -67,7 +67,6 @@ class Controller extends Router
     private function includeController($controllerName)
     {
         $controllerFile = $this->controllerPath . $controllerName . ".php";
-        echo $controllerFile;
         if (!file_exists($controllerFile)) {
             throw new ControllerException("Controller file cannot be found");
         }

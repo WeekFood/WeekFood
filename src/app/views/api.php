@@ -1,5 +1,11 @@
 <?php
-echo "GET<br>";
-var_dump($_GET);
-echo "<br>POST<br>";
-var_dump($_POST);
+if (isset($_GET["categorias"])) {
+
+    header('Content-Type: application/json');
+    $json = '{"Categorias":[';
+    $json .= '"Inicio",';
+    $json .= '"Ofertas",';
+    $json .= '"Menús"';
+    $json .= ']}';
+    echo json_encode($json);
+}
