@@ -9,7 +9,7 @@ return [
             "action" => "index",
         ),
         "API" => array(
-            "route" => "api*",
+            "route" => "api",
             "controller" => "principal",
             "action" => "api",
         ),
