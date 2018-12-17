@@ -9,9 +9,9 @@
 </head>
 <body>
     <script>
-    $.getJSON("http://weekfood.test/api?categorias",(datos)=>{
+    $.getJSON("http://weekfood.test/api?menu",(datos)=>{
        var categorias = JSON.parse(datos);
-       $.each(categorias["Categorias"],(indice,valor)=>{
+       $.each(categorias["Menu"],(indice,valor)=>{
             console.log(indice,valor)
        })
     })
