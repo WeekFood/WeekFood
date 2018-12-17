@@ -25,7 +25,6 @@ if ($this->params["funcion"]) {
     }
     $json .= ']}';
 } else {
-
     $json = '{}';
 }
 echo json_encode($json);

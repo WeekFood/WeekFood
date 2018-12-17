@@ -13,6 +13,10 @@ class PrincipalController extends core\MVC\Action
             $model = $this->getModel('api', 'Menu');
             $this->params["funcion"] = 'menu';
             $this->params["datos"] = $model->select("*");
+        } else if (isset($_GET["carrusel"])) {
+            $model = $this->getModel('api', 'Carrusel');
+            $this->params["funcion"] = 'carrusel';
+            $this->params["datos"] = $model->select("*");
         } else {
             $this->params["funcion"] = false;
         }
