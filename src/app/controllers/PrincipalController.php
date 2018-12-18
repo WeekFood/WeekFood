@@ -1,7 +1,11 @@
 <?php
-class PrincipalController extends core\MVC\Action {
-    public function IndexAction() {
+class PrincipalController extends core\MVC\Action
+{
+    private $params = array();
+    public function IndexAction()
+    {
         $this->setView("index");
         $this->renderView();
     }
+
 }
