@@ -23,6 +23,11 @@ return [
             "controller" => "menu",
             "action" => "menu",
         ),
+        "API, portada" => array(
+            "route" => "api/portada",
+            "controller" => "portada",
+            "action" => "portada",
+        ),
     ],
     "error" => "error.php",
 ];
