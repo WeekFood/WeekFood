@@ -21,45 +21,7 @@ class PortadaController extends core\MVC\Action
 
     private function get()
     {
-        $json = '{
-            "Datos":[
-               {
-                  "Tipo":"<div>",
-                  "Atributos":[
-                     { 
-                        "Tipo" : "class",
-                        "valor":"principal-rojo"
-                     }
-                  ],
-                  "Hijos":[
-                     {
-                        "Tipo":"<img>",
-                        "Atributos":[
-                           {
-                            "Tipo" : "src",
-                            "valor":"imagenes/productos/lomo-asado.jpg"
-                           }
-                        ]
-                     },
-                     {
-                        "Tipo":"<h1>",
-                        "Atributos":[
-                           {
-                            "Tipo" : "class",
-                            "valor":"principal-texto"
-                           }
-                        ],
-                        "Hijos":[
-                           {
-                            "Tipo":"#text",
-                            "valor":"Bienvenido a WeekFood"
-                           }
-                        ]
-                     }
-                  ]
-               }
-            ]
-         }';
+        $json = '{"Contenido":"<img src=\'imagenes/productos/lomo-asado.jpg\'><br><h1>Bienvenido a WeekFood</h1>"}';
         echo json_encode($json);
     }
 }
