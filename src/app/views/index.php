@@ -9,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="css/estilo.css"/>
 </head>
 
-<body>
+<body class="p-principal">
 	<div class="c-distribucion">
 		<div class="c-distribucion__cabecera">
 		</div>
