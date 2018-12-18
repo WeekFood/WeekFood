@@ -78,7 +78,7 @@ CREATE TABLE `Productos` (
   `foto` varchar(100) NOT NULL,
   `destacado` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,6 +87,7 @@ CREATE TABLE `Productos` (
 
 LOCK TABLES `Productos` WRITE;
 /*!40000 ALTER TABLE `Productos` DISABLE KEYS */;
+INSERT INTO `Productos` VALUES (1,'lomo asado','lomo-asado.jpg',1),(2,'macarrones boloñesa','macarrones-boloñesa.jpg',1),(3,'paella de marisco','paella-marisco.jpg',1),(4,'pechuga a la plancha','pechuga-a-la-plancha.jpg',1),(5,'Ensalada césar','ensalada-cesar.jpg',1),(6,'Pimientos rellenos de pisto','pimientos-pisto.jpg',0),(7,'Menestra de verduras con jamón','menestra-verduras-jamon.jpg',0),(8,'Tortilla de patata','tortilla-patata.jpg',0),(9,'Tortilla francesa','tortilla-francesa.jpg',0),(10,'Tortilla de espinacas y puerros','tortilla-espinacas-puerros.jpg',0);
 /*!40000 ALTER TABLE `Productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,4 +125,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-18 19:56:10
+-- Dump completed on 2018-12-18 20:07:46
