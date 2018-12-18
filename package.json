@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/WeekFood/WeekFood#readme",
   "devDependencies": {
+    "@types/jquery": "^3.3.28",
     "node-sass": "^4.10.0",
     "typescript": "^3.2.2"
   }

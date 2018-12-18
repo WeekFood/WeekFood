@@ -1,0 +1,45 @@
+.c-cabecera {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+
+    background: $blanco;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    @media only screen and (min-width: $mobile-l) {
+        border-bottom-right-radius: 10px;
+    }
+}
+
+.c-cabecera__boton-menu {
+    display: block;
+    @media only screen and (min-width: $mobile-l) {
+        display: none;
+    }
+}
+
+.c-cabecera__logo {
+    display: block;
+    margin: 0 auto;
+    
+    @media only screen and (min-width: $mobile-l) {
+        display: none;
+    }
+
+    &--completo {
+        display: none;
+        @media only screen and (min-width: $mobile-l) {
+            display: block;
+        }
+    }
+}
+
+.c-cabecera__botones {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 15px;
+    @media only screen and (min-width: $mobile-l) {
+        gap: 30px;
+    }    
+    font-size: 20px;
+}
