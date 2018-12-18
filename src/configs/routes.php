@@ -10,19 +10,18 @@ return [
         ),
         "API" => array(
             "route" => "api",
-            "controller" => "principal",
-            "action" => "api",
+            "controller" => "Api",
+            "action" => "Api",
         ),
-        //Para no discriminar si viene con ?x o ?x=y, buscar forma de hacerlo automatico
-        "API parametro con valor" => array(
-            "route" => "api?:parametro=:valor",
-            "controller" => "principal",
-            "action" => "api_param_valor",
+        "API, carrusel" => array(
+            "route" => "api/carrusel",
+            "controller" => "carrusel",
+            "action" => "carrusel",
         ),
-        "API parametro sin valor" => array(
-            "route" => "api?:parametro",
-            "controller" => "principal",
-            "action" => "api_param",
+        "API, menu" => array(
+            "route" => "api/menu",
+            "controller" => "menu",
+            "action" => "menu",
         ),
     ],
     "error" => "error.php",
