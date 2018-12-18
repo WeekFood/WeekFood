@@ -16,14 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `WeekFood`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `WeekFood` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
-
-USE `WeekFood`;
-
---
 -- Table structure for table `Carrusel`
 --
 
@@ -33,7 +25,7 @@ DROP TABLE IF EXISTS `Carrusel`;
 CREATE TABLE `Carrusel` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ruta` varchar(100) NOT NULL,
-  `direccion` varchar(100) NULL,
+  `direccion` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -58,7 +50,7 @@ DROP TABLE IF EXISTS `Menu`;
 CREATE TABLE `Menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `valor` varchar(100) NOT NULL,
-  `direccion` varchar(100) NULL,
+  `direccion` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -71,6 +63,31 @@ LOCK TABLES `Menu` WRITE;
 /*!40000 ALTER TABLE `Menu` DISABLE KEYS */;
 INSERT INTO `Menu` VALUES (1,'Ofertas Destacadas','ofertas'),(2,'Menús Recomendados','recomendados'),(3,'Alérgenos','alergenos');
 /*!40000 ALTER TABLE `Menu` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Productos`
+--
+
+DROP TABLE IF EXISTS `Productos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Productos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) NOT NULL,
+  `foto` varchar(100) NOT NULL,
+  `destacado` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Productos`
+--
+
+LOCK TABLES `Productos` WRITE;
+/*!40000 ALTER TABLE `Productos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -107,4 +124,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-17 13:23:10
+-- Dump completed on 2018-12-18 19:56:10
