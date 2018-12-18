@@ -1,0 +1,20 @@
+.c-caja{
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: white;
+}
+.c-caja__top-left{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: white;
+    @media only screen and (min-width:426px){
+        border-radius: 0px 0px 10px 0px;
+    }
+
+}
+.c-caja__top--mantenerBordes{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: white;
+    
+    border-radius: 0px 0px 10px 10px;
+
+}
