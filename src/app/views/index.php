@@ -13,9 +13,9 @@
     <div class="c-distribucion">
         <div class="c-distribucion__cabecera">
         </div>
-        <div class="c-distribucion__menu">
+        <div class="js-menu">
         </div>
-        <main class="c-distribucion__cuerpo">
+        <main class="c-principal">
         </main>
         <div class="c-distribucion__pie">
         </div>

@@ -19,7 +19,7 @@ return [
             "action" => "carrusel",
         ),
         "API, menu" => array(
-            "route" => "api/menu",
+            "route" => "api/menu/:pagina",
             "controller" => "menu",
             "action" => "menu",
         ),

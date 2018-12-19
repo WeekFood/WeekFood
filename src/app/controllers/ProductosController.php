@@ -22,25 +22,24 @@ class ProductosController extends core\MVC\Action
     {
         $modelo = $this->getModel('productos', 'Productos');
 
-        //header('Content-Type: application/json');
+        header('Content-Type: application/json');
         $json = '{"Contenido": "';
-            
-        $datos= $modelo->select('*');
-        if ($datos["error"]){
+
+        $datos = $modelo->select('*');
+        if ($datos["error"]) {
             $json .= $datos["error_code"];
-        }else{
+        } else {
             foreach ($datos["data"] as $linea) {
-                if ($linea["destacado"] == "1"){
+                if ($linea["destacado"] == "1") {
                     $json .= "<div class='producto producto--destacado'>";
-                }else{
+                } else {
                     $json .= "<div class='producto'>";
                 }
-                $json .= "<img class='producto__imagen' src='/imagenes/productos/".$linea["foto"]."'>";
-                $json .= "<p class='producto__titulo'>".$linea["nombre"]."</p>";
+                $json .= "<img class='producto__imagen' src='/imagenes/productos/" . $linea["foto"] . "'>";
+                $json .= "<p class='producto__titulo'>" . $linea["nombre"] . "</p>";
                 $json .= "</div>";
             }
         }
-
 
         $json .= '"}';
         echo json_encode($json);

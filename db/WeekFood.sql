@@ -16,6 +16,14 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Current Database: `WeekFood`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `WeekFood` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+
+USE `WeekFood`;
+
+--
 -- Table structure for table `Carrusel`
 --
 
@@ -52,7 +60,7 @@ CREATE TABLE `Menu` (
   `valor` varchar(100) NOT NULL,
   `direccion` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,7 +69,7 @@ CREATE TABLE `Menu` (
 
 LOCK TABLES `Menu` WRITE;
 /*!40000 ALTER TABLE `Menu` DISABLE KEYS */;
-INSERT INTO `Menu` VALUES (1,'Ofertas Destacadas','ofertas'),(2,'Menús Recomendados','recomendados'),(3,'Alérgenos','alergenos');
+INSERT INTO `Menu` VALUES (1,'Ofertas Destacadas','ofertas'),(2,'Menús Recomendados','recomendados'),(3,'Alérgenos','alergenos'),(4,'Inicio','portada'),(5,'Productos','productos');
 /*!40000 ALTER TABLE `Menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,4 +133,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-18 20:07:46
+-- Dump completed on 2018-12-19  9:00:17
