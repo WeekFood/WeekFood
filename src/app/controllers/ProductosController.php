@@ -22,7 +22,7 @@ class ProductosController extends core\MVC\Action
     {
         $modelo = $this->getModel('productos', 'Productos');
 
-        header('Content-Type: application/json');
+        header('Content-Type: application/json; charset=utf-8');
         $json = '{"Contenido": "';
 
         $datos = $modelo->select('*');
