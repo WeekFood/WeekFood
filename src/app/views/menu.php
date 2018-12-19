@@ -25,30 +25,33 @@ $datos = [
     ],
     "2" => [
         "nombre" => "Productos",
-        "url" => "productos",
+        "url" => "#",
     ],
     "3" => [
         "nombre" => "Ofertas",
-        "url" => "ofertas",
+        "url" => "#",
     ],
     "4" => [
         "nombre" => "Recomendados",
-        "url" => "recomendados",
+        "url" => "#",
     ],
     "5" => [
         "nombre" => "Alérgenos",
-        "url" => "alergenos",
+        "url" => "#",
     ],
 ];
 foreach ($datos as $item) {
     if ($item["url"] == $this->params["pagina"]) {
-        $json .= "<li class='c-menu__item c-menu__item--destacado'>";
+        $json .= "<li class='c-menu__item c-menu__item--destacado'";
     } else {
-        $json .= "<li class='c-menu__item'>";
+        $json .= "<li class='c-menu__item'";
     }
-    $json .= '<a href=\\"javascript:cargarDatosDesde(';
+    //$json .= '<a href=\\"javascript:cargarDatosDesde(';
+    $json .= 'onclick=\\"cargarDatosDesde(';
     $json .= "'/api/" . $item["url"] . '\')\">' . $item["nombre"];
-    $json .= "</a></li>";
+    //$json .= "</a></li>";
+    $json .= "</li>";
+    
 }
 $json .= '</ul>"}';
 echo json_encode($json);

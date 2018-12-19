@@ -35,5 +35,8 @@
     $controller = new Controller();
 
     //Llamar al método run del objeto creado anteriormente
-    $controller->run();
-
+    try{
+        $controller->run(); 
+    } catch (Exception $e) {
+        require_once("error.php");
+    }
