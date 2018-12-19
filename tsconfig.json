@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "outFile": "dist/js/bundle.js",
+        "allowJs": true,
+        "target": "es6",
+    },
+    "include": [
+        "./src/app/views/cliente/ts/*",
+        "./src/app/views/cliente/js/*",
+        "./src/app/views/cliente/js/libs/*"
+    ]
+}

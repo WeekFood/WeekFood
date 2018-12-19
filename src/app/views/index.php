@@ -47,9 +47,9 @@
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/bundle.js"></script>
     <script src="js/libs/glide-3.2.4/glide.min.js"></script>
     <script src="js/carusel.js"></script>
+    <script src="js/bundle.js"></script>
 </body>
 
 </html>

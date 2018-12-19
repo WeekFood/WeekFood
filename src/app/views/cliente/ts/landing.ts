@@ -2,7 +2,7 @@ $('.js-boton-menu').on('click', () => {
     $('.js-menu').toggleClass('c-menu--oculto');
 });
 
-$(() => { cargarDatosDesde("/api/portada") })
+$(() => { cargarDatosDesde("/api/portada");  generarCarrusel("js-carrusel") })
 
 
 function cargarDatosDesde(url) {
