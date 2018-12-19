@@ -1,13 +1,13 @@
-$('.js-boton-menu').on('click', () => {
-    $('.js-menu').toggleClass('c-menu--oculto');
-});
-
 $(() => {
+    $(".p-principal").html($(".p-principal").html()+"<script src='js/libs/glide-3.2.4/glide.min.js'></script>")
     $.when(cargarDatosDesde("/api/portada")).then(
         () => {
             generarCarrusel("js-carrusel")
         }
     )
+    $('.js-boton-menu').on('click', () => {
+        $('.js-menu').toggleClass('c-menu--oculto');
+    });
 })
 
 function cargarDatosDesde(url) {
