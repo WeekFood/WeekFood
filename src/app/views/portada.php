@@ -1,6 +1,5 @@
 <?php
-
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 $json = '{"Contenido":"';
 $json .= "<div class='c-carrusel js-carrusel'></div>";
 $json .= "<div class='c-portada__texto'>";

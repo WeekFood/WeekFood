@@ -3,7 +3,7 @@
 //Se llamara a la base de datos en un futuro. ???
 #$modelo = $this->getModel('menu', 'Menu');
 
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 $json = '{"Contenido": "<ul class=\'c-menu__lista\'>';
 /*
 if ($datos["error"]){
