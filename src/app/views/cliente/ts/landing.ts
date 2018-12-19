@@ -9,10 +9,11 @@ $(() => {
             generarCarrusel("js-carrusel")
         }
     )
-    $('.js-boton-menu').on('click', () => {
-        $('.js-menu').toggleClass('c-menu--oculto');
-    });
 })
+
+$('.js-boton-menu').on('click', () => {
+    $('.js-menu').toggleClass('c-menu--oculto');
+});
 
 function cargarDatosDesde(url) {
     return $.getJSON(url).then(
