@@ -26,7 +26,8 @@ printf "\t> Compilando Sass\n"
 
 printf "\t> Compilando TypeScript\n"
     # ** recorre directorios recursivamente
-    tsc src/app/views/cliente/ts/**/*.ts --out dist/js/bundle.js
+    #tsc src/app/views/cliente/ts/**/*.ts --out dist/js/bundle.js
+    tsc # si tiene argumentos no lee el config
     printf "\t\t> TypeScript compilado.\n\n"
 
 du -h dist
