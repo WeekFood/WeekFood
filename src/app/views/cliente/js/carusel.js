@@ -1,4 +1,3 @@
-
 function generarCarrusel(claseContenedor) {
     var contenido = "";
     var contenedor = document.getElementsByClassName(claseContenedor)[0];
