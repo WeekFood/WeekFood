@@ -33,12 +33,10 @@
             </div>
         </div>
         <div class="l-distribucion__menu">
-            <ul class="c-menu c-menu--oculto js-menu">
+            <div class="c-menu c-menu--oculto js-menu">
                 <ul class="c-menu__lista">
-                    <li class="c-menu__item c-menu__item--destacado">Inicio</li>
-                    <li class="c-menu__item">Productos</li>
-                    <li class="c-menu__item">Ofertas</li>
                 </ul>
+            </div>
         </div>
         <div class="l-distribucion__principal">
             <div class="c-principal">
