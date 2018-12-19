@@ -34,8 +34,6 @@
         </div>
         <div class="l-distribucion__menu">
             <div class="c-menu c-menu--oculto js-menu">
-                <ul class="c-menu__lista">
-                </ul>
             </div>
         </div>
         <div class="l-distribucion__principal">
@@ -48,7 +46,6 @@
             </div>
         </div>
     </div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/bundle.js"></script>
 </body>

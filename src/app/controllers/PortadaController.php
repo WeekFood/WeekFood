@@ -1,7 +1,7 @@
 <?php
-class MenuController extends core\MVC\Action
+class PortadaController extends core\MVC\Action
 {
-    public function MenuAction()
+    public function PortadaAction()
     {
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
@@ -21,8 +21,7 @@ class MenuController extends core\MVC\Action
 
     private function get()
     {
-        $this->params["pagina"] = $this->getParam("pagina");
-        $this->setView("menu");
+        $this->setView("portada");
         $this->renderView();
     }
 }

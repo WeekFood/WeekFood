@@ -19,9 +19,19 @@ return [
             "action" => "carrusel",
         ),
         "API, menu" => array(
-            "route" => "api/menu",
+            "route" => "api/menu/:pagina",
             "controller" => "menu",
             "action" => "menu",
+        ),
+        "API, productos" => array(
+            "route" => "api/productos",
+            "controller" => "productos",
+            "action" => "productos",
+        ),
+        "API, portada" => array(
+            "route" => "api/portada",
+            "controller" => "portada",
+            "action" => "portada",
         ),
     ],
     "error" => "error.php",
