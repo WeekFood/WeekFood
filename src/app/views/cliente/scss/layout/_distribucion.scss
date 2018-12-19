@@ -1,0 +1,34 @@
+.l-distribucion {
+    min-height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas: 'cabecera'
+                         'menu'
+                         'principal'
+                         'pie';
+
+    @media only screen and (min-width: $mobile-l) {
+        grid-template-columns: 200px 1fr 1fr;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas: 'cabecera  cabecera    cabecera'
+                             'menu      principal   principal'
+                             'pie       pie         pie';
+    }
+}
+
+.l-distribucion__cabecera {
+    grid-area: cabecera;
+}
+
+.l-distribucion__menu {
+    grid-area: menu;
+}
+
+.l-distribucion__principal {
+    grid-area: principal;
+}
+
+.l-distribucion__pie {
+    grid-area: pie;
+}

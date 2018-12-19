@@ -1,0 +1,41 @@
+.c-menu {
+    min-height: 100%;
+
+    background: $blanco;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+    &--oculto {
+        display: none;
+    }
+    
+    @media only screen and (min-width: $mobile-l) {
+        display: block;
+        border-bottom-right-radius: 10px;
+    }
+
+}
+
+.c-menu__boton {
+    @media only screen and (min-width: $mobile-l) {
+        display: none;
+    }
+}
+
+.c-menu__lista {
+    display: grid;
+    padding: 15px;
+
+    row-gap: 3px;
+}
+
+.c-menu__item {
+    padding: 3px;
+    padding-left: 10px;
+
+    border-left: 2px solid transparent;
+    &--destacado {
+      color: $rojo;
+      border-color: $rojo;
+      font-weight: bold;
+    }
+}
