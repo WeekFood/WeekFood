@@ -1,6 +1,8 @@
 .c-cabecera {
-    display: flex;
+    display: grid;
     align-items: center;
+    grid-template-columns: 1fr auto;
+    
     padding: 10px 20px;
 
     background: $blanco;
@@ -21,6 +23,10 @@
 .c-cabecera__logo {
     display: block;
     margin: 0 auto;
+
+    // centrar logo ocupando toda la fila
+    grid-column: 1 / -1;
+    grid-row: 1;
     
     @media only screen and (min-width: $mobile-l) {
         display: none;
@@ -38,6 +44,11 @@
     display: grid;
     grid-auto-flow: column;
     gap: 15px;
+
+    // necesario para compartir espacio con el logo centrado
+    grid-column: 2 / -1;
+    grid-row: 1;
+
     @media only screen and (min-width: $mobile-l) {
         gap: 30px;
     }    
