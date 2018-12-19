@@ -2,5 +2,16 @@
 @import "abstracts/colores";
 @import "abstracts/tipografia";
 
-@import "base/box-sizing";
 @import "base/normalize";
+@import "base/reset";
+@import "base/box-sizing";
+
+@import "components/logo";
+@import "components/cabecera";
+@import "components/menu";
+@import "components/pie";
+@import "components/principal";
+
+@import "layout/distribucion";
+
+@import "pages/principal";

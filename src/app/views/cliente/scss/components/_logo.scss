@@ -1,0 +1,16 @@
+.c-logo {
+    font-size: 30px;
+    font-family: $fuente-logo;
+    font-style: italic;
+
+    &--pequeño {
+        font-size: 15px;
+    }
+}
+
+.c-logo__parte {
+    color: $negro;
+    &--alterna {
+        color: $rojo;
+    }
+}
