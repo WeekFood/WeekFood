@@ -24,31 +24,6 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/ `WeekFood` /*!40100 DEFAULT CHARACTER S
 USE `WeekFood`;
 
 --
--- Table structure for table `Carrusel`
---
-
-DROP TABLE IF EXISTS `Carrusel`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Carrusel` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ruta` varchar(100) NOT NULL,
-  `direccion` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Carrusel`
---
-
-LOCK TABLES `Carrusel` WRITE;
-/*!40000 ALTER TABLE `Carrusel` DISABLE KEYS */;
-INSERT INTO `Carrusel` VALUES (1,'productos/lomo-asado.jpg',NULL),(2,'productos/macarrones.jpg',NULL),(3,'productos/paella-mar.jpg',NULL),(4,'productos/pechuga-de-pollo.jpg',NULL);
-/*!40000 ALTER TABLE `Carrusel` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `Menu`
 --
 
@@ -133,4 +108,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-19  9:00:17
+-- Dump completed on 2018-12-19 10:37:39

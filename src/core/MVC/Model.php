@@ -20,7 +20,7 @@ class Model
         $this->result['data'] = array();
     }
 
-    public function select($fields = '*', $where = null, $order = null)
+    public function select($fields = '*', $where = null, $order = null, $limit = null)
     {
         $sql = "SELECT " . $fields . " FROM " . $this->table;
         if ($where !== null) {
@@ -29,6 +29,10 @@ class Model
 
         if ($order !== null) {
             $sql .= ' ORDER BY ' . $order;
+        }
+
+        if ($limit !== null) {
+            $sql .= ' LIMIT ' . $limit;
         }
 
         $ps = $this->mysql->prepare($sql);
