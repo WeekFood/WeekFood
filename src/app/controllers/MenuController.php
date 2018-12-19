@@ -22,7 +22,7 @@ class MenuController extends core\MVC\Action
     private function get()
     {
         $this->params["pagina"] = $this->getParam("pagina");
-        $this->setView("menu");
+        $this->setView("menu", $this->params);
         $this->renderView();
     }
 }

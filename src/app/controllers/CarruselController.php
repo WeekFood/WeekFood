@@ -21,9 +21,8 @@ class CarruselController extends core\MVC\Action
 
     private function get()
     {
-        $modelo = $this->getModel('carrusel', 'Carrusel');
-
+        $modelo = $this->getModel('carrusel', 'Productos');
         header('Content-Type: application/json');
-        echo json_encode($modelo->select('*'));
+        echo json_encode($modelo->select('foto', null, "RAND()", "5"));
     }
 }

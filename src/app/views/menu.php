@@ -42,9 +42,9 @@ $datos = [
 ];
 foreach ($datos as $item) {
     if ($item["url"] == $this->params["pagina"]) {
-        $json .= "<li class='c-menu__item'>";
-    } else {
         $json .= "<li class='c-menu__item c-menu__item--destacado'>";
+    } else {
+        $json .= "<li class='c-menu__item'>";
     }
     $json .= '<a href=\\"javascript:cargarDatosDesde(';
     $json .= "'/api/" . $item["url"] . '\')\">' . $item["nombre"];
