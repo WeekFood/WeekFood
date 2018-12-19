@@ -35,8 +35,6 @@
         </div>
         <div class="l-distribucion__menu">
             <div class="c-menu c-menu--oculto js-menu">
-                <ul class="c-menu__lista">
-                </ul>
             </div>
         </div>
         <div class="l-distribucion__principal">
