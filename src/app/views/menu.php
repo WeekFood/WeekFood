@@ -4,7 +4,7 @@
 #$modelo = $this->getModel('menu', 'Menu');
 
 header('Content-Type: application/json');
-$json = '{"Contenido": "';
+$json = '{"Contenido": "<ul class=\'c-menu__lista\'>';
 /*
 if ($datos["error"]){
 $json .= $datos["error_code"];
@@ -50,5 +50,5 @@ foreach ($datos as $item) {
     $json .= "'/api/" . $item["url"] . '\')\">' . $item["nombre"];
     $json .= "</a></li>";
 }
-$json .= '"}';
+$json .= '</ul>"}';
 echo json_encode($json);
