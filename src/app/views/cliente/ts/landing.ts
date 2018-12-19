@@ -1,5 +1,9 @@
 $(() => {
-    $(".p-principal").html($(".p-principal").html()+"<script src='js/libs/glide-3.2.4/glide.min.js'></script>")
+    var glideScript = '<script src="js/libs/glide-3.2.4/glide.min.js"></script>'
+    var bodyhtml = $(".p-principal").html();
+    if (!bodyhtml.endsWith(glideScript)){
+        $(".p-principal").html( bodyhtml + glideScript)
+    }
     $.when(cargarDatosDesde("/api/portada")).then(
         () => {
             generarCarrusel("js-carrusel")
