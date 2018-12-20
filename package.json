@@ -4,7 +4,9 @@
   "description": "Proyecto WeekFood para 2º curso de Desarrollo de Aplicaciones Web",
   "main": "index.js",
   "scripts": {
-    "build": "bash ./build/build.sh"
+    "build": "bash ./build/build.sh",
+    "deployLocal": "sudo bash ./build/despl-local.sh",
+    "buildDeployLocal" : "npm run build && npm run deployLocal" 
   },
   "repository": {
     "type": "git",
