@@ -1,14 +1,13 @@
-let paginaCargada = false;
 $(() => {
-    if (!paginaCargada) {
-        paginaCargada = true;
-        $(".p-principal").html($(".p-principal").html() + '<script src="js/libs/glide-3.2.4/glide.min.js"></script>')
+    var importGlide = '<script src="js/libs/glide-3.2.4/glide.min.js"></script>';
+    if (!$(".p-principal").html().endsWith(importGlide))
+        $(".p-principal").html($(".p-principal").html() + importGlide)
         $.when(cargarDatosDesde("/api/portada")).then(
             () => {
                 generarCarrusel("js-carrusel")
             }
         )
-    }
+    
 })
 
 $('.js-boton-menu').on('click', () => {

@@ -15,6 +15,7 @@ printf "\t> Creando directorio dist/\n"
 printf "\t> Copiando archivos\n"
     cp -r src/* dist/
 
+    mv dist/app/views/cliente/fontawesome dist/fontawesome
     mv dist/app/views/cliente/js dist/js
     mv dist/app/views/cliente/imagenes dist/imagenes
     # borrar directorios copiados que se tienen que construir en vez de copiar/mover

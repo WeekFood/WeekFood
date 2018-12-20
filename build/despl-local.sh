@@ -1,12 +1,13 @@
 #!/bin/bash
-if [ "$EUID" -eq 0 ]; then
+if [ "$EUID" -ne 0 ]; then
     ./build/build.sh
-    rm /var/www/html -rf
-    mkdir /var/www/html
-    cp ./build/config/htaccess /var/www/html/.htaccess
-    cp ./dist/* /var/www/html/ -r
-    du -h /var/www/html
+    echo "Copiando a /var/www/html..."
+    sudo rm /var/www/html -rf
+    sudo mkdir /var/www/html
+    sudo cp ./build/config/htaccess /var/www/html/.htaccess
+    sudo cp ./dist/* /var/www/html/ -r
+    echo "Copiado correctamente."
 else
-    echo "Porfavor ejecutame como con permiso de ROOT."
+    echo "No me ejecutes como ROOT."
     exit 1
 fi
