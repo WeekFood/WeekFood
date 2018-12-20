@@ -22,7 +22,7 @@
     require_once("./core/AutoLoad.php");
 
     //use \core;
-    use \core\MVC\Controller;
+    use \core\MVC\Controller as controller;
     
     $globals = core\Globals::getInstance();
 

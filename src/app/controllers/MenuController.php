@@ -21,8 +21,10 @@ class MenuController extends core\MVC\Action
 
     private function get()
     {
-        $this->params["pagina"] = $this->getParam("pagina");
+        $modelo = $this->getModel('menu', 'Menu');
+        $this->params["datos"] = $modelo->select("*");
         $this->setView("menu", $this->params);
         $this->renderView();
+        //echo json_encode($modelo->select("*"));
     }
 }

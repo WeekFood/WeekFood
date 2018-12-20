@@ -44,7 +44,11 @@ CREATE TABLE `Menu` (
 
 LOCK TABLES `Menu` WRITE;
 /*!40000 ALTER TABLE `Menu` DISABLE KEYS */;
-INSERT INTO `Menu` VALUES (1,'Ofertas Destacadas','ofertas'),(2,'Menús Recomendados','recomendados'),(3,'Alérgenos','alergenos'),(4,'Inicio','portada'),(5,'Productos','productos');
+INSERT INTO `Menu` VALUES 
+(1,'Inicio','portada'),
+(2,'Productos','productos'),
+(3,'Ofertas Destacadas','ofertas'),
+(4,'Alérgenos','alergenos');
 /*!40000 ALTER TABLE `Menu` ENABLE KEYS */;
 UNLOCK TABLES;
 

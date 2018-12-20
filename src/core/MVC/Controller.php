@@ -1,7 +1,7 @@
 <?php
 namespace core\MVC;
 
-use \core;
+use \core as core;
 
 class Controller extends Router
 {
