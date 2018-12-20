@@ -6,7 +6,8 @@
   "scripts": {
     "build": "bash ./build/build.sh",
     "deployLocal": "sudo bash ./build/despl-local.sh",
-    "buildDeployLocal" : "npm run build && npm run deployLocal" 
+    "buildDeployLocal" : "npm run build && npm run deployLocal",
+    "sincronizar" : "git checkout develop && git fetch -p && git branch -a && git pull && npm run build"
   },
   "repository": {
     "type": "git",
