@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 $json = '{"Contenido":"';
-$json .= "<div class='c-carrusel js-carrusel'></div>";
+$json .= "<div class='js-carrusel'></div>";
 $json .= "<div class='c-portada__texto'>";
 $json .= "<h1>¡Bienvenido a <span class='c-logo__parte'>Week</span><span class='c-logo__parte c-logo__parte--alterna'>Food</span>!</h1>";
 $json .= "Somos una empresa ficticia, ofrecemos gran variedad de platos preparados para entrega en el hogar, el trabajo, o la escuela.";

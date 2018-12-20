@@ -3,16 +3,19 @@ function generarCarrusel(claseContenedor) {
     var contenedor = document.getElementsByClassName(claseContenedor)[0];
     $.getJSON("/api/carrusel", (datos) => {
         if (datos["error"] == false) {
-            contenido += "<div class='glide'>";
 
-            contenido += "<div class='glide__track' data-glide-el='track'>";
+            contenido += "<div class='glide c-carrusel'>";
 
-            contenido += "<div class='glide__slides'>";
+            contenido += "<div class='glide__track c-carrusel__contenedor' data-glide-el='track'>";
+
+            contenido += "<ul class='glide__slides c-carrusel__contenedor'>";
             
             for (let index = 0; index < datos["data"].length; index++) {
-                contenido += "<img class='glide__slide' src='imagenes/productos/" + datos["data"][index]["foto"] + "'>";
+                contenido += "<li class='glide__slide c-carrusel__imagen'>";
+                contenido += "<img src='imagenes/productos/" + datos["data"][index]["foto"] + "'>";
+                contenido += "</li>";
             }
-            contenido += "</div></div></div>";
+            contenido += "</ul></div></div>";
             contenedor.innerHTML = contenido;
             new Glide('.glide', {
                 type: 'carousel',
