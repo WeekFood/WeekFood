@@ -1,14 +1,14 @@
+let paginaCargada = false;
 $(() => {
-    var glideScript = '<script src="js/libs/glide-3.2.4/glide.min.js"></script>'
-    var bodyhtml = $(".p-principal").html();
-    if (!bodyhtml.endsWith(glideScript)){
-        $(".p-principal").html( bodyhtml + glideScript)
+    if (!paginaCargada) {
+        paginaCargada = true;
+        $(".p-principal").html($(".p-principal").html() + '<script src="js/libs/glide-3.2.4/glide.min.js"></script>')
+        $.when(cargarDatosDesde("/api/portada")).then(
+            () => {
+                generarCarrusel("js-carrusel")
+            }
+        )
     }
-    $.when(cargarDatosDesde("/api/portada")).then(
-        () => {
-            generarCarrusel("js-carrusel")
-        }
-    )
 })
 
 $('.js-boton-menu').on('click', () => {
