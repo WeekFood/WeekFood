@@ -22,9 +22,7 @@ class MenuController extends core\MVC\Action
     private function get()
     {
         $modelo = $this->getModel('menu', 'Menu');
-        $this->params["datos"] = $modelo->select("*");
-        $this->setView("menu", $this->params);
-        $this->renderView();
-        //echo json_encode($modelo->select("*"));
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($modelo->select('*'));
     }
 }
