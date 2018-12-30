@@ -1,11 +1,6 @@
 $('.js-boton-menu').on('click', () => {
     $('.js-menu').toggleClass('c-menu--oculto');
 });
-$('.js-menu__flecha').on('click', () => {
-    $('.js-menu__lista').toggleClass('c-menu__lista--oculto');
-    $('.c-menu__flecha').toggleClass('c-menu__flecha--oculto');
-    $('.l-distribucion').toggleClass('l-distribucion--menu-desplegado');
-})
 var vistas = {
     error: {
         procesado: (datos) => {
