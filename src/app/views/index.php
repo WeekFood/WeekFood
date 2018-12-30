@@ -34,8 +34,8 @@
         </div>
         <div class="l-distribucion__menu">
             <div class="c-menu c-menu--oculto js-menu">
-			<ul class='js-menu__lista c-menu__lista c-menu__lista--oculto'>
-			</ul>
+                <ul class="c-menu__lista c-menu__lista--oculto js-menu__lista">
+                </ul>
             </div>
         </div>
         <div class="l-distribucion__principal">
