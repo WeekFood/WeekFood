@@ -28,11 +28,6 @@ return [
             "controller" => "productos",
             "action" => "productos",
         ),
-        "API, portada" => array(
-            "route" => "api/portada",
-            "controller" => "portada",
-            "action" => "portada",
-        ),
     ],
     "error" => "error.php",
 ];
