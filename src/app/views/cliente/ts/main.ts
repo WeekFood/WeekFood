@@ -36,7 +36,6 @@ var vistas = {
         }
     },
     portada: {
-        url: "/api/portada",
         menu: "/api/menu/portada",
         scripts: ["js/libs/glide-3.2.4/glide.min.js"],
         procesado: (datos) => { $(".l-distribucion__principal").html("<div class='c-principal'><div class='js-carrusel'></div><h1>¡Bienvenido a <span class='c-logo__parte'>Week</span><span class='c-logo__parte c-logo__parte--alterna'>Food</span>!</h1>Somos una empresa ficticia, ofrecemos gran variedad de platos preparados para entrega en el hogar, el trabajo, o la escuela.<br>Con <span class='c-logo__parte'>Week</span><span class='c-logo__parte c-logo__parte--alterna'>Food</span> nunca mas tendrás que preocuparte de que vas a comer hoy.<div class='c-principal__texto'></div></div>") },
@@ -73,7 +72,7 @@ function cargarVista(vista) {
             montarMenu("/api/menu/portada", vista)
         }
         if (vistas[vista].hasOwnProperty("url")) {
-            $.when(montarVista(vistas[vista]["url"], vista, vistas[vista]["procesado"])).then(() => {
+            $.when(montarVista(vistas[vista]["url"], vistas[vista]["procesado"])).then(() => {
                 if (vistas[vista].hasOwnProperty("postProcesado")) {
                     vistas[vista]["postProcesado"]()
                 }
@@ -92,7 +91,7 @@ function cargarVista(vista) {
     }
 }
 
-function montarVista(url, vista, procesado) {
+function montarVista(url, procesado) {
     return $.getJSON(url).then(
         (datos) => {
             procesado(datos)
