@@ -20,7 +20,7 @@
     padding-bottom: 25px;
     text-align: center;
     @media only screen and (min-width:$mobile-l) {
-        font-size: 2em;
+        font-size: 2rem;
     }
 }
 
@@ -28,7 +28,7 @@
     padding-bottom: 25px;
     text-align: center;
     @media only screen and (min-width:$mobile-l) {
-        font-size: 1.5em;
+        font-size: 1.5rem;
     }
 }
 
@@ -37,6 +37,6 @@
     font-family: 'Happy Monkey';
     font-style: italic;
     @media only screen and (min-width:$mobile-l) {
-        font-size: 1.6em;
+        font-size: 1.6rem;
     }
 }
