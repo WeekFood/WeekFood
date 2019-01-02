@@ -3,12 +3,8 @@
     align-items: center;
     padding: 10px 20px;
 
-    background: $blanco;
+    background: $almendraBlanca;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-    @media only screen and (min-width: $mobile-l) {
-        border-bottom-right-radius: 10px;
-    }
 }
 
 .c-cabecera__boton-menu {
