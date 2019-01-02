@@ -8,9 +8,6 @@ function cargarVista(vistaACargar) {
     cargarVistaAPunto(vistaACargar, ".l-distribucion__principal")
 }
 function cargarVistaAPunto(vistaACargar : string, puntoMontaje : string) {
-    if (puntoMontaje == "undefined") {
-        puntoMontaje = ".l-distribucion__principal"
-    }
     if (vistas.hasOwnProperty(vistaACargar)) {
         if (typeof (puntoMontaje) == "string") {
             desplegarPanelCarga()
