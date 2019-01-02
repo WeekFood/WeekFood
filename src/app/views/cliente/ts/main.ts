@@ -39,10 +39,10 @@ function montarMenu(url, vista) {
 }
 
 function desplegarPanelCarga() {
-    // Todo Toni : Pre-Sprint 2
+    // Todo Toni : Pre-Sprint 2 ó Sprint 2
 }
 function eliminarPanelCarga() {
-    // Todo Toni : Pre-Sprint 2
+    // Todo Toni : Pre-Sprint 2 ó Sprint 2
 }
 
 $('.js-boton-menu').on('click', () => {
