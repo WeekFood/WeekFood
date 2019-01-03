@@ -7,7 +7,7 @@ var vistas = {
 function cargarVista(vistaACargar) {
     cargarVistaAPunto(vistaACargar, ".l-distribucion__principal")
 }
-function cargarVistaAPunto(vistaACargar : string, puntoMontaje : string) {
+function cargarVistaAPunto(vistaACargar, puntoMontaje) {
     if (vistas.hasOwnProperty(vistaACargar)) {
         if (typeof (puntoMontaje) == "string") {
             desplegarPanelCarga()
