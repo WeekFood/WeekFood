@@ -50,7 +50,7 @@ if [ $# -eq 0 ]; then
         mv dist/app/views/cliente/imagenes dist/imagenes
         mv dist/app/views/cliente/fonts dist/fonts
         # borrar directorios copiados que se tienen que construir en vez de copiar/mover
-        rm -r dist/app/views/cliente/{scss,ts}
+        rm -r dist/app/views/cliente/scss
     printf "\t> Compilando Sass\n"
         node-sass --quiet --output-style expanded --source-map true src/app/views/cliente/scss/estilo.scss --output dist/css
         printf "\t\t> Sass compilado.\n"
