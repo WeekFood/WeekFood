@@ -48,7 +48,7 @@
             </div>
         </div>
     </div>
-    <script src="js/libs/jquery-3.3.1.min.js">
+    <script src="libs/jquery/jquery-3.3.1.min.js">
     </script>
     <script src="js/bundle.js">
     </script>
