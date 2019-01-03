@@ -8,7 +8,7 @@
     <title>WeekFood</title>
     <link rel="stylesheet" href="css/estilo.css">
     <link rel="shortcut icon" href="imagenes/WeekFoodLogo_512x512.png" type="image/x-icon">
-    <link rel="stylesheet" href="fontawesome/css/all.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
 </head>
 
 <body class="p-principal">
