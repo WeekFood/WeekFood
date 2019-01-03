@@ -22,7 +22,6 @@ class ApiController extends core\MVC\Action
     private function get()
     {
         header('HTTP/1.0 400 Petición incorrecta', true, 400);
-        header('Content-Type: application/json; charset=utf-8');
         echo json_encode('{"Error: 400"}');
     }
 }

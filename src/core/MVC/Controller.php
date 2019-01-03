@@ -53,6 +53,9 @@ class Controller extends Router
     public function run()
     {
         if (($route = $this->parseUriRouter()) != null) {
+            if (substr($route["route"],0,2) == "api"){
+                header('Content-Type: application/json; charset=utf-8');
+            }
             $this->setControllerName($route["controller"]);
             $this->setActionName($route["action"]);
         } else {
