@@ -50,6 +50,7 @@
         </div>
     </div>
     <script src="libs/jquery/jquery-3.3.1.min.js"></script>
+    <script src="js/carrusel.js"></script>
     <script src="js/vistas_Principales.js"></script>
     <script src="js/main.js"></script>
 </body>
