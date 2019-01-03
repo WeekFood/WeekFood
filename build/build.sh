@@ -38,8 +38,9 @@ function estaticos {
     printf "\t> Re-desplegando Libs\n"
         rm dist/libs -rf
         cp src/app/views/cliente/libs dist/ -r
-    rm dist/fonts -rf
-    cp src/app/views/cliente/fonts dist/ -r
+    printf "\t> Re-desplegando Fonts\n"
+        rm dist/fonts -rf
+        cp src/app/views/cliente/fonts dist/ -r
 }
 if [ $# -eq 0 ]; then
     printf "Construyendo\n"
