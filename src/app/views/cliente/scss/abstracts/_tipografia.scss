@@ -1,3 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Happy+Monkey');
+//@import url('https://fonts.googleapis.com/css?family=Happy+Monkey');
+
+@font-face {
+    font-family: 'Happy Monkey';
+    src: url('../fonts/HappyMonkey-Regular.ttf');
+}
+
 $fuente-principal: sans-serif;
 $fuente-logo: 'Happy Monkey', cursive;
