@@ -35,9 +35,12 @@ function estaticos {
     printf "\t> Re-desplegando Imagenes\n"
         rm dist/imagenes -rf
         cp src/app/views/cliente/imagenes dist/ -r
-    printf "\t> Re-desplegando FontAwesome\n"
-        rm dist/fontawesome -rf
-        cp src/app/views/cliente/fontawesome dist/ -r
+    printf "\t> Re-desplegando Libs\n"
+        rm dist/libs -rf
+        cp src/app/views/cliente/libs dist/ -r
+    printf "\t> Re-desplegando Fonts\n"
+        rm dist/fonts -rf
+        cp src/app/views/cliente/fonts dist/ -r
 }
 if [ $# -eq 0 ]; then
     printf "Construyendo\n"
@@ -47,9 +50,10 @@ if [ $# -eq 0 ]; then
         mkdir dist
     printf "\t> Copiando archivos\n"
         cp -r src/* dist/
-        mv dist/app/views/cliente/fontawesome dist/fontawesome
+        mv dist/app/views/cliente/libs dist/libs
         mv dist/app/views/cliente/js dist/js
         mv dist/app/views/cliente/imagenes dist/imagenes
+        mv dist/app/views/cliente/fonts dist/fonts
         # borrar directorios copiados que se tienen que construir en vez de copiar/mover
         rm -r dist/app/views/cliente/{scss,ts}
     printf "\t> Compilando Sass\n"

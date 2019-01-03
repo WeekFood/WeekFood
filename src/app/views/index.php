@@ -8,7 +8,8 @@
     <title>WeekFood</title>
     <link rel="stylesheet" href="css/estilo.css">
     <link rel="shortcut icon" href="imagenes/WeekFoodLogo_512x512.png" type="image/x-icon">
-    <link rel="stylesheet" href="fontawesome/css/all.css">
+    <link rel="stylesheet" href="libs/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="libs/glide-3.2.4/css/glide.core.min.css">
 </head>
 
 <body class="p-principal">
@@ -48,7 +49,7 @@
             </div>
         </div>
     </div>
-    <script src="js/libs/jquery-3.3.1.min.js">
+    <script src="libs/jquery/jquery-3.3.1.min.js">
     </script>
     <script src="js/bundle.js">
     </script>
