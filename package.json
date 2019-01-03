@@ -6,8 +6,8 @@
   "scripts": {
     "build": "bash ./build/build.sh",
     "deployLocal": "sudo bash ./build/despl-local.sh",
-    "buildDeployLocal" : "npm run build && npm run deployLocal",
-    "sincronizar" : "git checkout develop && git fetch -p && git branch -a && git pull && npm run build"
+    "buildDeployLocal": "npm run build && npm run deployLocal",
+    "sincronizar": "git checkout develop && git fetch -p && git branch -a && git pull && npm run build"
   },
   "repository": {
     "type": "git",
@@ -20,8 +20,6 @@
   },
   "homepage": "https://github.com/WeekFood/WeekFood#readme",
   "devDependencies": {
-    "@types/jquery": "^3.3.28",
-    "node-sass": "^4.10.0",
-    "typescript": "^3.2.2"
+    "node-sass": "^4.10.0"
   }
 }
