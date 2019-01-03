@@ -38,7 +38,7 @@ function vista_Error(puntoMontaje) {
 function vista_Portada(puntoMontaje) {
     $(puntoMontaje).html("<div class='c-principal'><div class='js-carrusel'></div><div class='c-principal__texto'><h1>¡Bienvenido a <span class='c-logo__parte'>Week</span><span class='c-logo__parte c-logo__parte--alterna'>Food</span>!</h1>Somos una empresa ficticia, ofrecemos gran variedad de platos preparados para entrega en el hogar, el trabajo, o la escuela.<br>Con <span class='c-logo__parte'>Week</span><span class='c-logo__parte c-logo__parte--alterna'>Food</span> nunca mas tendrás que preocuparte de que vas a comer hoy.</div></div>")
     montarMenu("/api/menu/portada", "portada")
-    return $.when($.getScript("js/libs/glide-3.2.4/glide.min.js")).then(() => { generarCarrusel("js-carrusel") })
+    return $.when($.getScript("libs/glide-3.2.4/glide.min.js")).then(() => { generarCarrusel("js-carrusel") })
 }
 
 function vista_Productos(puntoMontaje) {
