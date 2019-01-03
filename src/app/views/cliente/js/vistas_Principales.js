@@ -36,6 +36,39 @@ function vista_Error(puntoMontaje) {
 }
 
 function vista_Portada(puntoMontaje) {
+    
+    function generarCarrusel(claseContenedor) {
+        var contenido = "";
+        var contenedor = document.getElementsByClassName(claseContenedor)[0];
+        $.getJSON("/api/carrusel", (datos) => {
+            if (datos["error"] == false) {
+    
+                contenido += "<div class='glide c-carrusel'>";
+    
+                contenido += "<div class='glide__track c-carrusel__contenedor' data-glide-el='track'>";
+    
+                contenido += "<ul class='glide__slides c-carrusel__contenedor'>";
+                
+                for (let index = 0; index < datos["data"].length; index++) {
+                    contenido += "<li class='glide__slide c-carrusel__imagen'>";
+                    contenido += "<img src='imagenes/productos/" + datos["data"][index]["foto"] + "'>";
+                    contenido += "</li>";
+                }
+                contenido += "</ul></div></div>";
+                contenedor.innerHTML = contenido;
+                new Glide('.glide', {
+                    type: 'carousel',
+                    autoplay: 1,
+                    animationDuration: 5000,
+                    hoverpause: false,
+                    perView: 3,
+                    gap: 0,
+                    animationTimingFunc: 'linear'
+                }).mount()
+            }
+        })
+    }
+
     $(puntoMontaje).html("<div class='c-principal'><div class='js-carrusel'></div><div class='c-principal__texto'><h1>¡Bienvenido a <span class='c-logo__parte'>Week</span><span class='c-logo__parte c-logo__parte--alterna'>Food</span>!</h1>Somos una empresa ficticia, ofrecemos gran variedad de platos preparados para entrega en el hogar, el trabajo, o la escuela.<br>Con <span class='c-logo__parte'>Week</span><span class='c-logo__parte c-logo__parte--alterna'>Food</span> nunca mas tendrás que preocuparte de que vas a comer hoy.</div></div>")
     montarMenu("/api/menu/portada", "portada")
     return $.when($.getScript("libs/glide-3.2.4/glide.min.js")).then(() => { generarCarrusel("js-carrusel") })
