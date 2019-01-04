@@ -51,7 +51,11 @@ class Controller extends Router
     }
 
     public function run()
-    {
+    {   
+        if (!$this->navegadorValido()){
+            include_once "app/views/navegadorinvalido.php";
+            return true;
+        }
         if (($route = $this->parseUriRouter()) != null) {
             if (substr($route["route"],0,3) == "api"){
                 header('Content-Type: application/json; charset=utf-8');
@@ -74,5 +78,15 @@ class Controller extends Router
             throw new ControllerException("Controller file cannot be found");
         }
         require_once $controllerFile;
+    }
+    private function navegadorValido(){
+        $navegadores = ["Chrome","Firefox","Edge"];
+        $encontrado = FALSE;
+        foreach($navegadores as $navegador){
+            if (strpos($_SERVER['HTTP_USER_AGENT'],$navegador)){
+                $encontrado = TRUE;
+            }
+        }
+        return $encontrado;
     }
 }
