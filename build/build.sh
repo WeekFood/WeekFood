@@ -24,6 +24,15 @@ function cliente {
         printf "\t\t> Sass compilado.\n"
     printf "\t> Copiando js\n"
         cp src/app/views/cliente/js dist/ -r
+    printf "\t> Preparando vistas\n"
+        touch dist/js/vistas.js
+        for vista in dist/js/vistas/*.js;do
+            printf "\t\t> "$vista"\n"
+            echo "// "$vista >> dist/js/vistas.js
+            cat $vista >> dist/js/vistas.js
+        done
+        rm dist/js/vistas -r
+
 }
 function estaticos {
     printf "Desplegando estaticos\n"
@@ -54,6 +63,14 @@ if [ $# -eq 0 ]; then
     printf "\t> Compilando Sass\n"
         node-sass --quiet --output-style expanded --source-map true src/app/views/cliente/scss/estilo.scss --output dist/css
         printf "\t\t> Sass compilado.\n"
+    printf "\t> Preparando vistas\n"
+        touch dist/js/vistas.js
+        for vista in dist/js/vistas/*.js;do
+            printf "\t\t> "$vista"\n"
+            echo "// "$vista >> dist/js/vistas.js
+            cat $vista >> dist/js/vistas.js
+        done
+        rm dist/js/vistas -r
 else
     for parametro in "$@"; do
         $parametro

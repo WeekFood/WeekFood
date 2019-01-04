@@ -36,26 +36,9 @@ function vista_Error(puntoMontaje) {
 }
 
 function vista_Portada(puntoMontaje) {
+    $.getScript("js/componentes/carrusel.js")
     $(puntoMontaje).html("<div class='c-principal'><div class='js-carrusel'></div><div class='c-principal__texto'><h1>¡Bienvenido a <span class='c-logo__parte'>Week</span><span class='c-logo__parte c-logo__parte--alterna'>Food</span>!</h1>Somos una empresa ficticia, ofrecemos gran variedad de platos preparados para entrega en el hogar, el trabajo, o la escuela.<br>Con <span class='c-logo__parte'>Week</span><span class='c-logo__parte c-logo__parte--alterna'>Food</span> nunca mas tendrás que preocuparte de que vas a comer hoy.</div></div>")
     montarMenu("/api/menu/portada", "portada")
     return $.when($.getScript("libs/glide-3.2.4/glide.min.js")).then(() => { generarCarrusel("js-carrusel") })
 }
 
-function vista_Productos(puntoMontaje) {
-    montarMenu("/api/menu/portada", "productos")
-    var html = "";
-    return $.when($.getJSON("/api/productos").then((datos) => {
-        datos["data"].forEach(producto => {
-            html += "<div class='c-principal c-producto";
-            if (producto["destacado"] == 1) {
-                html += " c-producto--destacado'> <img class='c-producto__imagen-destacado' src='imagenes/estrella.png";
-            }
-            html += "'><img class='c-producto__imagen' src='/imagenes/productos/" + producto["foto"] + "'>";
-            html += "<p class='c-producto__titulo'>" + producto["nombre"].charAt(0).toUpperCase() + producto["nombre"].slice(1) + "</p></div>";
-        })
-    }
-    )).then(() => {
-        $(puntoMontaje).html(html);
-    })
-
-}
