@@ -23,5 +23,9 @@
   "devDependencies": {
     "node-minify": "^3.6.0",
     "node-sass": "^4.10.0"
+  },
+  "dependencies": {
+    "@node-minify/core": "^4.0.5",
+    "@node-minify/terser": "^4.0.5"
   }
 }
