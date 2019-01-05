@@ -21,11 +21,8 @@
   },
   "homepage": "https://github.com/WeekFood/WeekFood#readme",
   "devDependencies": {
-    "node-minify": "^3.6.0",
-    "node-sass": "^4.10.0"
-  },
-  "dependencies": {
+    "node-sass": "^4.10.0",
     "@node-minify/core": "^4.0.5",
     "@node-minify/terser": "^4.0.5"
-  }
+  },
 }
