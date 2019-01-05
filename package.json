@@ -7,7 +7,10 @@
     "build": "bash ./build/build.sh",
     "deployLocal": "sudo bash ./build/despl-local.sh",
     "buildDeployLocal": "npm run build && npm run deployLocal",
-    "sincronizar": "git checkout develop && git fetch -p && git branch -a && git pull && npm run build"
+    "sincronizar": "git checkout develop && git fetch -p && git branch -a && git pull && npm run build",
+    "mini": "npm run miniJS && npm run miniCSS",
+    "miniJS": "node ./build/minimizarJS.js",
+    "miniCSS": "node ./build/minimizarCSS.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +24,10 @@
   "homepage": "https://github.com/WeekFood/WeekFood#readme",
   "devDependencies": {
     "node-sass": "^4.10.0"
+  },
+  "dependencies": {
+    "globby": "^8.0.1",
+    "node-minify": "^3.6.0",
+    "rimraf": "^2.6.3"
   }
 }
