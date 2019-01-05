@@ -23,9 +23,9 @@ function cliente {
         node-sass --quiet --output-style expanded --source-map true src/app/views/cliente/scss/estilo.scss --output dist/css
         printf "\t\t> Sass compilado.\n"
         printf "\t\t> Montando CSS.\n"
-        npm run miniCSS
+        npm run --silent miniCSS
     printf "\t> Montando js\n"
-        npm run miniJS
+        npm run --silent miniJS
 }
 function estaticos {
     printf "Desplegando estaticos\n"
@@ -57,9 +57,9 @@ if [ $# -eq 0 ]; then
         node-sass --quiet --output-style expanded --source-map true src/app/views/cliente/scss/estilo.scss --output dist/css
         printf "\t\t> Sass compilado.\n"
         printf "\t\t> Montando CSS.\n"
-        npm run miniCSS
+        npm run --silent miniCSS
     printf "\t> Montando js.\n"
-        npm run miniJS
+        npm run --silent miniJS
 
 else
     for parametro in "$@"; do
