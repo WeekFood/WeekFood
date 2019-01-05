@@ -4,25 +4,7 @@ var rimraf = require('rimraf');
 
 compressor.minify({
     compressor: 'gcc',
-    input: 'src/app/views/cliente/js/vistas/*.js',
-    output: 'dist/js/temp_vistas.js',
-    callback: function (err, min) { }
-});
-compressor.minify({
-    compressor: 'gcc',
-    input: 'src/app/views/cliente/js/componentes/*.js',
-    output: 'dist/js/temp_componentes.js',
-    callback: function (err, min) { }
-});
-compressor.minify({
-    compressor: 'gcc',
-    input: 'src/app/views/cliente/js/*.js',
-    output: 'dist/js/temp_main.js',
-    callback: function (err, min) { }
-});
-compressor.minify({
-    compressor: 'gcc',
-    input: 'dist/js/*.js',
+    input: ['src/app/views/cliente/js/*.js','src/app/views/cliente/js/*/*.js'],
     output: 'dist/js/WeekFood.js',
     callback: function (err, min) { }
 });
