@@ -22,6 +22,8 @@ function cliente {
     printf "\t> Compilando Sass\n"
         node-sass --quiet --output-style expanded --source-map true src/app/views/cliente/scss/estilo.scss --output dist/css
         printf "\t\t> Sass compilado.\n"
+        printf "\t\t> Montando CSS.\n"
+        npm run miniCSS
     printf "\t> Montando js\n"
         npm run miniJS
 }
@@ -54,7 +56,9 @@ if [ $# -eq 0 ]; then
     printf "\t> Compilando Sass\n"
         node-sass --quiet --output-style expanded --source-map true src/app/views/cliente/scss/estilo.scss --output dist/css
         printf "\t\t> Sass compilado.\n"
-    printf "\t> Montando js\n"
+        printf "\t\t> Montando CSS.\n"
+        npm run miniCSS
+    printf "\t> Montando js.\n"
         npm run miniJS
 
 else
