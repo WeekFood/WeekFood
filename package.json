@@ -23,8 +23,6 @@
   "devDependencies": {
     "node-sass": "^4.10.0",
     "node-minify": "^3.6.0",
-    "@node-minify/clean-css": "^4.0.5",
-    "@node-minify/core": "^4.0.5",
     "globby": "^8.0.1",
     "rimraf": "^2.6.3"
   }
