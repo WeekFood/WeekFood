@@ -8,9 +8,7 @@
     "deployLocal": "sudo bash ./build/despl-local.sh",
     "buildDeployLocal": "npm run build && npm run deployLocal",
     "sincronizar": "git checkout develop && git fetch -p && git branch -a && git pull && npm run build",
-    "mini": "npm run miniJS && npm run miniCSS",
-    "miniJS": "node ./build/minimizarJS.js",
-    "miniCSS": "node ./build/minimizarCSS.js"
+    "miniJS": "node ./build/minimizarJS.js"
   },
   "repository": {
     "type": "git",
