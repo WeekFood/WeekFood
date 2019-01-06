@@ -13,6 +13,7 @@
     "dev:sass:watch": "npm run dev:sass:compile -- --watch --recursive",
     "dev:miniJS": "node ./build/minimizarJS.js ./src/app/views/cliente/js/WeekFood.js",
     "dev:miniJS:watch": "onchange \"./src/app/views/cliente/js/**/*.js\" --exclude \"./src/app/views/cliente/js/WeekFood.js\" -- npm run dev:miniJS",
+    "dev:browser-sync": "browser-sync start --proxy http://127.0.0.1:7272 --files ./src/app/views/cliente  --serveStatic ./src/app/views/cliente --ignore \"src/app/views/cliente/scss\" \"src/app/views/cliente/css/estilo.css.map\" \"src/app/views/cliente/js/!(WeekFood).js\" --no-ghost-mode",
     "servidor": "php -S 127.0.0.1:7272 -t ./src"
   },
   "repository": {
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@node-minify/core": "^4.0.5",
     "@node-minify/terser": "^4.0.5",
+    "browser-sync": "^2.26.3",
     "node-sass": "^4.10.0",
     "onchange": "^5.2.0"
   }
