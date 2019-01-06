@@ -8,7 +8,8 @@
     "deployLocal": "sudo bash ./build/despl-local.sh",
     "buildDeployLocal": "npm run build && npm run deployLocal",
     "sincronizar": "git checkout develop && git fetch -p && git branch -a && git pull && npm run build",
-    "miniJS": "node ./build/minimizarJS.js"
+    "miniJS": "node ./build/minimizarJS.js",
+    "servidor": "php -S 127.0.0.1:7272 -t ./src"
   },
   "repository": {
     "type": "git",
