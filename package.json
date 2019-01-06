@@ -9,6 +9,8 @@
     "buildDeployLocal": "npm run build && npm run deployLocal",
     "sincronizar": "git checkout develop && git fetch -p && git branch -a && git pull && npm run build",
     "miniJS": "node ./build/minimizarJS.js",
+    "dev:sass:compile": "node-sass --source-map true ./src/app/views/cliente/scss --output ./src/app/views/cliente/css",
+    "dev:sass:watch": "npm run dev:sass:compile -- --watch --recursive",
     "servidor": "php -S 127.0.0.1:7272 -t ./src"
   },
   "repository": {
