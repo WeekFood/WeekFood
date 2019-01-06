@@ -11,6 +11,7 @@
     "miniJS": "node ./build/minimizarJS.js",
     "dev:sass:compile": "node-sass --source-map true ./src/app/views/cliente/scss --output ./src/app/views/cliente/css",
     "dev:sass:watch": "npm run dev:sass:compile -- --watch --recursive",
+    "dev:miniJS": "node ./build/minimizarJS.js ./src/app/views/cliente/js/WeekFood.js",
     "servidor": "php -S 127.0.0.1:7272 -t ./src"
   },
   "repository": {
