@@ -55,16 +55,21 @@ $('.js-boton-menu').on('click', () => {
     if($('.js-menu').hasClass('c-menu--oculto')){    
         $(".js-menu").removeClass("c-menu--oculto")
         setTimeout($(".js-menu").addClass("c-menu--descubrir"), 1)
+        for (var x= 0;x < $(".js-menu__lista")[0].childElementCount;x++ ){
+            $($(".js-menu__lista").children()[x]).removeClass("c-menu__item--oculto")
+            setTimeout($($(".js-menu__lista").children()[x]).addClass("c-menu__item--preparado-para-mover"),1)
+                
+        }
         x = 0
         var modificarListado = setInterval(()=>{
             if (x < $(".js-menu__lista")[0].childElementCount){
-                $($(".js-menu__lista").children()[x]).removeClass("c-menu__item--oculto")
+                $($(".js-menu__lista").children()[x]).removeClass("c-menu__item--preparado-para-mover")
                 setTimeout($($(".js-menu__lista").children()[x]).addClass("c-menu__item--descubrir"),1)
                 x++
             }else{
                 clearInterval(modificarListado);
             }
-        },100)
+        },175)
         
     } else {
         $(".js-menu").addClass("c-menu--ocultar")

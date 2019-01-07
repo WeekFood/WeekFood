@@ -53,6 +53,10 @@
     &--oculto{
         margin: -20% 0% 0% -100%
     }
+    &--preparado-para-mover{
+        margin: 0% 0% 0% -100%;
+        opacity: 0;
+    }
     &--descubrir{
         animation: c-menu__lista__descubrir;
         animation-duration: 0.5s;
@@ -89,13 +93,11 @@
 }
 @keyframes c-menu__lista__descubrir{
     0%{
-        margin: -20% 0% 0% -100%
-    }
-    50%{
-        margin: 0% 0% 0% -100%
-
+        margin: 0% 0% 0% -10%;
+        opacity: 0;
     }
     100%{
-        margin: 0%
+        margin: 0%;
+        opacity: 1;
     }
 }
