@@ -8,7 +8,14 @@
     "deployLocal": "sudo bash ./build/despl-local.sh",
     "buildDeployLocal": "npm run build && npm run deployLocal",
     "sincronizar": "git checkout develop && git fetch -p && git branch -a && git pull && npm run build",
-    "miniJS": "node ./build/minimizarJS.js"
+    "miniJS": "node ./build/minimizarJS.js",
+    "dev:sass:compile": "node-sass --source-map true ./src/app/views/cliente/scss --output ./src/app/views/cliente/css",
+    "dev:sass:watch": "npm run dev:sass:compile -- --watch --recursive --quiet",
+    "dev:miniJS": "node ./build/minimizarJS.js ./src/app/views/cliente/js/WeekFood.js",
+    "dev:miniJS:watch": "onchange \"./src/app/views/cliente/js/**/*.js\" --exclude \"./src/app/views/cliente/js/WeekFood.js\" -- npm run dev:miniJS",
+    "dev:browser-sync": "browser-sync start --proxy http://127.0.0.1:7272 --files ./src/app/views/cliente --serveStatic ./src/app/views/cliente --ignore \"src/app/views/cliente/scss\" \"src/app/views/cliente/css/estilo.css.map\" \"src/app/views/cliente/js/**/!(WeekFood).js\" --no-ghost-mode",
+    "cliente": "run-p dev:sass:compile dev:miniJS && run-p dev:sass:watch dev:miniJS:watch dev:browser-sync",
+    "server": "php -S 127.0.0.1:7272 -t ./src"
   },
   "repository": {
     "type": "git",
@@ -21,8 +28,11 @@
   },
   "homepage": "https://github.com/WeekFood/WeekFood#readme",
   "devDependencies": {
-    "node-sass": "^4.10.0",
     "@node-minify/core": "^4.0.5",
-    "@node-minify/terser": "^4.0.5"
+    "@node-minify/terser": "^4.0.5",
+    "browser-sync": "^2.26.3",
+    "node-sass": "^4.10.0",
+    "npm-run-all": "^4.1.5",
+    "onchange": "^5.2.0"
   }
 }

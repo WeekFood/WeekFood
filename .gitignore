@@ -2,3 +2,5 @@
 dist/*
 node_modules
 npm-debug.log
+src/app/views/cliente/css
+src/app/views/cliente/js/WeekFood.js
