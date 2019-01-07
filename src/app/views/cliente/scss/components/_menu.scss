@@ -1,11 +1,19 @@
 .c-menu {
-    min-height: 100%;
-
     background: $blanco;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    
-    &--oculto {
-        display: none;
+    min-height: 100%;
+    &--ocultar{
+        animation: c-menu__ocultar;
+        animation-duration: 1s;
+        animation-timing-function: ease-in;
+    }
+    &--descubrir{
+        animation: c-menu__descubrir;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+    }
+    &--oculto{
+        margin-top:-100%;
     }
     
     @media only screen and (min-width: $mobile-l) {
@@ -44,4 +52,20 @@
     border-color: $rojo;
     font-weight: bold;
 
+}
+@keyframes c-menu__ocultar{
+    0%{
+        margin-top:0%;
+    }
+    100%{
+        margin-top:-100%;
+    }
+}
+@keyframes c-menu__descubrir{
+    0%{
+        margin-top:-100%;
+    }
+    100%{
+        margin-top:0%;
+    }
 }

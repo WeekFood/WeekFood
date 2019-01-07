@@ -46,7 +46,16 @@ function eliminarPanelCarga() {
 }
 
 $('.js-boton-menu').on('click', () => {
-    $('.js-menu').toggleClass('c-menu--oculto');
+    $(".js-menu").removeClass("c-menu--descubrir");
+    setTimeout($(".js-menu").removeClass("c-menu--ocultar"), 1)
+    if($('.js-menu').hasClass('c-menu--oculto')){    
+        $(".js-menu").removeClass("c-menu--oculto")
+        setTimeout($(".js-menu").addClass("c-menu--descubrir"), 1)
+        
+    } else {
+        $(".js-menu").addClass("c-menu--ocultar")
+        setTimeout($(".js-menu").addClass("c-menu--oculto"), 1)
+}
 });
 
 cargarVista("portada")
