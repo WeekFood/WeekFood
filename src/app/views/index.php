@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>WeekFood</title>
-    <link rel="stylesheet" href="css/estilo.css">
     <link rel="shortcut icon" href="imagenes/WeekFoodLogo_512x512.png" type="image/x-icon">
     <link rel="stylesheet" href="libs/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="libs/glide-3.2.4/css/glide.core.min.css">
+    <link rel="stylesheet" href="libs/slick-1.8.1/slick.css">
+    <link rel="stylesheet" href="libs/slick-1.8.1/slick-theme.css">
+    <link rel="stylesheet" href="css/estilo.css">
 </head>
 
 <body class="p-principal">
