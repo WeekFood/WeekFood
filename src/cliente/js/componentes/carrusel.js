@@ -1,10 +1,7 @@
 function generarCarrusel(puntoMontaje) {
     let html = "";
 
-    $.getJSON("/api/carrusel", (datos) => {
-        if (datos["error"] == false) {
-            let imagenes = datos.data;
-
+    $.getJSON("/api/carrusel", (imagenes) => {
             html += `<div class="c-carrusel">`;
 
             imagenes.forEach(imagen => {
@@ -28,6 +25,5 @@ function generarCarrusel(puntoMontaje) {
                 pauseOnHover: false,
                 pauseOnFocus: false
             });
-        }
     })
 }

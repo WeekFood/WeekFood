@@ -14,8 +14,8 @@ return [
         ),
         "API, carrusel" => array(
             "route" => "api/carrusel",
-            "resource" => "carrusel",
-            "action" => "carrusel",
+            "resource" => "productos",
+            "action" => "getCarrusel",
         ),
         "API, menu" => array(
             "route" => "api/menu/:pagina",
