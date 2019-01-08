@@ -47,24 +47,26 @@ function desplegarPanelCarga() {
 function eliminarPanelCarga() {
     // Todo Toni : Pre-Sprint 2 ó Sprint 2
 }
+$(".js-menu").on('webkitAnimationEnd oanimationEnd msAnimationEnd animationend', () => {
+    if($('.js-menu').hasClass('c-menu--oculto')){
+        for (var x= 0;x < $(".js-menu__lista")[0].childElementCount;x++ ){
+            $($(".js-menu__lista").children()[x]).addClass("c-menu__item--oculto").removeClass("c-menu__item--descubrir")
+        }
+    }
+})
 
 $('.js-boton-menu').on('click', () => {
     $(".js-menu").removeClass("c-menu--descubrir");
-    setTimeout($(".js-menu").removeClass("c-menu--ocultar"), 1)
 
     if($('.js-menu').hasClass('c-menu--oculto')){    
-        $(".js-menu").removeClass("c-menu--oculto")
-        setTimeout($(".js-menu").addClass("c-menu--descubrir"), 1)
+        $(".js-menu").removeClass("c-menu--oculto c-menu--ocultar").addClass("c-menu--descubrir")
         for (var x= 0;x < $(".js-menu__lista")[0].childElementCount;x++ ){
-            $($(".js-menu__lista").children()[x]).removeClass("c-menu__item--oculto")
-            setTimeout($($(".js-menu__lista").children()[x]).addClass("c-menu__item--preparado-para-mover"),1)
-                
+            $($(".js-menu__lista").children()[x]).removeClass("c-menu__item--oculto").addClass("c-menu__item--preparado-para-mover")
         }
         x = 0
         var modificarListado = setInterval(()=>{
             if (x < $(".js-menu__lista")[0].childElementCount){
-                $($(".js-menu__lista").children()[x]).removeClass("c-menu__item--preparado-para-mover")
-                setTimeout($($(".js-menu__lista").children()[x]).addClass("c-menu__item--descubrir"),1)
+                $($(".js-menu__lista").children()[x]).removeClass("c-menu__item--preparado-para-mover").addClass("c-menu__item--descubrir")
                 x++
             }else{
                 clearInterval(modificarListado);
@@ -72,16 +74,7 @@ $('.js-boton-menu').on('click', () => {
         },175)
         
     } else {
-        $(".js-menu").addClass("c-menu--ocultar")
-        setTimeout($(".js-menu").addClass("c-menu--oculto"), 1)
-        $($(".js-menu")[0]).one('webkitAnimationEnd oanimationEnd msAnimationEnd animationend', () => {
-            if($('.js-menu').hasClass('c-menu--oculto')){
-                for (var x= 0;x < $(".js-menu__lista")[0].childElementCount;x++ ){
-                    $($(".js-menu__lista").children()[x]).addClass("c-menu__item--oculto")
-                    setTimeout($($(".js-menu__lista").children()[x]).removeClass("c-menu__item--descubrir"),1)
-                }
-            }
-        })
+        $(".js-menu").addClass("c-menu--ocultar c-menu--oculto")
     }
 });
 cargarVista("portada")
