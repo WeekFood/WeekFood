@@ -5,10 +5,14 @@
 
     background: $almendraBlanca;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 2;
+    position: relative;
 }
 
 .c-cabecera__boton-menu {
     display: block;
+    padding: 10px 20px;
+    margin: -10px 0px -10px -20px;
     @media only screen and (min-width: $mobile-l) {
         display: none;
     }
