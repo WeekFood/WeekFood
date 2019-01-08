@@ -39,12 +39,16 @@ abstract class Resource {
         }
     }
 
-    protected function setData(){
+    protected function setData() {
         header('Content-Type: application/json; charset=utf-8');
         echo \json_encode($this->data);
     }
 
-    protected function setError($errorCode) {
-
+    protected function setError($httpStatus, $errorMessage) {
+        header('HTTP/1.1 ' . $httpStatus, true, $httpStatus);
+        header('Content-Type: application/json; charset=utf-8');
+        echo \json_encode([
+            "error" => $errorMessage
+        ]);
     }
 }

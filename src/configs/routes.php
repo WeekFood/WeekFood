@@ -9,8 +9,8 @@ return [
         ),
         "API" => array(
             "route" => "api",
-            "resource" => "Api",
-            "action" => "Api",
+            "resource" => "api",
+            "action" => "error",
         ),
         "API, carrusel" => array(
             "route" => "api/carrusel",
