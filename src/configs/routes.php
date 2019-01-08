@@ -18,9 +18,9 @@ return [
             "action" => "getCarrusel",
         ),
         "API, menu" => array(
-            "route" => "api/menu/:pagina",
+            "route" => "api/menu",
             "resource" => "menu",
-            "action" => "menu",
+            "action" => "get",
         ),
         "API, productos" => array(
             "route" => "api/productos",
