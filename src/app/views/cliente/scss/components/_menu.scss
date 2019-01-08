@@ -3,6 +3,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     overflow: hidden;
     z-index: -10;
+    height: 100%;
     &--ocultar{
         animation: c-menu__ocultar;
         animation-duration: 0.2s;
@@ -62,6 +63,7 @@
     @media only screen and (min-width: $mobile-l) {
         &--oculto{
             opacity: 1;
+            margin-left: 0%;
         }
     }
 
