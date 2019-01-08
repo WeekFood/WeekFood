@@ -63,7 +63,6 @@ class Controller extends Router{
 	}
 
 	private function includeResource($resourceName) {
-		echo $this->resourcePath . $resourceName . ".php<br>";
 		$resourceFile = $this->resourcePath . $resourceName . ".php";
 		if(!file_exists($resourceFile)) {
 			throw new ControllerException("Resource file cannot be found");

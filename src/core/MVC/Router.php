@@ -45,7 +45,6 @@ class Router {
 		$validRoute = null;
 		$uri = trim($_SERVER["REQUEST_URI"], "/");
 		$method = strtolower($_SERVER["REQUEST_METHOD"]);
-		echo 'URI: ' . $uri . '<br>METHOD: ' . $method . '<br>';
 		foreach($this->routers[$method] as $currentRoute) {
 			$route = trim($currentRoute["route"], "/");
 			$routerPattern = "#^" . preg_replace('/\\\:[a-zA-Z0-9\_\-]+/', '([a-zA-Z0-9\-\_]+)', preg_quote($route)) . "$#D";
