@@ -4,8 +4,7 @@ function cargarVista(vistaACargar) {
 function cargarVistaAPunto(vistaACargar, puntoMontaje) {
     if (vistas.hasOwnProperty(vistaACargar)) {
         if (typeof (puntoMontaje) == "string") {
-            desplegarPanelCarga()
-            $.when(vistas[vistaACargar](puntoMontaje)).then(eliminarPanelCarga);
+            vistas[vistaACargar](puntoMontaje)
         } else {
             console.error("Error intentando cargar " + vistaACargar + " : El punto de montaje no es valido.")
         }
@@ -33,11 +32,4 @@ function montarMenu(url, vista) {
             return true
         }
     )
-}
-
-function desplegarPanelCarga() {
-    // Todo Toni : Pre-Sprint 2 ó Sprint 2
-}
-function eliminarPanelCarga() {
-    // Todo Toni : Pre-Sprint 2 ó Sprint 2
 }
