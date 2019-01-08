@@ -2,30 +2,30 @@
 
 return [
     "get" => [
-        "/" => array(
+        "/" => [
             "route" => "/",
             "resource" => "cliente",
             "action" => "index",
-        ),
-        "API" => array(
+        ],
+        "API" => [
             "route" => "api",
             "resource" => "api",
             "action" => "error",
-        ),
-        "API, carrusel" => array(
+        ],
+        "API, carrusel" => [
             "route" => "api/carrusel",
             "resource" => "productos",
             "action" => "getCarrusel",
-        ),
-        "API, menu" => array(
+        ],
+        "API, menu" => [
             "route" => "api/menu",
             "resource" => "menu",
             "action" => "getTodos",
-        ),
-        "API, productos" => array(
+        ],
+        "API, productos" => [
             "route" => "api/productos",
             "resource" => "productos",
             "action" => "getTodos",
-        ),
+		]
     ]
 ];
