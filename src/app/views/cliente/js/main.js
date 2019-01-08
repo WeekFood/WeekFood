@@ -60,13 +60,10 @@ $('.js-boton-menu').on('click', () => {
 
     if($('.js-menu').hasClass('c-menu--oculto')){    
         $(".js-menu").removeClass("c-menu--oculto c-menu--ocultar").addClass("c-menu--descubrir")
-        for (var x= 0;x < $(".js-menu__lista")[0].childElementCount;x++ ){
-            $($(".js-menu__lista").children()[x]).removeClass("c-menu__item--oculto").addClass("c-menu__item--preparado-para-mover")
-        }
         x = 0
         var modificarListado = setInterval(()=>{
             if (x < $(".js-menu__lista")[0].childElementCount){
-                $($(".js-menu__lista").children()[x]).removeClass("c-menu__item--preparado-para-mover").addClass("c-menu__item--descubrir")
+                $($(".js-menu__lista").children()[x]).removeClass("c-menu__item--oculto").addClass("c-menu__item--descubrir")
                 x++
             }else{
                 clearInterval(modificarListado);
