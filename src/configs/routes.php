@@ -20,12 +20,12 @@ return [
         "API, menu" => array(
             "route" => "api/menu",
             "resource" => "menu",
-            "action" => "get",
+            "action" => "getTodos",
         ),
         "API, productos" => array(
             "route" => "api/productos",
             "resource" => "productos",
-            "action" => "productos",
+            "action" => "getTodos",
         ),
     ]
 ];

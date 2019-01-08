@@ -9,4 +9,11 @@ class ProductosResource extends Resource {
 
         $this->setData();
     }
+    
+    public function getTodosAction() {
+        $this->sql = 'SELECT * FROM Productos';
+        $this->execSQL();
+
+        $this->setData();
+    }
 }

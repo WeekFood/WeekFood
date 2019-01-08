@@ -3,7 +3,7 @@
 use core\MVC\Resource as Resource;
 
 class MenuResource extends Resource {
-    public function getAction() {
+    public function getTodosAction() {
         $this->sql = 'SELECT * FROM Menu';
         $this->execSQL();
 
