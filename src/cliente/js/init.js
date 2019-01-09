@@ -25,4 +25,7 @@ $('.js-boton-menu').on('click', () => {
         $(".js-menu").addClass("c-menu--ocultar c-menu--oculto")
     }
 });
+$.getJSON("http://localhost:3000/api/redireccion",(redireccion)=>{
+    console.log(redireccion)
+})
 cargarVista("portada")

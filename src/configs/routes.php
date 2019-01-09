@@ -12,6 +12,11 @@ return [
             "resource" => "api",
             "action" => "error",
         ],
+        "API, redireccion" => [
+            "route" => "api/redireccion",
+            "resource" => "api",
+            "action" => "Redireccion",
+        ],
         "API, carrusel" => [
             "route" => "api/carrusel",
             "resource" => "productos",
