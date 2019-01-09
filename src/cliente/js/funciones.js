@@ -20,7 +20,7 @@ function montarMenu(url, vista) {
             var menu = ""
             items.forEach(item => {
                 menu += "<li class='c-menu__item"
-                if($('.js-menu').hasClass('c-menu--oculto')){
+                if ($('.js-menu').hasClass('c-menu--oculto')) {
                     menu += " c-menu__item--oculto"
                 }
                 if (item["direccion"] == vista) {
