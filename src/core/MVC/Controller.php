@@ -1,92 +1,73 @@
 <?php
 namespace core\MVC;
 
-use \core as core;
+use \core;
 
-class Controller extends Router
-{
+class Controller extends Router{
 
-    private $controllerName = "";
-    private $controllerPath = "";
-    private $defaultRoutesConfig = "";
-    private $actionName = "";
+	private $resourceName = "";
+	private $resourcePath = "";
+	private $defaultRoutesConfig = "";
+	private $actionName = "";
     private $params = array();
-    protected $globals;
-    private $defaultActionName = "error";
-    private $defaultControllerName = "error";
+	protected $globals;
+	private $defaultActionName = "error";
+	private $defaultResourceName = "error";
 
-    public function __construct()
-    {
-        $this->globals = core\Globals::getInstance();
-        $config = $this->globals->get("config");
-        $this->controllerPath = $config["site"]["controllers"];
-        $this->defaultRoutesConfig = $config["site"]["configs"] . "routes.php";
+    public function __construct() {
+		$this->globals = core\Globals::getInstance();
+		$config = $this->globals->get("config");
+		$this->resourcePath = $config["site"]["resources"];
+		$this->defaultRoutesConfig = $config["site"]["configs"] . "routes.php";
         $routesFile = $this->defaultRoutesConfig;
-        if (!file_exists($routesFile)) {
-            throw new ControllerException("Router configuration file (" . $routesFile . ") not found.");
-        }
-        $routes = require_once $routesFile;
-        if (!is_array($routes) || !array_key_exists("routes", $routes)) {
-            throw new ControllerException("Invlid routes configuration file");
-        }
-        $this->addRoutesFromFile($routes);
-    }
+		if(!file_exists($routesFile)) {
+			throw new ControllerException("Router configuration file (" . $routesFile . ") not found.");
+		}
+		$routes = require_once $routesFile;
+		/*if(!is_array($routes) || !array_key_exists("get", $routes)) {
+			throw new ControllerException("Invalid routes configuration file");
+		}*/
+		$this->addRoutesFromFile($routes);
+	}
 
-    private function setControllerName($controllerName)
-    {
-        if (!is_string($controllerName)) {
-            throw new ControllerException("Invalid Controller Name.");
-        }
+	private function setResourceName($resourceName) {
+		if(!is_string($resourceName)) {
+			throw new ControllerException("Invalid Controller Name.");
+		}
 
-        $this->controllerName = ucfirst(strtolower($controllerName)) . "Controller";
-    }
+		$this->resourceName = ucfirst(strtolower($resourceName)) . "Resource";
+	}
 
-    private function setActionName($actionName)
-    {
-        if (!is_string($actionName)) {
-            throw new ControllerException("Invalid Action Name.");
-        }
+	private function setActionName($actionName) {
+		if(!is_string($actionName)) {
+			throw new ControllerException("Invalid Action Name.");
+		}
 
-        $this->actionName = ucfirst(strtolower($actionName)) . "Action";
-    }
+		$this->actionName = ucfirst(strtolower($actionName)) . "Action";
+	}
 
-    public function run()
-    {   
-        if (!$this->navegadorValido()){
-            include_once "app/views/navegadorinvalido.php";
-            return true;
-        }
-        if (($route = $this->parseUriRouter()) != null) {
-            if (substr($route["route"],0,3) == "api"){
-                header('Content-Type: application/json; charset=utf-8');
-            }
-            $this->setControllerName($route["controller"]);
-            $this->setActionName($route["action"]);
-        } else {
-            $this->setControllerName($this->defaultControllerName);
-            $this->setActionName($this->defaultActionName);
-        }
-        $this->includeController($this->controllerName);
-        $controller = new $this->controllerName();
-        $controller->run($this->actionName, $this);
-    }
+	public function run() {
+		//$this->parseUriRouter();
+		if(($route = $this->parseUriRouter()) != null) {
+			$this->setResourceName($route["resource"]);
+			$this->setActionName($route["action"]);
+		}
 
-    private function includeController($controllerName)
-    {
-        $controllerFile = $this->controllerPath . $controllerName . ".php";
-        if (!file_exists($controllerFile)) {
-            throw new ControllerException("Controller file cannot be found");
-        }
-        require_once $controllerFile;
-    }
-    private function navegadorValido(){
-        $navegadores = ["Chrome","Firefox","Edge"];
-        $encontrado = FALSE;
-        foreach($navegadores as $navegador){
-            if (strpos($_SERVER['HTTP_USER_AGENT'],$navegador)){
-                $encontrado = TRUE;
-            }
-        }
-        return $encontrado;
-    }
+		else {
+			$this->setResourceName($this->defaultResourceName);
+			$this->setActionName($this->defaultActionName);
+		}
+		$this->includeResource($this->resourceName);		
+		$resource = new $this->resourceName();
+		$resource->run($this->actionName, $this);
+	}
+
+	private function includeResource($resourceName) {
+		$resourceFile = $this->resourcePath . $resourceName . ".php";
+		if(!file_exists($resourceFile)) {
+			throw new ControllerException("Resource file cannot be found");
+		}
+		require_once($resourceFile);
+	}
 }
+

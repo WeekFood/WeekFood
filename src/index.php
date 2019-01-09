@@ -16,17 +16,15 @@
         echo "<p>Error: Cannot connect to database server.</p>\n";
         echo $e;
         exit();
-    }
-    
+    }    
     
     require_once("./core/AutoLoad.php");
 
-    //use \core;
-    use \core\MVC\Controller as controller;
+    use \core\MVC\Controller;
     
-    $globals = core\Globals::getInstance();
+    $globals = \core\Globals::getInstance();
 
-    $globals->set("mysql", $mysql);
+    $globals->set("db", $mysql);
 
     //Utilizar el método set de $globals para añadir $config ($key será "config")
     $globals->set("config", $config);
@@ -35,8 +33,6 @@
     $controller = new Controller();
 
     //Llamar al método run del objeto creado anteriormente
-    try{
-        $controller->run(); 
-    } catch (Exception $e) {
-        require_once("error.php");
-    }
+    $controller->run();
+
+

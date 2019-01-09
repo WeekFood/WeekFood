@@ -1,33 +1,31 @@
 <?php
 
 return [
-    "routes" => [
-
-        "/" => array(
+    "get" => [
+        "/" => [
             "route" => "/",
-            "controller" => "principal",
+            "resource" => "cliente",
             "action" => "index",
-        ),
-        "API" => array(
+        ],
+        "API" => [
             "route" => "api",
-            "controller" => "Api",
-            "action" => "Api",
-        ),
-        "API, carrusel" => array(
+            "resource" => "api",
+            "action" => "error",
+        ],
+        "API, carrusel" => [
             "route" => "api/carrusel",
-            "controller" => "carrusel",
-            "action" => "carrusel",
-        ),
-        "API, menu" => array(
-            "route" => "api/menu/:pagina",
-            "controller" => "menu",
-            "action" => "menu",
-        ),
-        "API, productos" => array(
+            "resource" => "productos",
+            "action" => "getCarrusel",
+        ],
+        "API, menu" => [
+            "route" => "api/menu",
+            "resource" => "menu",
+            "action" => "getTodos",
+        ],
+        "API, productos" => [
             "route" => "api/productos",
-            "controller" => "productos",
-            "action" => "productos",
-        ),
-    ],
-    "error" => "error.php",
+            "resource" => "productos",
+            "action" => "getTodos",
+		]
+    ]
 ];
