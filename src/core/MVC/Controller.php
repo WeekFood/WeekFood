@@ -50,7 +50,7 @@ class Controller extends Router{
 		}
 
 		else {
-			if (substr($_SERVER["REQUEST_URI"],0,4)=="api/"){
+			if (substr($_SERVER["REQUEST_URI"],0,5)=="/api/"){
 				$this->setActionName("error");
 				$this->setResourceName("api");
 			}else{
