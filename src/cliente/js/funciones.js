@@ -16,9 +16,9 @@ function cargarVistaAPunto(vistaACargar, puntoMontaje) {
 
 function montarMenu(url, vista) {
     return $.getJSON(url).then(
-        (datos) => {
+        (items) => {
             var menu = ""
-            datos["data"].forEach(item => {
+            items.forEach(item => {
                 menu += "<li class='c-menu__item"
                 if($('.js-menu').hasClass('c-menu--oculto')){
                     menu += " c-menu__item--oculto"
