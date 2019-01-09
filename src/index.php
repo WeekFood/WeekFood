@@ -1,7 +1,7 @@
 <?php
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
-    
+
     $config = require_once "./configs/config.php";
 
     try {
@@ -16,12 +16,12 @@
         echo "<p>Error: Cannot connect to database server.</p>\n";
         echo $e;
         exit();
-    }    
-    
+    }
+
     require_once("./core/AutoLoad.php");
 
     use \core\MVC\Controller;
-    
+
     $globals = \core\Globals::getInstance();
 
     $globals->set("db", $mysql);

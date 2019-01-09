@@ -31,7 +31,7 @@ abstract class Resource {
         foreach ($ps->fetchAll(\PDO::FETCH_ASSOC) as $row) {
             foreach ($row as $key => $value) {
                $this->data[$i][$key] = $value;
-            } 
+            }
             $i++;
         }
     }

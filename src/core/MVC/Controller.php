@@ -58,7 +58,7 @@ class Controller extends Router{
                 $this->setActionName($this->defaultActionName);
             }
         }
-        $this->includeResource($this->resourceName);        
+        $this->includeResource($this->resourceName);
         $resource = new $this->resourceName();
         $resource->run($this->actionName, $this);
     }

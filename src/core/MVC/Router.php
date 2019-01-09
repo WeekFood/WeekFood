@@ -1,7 +1,7 @@
 <?php
 namespace core\MVC;
 
-/********** 
+/**********
  Class Router: Esta clase nos servirá para leer nuestras rutas y cargar
  la que toque en cada momento
 **********/
@@ -30,7 +30,7 @@ class Router {
         if(array_key_exists($key, $this->params)) {
             return $this->queries[$key];
         }
-        return null;        
+        return null;
     }
 
     protected function addRoutesFromFile(array $routes) {
@@ -52,7 +52,7 @@ class Router {
             if(preg_match_all($routerPattern, $uri, $matchesParams)) {
                 // Keys for the params
                 $keys = array();
-                // Remove the first element 
+                // Remove the first element
                 array_shift($matchesParams);
                 // Getting the keys names
                 preg_match_all('/\\:([a-zA-Z0-9\_\-]+)/', $route, $keys);
@@ -63,7 +63,7 @@ class Router {
                     $this->params[$keys[0][$i]] = $matchesParams[$i][0];
                 }
                 $validRoute = $currentRoute;
-                break; 
+                break;
             }
         }
         return $validRoute;

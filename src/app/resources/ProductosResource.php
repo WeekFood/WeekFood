@@ -8,7 +8,7 @@ class ProductosResource extends Resource {
         $this->execSQL();
         $this->setData();
     }
-    
+
     public function getTodosAction() {
         $this->sql = 'SELECT * FROM Productos';
         $this->execSQL();
