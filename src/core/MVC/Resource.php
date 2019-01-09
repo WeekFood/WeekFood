@@ -4,15 +4,12 @@ namespace core\MVC;
 use core;
 
 abstract class Resource {
-    //protected $id;
     protected $data;
     protected $db;
     protected $sql;
     protected $controller;
 
-    //public function __construct($id = null) {
     public function __construct() {
-            //$this->id = $id;
         $globals = core\Globals::getInstance();
         $this->db = $globals->get('db');
     }

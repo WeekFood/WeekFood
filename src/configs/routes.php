@@ -26,6 +26,6 @@ return [
             "route" => "api/productos",
             "resource" => "productos",
             "action" => "getTodos",
-		]
+        ]
     ]
 ];

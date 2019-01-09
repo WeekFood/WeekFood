@@ -24,9 +24,6 @@ class Controller extends Router{
 			throw new ControllerException("Router configuration file (" . $routesFile . ") not found.");
 		}
 		$routes = require_once $routesFile;
-		/*if(!is_array($routes) || !array_key_exists("get", $routes)) {
-			throw new ControllerException("Invalid routes configuration file");
-		}*/
 		$this->addRoutesFromFile($routes);
 	}
 
@@ -47,15 +44,19 @@ class Controller extends Router{
 	}
 
 	public function run() {
-		//$this->parseUriRouter();
 		if(($route = $this->parseUriRouter()) != null) {
 			$this->setResourceName($route["resource"]);
 			$this->setActionName($route["action"]);
 		}
 
 		else {
-			$this->setResourceName($this->defaultResourceName);
-			$this->setActionName($this->defaultActionName);
+			if (substr(trim($_SERVER["REQUEST_URI"], "/"),0,3)=="api"){
+				$this->setActionName("error");
+				$this->setResourceName("api");
+			}else{
+				$this->setResourceName($this->defaultResourceName);
+				$this->setActionName($this->defaultActionName);
+			}
 		}
 		$this->includeResource($this->resourceName);		
 		$resource = new $this->resourceName();
@@ -65,9 +66,8 @@ class Controller extends Router{
 	private function includeResource($resourceName) {
 		$resourceFile = $this->resourcePath . $resourceName . ".php";
 		if(!file_exists($resourceFile)) {
-			throw new ControllerException("Resource file cannot be found");
+			throw new ControllerException("Resource file (".$resourceFile.") cannot be found");
 		}
 		require_once($resourceFile);
 	}
 }
-
