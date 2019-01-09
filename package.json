@@ -1,6 +1,6 @@
 {
   "name": "weekfood",
-  "version": "0.0.1",
+  "version": "2.0",
   "description": "Proyecto WeekFood para 2º curso de Desarrollo de Aplicaciones Web",
   "main": "index.js",
   "scripts": {
