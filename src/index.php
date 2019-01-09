@@ -1,7 +1,7 @@
 <?php
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
-    
+
     $config = require_once "./configs/config.php";
 
     try {
@@ -17,16 +17,14 @@
         echo $e;
         exit();
     }
-    
-    
+
     require_once("./core/AutoLoad.php");
 
-    //use \core;
-    use \core\MVC\Controller as controller;
-    
-    $globals = core\Globals::getInstance();
+    use \core\MVC\Controller;
 
-    $globals->set("mysql", $mysql);
+    $globals = \core\Globals::getInstance();
+
+    $globals->set("db", $mysql);
 
     //Utilizar el método set de $globals para añadir $config ($key será "config")
     $globals->set("config", $config);
@@ -35,8 +33,6 @@
     $controller = new Controller();
 
     //Llamar al método run del objeto creado anteriormente
-    try{
-        $controller->run(); 
-    } catch (Exception $e) {
-        require_once("error.php");
-    }
+    $controller->run();
+
+

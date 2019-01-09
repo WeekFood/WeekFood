@@ -12,7 +12,7 @@ class AutoLoad {
             throw new Exception('Class ' . $classNameSpace . ' not found');
         }
     }
-    
+
     public function registerAutoLoad() {
         spl_autoload_register(array($this, "load"), true, true);
     }

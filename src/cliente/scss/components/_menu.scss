@@ -5,17 +5,17 @@
     height: 100%;
     z-index: 1;
     position: relative;
-    &--ocultar{
+    &--ocultar {
         animation: c-menu__ocultar;
         animation-duration: 0.2s;
         animation-timing-function: ease-in;
     }
-    &--descubrir{
+    &--descubrir {
         animation: c-menu__descubrir;
         animation-duration: 0.2s;
         animation-timing-function: ease-out;
     }
-    &--oculto{
+    &--oculto {
         margin-top:-100%
     }
     
@@ -52,11 +52,11 @@
       border-color: $rojo;
       font-weight: bold;
     }
-    &--oculto{
+    &--oculto {
         opacity: 0;
         margin-left: -30%;
     }
-    &--descubrir{
+    &--descubrir {
         animation: c-menu__lista__descubrir;
         animation-duration: 0.5s;
         animation-timing-function: ease-out;
@@ -69,24 +69,27 @@
     }
 
 }
-.c-menu__item:hover{
+
+.c-menu__item:hover {
     color: $rojo;
     border-color: $rojo;
-    font-weight: bold;
-    
+    font-weight: bold;    
 }
-@keyframes c-menu__ocultar{
-    0%{
+
+@keyframes c-menu__ocultar {
+    0% {
         margin-top: 0%;
     }
 }
-@keyframes c-menu__descubrir{
-    0%{
+
+@keyframes c-menu__descubrir {
+    0% {
         margin-top: -100%;
     }
 }
-@keyframes c-menu__lista__descubrir{
-    0%{
+
+@keyframes c-menu__lista__descubrir {
+    0% {
         margin-left: -5%; 
         opacity: 0;
     }
