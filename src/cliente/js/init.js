@@ -25,7 +25,13 @@ $('.js-boton-menu').on('click', () => {
         $(".js-menu").addClass("c-menu--ocultar c-menu--oculto")
     }
 });
-$.getJSON("http://localhost:3000/api/redireccion",(redireccion)=>{
-    console.log(redireccion)
+$.getJSON("http://localhost:3000/api/redireccion", (redireccion) => {
+    if (redireccion !== null) {
+        var redireccion = redireccion["Redireccion"].split("/")
+        if (redireccion.length < 3) {
+            cargarVista(redireccion[1])
+            return true;
+        }
+    }
+    cargarVista("portada")
 })
-cargarVista("portada")

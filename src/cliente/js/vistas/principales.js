@@ -32,7 +32,7 @@ function vista_Error(puntoMontaje) {
     html += titulosError[Math.floor(Math.random() * titulosError.length)] + "<hr>" + descripcionesError[Math.floor(Math.random() * descripcionesError.length)];
     html += "</h2><div class='c-principal__error-enlace' onclick=cargarVista('portada')>Volver a WeekFood</div></div>"
     $(puntoMontaje).html(html)
-    return montarMenu("/api/menu/portada", "error");
+    return montarMenu("/api/menu", "error");
 }
 
 function vista_Portada(puntoMontaje) {
