@@ -1,36 +1,45 @@
-.c-ventana-modal{
+.c-ventana-modal {
     z-index: 999;
     position: fixed;
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.7);
 }
-.c-ventana-modal__contenido{
+
+.c-ventana-modal__contenido {
     position: fixed;
-    background:whitesmoke;
+    background: whitesmoke;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
     overflow: auto;
+    padding: 1%;
 }
 
-.c-ventana-modal__contenido--pequeño{
+.c-ventana-modal__contenido--pequeño {
     top: 25vh;
     left: 25vw;
     width: 50vw;
-    height: 50vh; 
+    height: 50vh;
 }
 
-.c-ventana-modal__contenido--medio{
+.c-ventana-modal__contenido--medio {
     top: 10vh;
     left: 25vw;
     width: 50vw;
     height: 80vh;
 }
 
-
-.c-ventana-modal__contenido--grande{
+.c-ventana-modal__contenido--grande {
     top: 10vh;
     left: 10vw;
     width: 80vw;
     height: 80vh;
+}
+
+.c-ventana-modal__titulo {
+    height: 5vh;
+    padding: 1vh 1vw;
+    border-bottom: 10px double darkred;
+    margin: -1%;
+    margin-bottom: 1%;
 }
