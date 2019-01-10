@@ -26,3 +26,4 @@ $('.js-boton-menu').on('click', () => {
     }
 });
 cargarVista("portada")
+generarVentanaModal("<img src='imagenes/productos/ensalada-cesar.jpg'>")
