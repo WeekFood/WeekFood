@@ -36,9 +36,12 @@ function montarMenu(url, vista) {
 
 function redirigir(){
     var url = extraerCookie("Redirect")
+    console.log(url)
     if (url !== null){
-        url = url.split("=")[1].replace("%2F","/")
+        url = decodeURI(url.split("=")[1])
+        console.log(url)
         url = url.split("/")[1]
+        console.log(url)
         cargarVista(url)
         borrarCookie("Redirect")
     }
