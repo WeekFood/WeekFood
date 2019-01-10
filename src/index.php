@@ -6,7 +6,7 @@
 
     try {
         $mysql = new PDO(
-            "mysql:dbname=" . $config['db']['name'] . ";host=" . $config['db']['host'],
+            "mysql:dbname=" . $config['db']['name'] . ";host=" . $config['db']['host'] . ";port=".$config['db']['port'],
             $config['db']['user'],
             $config['db']['password']
         );
@@ -34,5 +34,3 @@
 
     //Llamar al método run del objeto creado anteriormente
     $controller->run();
-
-
