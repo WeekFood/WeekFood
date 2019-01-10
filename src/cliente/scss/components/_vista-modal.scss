@@ -35,10 +35,20 @@
     height: 80vh;
 }
 
-.c-ventana-modal__equis{
+.c-ventana-modal__equis {
     background: red;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    border-radius: 15px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.c-ventana-modal__equis::after {
+    content: "X";
 }
 
 .c-ventana-modal__titulo {
@@ -46,6 +56,7 @@
     padding: 50px;
     border-bottom: 10px double darkred;
 }
+
 .c-ventana-modal__contenido {
     padding: 1%;
 }
