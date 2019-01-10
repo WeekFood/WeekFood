@@ -14,7 +14,6 @@ printf "\t> Copiando archivos\n"
     mv dist/cliente/libs dist/libs
     mv dist/cliente/imagenes dist/imagenes
     mv dist/cliente/fonts dist/fonts
-    mv dist/configs/preprod_config.php dist/configs/config.php
     # borrar directorios copiados que se tienen que construir en vez de copiar/mover
     rm -r dist/cliente/scss
 printf "\t> Compilando Sass\n"
