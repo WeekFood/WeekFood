@@ -6,8 +6,8 @@
     return [
         'db' => [
             'name' => 'WeekFood',
-            'host' => 'localhost',
-            'port' => '3306',
+            'host' => '172.16.205.57',
+            'port' => '3304',
             'user' => 'WeekFood',
             'password' => 'SQITBAxsMBPuQtaZ'
         ],
