@@ -11,4 +11,8 @@ function generarVentanaModal(tamaño, titulo, contenido) {
     modal += "<div class='c-ventana-modal__contenido'>" + contenido + "</div>"
     modal += "</div></div>"
     $(".l-distribucion").html(modal + $(".l-distribucion").html())
+    $('.js-ventana-modal__equis').on('click', cerrarVentanaModal);
+}
+function cerrarVentanaModal() {
+    $(".js-ventana-modal").remove()
 }
