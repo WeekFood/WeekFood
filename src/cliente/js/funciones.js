@@ -38,7 +38,7 @@ function redirigir(){
     var url = extraerCookie("Redirect")
     console.log(url)
     if (url !== null){
-        url = decodeURI(url.split("=")[1])
+        url = decodeURIComponent(url.split("=")[1])
         console.log(url)
         url = url.split("/")[1]
         console.log(url)
