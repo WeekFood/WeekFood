@@ -7,7 +7,7 @@
     "build": "bash ./build/build.sh",
     "deployLocal": "sudo bash ./build/despl-local.sh",
     "buildDeployLocal": "npm run build && npm run deployLocal",
-    "deployPreprod": "sudo bash ./build/despl-preprod.sh",
+    "deployPreprod": "bash ./build/despl-preprod.sh",
     "buildDeployPreprod": "npm run build && npm run deployPreprod",
     "sincronizar": "git checkout develop && git fetch -p && git branch -a && git pull && npm run build",
     "miniJS": "node ./build/minimizarJS.js",
