@@ -25,4 +25,7 @@ $('.js-boton-menu').on('click', () => {
         $(".js-menu").addClass("c-menu--ocultar c-menu--oculto")
     }
 });
-cargarVista("portada")
+
+if (!redirigir()) {
+    cargarVista("portada")
+}

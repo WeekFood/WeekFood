@@ -33,3 +33,27 @@ function montarMenu(url, vista) {
         }
     )
 }
+
+function redirigir(){
+    var url = extraerCookie("Redirect")
+    if (url !== null){
+        url = decodeURIComponent(url.split("=")[1])
+        url = url.split("/")[1]
+        cargarVista(url)
+        borrarCookie("Redirect")
+        return true
+    }
+}
+
+function extraerCookie(nombre){
+    var encontrada = null
+    document.cookie.split("; ").forEach(cookie => {     
+        if (cookie.split("=")[0] == nombre){
+            encontrada = cookie;
+        }
+    })
+    return encontrada;
+}
+function borrarCookie(nombre){
+    document.cookie = nombre + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
