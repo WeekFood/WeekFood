@@ -1,8 +1,8 @@
 function generarNotificacion(contenido, flash = false) {
-
     var notificacion = "<div class='"
     if (flash) {
         notificacion += "c-notificacion c-notificacion--flash js-notificacion--flash'>"
+        $(".js-notificacion--flash").remove()
         setTimeout(() => { $(".js-notificacion--flash").remove() }, 5010)
     }
     else {
@@ -12,4 +12,7 @@ function generarNotificacion(contenido, flash = false) {
     }
     notificacion += contenido + "</div>"
     $(".p-principal").prepend(notificacion)
+    $(".js-notificacion--top").on('click',()=>{$(".js-notificacion--top").remove()})
+    $(".js-notificacion--flash").on('click',()=>{$(".js-notificacion--flash").remove()})
+
 }
