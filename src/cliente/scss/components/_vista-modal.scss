@@ -12,49 +12,52 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
     overflow: auto;
-}
-
-.c-ventana-modal__interno--pequeño {
-    top: 25vh;
-    left: 25vw;
-    width: 50vw;
-    height: 50vh;
-}
-
-.c-ventana-modal__interno--medio {
-    top: 10vh;
-    left: 25vw;
-    width: 50vw;
-    height: 80vh;
-}
-
-.c-ventana-modal__interno--grande {
-    top: 10vh;
-    left: 10vw;
-    width: 80vw;
-    height: 80vh;
+    top: 5vh;
+    width: 90vw;
+    left: 5vw;
+    height: 85vh;
+    @media only screen and (min-width: $mobile-l) {
+        &--pequeño {
+            top: 25vh;
+            left: 25vw;
+            width: 50vw;
+            height: 50vh;
+        }
+        &--medio {
+            top: 10vh;
+            left: 25vw;
+            width: 50vw;
+            height: 80vh;
+        }
+        &--grande {
+            top: 10vh;
+            left: 10vw;
+            width: 80vw;
+            height: 80vh;
+        }
+    }
 }
 
 .c-ventana-modal__equis {
-    background: red;
     width: 30px;
     height: 30px;
     position: absolute;
-    right: 5px;
+    right:15px;
     top: 5px;
     border-radius: 15px;
-    text-align: center;
-    line-height: 30px;
 }
 
 .c-ventana-modal__equis::after {
-    content: "X";
+    font-family: "Font Awesome 5 Free";
+    content: "\f057";
+    font-weight: 400;font-size: 2em;
 }
 
 .c-ventana-modal__titulo {
-    height: 5vh;
-    padding: 50px;
+    line-height: 50px;
+    padding: 0 30px;
     border-bottom: 10px double darkred;
+    font-size: 25px;
 }
 
 .c-ventana-modal__contenido {
