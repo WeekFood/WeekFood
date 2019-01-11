@@ -85,7 +85,7 @@ function generarVentanaModal(opciones) {
     }
 
     modal += "</div></div>"
-    $(".l-distribucion").html(modal + $(".l-distribucion").html())
+    $(".p-principal").prepend(modal)
     $('.js-ventana-modal__cerrar').on('click', () => { cerrarVentanaModal(); opciones.callback_Cerrar() });
     $('.js-ventana-modal__confirmar').on('click', () => { cerrarVentanaModal(); opciones.callback_Confirmar() });
     $('.js-ventana-modal__denegar').on('click', () => { cerrarVentanaModal(); opciones.callback_Denegar() });
