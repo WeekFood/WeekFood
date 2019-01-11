@@ -4,6 +4,9 @@
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.7);
+    animation: c-ventana-modal__aparecer;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in;
 }
 
 .c-ventana-modal__interno {
@@ -33,6 +36,11 @@
             height: 80vh;
         }
     }
+    animation: c-ventana-modal__interno-aparecer;
+    animation-duration: 0.2s;
+    animation-delay: 0.3s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: backwards
 }
 
 .c-ventana-modal__equis {
@@ -73,4 +81,17 @@
     width: 100%;
     bottom: 0;
     text-align: center;
+}
+
+
+@keyframes c-ventana-modal__aparecer {
+    0%{
+        opacity: 0;
+    }
+}
+@keyframes c-ventana-modal__interno-aparecer {
+    0%{
+        transform: translateY(-30px);
+        opacity: 0;
+    }
 }
