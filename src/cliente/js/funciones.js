@@ -44,6 +44,7 @@ function redirigir(){
         console.log(url)
         cargarVista(url)
         borrarCookie("Redirect")
+        return true
     }
 }
 
