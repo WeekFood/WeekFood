@@ -73,14 +73,14 @@
     background: whitesmoke;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
-    max-height: 85%;
+    max-height: 60vh;
     overflow: auto;
 }
 
 .c-ventana-modal__botones {
     position: absolute;
     width: 100%;
-    bottom: 0;
+    margin-top: 10px;
     text-align: center;
 }
 
