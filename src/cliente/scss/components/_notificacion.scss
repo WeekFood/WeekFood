@@ -9,9 +9,13 @@
     animation-duration: 15s;
     animation-fill-mode: both;
     animation-timing-function: ease-out;
-    &--top{
-        width: 50vw;
-        left: 25vw;
+    &--top {
+        width: 80vw;
+        left: 10vw;
+        @media only screen and (min-width: $mobile-l) {
+            width: 50vw;
+            left: 25vw;
+        }
         animation: c-notificacion--top-aparecer;
         animation-duration: 10s;
     }
@@ -24,30 +28,29 @@
 
 @keyframes c-notificacion--top-aparecer {
     0% {
-        top:-0%;
+        top: -0%;
         opacity: 0;
     }
-    2%{
-        top:9vh;
+    2% {
+        top: 9vh;
         opacity: 1;
     }
-    4%{
-        top:8vh;
+    4% {
+        top: 8vh;
     }
-    96%{
-        top:8vh;
+    96% {
+        top: 8vh;
     }
-    98%{
-        top:9vh;
+    98% {
+        top: 9vh;
         opacity: 1;
     }
     100% {
-        top:-0%;
+        top: -0%;
         opacity: 0;
     }
-
-
 }
+
 @keyframes c-notificacion--flash-aparecer {
     0% {
         right: -100%;
