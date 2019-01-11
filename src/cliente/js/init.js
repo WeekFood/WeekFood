@@ -29,7 +29,8 @@ cargarVista("portada")
 generarVentanaModal({
     tipo: "confirmacion",
     contenido : "<h1> Este es el contenido de la ventana modal</h1><h3>Mola, eh?</h3>",
-    callback_Confirmar : ()=>{},
-    callback_Denegar : ()=>{},
+    callback_Confirmar : ()=>{alert("el usuario ha confirmado")},
+    callback_Denegar : ()=>{alert("el usuario ha cancelado")},
+    callback_Cerrar : ()=>{alert("el usuario ha cerrado")},
     equis : true
 })

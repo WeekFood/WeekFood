@@ -5,12 +5,16 @@ function generarVentanaModal(opciones) {
     equis = true / false
     contenido = string
     titulo = string
+    callback_Cerrar = function
     callback_Confirmar = function
     callback_Denegar = function
     */
 
-    if (!opciones.hasOwnProperty("contenido")) {
-        opciones["contenido"] = "";
+   if (!opciones.hasOwnProperty("contenido")) {
+    opciones["contenido"] = "";
+}
+    if (!opciones.hasOwnProperty("callback_Cerrar")) {
+        opciones["callback_Cerrar"] = {};
     }
     if (opciones.hasOwnProperty("tamaño")) {
         if (!tamaños.includes(opciones.tamaño)) {
@@ -80,9 +84,9 @@ function generarVentanaModal(opciones) {
     modal += "<div class='c-ventana-modal__contenido'>" + opciones.contenido + "</div>"
     modal += "</div></div>"
     $(".l-distribucion").html(modal + $(".l-distribucion").html())
-    $('.js-ventana-modal__cerrar').on('click', cerrarVentanaModal);
-    $('.js-ventana-modal__confirmar').on('click', () => { cerrarVentanaModal(), opciones.callback_Confirmar() });
-    $('.js-ventana-modal__denegar').on('click', () => { cerrarVentanaModal(), opciones.callback_Denegar() });
+    $('.js-ventana-modal__cerrar').on('click', () => {cerrarVentanaModal();opciones.callback_Cerrar()});
+    $('.js-ventana-modal__confirmar').on('click', () => { cerrarVentanaModal(); opciones.callback_Confirmar() });
+    $('.js-ventana-modal__denegar').on('click', () => { cerrarVentanaModal(); opciones.callback_Denegar() });
 }
 function cerrarVentanaModal() {
     $(".js-ventana-modal").remove()
