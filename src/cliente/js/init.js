@@ -26,4 +26,7 @@ $('.js-boton-menu').on('click', () => {
     }
 });
 cargarVista("portada")
-generarVentanaModal("grande","ventana de prueba","<img src='imagenes/productos/ensalada-cesar.jpg'>")
+generarVentanaModal({
+    tipo: "info",
+    contenido : "<h1> Este es el contenido de la ventana modal</h1><h3>Mola, eh?</h3>",
+})
