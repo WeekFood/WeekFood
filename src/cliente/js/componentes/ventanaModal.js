@@ -14,7 +14,7 @@ function generarVentanaModal(opciones) {
         opciones["contenido"] = "";
     }
     if (!opciones.hasOwnProperty("callback_Cerrar")) {
-        opciones["callback_Cerrar"] = {};
+        opciones["callback_Cerrar"] = ()=>{};
     }
     if (opciones.hasOwnProperty("tamaño")) {
         if (!tamaños.includes(opciones.tamaño)) {
@@ -75,7 +75,9 @@ function generarVentanaModal(opciones) {
             </div>`
             break
         default: //info
+        if (!opciones.hasOwnProperty("equis")) {
             opciones["equis"] = true;
+        }
     }
 
     if (opciones.equis) {
