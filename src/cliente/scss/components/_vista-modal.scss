@@ -1,5 +1,5 @@
 .c-ventana-modal {
-    z-index: 999;
+    z-index: 99;
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -16,6 +16,7 @@
     width: 90vw;
     left: 5vw;
     height: 85vh;
+    z-index: 1000;
     @media only screen and (min-width: $mobile-l) {
         &--pequeño {
             top: 25vh;
@@ -94,4 +95,11 @@
         transform: translateY(-30px);
         opacity: 0;
     }
+}
+.c-boton{
+    /*Este codigo es solo con propositos de testeo*/
+    background: lightblue;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 10px;
 }
