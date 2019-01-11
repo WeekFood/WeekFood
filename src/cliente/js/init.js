@@ -26,13 +26,3 @@ $('.js-boton-menu').on('click', () => {
     }
 });
 cargarVista("portada")
-setTimeout(() => {
-    generarVentanaModal({
-        titulo: "Sep",
-        tipo: "confirmacion",
-        contenido: "<h1 style='padding:1%'> Este es el contenido de la ventana modal</h1><h3 style='padding:1%'>Mola, eh?</h3>",
-        callback_Confirmar: ()=>{},
-        callback_Denegar: ()=>{},
-        equis : true
-    })
-}, 500);
