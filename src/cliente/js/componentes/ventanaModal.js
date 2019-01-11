@@ -36,6 +36,12 @@ function generarVentanaModal(opciones) {
     }
     var modal = "<div class='c-ventana-modal js-ventana-modal js-ventana-modal__cerrar'>"
 
+    modal += "<div class='c-ventana-modal__interno c-ventana-modal__interno--" + opciones.tamaño + "'>"
+    if (opciones.hasOwnProperty("titulo")) {
+        modal += "<div class='c-ventana-modal__titulo'>" + opciones.titulo + "</div>"
+    }
+
+    modal += "<div class='c-ventana-modal__contenido'>" + opciones.contenido + "</div>"
     switch (opciones.tipo) {
         case "aviso":
             if (!opciones.hasOwnProperty("callback_Confirmar")) {
@@ -72,16 +78,10 @@ function generarVentanaModal(opciones) {
             opciones["equis"] = true;
     }
 
-    modal += "<div class='c-ventana-modal__interno c-ventana-modal__interno--" + opciones.tamaño + "'>"
     if (opciones.equis) {
         modal += "<div class='c-ventana-modal__equis js-ventana-modal__cerrar'></div>"
     }
 
-    if (opciones.hasOwnProperty("titulo")) {
-        modal += "<div class='c-ventana-modal__titulo'>" + opciones.titulo + "</div>"
-    }
-
-    modal += "<div class='c-ventana-modal__contenido'>" + opciones.contenido + "</div>"
     modal += "</div></div>"
     $(".l-distribucion").html(modal + $(".l-distribucion").html())
     $('.js-ventana-modal__cerrar').on('click', () => {cerrarVentanaModal();opciones.callback_Cerrar()});
