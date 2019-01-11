@@ -29,3 +29,5 @@ $('.js-boton-menu').on('click', () => {
 if (!redirigir()) {
     cargarVista("portada")
 }
+
+setTimeout(generarNotificacion("Lomo asado añadido al carrito.",true),500)

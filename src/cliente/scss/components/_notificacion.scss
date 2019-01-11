@@ -1,0 +1,35 @@
+.c-notificacion--flash {
+    position: fixed;
+    z-index: 50;
+    background: $blanco;
+    padding: 1% 3%;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation: c-notificacion--flash-aparecer;
+    animation-duration: 5s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
+}
+@keyframes c-notificacion--flash-aparecer{
+    0%{
+        right: -100%;
+    }
+    10%{
+        right: 20px;
+    }
+    15%{
+        right: 10px;
+    }
+    85%{
+        right: 10px;
+    }
+    90%{
+        right: 20px;
+    }
+    100%{
+        right: -100%;
+    }
+
+}
