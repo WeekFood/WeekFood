@@ -27,6 +27,9 @@ $('.js-boton-menu').on('click', () => {
 });
 cargarVista("portada")
 generarVentanaModal({
-    tipo: "info",
+    tipo: "confirmacion",
     contenido : "<h1> Este es el contenido de la ventana modal</h1><h3>Mola, eh?</h3>",
+    callback_Confirmar : ()=>{},
+    callback_Denegar : ()=>{},
+    equis : true
 })
