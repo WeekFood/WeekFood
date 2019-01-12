@@ -27,15 +27,20 @@ return [
             "resource" => "productos",
             "action" => "getTodos",
         ],
-        "API, Categorias Generales" => [
-            "route" => "api/productos/categorias-generales",
-            "resource" => "productos",
-            "action" => "getCategoriasGeneralesTodosAction",
-        ],
-        "API, Categorias" => [
+        "API, Categorias (Principales)" => [
             "route" => "api/productos/categorias",
             "resource" => "productos",
+            "action" => "getCategoriasPrincipalesTodosAction",
+        ],
+        "API, Categorias" => [
+            "route" => "api/productos/categorias/:categoriaPrincipal",
+            "resource" => "productos",
             "action" => "getCategoriasTodosAction",
+        ],
+        "API, Producto por categoria" => [
+            "route" => "api/productos/categorias/:categoriaPrincipal/:categoriaEspecifica",
+            "resource" => "productos",
+            "action" => "getCategoriasAction",
         ]
     ]
 ];

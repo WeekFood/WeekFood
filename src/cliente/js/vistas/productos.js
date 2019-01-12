@@ -1,5 +1,8 @@
-function vista_Productos(puntoMontaje) {
-    montarMenu("/api/menu", "productos")
+function vista_Productos(puntoMontaje,categoria="") {
+    if(categoria.length > 0){categoria = "/" + categoria}
+    $.when(montarMenu("/api/menu", "productos")).then(()=>{
+        $("<li>Aqui van las categorias de "+categoria+"<li>").insertAfter(".js-menu-productos")
+    })
     var html = "";
     return $.when($.getJSON("/api/productos").then((productos) => {
         productos.forEach(producto => {
@@ -14,5 +17,4 @@ function vista_Productos(puntoMontaje) {
     )).then(() => {
         $(puntoMontaje).html(html);
     })
-
 }

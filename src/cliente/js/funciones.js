@@ -26,6 +26,9 @@ function montarMenu(url, vista) {
                 if (item["direccion"] == vista) {
                     menu += " c-menu__item--destacado"
                 }
+                if (item["direccion"] == "productos"){
+                    menu += " js-menu-productos"
+                }
                 menu += "' onclick='cargarVista(\"" + item["direccion"] + "\")'>" + item["valor"] + "</li>"
             });
             $(".js-menu__lista").html(menu)
