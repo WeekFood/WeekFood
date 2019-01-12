@@ -85,6 +85,7 @@ function generarVentanaModal(opciones) {
     }
 
     modal += "</div></div>"
+    cerrarVentanaModal()
     $(".p-principal").prepend(modal)
     $('.js-ventana-modal__cerrar').on('click', () => { cerrarVentanaModal(); opciones.callback_Cerrar() });
     $('.js-ventana-modal__confirmar').on('click', () => { cerrarVentanaModal(); opciones.callback_Confirmar() });

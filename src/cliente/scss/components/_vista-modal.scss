@@ -19,7 +19,7 @@
     z-index: 1000;
     @media only screen and (min-width: $mobile-l) {
         &--pequeño {
-            top: 25vh;
+            top: 10vh;
             left: 25vw;
             width: 50vw;
             height: 50vh;
@@ -45,31 +45,30 @@
 }
 
 .c-ventana-modal__equis {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     position: absolute;
     right: 15px;
     top: 5px;
     border-radius: 15px;
-    color: red;
+    color: whitesmoke;
 }
 
 .c-ventana-modal__equis::after {
     font-family: "Font Awesome 5 Free";
     content: "\f057";
     font-weight: 400;
-    font-size: 2em;
+    font-size: 35px;
 }
 
 .c-ventana-modal__titulo {
     line-height: 50px;
     padding: 0 15px;
     font-size: 25px;
-    color: white;
+    color: $blanco;
 }
 
 .c-ventana-modal__contenido {
-    padding: 1%;
     background: whitesmoke;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
@@ -78,20 +77,19 @@
 }
 
 .c-ventana-modal__botones {
-    position: absolute;
     width: 100%;
     margin-top: 10px;
     text-align: center;
 }
 
-
 @keyframes c-ventana-modal__aparecer {
-    0%{
+    0% {
         opacity: 0;
     }
 }
+
 @keyframes c-ventana-modal__interno-aparecer {
-    0%{
+    0% {
         transform: translateY(-30px);
         opacity: 0;
     }
