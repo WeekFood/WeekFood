@@ -26,6 +26,16 @@ return [
             "route" => "api/productos",
             "resource" => "productos",
             "action" => "getTodos",
+        ],
+        "API, Categorias Generales" => [
+            "route" => "api/productos/categorias-generales",
+            "resource" => "productos",
+            "action" => "getCategoriasGeneralesTodosAction",
+        ],
+        "API, Categorias" => [
+            "route" => "api/productos/categorias",
+            "resource" => "productos",
+            "action" => "getCategoriasTodosAction",
         ]
     ]
 ];

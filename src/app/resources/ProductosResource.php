@@ -14,4 +14,16 @@ class ProductosResource extends Resource {
         $this->execSQL();
         $this->setData();
     }
+    
+    public function getCategoriasTodosAction() {
+        $this->sql = 'SELECT * FROM Categorias';
+        $this->execSQL();
+        $this->setData();
+    }
+
+    public function getCategoriasGeneralesTodosAction() {
+        $this->sql = 'SELECT * FROM Categorias_Generales';
+        $this->execSQL();
+        $this->setData();
+    }
 }
