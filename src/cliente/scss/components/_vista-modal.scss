@@ -12,10 +12,6 @@
 .c-ventana-modal__interno {
     position: fixed;
     overflow: auto;
-    top: 5vh;
-    width: 90vw;
-    left: 5vw;
-    height: 85vh;
     z-index: 1000;
     @media only screen and (min-width: $mobile-l) {
         &--pequeño {
@@ -45,19 +41,15 @@
 }
 
 .c-ventana-modal__equis {
-    width: 35px;
-    height: 35px;
     position: absolute;
     right: 15px;
     top: 5px;
-    border-radius: 15px;
     color: whitesmoke;
 }
 
 .c-ventana-modal__equis::after {
     font-family: "Font Awesome 5 Free";
     content: "\f057";
-    font-weight: 400;
     font-size: 35px;
 }
 
@@ -77,7 +69,6 @@
 }
 
 .c-ventana-modal__botones {
-    width: 100%;
     margin-top: 10px;
     text-align: center;
 }
