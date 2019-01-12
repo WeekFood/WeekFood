@@ -30,17 +30,17 @@ return [
         "API, Categorias (Principales)" => [
             "route" => "api/productos/categorias",
             "resource" => "productos",
-            "action" => "getCategoriasPrincipalesTodosAction",
+            "action" => "getCategoriasPrincipalesTodos",
         ],
         "API, Categorias" => [
             "route" => "api/productos/categorias/:categoriaPrincipal",
             "resource" => "productos",
-            "action" => "getCategoriasTodosAction",
+            "action" => "getCategoriasTodos",
         ],
         "API, Producto por categoria" => [
             "route" => "api/productos/categorias/:categoriaPrincipal/:categoriaEspecifica",
             "resource" => "productos",
-            "action" => "getCategoriasAction",
+            "action" => "getCategoria",
         ]
     ]
 ];

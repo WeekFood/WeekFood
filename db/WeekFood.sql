@@ -35,7 +35,7 @@ CREATE TABLE `categorias` (
   `subCategoriaDe` varchar(100) NOT NULL,
   PRIMARY KEY (`nombre`),
   KEY `Categoria-Principal` (`subCategoriaDe`),
-  CONSTRAINT `Categoria-Principal` FOREIGN KEY (`subCategoriaDe`) REFERENCES `categorias-principales` (`nombre`)
+  CONSTRAINT `Categoria-Principal` FOREIGN KEY (`subCategoriaDe`) REFERENCES `categoriasprincipales` (`nombre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -50,26 +50,26 @@ INSERT INTO `categorias` VALUES ('Paellas','Arroces'),('Cerdo','Carnes'),('Pollo
 UNLOCK TABLES;
 
 --
--- Table structure for table `categorias-principales`
+-- Table structure for table `categoriasprincipales`
 --
 
-DROP TABLE IF EXISTS `categorias-principales`;
+DROP TABLE IF EXISTS `categoriasprincipales`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `categorias-principales` (
+CREATE TABLE `categoriasprincipales` (
   `nombre` varchar(100) NOT NULL,
   PRIMARY KEY (`nombre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `categorias-principales`
+-- Dumping data for table `categoriasprincipales`
 --
 
-LOCK TABLES `categorias-principales` WRITE;
-/*!40000 ALTER TABLE `categorias-principales` DISABLE KEYS */;
-INSERT INTO `categorias-principales` VALUES ('Arroces'),('Carnes'),('Hortalizas'),('Huevos'),('Marisco'),('Pastas'),('Verduras');
-/*!40000 ALTER TABLE `categorias-principales` ENABLE KEYS */;
+LOCK TABLES `categoriasprincipales` WRITE;
+/*!40000 ALTER TABLE `categoriasprincipales` DISABLE KEYS */;
+INSERT INTO `categoriasprincipales` VALUES ('Arroces'),('Carnes'),('Hortalizas'),('Huevos'),('Marisco'),('Pastas'),('Verduras');
+/*!40000 ALTER TABLE `categoriasprincipales` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --

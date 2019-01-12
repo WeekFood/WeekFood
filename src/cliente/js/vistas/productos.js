@@ -1,7 +1,12 @@
-function vista_Productos(puntoMontaje,categoria="") {
-    if(categoria.length > 0){categoria = "/" + categoria}
-    $.when(montarMenu("/api/menu", "productos")).then(()=>{
-        $("<li>Aqui van las categorias de "+categoria+"<li>").insertAfter(".js-menu-productos")
+function vista_Productos(puntoMontaje, categoria = "") {
+    $.when(montarMenu("/api/menu", "productos")).then(() => {
+        if (categoria.length > 0) {
+            categoria = "/" + categoria
+            $("<li>Aqui van las categorias de " + categoria + "<li>").insertAfter(".js-menu-productos")
+            $.getJSON("/api/productos/categorias/huevos/tortilla").then((produc)=>{
+                console.log(produc)
+            })
+        }
     })
     var html = "";
     return $.when($.getJSON("/api/productos").then((productos) => {
