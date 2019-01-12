@@ -1,11 +1,3 @@
-.c-producto {
-    margin-top: 15px;
-    padding: 15px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background: $blanco;
-    grid-area: producto;
- }
- 
  .c-producto__container{
     display: inline-grid;
     width: 400px;
@@ -17,9 +9,13 @@
         margin: 15px;
         max-width: 100%;
     }
- } 
+    grid-area: producto;
+ }
+ .c-productos__container{
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+ }
  .c-producto__imagen{
-    justify-items: start;
     width: 200px;
     height: 100px;
     grid-area: imagen;
