@@ -1,0 +1,109 @@
+.boton {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    border-radius: 7px;
+    line-height: 1.25;
+    
+    background: $negro;
+    color: $blanco;    
+
+    cursor: pointer;
+    transition: background 150ms;
+
+    //tmp
+    margin: 3px;
+
+    &--exito {
+        background: $acento-exito;
+        &:hover {
+            background: darken($acento-exito, 4%);
+        }
+    }
+
+    &--peligro {
+        background: $acento-peligro;
+        &:hover {
+            background: darken($acento-peligro, 4%);
+        }
+    }
+
+    &--advertencia {
+        background: $acento-advertencia;
+        &:hover {
+            background: darken($acento-advertencia, 4%);
+        }
+    }
+
+    &--info {
+        background: $acento-info;
+        &:hover {
+            background: darken($acento-info, 4%);
+        }
+    }
+}
+
+.boton-alt {
+    @extend .boton;
+    border-radius: 9999px;
+    
+    &--exito {
+        background: $acento-exito;
+        &:hover {
+            background: darken($acento-exito, 4%);
+        }
+    }
+
+    &--peligro {
+        background: $acento-peligro;
+        &:hover {
+            background: darken($acento-peligro, 4%);
+        }
+    }
+
+    &--advertencia {
+        background: $acento-advertencia;
+        &:hover {
+            background: darken($acento-advertencia, 4%);
+        }
+    }
+
+    &--info {
+        background: $acento-info;
+        &:hover {
+            background: darken($acento-info, 4%);
+        }
+    }
+}
+
+.boton-alt2 {
+    @extend .boton;
+    border-radius: 10px;
+
+    &--exito {
+        background: $acento-exito;
+        &:hover {
+            background: darken($acento-exito, 4%);
+        }
+    }
+
+    &--peligro {
+        background: $acento-peligro;
+        &:hover {
+            background: darken($acento-peligro, 4%);
+        }
+    }
+
+    &--advertencia {
+        background: $acento-advertencia;
+        &:hover {
+            background: darken($acento-advertencia, 4%);
+        }
+    }
+
+    &--info {
+        background: $acento-info;
+        &:hover {
+            background: darken($acento-info, 4%);
+        }
+    }
+}
