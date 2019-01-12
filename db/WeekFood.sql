@@ -1,8 +1,8 @@
 -- MySQL dump 10.16  Distrib 10.1.34-MariaDB, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: WeekFood
+-- Host: 192.168.1.10    Database: WeekFood
 -- ------------------------------------------------------
--- Server version	10.1.34-MariaDB-0ubuntu0.18.04.1
+-- Server version	10.1.37-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -19,7 +19,7 @@
 -- Current Database: `WeekFood`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `WeekFood` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `weekfood` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
 USE `WeekFood`;
 
@@ -31,11 +31,12 @@ DROP TABLE IF EXISTS `categorias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `categorias` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `subCategoriaDe` varchar(100) DEFAULT NULL,
-  `nombre` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+  `nombre` varchar(100) NOT NULL,
+  `subCategoriaDe` varchar(100) NOT NULL,
+  PRIMARY KEY (`nombre`),
+  KEY `Categoria-Principal` (`subCategoriaDe`),
+  CONSTRAINT `Categoria-Principal` FOREIGN KEY (`subCategoriaDe`) REFERENCES `categorias-principales` (`nombre`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,32 +45,31 @@ CREATE TABLE `categorias` (
 
 LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
-INSERT INTO `categorias` VALUES (1,'1','Cerdo'),(2,'3','Macarrones'),(3,'2','Paellas'),(4,'1','Pollo'),(5,'4','Ensaladas'),(6,'4','Pimientos'),(7,'4','Pisto'),(8,'4','Menestras'),(9,'4','Patatas'),(10,'4','Tortillas'),(11,'4','Espinacas'),(12,'4','Puerros');
+INSERT INTO `categorias` VALUES ('Paellas','Arroces'),('Cerdo','Carnes'),('Pollo','Carnes'),('Patatas','Hortalizas'),('Puerros','Hortalizas'),('Tortilla','Huevos'),('Gambas','Marisco'),('Macarrones','Pastas'),('Ensaladas','Verduras'),('Espinacas','Verduras'),('Menestras','Verduras'),('Pimientos','Verduras'),('Pisto','Verduras');
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `categorias_generales`
+-- Table structure for table `categorias-principales`
 --
 
-DROP TABLE IF EXISTS `categorias_generales`;
+DROP TABLE IF EXISTS `categorias-principales`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `categorias_generales` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `categorias-principales` (
+  `nombre` varchar(100) NOT NULL,
+  PRIMARY KEY (`nombre`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `categorias_generales`
+-- Dumping data for table `categorias-principales`
 --
 
-LOCK TABLES `categorias_generales` WRITE;
-/*!40000 ALTER TABLE `categorias_generales` DISABLE KEYS */;
-INSERT INTO `categorias_generales` VALUES (1,'Carnes'),(2,'Arroces'),(3,'Pastas'),(4,'Vegetales'),(5,'Lacteos'),(6,'Pescados');
-/*!40000 ALTER TABLE `categorias_generales` ENABLE KEYS */;
+LOCK TABLES `categorias-principales` WRITE;
+/*!40000 ALTER TABLE `categorias-principales` DISABLE KEYS */;
+INSERT INTO `categorias-principales` VALUES ('Arroces'),('Carnes'),('Hortalizas'),('Huevos'),('Marisco'),('Pastas'),('Verduras');
+/*!40000 ALTER TABLE `categorias-principales` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -106,14 +106,13 @@ DROP TABLE IF EXISTS `productos`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `productos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `categorias_generales` varchar(100) NOT NULL,
-  `categorias` varchar(100) NOT NULL,
+  `categoria` varchar(1000) NOT NULL,
   `nombre` varchar(100) NOT NULL,
-  `descripcion` varchar(500) NOT NULL,
-  `foto` varchar(100) NOT NULL,
+  `descripcion` varchar(1000) NOT NULL DEFAULT 'Un delicioso plato.',
+  `foto` varchar(50) NOT NULL DEFAULT '404.png',
   `destacado` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +121,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'1,2','1,9','lomo asado','Un delicioso lomo asado con patatas.','lomo-asado.jpg',1),(2,'3','','macarrones boloñesa','Unos deliciosos macarrones a la boloñesa, con queso opcional.','macarrones-boloñesa.jpg',1),(3,'2.6','3','paella de marisco','','paella-marisco.jpg',1),(4,'1','4','pechuga a la plancha','','pechuga-a-la-plancha.jpg',1),(5,'1,4','5,4','Ensalada césar','','ensalada-cesar.jpg',1),(6,'4','6,7','Pimientos rellenos de pisto','','pimientos-pisto.jpg',0),(7,'4','8,1','Menestra de verduras con jamón','','menestra-verduras-jamon.jpg',0),(8,'4','10,9','Tortilla de patata','','tortilla-patata.jpg',0),(9,'4','10','Tortilla francesa','','tortilla-francesa.jpg',0),(10,'4','10,11,12','Tortilla de espinacas y puerros','','tortilla-espinacas-puerros.jpg',0);
+INSERT INTO `productos` VALUES (2,'Cerdo','Lomo asado','Un delicioso plato.','lomo-asado.jpg',1),(3,'Macarrones','Macarrones boloñesa','Un delicioso plato.','macarrones-boloñesa.jpg',0),(4,'Paellas,Gambas','Paella de marisco','Un delicioso plato.','paella-marisco.jpg',0),(5,'Pollo','Pechuga a la plancha','Un delicioso plato.','pechuga-a-la-plancha.jpg',0),(6,'Ensaladas,Pollo','Ensalada césar','Un delicioso plato.','ensalada-cesar.jpg',0),(7,'Pimientos,Pisto','Pimientos rellenos de pisto','Un delicioso plato.','pimientos-a-la-plancha.jpg',0),(8,'Menestras','Menestra de verduras','Un delicioso plato.','menestra-verduras-jamon.jpg',0),(9,'Tortilla,Patatas','Tortilla de patata','Un delicioso plato.','tortilla-patata.jpg',0),(10,'Tortilla','Tortilla francesa','Un delicioso plato.','tortilla-francesa.jpg',0),(11,'Tortilla,Puerros,Espinacas','Tortilla de espinacas y puerros','Un delicioso plato.','tortilla-espinacas-puerros.jpg',0);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -160,4 +159,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-12 16:38:13
+-- Dump completed on 2019-01-12 19:05:55
