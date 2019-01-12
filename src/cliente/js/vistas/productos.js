@@ -1,15 +1,35 @@
-function vista_Productos(puntoMontaje, categoria = "") {
+function vista_Productos(puntoMontaje, categorias) {
     $.when(montarMenu("/api/menu", "productos")).then(() => {
-        if (categoria.length > 0) {
-            categoria = "/" + categoria
-            $("<li>Aqui van las categorias de " + categoria + "<li>").insertAfter(".js-menu-productos")
-            $.getJSON("/api/productos/categorias/huevos/tortilla").then((produc)=>{
-                console.log(produc)
+        $.getJSON("/api/productos/categorias/").then((cates) => {
+            var html = ""
+            cates.forEach(cate => {
+                html += "<li class='c-menu__item c-menu__sub' onclick='cargarVista(\"productos\",{\"categoriaPrincipal\" : \"" + cate["nombre"] + "\"})'>" + cate["nombre"] + "</li>"
+                if (categorias) {
+                    if (categorias["categoriaPrincipal"] == cate["nombre"]) {
+                        html += "sDE30305Po7HtmTr" //esto sirve para guardar el sitio al menu interno
+                    }
+                }
             })
-        }
+            if (categorias) {
+                $.getJSON("/api/productos/categorias/" + categorias["categoriaPrincipal"]).then((cates) => {
+                    var menuInterno = ""
+                    cates.forEach(cate => {
+                        menuInterno += "<li class='c-menu__item c-menu__sub--2' onclick='cargarVista(\"productos\",{\"categoriaPrincipal\":\"" + categorias["categoriaPrincipal"] + "\",\"categoriaSecundaria\" : \"" + cate["nombre"] + "\"})'>" + cate["nombre"] + "</li>"
+                    })
+                    $(html.replace("sDE30305Po7HtmTr", menuInterno)).insertAfter(".js-menu-productos")
+                })
+            } else {
+                $(html).insertAfter(".js-menu-productos")
+            }
+        })
     })
     var html = "";
-    return $.when($.getJSON("/api/productos").then((productos) => {
+    var url = "/api/productos"
+    if (categorias) {
+        if( (categorias.hasOwnProperty("categoriaPrincipal")) &&  (categorias.hasOwnProperty("categoriaSecundaria"))) { url += "/categorias/" + categorias["categoriaPrincipal"] + "/"+ categorias["categoriaSecundaria"]  }
+    }
+    console.log(url)
+    return $.when($.getJSON(url).then((productos) => {
         productos.forEach(producto => {
             html += "<div class='c-principal c-producto";
             if (producto["destacado"] == 1) {

@@ -1,10 +1,10 @@
-function cargarVista(vistaACargar) {
-    cargarVistaAPunto(vistaACargar, ".l-distribucion__principal")
+function cargarVista(vistaACargar, parametro = false) {
+    cargarVistaAPunto(vistaACargar, ".l-distribucion__principal", parametro)
 }
-function cargarVistaAPunto(vistaACargar, puntoMontaje) {
+function cargarVistaAPunto(vistaACargar, puntoMontaje, parametro = false) {
     if (vistas.hasOwnProperty(vistaACargar)) {
         if (typeof (puntoMontaje) == "string") {
-            vistas[vistaACargar](puntoMontaje)
+            vistas[vistaACargar](puntoMontaje, parametro)
         } else {
             console.error("Error intentando cargar " + vistaACargar + " : El punto de montaje no es valido.")
         }
@@ -26,7 +26,7 @@ function montarMenu(url, vista) {
                 if (item["direccion"] == vista) {
                     menu += " c-menu__item--destacado"
                 }
-                if (item["direccion"] == "productos"){
+                if (item["direccion"] == "productos") {
                     menu += " js-menu-productos"
                 }
                 menu += "' onclick='cargarVista(\"" + item["direccion"] + "\")'>" + item["valor"] + "</li>"
