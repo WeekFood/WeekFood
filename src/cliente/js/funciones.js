@@ -19,6 +19,7 @@ function montarMenu(url, vista) {
         (items) => {
             var menu = ""
             items.forEach(item => {
+                console.log(item)
                 menu += "<li class='c-menu__item"
                 if ($('.js-menu').hasClass('c-menu--oculto')) {
                     menu += " c-menu__item--oculto"
