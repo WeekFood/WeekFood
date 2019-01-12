@@ -8,11 +8,11 @@
  
  .c-producto__container{
     display: inline-grid;
-    width: 350px;
+    width: 400px;
     border-radius: 10px;
     grid-template-areas:
-                  'titulo imagen'
-                  'estrella imagen';
+                  'titulo titulo imagen'
+                  'carrito estrella imagen';
     @media only screen and (min-width:$mobile-l) {
         margin: 15px;
         max-width: 100%;
@@ -21,7 +21,7 @@
  .c-producto__imagen{
     justify-items: start;
     width: 200px;
-    max-height: 200px;
+    height: 100px;
     grid-area: imagen;
  }
  .c-producto__titulo{
@@ -34,3 +34,8 @@
     max-height: 50px;
     grid-area: estrella;
  }
+ .c-producto__carrito{
+   max-width: 50px;
+   max-height: 50px;
+   grid-area: carrito;
+}

@@ -8,10 +8,12 @@ function vista_Productos(puntoMontaje) {
             html += " c-producto--destacado'>";
             html += "<img class='c-producto__imagen-destacado' src='/imagenes/estrella.png'>";
             html += "<img class='c-producto__imagen' src='/imagenes/productos/" + producto["foto"] + "'>";
+            html += "<img class='c-producto__carrito' src='/imagenes/carrito.png'>";
             html += "<p class='c-producto__titulo'>" + producto["nombre"].charAt(0).toUpperCase() + producto["nombre"].slice(1) + "</p></div>";
             } else {
             html += "'>";
             html += "<img class='c-producto__imagen' src='/imagenes/productos/" + producto["foto"] + "'>";
+            html += "<img class='c-producto__carrito' src='/imagenes/carrito.png'>";
             html += "<p class='c-producto__titulo'>" + producto["nombre"].charAt(0).toUpperCase() + producto["nombre"].slice(1) + "</p></div>";
             }
         })
