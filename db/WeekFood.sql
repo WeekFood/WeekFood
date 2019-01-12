@@ -121,7 +121,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (2,'Cerdo','Lomo asado','Un delicioso plato.','lomo-asado.jpg',1),(3,'Macarrones','Macarrones boloñesa','Un delicioso plato.','macarrones-boloñesa.jpg',0),(4,'Paellas,Gambas','Paella de marisco','Un delicioso plato.','paella-marisco.jpg',0),(5,'Pollo','Pechuga a la plancha','Un delicioso plato.','pechuga-a-la-plancha.jpg',0),(6,'Ensaladas,Pollo','Ensalada césar','Un delicioso plato.','ensalada-cesar.jpg',0),(7,'Pimientos,Pisto','Pimientos rellenos de pisto','Un delicioso plato.','pimientos-a-la-plancha.jpg',0),(8,'Menestras','Menestra de verduras','Un delicioso plato.','menestra-verduras-jamon.jpg',0),(9,'Tortilla,Patatas','Tortilla de patata','Un delicioso plato.','tortilla-patata.jpg',0),(10,'Tortilla','Tortilla francesa','Un delicioso plato.','tortilla-francesa.jpg',0),(11,'Tortilla,Puerros,Espinacas','Tortilla de espinacas y puerros','Un delicioso plato.','tortilla-espinacas-puerros.jpg',0);
+INSERT INTO `productos` VALUES (2,'Cerdo','Lomo asado','Un delicioso plato.','lomo-asado.jpg',1),(3,'Macarrones','Macarrones boloñesa','Un delicioso plato.','macarrones-boloñesa.jpg',0),(4,'Paellas,Gambas','Paella de marisco','Un delicioso plato.','paella-marisco.jpg',0),(5,'Pollo','Pechuga a la plancha','Un delicioso plato.','pechuga-a-la-plancha.jpg',0),(6,'Ensaladas,Pollo','Ensalada césar','Un delicioso plato.','ensalada-cesar.jpg',0),(7,'Pimientos,Pisto','Pimientos rellenos de pisto','Un delicioso plato.','pimientos-pisto.jpg',0),(8,'Menestras','Menestra de verduras','Un delicioso plato.','menestra-verduras-jamon.jpg',0),(9,'Tortilla,Patatas','Tortilla de patata','Un delicioso plato.','tortilla-patata.jpg',0),(10,'Tortilla','Tortilla francesa','Un delicioso plato.','tortilla-francesa.jpg',0),(11,'Tortilla,Puerros,Espinacas','Tortilla de espinacas y puerros','Un delicioso plato.','tortilla-espinacas-puerros.jpg',0);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,4 +159,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-12 19:05:55
+-- Dump completed on 2019-01-12 19:06:59
