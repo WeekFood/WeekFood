@@ -3,4 +3,4 @@ var GLOBAL_VISTAS = {
     portada: vista_Portada,
     productos: vista_Productos
 }
-var GLOBAL_VISTA_ACTUAL
+var GLOBAL_VISTA_ACTUAL = "";
