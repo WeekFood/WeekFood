@@ -1,0 +1,91 @@
+.c-ventana-modal {
+    z-index: 99;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    animation: c-ventana-modal__aparecer;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in;
+}
+
+.c-ventana-modal__interno {
+    position: fixed;
+    overflow: auto;
+    top: 5vh;
+    width: 90vw;
+    left: 5vw;
+    height: 85vh;
+    z-index: 1000;
+    @media only screen and (min-width: $mobile-l) {
+        &--pequeño {
+            top: 10vh;
+            left: 25vw;
+            width: 50vw;
+            height: 50vh;
+        }
+        &--medio {
+            top: 10vh;
+            left: 25vw;
+            width: 50vw;
+            height: 80vh;
+        }
+        &--grande {
+            top: 10vh;
+            left: 10vw;
+            width: 80vw;
+            height: 80vh;
+        }
+    }
+    animation: c-ventana-modal__interno-aparecer;
+    animation-duration: 0.2s;
+    animation-delay: 0.3s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: backwards
+}
+
+.c-ventana-modal__equis {
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    color: whitesmoke;
+}
+
+.c-ventana-modal__equis::after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f057";
+    font-size: 35px;
+}
+
+.c-ventana-modal__titulo {
+    line-height: 50px;
+    padding: 0 15px;
+    font-size: 25px;
+    color: $blanco;
+}
+
+.c-ventana-modal__contenido {
+    background: whitesmoke;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    max-height: 60vh;
+    overflow: auto;
+}
+
+.c-ventana-modal__botones {
+    margin-top: 10px;
+    text-align: center;
+}
+
+@keyframes c-ventana-modal__aparecer {
+    0% {
+        opacity: 0;
+    }
+}
+
+@keyframes c-ventana-modal__interno-aparecer {
+    0% {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+}
