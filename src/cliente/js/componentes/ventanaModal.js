@@ -71,7 +71,7 @@ function generarVentanaModal(opciones) {
             break
         case "error":
             modal += `<div class='c-ventana-modal__botones'>
-            <div class='c-boton c-boton--basico js-ventana-modal__cerrar'>Pue vale.</div>
+            <div class='c-boton c-boton--basico js-ventana-modal__cerrar'>Okey.</div>
             </div>`
             break
         default: //info
