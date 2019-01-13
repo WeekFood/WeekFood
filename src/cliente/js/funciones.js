@@ -2,9 +2,10 @@ function cargarVista(vistaACargar, parametro = false) {
     cargarVistaAPunto(vistaACargar, ".l-distribucion__principal", parametro)
 }
 function cargarVistaAPunto(vistaACargar, puntoMontaje, parametro = false) {
-    if (vistas.hasOwnProperty(vistaACargar)) {
+    if (GLOBAL_VISTAS.hasOwnProperty(vistaACargar)) {
         if (typeof (puntoMontaje) == "string") {
-            vistas[vistaACargar](puntoMontaje, parametro)
+            GLOBAL_VISTA_ACTUAL = vistaACargar;
+            GLOBAL_VISTAS[vistaACargar](puntoMontaje, parametro)
         } else {
             console.error("Error intentando cargar " + vistaACargar + " : El punto de montaje no es valido.")
         }

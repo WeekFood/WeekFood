@@ -1,5 +1,5 @@
 function vista_Productos(puntoMontaje, categorias) {
-    $.when(montarMenu("/api/menu", "productos")).then(() => {
+    $.when(() => { if (GLOBAL_VISTA_ACTUAL != "productos") { return montarMenu("/api/menu", "productos") } }).then(() => {
         $.getJSON("/api/productos/categorias/").then((cates) => {
             var html = ""
             cates.forEach(cate => {
@@ -19,6 +19,7 @@ function vista_Productos(puntoMontaje, categorias) {
                     $(html.replace("sDE30305Po7HtmTr", menuInterno)).insertAfter(".js-menu-productos")
                 })
             } else {
+
                 $(html).insertAfter(".js-menu-productos")
             }
         })
@@ -26,7 +27,7 @@ function vista_Productos(puntoMontaje, categorias) {
     var html = "";
     var url = "/api/productos"
     if (categorias) {
-        if( (categorias.hasOwnProperty("categoriaPrincipal")) &&  (categorias.hasOwnProperty("categoriaSecundaria"))) { url += "/categorias/" + categorias["categoriaPrincipal"] + "/"+ categorias["categoriaSecundaria"]  }
+        if ((categorias.hasOwnProperty("categoriaPrincipal")) && (categorias.hasOwnProperty("categoriaSecundaria"))) { url += "/categorias/" + categorias["categoriaPrincipal"] + "/" + categorias["categoriaSecundaria"] }
     }
     console.log(url)
     return $.when($.getJSON(url).then((productos) => {
