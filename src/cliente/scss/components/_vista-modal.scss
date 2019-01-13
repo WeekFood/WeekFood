@@ -12,6 +12,10 @@
 .c-ventana-modal__interno {
     position: fixed;
     overflow: auto;
+    top: 5vh;
+    width: 90vw;
+    left: 5vw;
+    height: 85vh;
     z-index: 1000;
     @media only screen and (min-width: $mobile-l) {
         &--pequeño {
