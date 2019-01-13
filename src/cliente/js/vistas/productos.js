@@ -10,15 +10,15 @@ function vista_Productos(puntoMontaje, categorias) {
         if (categorias.hasOwnProperty("subCategoria")) {
             url += "/categorias/" + categorias["categoria"] + "/" + categorias["subCategoria"]
             vista_Productos_cargarDe(puntoMontaje, url)
-        }else{
+        } else {
             url += "/categorias/"
-            $.getJSON( url + categorias["categoria"]).then((cates)=>{
+            $.getJSON(url + categorias["categoria"]).then((cates) => {
                 cates.forEach(cate => {
-                    vista_Productos_cargarDe(puntoMontaje, url +categorias["categoria"] +"/"+ cate["nombre"])
+                    vista_Productos_cargarDe(puntoMontaje, url + categorias["categoria"] + "/" + cate["nombre"])
                 })
             })
         }
-    }else{
+    } else {
         vista_Productos_cargarDe(puntoMontaje, url)
     }
 }
