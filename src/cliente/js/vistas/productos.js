@@ -53,20 +53,35 @@ function vista_Productos_montarMenu(categorias) {
         }
     })*/
     if (categorias.hasOwnProperty("categoriaPrincipal")) {
-        $.getJSON("/api/productos/categorias/" + categorias["categoriaPrincipal"]).then((cates) => {
-            var contenedorCategoriasSecundariaas = "<li class='js-menu-productos__contenedor-secundaria__"+ categorias["categoriaPrincipal"]+"'><ul>"
+        var nombreContenedor = "js-menu-productos__contenedor-secundario__" + categorias["categoriaPrincipal"]
+        if ($("." + nombreContenedor).length < 1) {
+            var nombreListado = "js-menu-productos__listado__" + categorias["categoriaPrincipal"]
+            var contenedorCategoriasSecundariaas = "<li class='" + nombreContenedor + "'><ul class='" + nombreListado + "'>"
             contenedorCategoriasSecundariaas += "</ul></li>"
-            $(contenedorCategoriasPrincipales).insertAfter(".js-menu__productos--"+categorias["categoriaPrincipal"])
-        })
-    } else {
-        $.getJSON("/api/productos/categorias/").then((cates) => {
-            var contenedorCategoriasPrincipales = "<li class='js-menu-productos__contenedor'><ul>"
-            cates.forEach(cate => {
-                var categoriaNueva = `<li class='c-menu__item c-menu__sub js-menu__productos--` + cate["nombre"] + `' onclick='cargarVista("productos",{"categoriaPrincipal" : "` + cate["nombre"] + `"})'>` + cate["nombre"] + `</li>`
-                contenedorCategoriasPrincipales += categoriaNueva
+            $(contenedorCategoriasSecundariaas).insertAfter(".js-menu__productos--" + categorias["categoriaPrincipal"])
+            $.getJSON("/api/productos/categorias/" + categorias["categoriaPrincipal"]).then((cates) => {
+                cates.forEach(cate => {
+                    var categoriaNueva = `<li class='c-menu__item c-menu__sub--2 js-menu__productos__` + categorias["categoriaPrincipal"] + `--` + cate["nombre"] + `'
+                    onclick='cargarVista("productos",{"categoriaPrincipal" : "` + categorias["categoriaPrincipal"] + `","subCategoria":"` + cate["nombre"] + `"})'
+                    >` + cate["nombre"] + `</li>`
+                    $("." + nombreListado).append(categoriaNueva)
+                    console.log(nombreListado)
+                })
             })
-            contenedorCategoriasPrincipales += "</ul></li>"
-            $(contenedorCategoriasPrincipales).insertAfter(".js-menu-productos")
-        })
+        }else{
+            $("."+nombreContenedor).remove()
+        }
+    } else {
+        if ($(".js-menu-productos__contenedor").length < 1) {
+            $.getJSON("/api/productos/categorias/").then((cates) => {
+                var contenedorCategoriasPrincipales = "<li class='js-menu-productos__contenedor'><ul>"
+                cates.forEach(cate => {
+                    var categoriaNueva = `<li class='c-menu__item c-menu__sub js-menu__productos--` + cate["nombre"] + `' onclick='cargarVista("productos",{"categoriaPrincipal" : "` + cate["nombre"] + `"})'>` + cate["nombre"] + `</li>`
+                    contenedorCategoriasPrincipales += categoriaNueva
+                })
+                contenedorCategoriasPrincipales += "</ul></li>"
+                $(contenedorCategoriasPrincipales).insertAfter(".js-menu-productos")
+            })
+        }
     }
 }
