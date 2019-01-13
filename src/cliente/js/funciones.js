@@ -4,8 +4,8 @@ function cargarVista(vistaACargar, parametro = false) {
 function cargarVistaAPunto(vistaACargar, puntoMontaje, parametro = false) {
     if (GLOBAL_VISTAS.hasOwnProperty(vistaACargar)) {
         if (typeof (puntoMontaje) == "string") {
-            GLOBAL_VISTA_ACTUAL = vistaACargar;
             GLOBAL_VISTAS[vistaACargar](puntoMontaje, parametro)
+            GLOBAL_VISTA_ACTUAL = vistaACargar;
         } else {
             console.error("Error intentando cargar " + vistaACargar + " : El punto de montaje no es valido.")
         }
