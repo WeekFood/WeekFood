@@ -45,7 +45,10 @@
 .c-menu__item {
     padding: 3px;
     padding-left: 10px;
-
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;          /* Likely future */     
     border-left: 2px solid transparent;
     &--destacado {
       color: $rojo;
