@@ -4,20 +4,15 @@ function vista_Productos(puntoMontaje) {
     html += "<div class='c-productos__container'>";
     return $.when($.getJSON("/api/productos").then((productos) => {
         productos.forEach(producto => {
-            html += "<div class='c-principal c-producto__container";
+            html += "<div class='c-principal c-producto__container'>";
+            html += "</i><img class='c-producto__imagen' src='/imagenes/productos/" + producto["foto"] + "'>";
+            html += "<div class='c-producto__datos'>";
             if (producto["destacado"] == 1) {
-            html += " c-producto--destacado'>";//Pensar en si se hace algo con esto
-            html += "<div class='c-producto__imagen-destacada'><i class='fas fa-star'></i></div>";
-            html += "<img class='c-producto__imagen' src='/imagenes/productos/" + producto["foto"] + "'>";
-            html += "<div class='c-producto__carrito'><i class='fas fa-shopping-cart'></i></div>";
-            html += "<p class='c-producto__titulo'>" + producto["nombre"].charAt(0).toUpperCase() + producto["nombre"].slice(1) + "</p></div>";
-            } else {
-            html += "'>";
-            html += "<img class='c-producto__imagen' src='/imagenes/productos/" + producto["foto"] + "'>";
-            //html += "<img class='c-producto__carrito' src='/imagenes/carrito.png'>";
-            html += "<div class='c-producto__carrito'><i class='fas fa-shopping-cart'></i></div>";
-            html += "<p class='c-producto__titulo'>" + producto["nombre"].charAt(0).toUpperCase() + producto["nombre"].slice(1) + "</p></div>";
-            }
+            html += "<div class='c-producto__imagen-destacado'><i class='fas fa-star'></i></div>";
+            } 
+            html += "<p class='c-producto__titulo'>" + producto["nombre"].charAt(0).toUpperCase() + producto["nombre"].slice(1) + "</p>";
+            html += "<div><p class='c-producto__precio'>PRECIO</p>";
+            html += "<button class='c-producto__carrito'><i class='fas fa-cart-plus'></i></button></div></div></div>";
         })
         html += "</div>";
     }
