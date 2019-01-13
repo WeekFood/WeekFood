@@ -82,6 +82,8 @@ function vista_Productos_montarMenu(categorias) {
                 contenedorCategoriasPrincipales += "</ul></li>"
                 $(contenedorCategoriasPrincipales).insertAfter(".js-menu-productos")
             })
+        }else{
+            $(".js-menu-productos__contenedor").remove()
         }
     }
 }
