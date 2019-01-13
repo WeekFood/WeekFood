@@ -1,49 +1,40 @@
-.boton {
+.c-boton {
     display: inline-block;
     padding: 0.375rem 0.75rem;
     border-radius: 8px;
     line-height: 1.333;
     
-    border: 1px solid $negro;
-    background: $blanco;
-    color: $negro;    
+    background: $negro;
+    color: $blanco;    
 
     cursor: pointer;
     transition: background 150ms;
+
+    &--basico {
+        background: $acento-basico;
+        &:hover {
+            background: darken($acento-basico, 4%);
+        }
+    }
     
     &--exito {
-        border-color: transparent;
         background: $acento-exito;
-        color: $blanco;
         &:hover {
             background: darken($acento-exito, 4%);
         }
     }
 
     &--peligro {
-        border-color: transparent;
         background: $acento-peligro;
-        color: $blanco;
         &:hover {
             background: darken($acento-peligro, 4%);
         }
     }
 
     &--advertencia {
-        border-color: transparent;
         background: $acento-advertencia;
-        color: $blanco;
         &:hover {
             background: darken($acento-advertencia, 4%);
-        }
-    }
-
-    &--info {
-        border-color: transparent;
-        background: $acento-info;
-        color: $blanco;
-        &:hover {
-            background: darken($acento-info, 4%);
         }
     }
 }
