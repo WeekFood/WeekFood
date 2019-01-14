@@ -25,21 +25,24 @@
         animation: c-menu__desplegar;
         animation-duration: 0.3s;
         animation-timing-function: ease-out;
-        animation-fill-mode: both
-    } 
-    &--plegado{
+        animation-fill-mode: both;
+        position: absolute;
+    }
+    &--plegado {
         height: auto;
         width: 20px;
-        padding: 15px 0px;  
+        padding: 15px 0px;
+        position: absolute;
     }
     &--plegando {
         height: auto;
         width: 20px;
-        padding: 15px 0px;  
+        padding: 15px 0px;
         animation: c-menu__plegar;
         animation-duration: 0.3s;
         animation-timing-function: ease-out;
-        animation-fill-mode: both
+        animation-fill-mode: both;
+        position: absolute;
     }
     @media only screen and (min-width: $mobile-l) {
         display: block;
@@ -119,7 +122,7 @@
 
 .c-menu__flecha {
     margin: auto;
-    color:blue;
+    color: blue;
     &--plegado {
         transform: rotateZ(180deg);
     }
