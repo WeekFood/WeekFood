@@ -70,14 +70,27 @@
             margin-left: 0%;
         }
     }
-
+    &--desplegado::before{
+        font-family: "Font Awesome 5 Free";    
+        content: "\f106\00a0";
+        font-weight: 900;  
+    }
+    &--plegado::before{
+        font-family: "Font Awesome 5 Free";
+        content: "\f107\00a0";
+        font-weight: 900;  
+    }
 }
 .c-menu__sub{
-    margin-left:10px;
-    border-left: 2px solid green;
+    padding-left:10px;
+   // margin-left:10px;
+   // border-left: 2px solid green;
+        color : green;
     &--2{
-        margin-left: 20px;
-        border-left: 2px solid blue;
+        padding-left:20px;
+    //    margin-left: 20px;
+    //    border-left: 2px solid blue;
+        color : blue;
     }
 }
 .c-menu__item:hover {

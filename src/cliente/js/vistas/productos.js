@@ -46,7 +46,7 @@ function vista_Productos_montarMenu(categorias) {
             $(contenedorCategoriasSecundariaas).insertAfter(".js-menu__productos--" + categorias["categoria"])
             $.getJSON("/api/productos/categorias/" + categorias["categoria"]).then((cates) => {
                 cates.forEach(cate => {
-                    var categoriaNueva = `<li class='c-menu__item c-menu__sub--2 js-menu__productos__` + categorias["categoria"] + `--` + cate["nombre"] + `'
+                    var categoriaNueva = `<li class='c-menu__item c-menu__sub--2 c-menu__item--plegado js-menu__productos__` + categorias["categoria"] + `--` + cate["nombre"] + `'
                     onclick='cargarVista("productos",{"categoria" : "` + categorias["categoria"] + `","subCategoria":"` + cate["nombre"] + `"})'
                     >` + cate["nombre"] + `</li>`
                     $("." + nombreListado).append(categoriaNueva)
@@ -60,7 +60,7 @@ function vista_Productos_montarMenu(categorias) {
             $.getJSON("/api/productos/categorias/").then((cates) => {
                 var contenedorCategoriasPrincipales = "<li class='js-menu-productos__contenedor'><ul>"
                 cates.forEach(cate => {
-                    var categoriaNueva = `<li class='c-menu__item c-menu__sub js-menu__productos--` + cate["nombre"] + `' onclick='cargarVista("productos",{"categoria" : "` + cate["nombre"] + `"})'>` + cate["nombre"] + `</li>`
+                    var categoriaNueva = `<li class='c-menu__item c-menu__sub c-menu__item--plegado js-menu__productos--` + cate["nombre"] + `' onclick='cargarVista("productos",{"categoria" : "` + cate["nombre"] + `"})'>` + cate["nombre"] + `</li>`
                     contenedorCategoriasPrincipales += categoriaNueva
                 })
                 contenedorCategoriasPrincipales += "</ul></li>"
