@@ -16,17 +16,17 @@
             width: 50vw;
             left: 25vw;
         }
-        animation: c-notificacion--top-aparecer;
+        animation: c-notificacion--top;
         animation-duration: 10s;
     }
     &--flash {
         bottom: 50px;
-        animation: c-notificacion--flash-aparecer;
+        animation: c-notificacion--flash;
         animation-duration: 5s;
     }
 }
 
-@keyframes c-notificacion--top-aparecer {
+@keyframes c-notificacion--top {
     0% {
         top: -0%;
         opacity: 0;
@@ -51,7 +51,7 @@
     }
 }
 
-@keyframes c-notificacion--flash-aparecer {
+@keyframes c-notificacion--flash {
     0% {
         right: -100%;
     }
