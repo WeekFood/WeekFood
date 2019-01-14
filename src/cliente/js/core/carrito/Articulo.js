@@ -1,6 +1,7 @@
 class Articulo extends Producto {
     /**
      * @param {Producto} producto
+     * @param {number} cantidad
      */
     constructor(producto, cantidad = 1) {
         super(
