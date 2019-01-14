@@ -4,12 +4,12 @@ class CacheJSONs {
     }
     getJSON(url) {
         var diferido = new $.Deferred();
-        var filtrados = this.jsonsEnCache.filter(this.filtrarJson.bind(this, url))
+        var filtrados = this.jsonsEnCache.filter(buscando => this.filtrarJson(url, buscando));
         if (filtrados.length < 1) {
             $.when(this.nuevoJson(url)).then((contenido) => { diferido.resolve(contenido) });
         } else {
-            if(filtrados.length>1){
-                console.warn("/!\\Multiples (",filtrados.length,") caches encontrados con la url",url)
+            if (filtrados.length > 1) {
+                console.warn("/!\\Multiples (", filtrados.length, ") caches encontrados con la url", url)
             }
             if ((new Date().getTime() - filtrados[0].creacion) < 25000) {
                 diferido.resolve(filtrados[0].respuesta)
