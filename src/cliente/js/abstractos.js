@@ -21,10 +21,12 @@ class CacheJSONs {
     }
     nuevoJson(url, diferido) {
         var nuevoJsonCacheado = new JSONCacheado(url)
-        nuevoJsonCacheado.respuesta = "holaQueTal"
-        this.jsonsEnCache.push(nuevoJsonCacheado)
-        diferido.resolve(nuevoJsonCacheado.respuesta)
-        return diferido;
+        $.when($.getJSON(url).then((datos)=>{
+            nuevoJsonCacheado.respuesta = datos
+            this.jsonsEnCache.push(nuevoJsonCacheado)
+            diferido.resolve(nuevoJsonCacheado.respuesta)
+        })).then(()=>{ return diferido})
+       
     }
 }
 class JSONCacheado {
