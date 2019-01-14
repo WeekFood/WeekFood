@@ -6,7 +6,7 @@ function vista_Productos(puntoMontaje, categoria) {
     }
 }
 function vista_Productos_cargarDe(puntoMontaje, url) {
-        $.getJSON(url).then((productos) => {
+    $.getJSON(url).then((productos) => {
         productos.forEach(producto => {
             var html = "";
             html += "<div class='c-principal c-producto";
@@ -23,7 +23,7 @@ function vista_Productos_montarMenu(puntoMontaje, categoria) {
     if (categoria.hasOwnProperty("nombre")) {
         $(".c-menu__sub").removeClass("c-menu__item--destacado")
         $(".js-menu__productos__" + categoria["nombre"]).addClass("c-menu__item--destacado")
-        if($(".l-distribucion__menu--expandido").length < 1){
+        if ($(".l-distribucion__menu--expandido").length < 1) {
             $(`<div class="l-distribucion__menu--expandido">
             <div class="c-menu c-menu--plegado c-menu--oculto js-menu-expandido">
             <div class='c-menu__borde' onclick='vista_Productos_alternarExtendido()'>
@@ -34,12 +34,11 @@ function vista_Productos_montarMenu(puntoMontaje, categoria) {
             </div></div>`).insertBefore(".l-distribucion__menu")
         }
         $.getJSON("/api/productos/categorias/" + categoria["nombre"]).then((cates) => {
-            var html = ""
+            var html = "<li>Filtro</li><hr>"
             cates.forEach(cate => {
                 html += `<li><input type="checkbox" onclick="vista_Productos__montarContenido('` + puntoMontaje + `')" class="c-menu__checkbox js-menu__expandido__checkbox__` + cate["nombre"] + `" checked>` + cate["nombre"] + `</li>`
             })
             $(".js-menu-expandido__listado").html(html)
-            console.log(html)
             vista_Productos__montarContenido(puntoMontaje)
         })
     } else {
@@ -64,22 +63,29 @@ function vista_Productos__montarContenido(puntoMontaje) {
     var categoriaSeleccionada = clases[clases.length - 1].split(" ")[0]
     $.getJSON("/api/productos/categorias/" + categoriaSeleccionada).then((cates) => {
         var url = "/api/productos/categorias/" + categoriaSeleccionada + "/"
+        var montados = 0
         $(puntoMontaje).html("");
         cates.forEach(cate => {
             if ($('.js-menu__expandido__checkbox__' + cate["nombre"]).is(':checked')) {
                 vista_Productos_cargarDe(puntoMontaje, url + cate["nombre"])
+                montados++;
             }
         })
+        if (montados < 1) {
+            $(puntoMontaje).html("<div class='c-principal'><center><i class='far fa-sad-tear fa-7x'></i><h1>Vaya, nos hemos quedado sin productos.</h1><h3 class='c-boton--basico' onclick='vista_Productos_restablecerFiltro(\""+puntoMontaje+"\")'>Limpiar el filtro.</h3></center></div>")
+        }
     })
 }
 function vista_Productos_alternarExtendido() {
-    //$(".js-menu-expandido").toggleClass("c-menu--desplegado").toggleClass("c-menu--plegado")
-
     $(".c-menu__flecha").toggleClass("c-menu__flecha--plegado").toggleClass("c-menu__flecha--desplegado")
-
-    if ($(".js-menu-expandido").hasClass("c-menu--plegado")){
+    if ($(".js-menu-expandido").hasClass("c-menu--plegado")) {
         $(".js-menu-expandido").removeClass("c-menu--plegado").addClass("c-menu--desplegando")
-    }else{
+    } else {
         $(".js-menu-expandido").toggleClass("c-menu--plegando").toggleClass("c-menu--desplegando")
     }
+}
+
+function vista_Productos_restablecerFiltro(puntoMontaje) {
+    $(".c-menu__checkbox").prop("checked", true);
+    vista_Productos__montarContenido(puntoMontaje)
 }
