@@ -24,7 +24,7 @@ class Carrito {
 
     /**
      * 
-     * @param {Articulo} idArticulo 
+     * @param {number} idArticulo 
      */
     quitarArticulo(idArticulo) {
         let indiceArticulo = this._indiceArticulo(idArticulo);
@@ -36,6 +36,10 @@ class Carrito {
         this.articulos.splice(indiceArticulo, 1);
     }
 
+    /**
+     *
+     * @param {number} idArticulo
+     */
     incrementarCantidad(idArticulo) {
         let articulo = this._getArticulo(articulo.id);
 
@@ -46,6 +50,10 @@ class Carrito {
         return articulo.incrementarCantidad();
     }
 
+    /**
+    *
+    * @param {number} idArticulo
+    */
     decrementarCantidad(idArticulo) {
         let articulo = this._getArticulo(articulo.id);
 
