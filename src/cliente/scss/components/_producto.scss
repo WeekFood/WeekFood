@@ -7,25 +7,29 @@
  }
  .c-productos__container{
    display: grid;
-   grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+   grid-template-columns: repeat(auto-fill, minmax(200px,2fr));
    @media only screen and (min-width:$mobile-l) {
       margin: 15px;
       max-width: 100%;
   }
  }
  .c-producto__imagen{
-   border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     width: 100%;
-    height: 200px;
+    min-height: 100px;
     object-fit: cover;
  }
  .c-producto__titulo{
     font-family: $fuente-principal;
+    padding: 5px;
  }
  .c-producto__imagen-destacado{
     position: absolute;
     color: yellow;
-    top: 0px;
+    text-shadow: 2px 2px 2px black;
+    top: -25px;
+    left: -25px;
  }
  .c-producto__datos{
    max-width: 100%;
@@ -39,6 +43,7 @@
    float: right;
 }
 .c-producto__precio{
+   padding: 5px;
    font-family: $fuente-principal;
    display: inline-block;
 }
