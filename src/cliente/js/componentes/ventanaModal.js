@@ -50,7 +50,7 @@ function generarVentanaModal(opciones) {
                 return false;
             }
             modal += `<div class='c-ventana-modal__botones'>
-            <div class='c-ventana-modal__boton c-ventana-modal__boton--aviso js-ventana-modal__confirmar'>Ok</div>
+            <div class='c-ventana-modal__boton c-ventana-modal__boton--advertencia js-ventana-modal__confirmar'>Ok</div>
             </div>`
             break
         case "confirmacion":
@@ -65,8 +65,8 @@ function generarVentanaModal(opciones) {
                 return false;
             }
             modal += `<div class='c-ventana-modal__botones'>
-            <div class='c-boton c-boton--aceptar js-ventana-modal__confirmar'>Aceptar</div>
-            <div class='c-boton c-boton--cancelar js-ventana-modal__denegar'>Cancelar</div>
+            <div class='c-boton c-boton--exito js-ventana-modal__confirmar'>Aceptar</div>
+            <div class='c-boton c-boton--peligro js-ventana-modal__denegar'>Cancelar</div>
             </div>`
             break
         case "error":
@@ -87,6 +87,7 @@ function generarVentanaModal(opciones) {
     modal += "</div></div>"
     cerrarVentanaModal()
     $(".p-principal").prepend(modal)
+    $('.c-ventana-modal__contenido').on('click',(click)=>click.stopPropagation())
     $('.js-ventana-modal__cerrar').on('click', () => { cerrarVentanaModal(); opciones.callback_Cerrar() });
     $('.js-ventana-modal__confirmar').on('click', () => { cerrarVentanaModal(); opciones.callback_Confirmar() });
     $('.js-ventana-modal__denegar').on('click', () => { cerrarVentanaModal(); opciones.callback_Denegar() });
