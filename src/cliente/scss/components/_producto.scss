@@ -7,9 +7,10 @@
  }
  .c-productos__container{
    display: grid;
-   grid-template-columns: repeat(auto-fill, minmax(200px,2fr));
+   margin: 20px;
+   grid-template-columns: repeat(auto-fill, minmax(200px,3fr));
    @media only screen and (min-width:$mobile-l) {
-      margin: 15px;
+      margin: 40px;
       max-width: 100%;
   }
  }
