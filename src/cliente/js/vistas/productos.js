@@ -1,28 +1,12 @@
 function vista_Productos(puntoMontaje, categoria) {
     if (GLOBAL_VISTA_ACTUAL != "productos") {
-        $.when(montarMenu("/api/menu", "productos")).then(vista_Productos_montarMenu(puntoMontaje,categoria));
+        $.when(montarMenu("/api/menu", "productos")).then(vista_Productos_montarMenu(puntoMontaje, categoria));
     } else {
-        vista_Productos_montarMenu(puntoMontaje,categoria);
+        vista_Productos_montarMenu(puntoMontaje, categoria);
     }
-    /*
-    $(puntoMontaje).html("")
-    if (categoria) {
-        url += "/categorias/"
-        $.getJSON(url + categoria["categoria"]).then((cates) => {
-            cates.forEach(cate => {
-                vista_Productos_cargarDe(puntoMontaje, url + categoria["categoria"] + "/" + cate["nombre"])
-            })
-        })
-
-    } else {
-        vista_Productos_cargarDe(puntoMontaje, url)
-    }
-    */
 }
 function vista_Productos_cargarDe(puntoMontaje, url) {
-    console.log(puntoMontaje,url);
-    
-    $.getJSON(url).then((productos) => {
+        $.getJSON(url).then((productos) => {
         productos.forEach(producto => {
             var html = "";
             html += "<div class='c-principal c-producto";
@@ -35,18 +19,17 @@ function vista_Productos_cargarDe(puntoMontaje, url) {
         })
     })
 }
-function vista_Productos_montarMenu(puntoMontaje,categoria) {
+function vista_Productos_montarMenu(puntoMontaje, categoria) {
     if (categoria.hasOwnProperty("nombre")) {
-        $(".l-distribucion").addClass("l-distribucion--expandido");
         $(".c-menu__sub").removeClass("c-menu__item--destacado")
         $(".js-menu__productos__" + categoria["nombre"]).addClass("c-menu__item--destacado")
-        $('<div class="l-distribucion__menu--expandido"><div class="c-menu c-menu--expandido c-menu--oculto js-menu-expandido"></div></div>').insertBefore(".l-distribucion__menu")
+        $('<div class="l-distribucion__menu--expandido"><div class="c-menu c-menu--desplegado c-menu--oculto js-menu-expandido"></div></div>').insertBefore(".l-distribucion__menu")
         $.getJSON("/api/productos/categorias/" + categoria["nombre"]).then((cates) => {
-            var html = "<ul>"
+            var html = "<ul style='width:200px'>"
             cates.forEach(cate => {
-                html += `<li><input type="checkbox" onclick="vista_Productos__montarContenido('`+puntoMontaje+`')" class="c-menu__checkbox js-menu__expandido__checkbox__`+cate["nombre"]+`" checked>`+cate["nombre"]+`</li>`
+                html += `<li><input type="checkbox" onclick="vista_Productos__montarContenido('` + puntoMontaje + `')" class="c-menu__checkbox js-menu__expandido__checkbox__` + cate["nombre"] + `" checked>` + cate["nombre"] + `</li>`
             })
-            html += "</ul>"
+            html += "</ul><div class='c-menu__borde' onclick='vista_Productos_alternarExtendido()'><i class='fas fa-angle-left c-menu__flecha'></i></div>"
             $(".js-menu-expandido").html(html)
             vista_Productos__montarContenido(puntoMontaje)
         })
@@ -67,16 +50,20 @@ function vista_Productos_montarMenu(puntoMontaje,categoria) {
     }
 }
 
-function vista_Productos__montarContenido(puntoMontaje){
+function vista_Productos__montarContenido(puntoMontaje) {
     var clases = $(".c-menu__item--destacado").last().attr('class').split("js-menu__productos__")
     var categoriaSeleccionada = clases[clases.length - 1].split(" ")[0]
-    $.getJSON("/api/productos/categorias/"+categoriaSeleccionada).then((cates) => {
-        var url = "/api/productos/categorias/"+categoriaSeleccionada+"/"
+    $.getJSON("/api/productos/categorias/" + categoriaSeleccionada).then((cates) => {
+        var url = "/api/productos/categorias/" + categoriaSeleccionada + "/"
         $(puntoMontaje).html("");
-        cates.forEach(cate=>{            
-            if ($('.js-menu__expandido__checkbox__'+cate["nombre"]).is(':checked')){
+        cates.forEach(cate => {
+            if ($('.js-menu__expandido__checkbox__' + cate["nombre"]).is(':checked')) {
                 vista_Productos_cargarDe(puntoMontaje, url + cate["nombre"])
             }
         })
     })
+}
+function vista_Productos_alternarExtendido() {
+    $(".js-menu-expandido").toggleClass("c-menu--desplegado").toggleClass("c-menu--plegado")
+    $(".c-menu__flecha").toggleClass("c-menu__flecha--plegado")
 }
