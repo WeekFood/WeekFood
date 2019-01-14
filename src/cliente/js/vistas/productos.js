@@ -36,7 +36,7 @@ function vista_Productos_montarMenu(puntoMontaje, categoria) {
         $.getJSON("/api/productos/categorias/" + categoria["nombre"]).then((cates) => {
             var html = "<li>Filtro</li><hr>"
             cates.forEach(cate => {
-                html += `<li><input type="checkbox" onclick="vista_Productos__montarContenido('` + puntoMontaje + `')" class="c-menu__checkbox js-menu__expandido__checkbox__` + cate["nombre"] + `" checked>` + cate["nombre"] + `</li>`
+                html += `<li><input style="margin: 0 5px" type="checkbox" onclick="vista_Productos__montarContenido('` + puntoMontaje + `')" class="c-menu__checkbox js-menu__expandido__checkbox__` + cate["nombre"] + `" checked>` + cate["nombre"] + `</li>`
             })
             $(".js-menu-expandido__listado").html(html)
             vista_Productos__montarContenido(puntoMontaje)
@@ -72,7 +72,7 @@ function vista_Productos__montarContenido(puntoMontaje) {
             }
         })
         if (montados < 1) {
-            $(puntoMontaje).html("<div class='c-principal'><center><i class='far fa-sad-tear fa-7x'></i><h1>Vaya, nos hemos quedado sin productos.</h1><h3 class='c-boton--basico' onclick='vista_Productos_restablecerFiltro(\""+puntoMontaje+"\")'>Limpiar el filtro.</h3></center></div>")
+            $(puntoMontaje).html("<div class='c-principal'><center><i class='far fa-sad-tear fa-7x'></i><h1 style='margin: 20px 0px'>Vaya, nos hemos quedado sin productos.</h1><h3 class='c-boton c-boton--basico' onclick='vista_Productos_restablecerFiltro(\""+puntoMontaje+"\")'>Restablecer el filtro.</h3></center></div>")
         }
     })
 }
