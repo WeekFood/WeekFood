@@ -14,10 +14,14 @@ class Articulo extends Producto {
     }
 
     incrementarCantidad() {
-        return ++this.cantidad;
+        this.cantidad++;
+
+        return this.cantidad;
     }
 
     decrementarCantidad() {
-        return --this.cantidad;
+        this.cantidad--;
+        
+        return this.cantidad;
     }
 }
