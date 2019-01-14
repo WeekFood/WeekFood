@@ -18,6 +18,10 @@
     &--oculto {
         margin-top:-100%
     }
+    &--expandido{
+        height: auto;
+        padding: 5%;
+    }
     
     @media only screen and (min-width: $mobile-l) {
         display: block;

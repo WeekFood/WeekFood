@@ -1,28 +1,27 @@
-function vista_Productos(puntoMontaje, categorias) {
+function vista_Productos(puntoMontaje, categoria) {
     if (GLOBAL_VISTA_ACTUAL != "productos") {
-        $.when(montarMenu("/api/menu", "productos")).then(vista_Productos_montarMenu(categorias));
+        $.when(montarMenu("/api/menu", "productos")).then(vista_Productos_montarMenu(puntoMontaje,categoria));
     } else {
-        vista_Productos_montarMenu(categorias);
+        vista_Productos_montarMenu(puntoMontaje,categoria);
     }
+    /*
     $(puntoMontaje).html("")
-    var url = "/api/productos"
-    if (categorias) {
-        if (categorias.hasOwnProperty("subCategoria")) {
-            url += "/categorias/" + categorias["categoria"] + "/" + categorias["subCategoria"]
-            vista_Productos_cargarDe(puntoMontaje, url)
-        } else {
-            url += "/categorias/"
-            $.getJSON(url + categorias["categoria"]).then((cates) => {
-                cates.forEach(cate => {
-                    vista_Productos_cargarDe(puntoMontaje, url + categorias["categoria"] + "/" + cate["nombre"])
-                })
+    if (categoria) {
+        url += "/categorias/"
+        $.getJSON(url + categoria["categoria"]).then((cates) => {
+            cates.forEach(cate => {
+                vista_Productos_cargarDe(puntoMontaje, url + categoria["categoria"] + "/" + cate["nombre"])
             })
-        }
+        })
+
     } else {
         vista_Productos_cargarDe(puntoMontaje, url)
     }
+    */
 }
 function vista_Productos_cargarDe(puntoMontaje, url) {
+    console.log(puntoMontaje,url);
+    
     $.getJSON(url).then((productos) => {
         productos.forEach(producto => {
             var html = "";
@@ -36,21 +35,27 @@ function vista_Productos_cargarDe(puntoMontaje, url) {
         })
     })
 }
-function vista_Productos_montarMenu(categorias) {
-    if (categorias.hasOwnProperty("categoria")) {
-        if (!$(".l-distribucion").hasClass("l-distribucion--expandido")) {
-            $(".l-distribucion").addClass("l-distribucion--expandido");
-        }
+function vista_Productos_montarMenu(puntoMontaje,categoria) {
+    if (categoria.hasOwnProperty("nombre")) {
+        $(".l-distribucion").addClass("l-distribucion--expandido");
         $(".c-menu__sub").removeClass("c-menu__item--destacado")
-        $(".js-menu__productos__" + categorias["categoria"]).addClass("c-menu__item--destacado")
-        $('<div class="l-distribucion__menu--expandido"><div class="c-menu c-menu--oculto js-menu-expandido"></div></div>').insertAfter(".l-distribucion__menu")
-
+        $(".js-menu__productos__" + categoria["nombre"]).addClass("c-menu__item--destacado")
+        $('<div class="l-distribucion__menu--expandido"><div class="c-menu c-menu--expandido c-menu--oculto js-menu-expandido"></div></div>').insertBefore(".l-distribucion__menu")
+        $.getJSON("/api/productos/categorias/" + categoria["nombre"]).then((cates) => {
+            var html = "<ul>"
+            cates.forEach(cate => {
+                html += `<li><input type="checkbox" onclick="vista_Productos__montarContenido('`+puntoMontaje+`')" class="c-menu__checkbox js-menu__expandido__checkbox__`+cate["nombre"]+`" checked>`+cate["nombre"]+`</li>`
+            })
+            html += "</ul>"
+            $(".js-menu-expandido").html(html)
+            vista_Productos__montarContenido(puntoMontaje)
+        })
     } else {
         if ($(".js-menu-productos__contenedor").length < 1) {
             $.getJSON("/api/productos/categorias/").then((cates) => {
                 var contenedorCategoriasPrincipales = "<li class='js-menu-productos__contenedor'><ul>"
                 cates.forEach(cate => {
-                    var categoriaNueva = `<li class='c-menu__item c-menu__sub js-menu__productos__` + cate["nombre"] + `' onclick='cargarVista("productos",{"categoria" : "` + cate["nombre"] + `"})'>` + cate["nombre"] + `</li>`
+                    var categoriaNueva = `<li class='c-menu__item c-menu__sub js-menu__productos__` + cate["nombre"] + `' onclick='cargarVista("productos",{"nombre" : "` + cate["nombre"] + `"})'>` + cate["nombre"] + `</li>`
                     contenedorCategoriasPrincipales += categoriaNueva
                 })
                 contenedorCategoriasPrincipales += "</ul></li>"
@@ -60,4 +65,18 @@ function vista_Productos_montarMenu(categorias) {
             $(".js-menu-productos__contenedor").remove()
         }
     }
+}
+
+function vista_Productos__montarContenido(puntoMontaje){
+    var clases = $(".c-menu__item--destacado").last().attr('class').split("js-menu__productos__")
+    var categoriaSeleccionada = clases[clases.length - 1].split(" ")[0]
+    $.getJSON("/api/productos/categorias/"+categoriaSeleccionada).then((cates) => {
+        var url = "/api/productos/categorias/"+categoriaSeleccionada+"/"
+        $(puntoMontaje).html("");
+        cates.forEach(cate=>{            
+            if ($('.js-menu__expandido__checkbox__'+cate["nombre"]).is(':checked')){
+                vista_Productos_cargarDe(puntoMontaje, url + cate["nombre"])
+            }
+        })
+    })
 }
