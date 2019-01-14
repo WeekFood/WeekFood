@@ -88,6 +88,7 @@ function generarVentanaModal(opciones) {
     cerrarVentanaModal()
     $(".p-principal").prepend(modal)
     $('.c-ventana-modal__contenido').on('click',(click)=>click.stopPropagation())
+    $('.c-ventana-modal__titulo').on('click',(click)=>click.stopPropagation())
     $('.js-ventana-modal__cerrar').on('click', () => { cerrarVentanaModal(); opciones.callback_Cerrar() });
     $('.js-ventana-modal__confirmar').on('click', () => { cerrarVentanaModal(); opciones.callback_Confirmar() });
     $('.js-ventana-modal__denegar').on('click', () => { cerrarVentanaModal(); opciones.callback_Denegar() });
