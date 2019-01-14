@@ -50,7 +50,7 @@ function generarVentanaModal(opciones) {
                 return false;
             }
             modal += `<div class='c-ventana-modal__botones'>
-            <div class='c-ventana-modal__boton c-ventana-modal__boton--advertencia js-ventana-modal__confirmar'>Ok</div>
+            <div class='c-boton c-boton--advertencia js-ventana-modal__confirmar'>Ok</div>
             </div>`
             break
         case "confirmacion":
@@ -71,7 +71,7 @@ function generarVentanaModal(opciones) {
             break
         case "error":
             modal += `<div class='c-ventana-modal__botones'>
-            <div class='c-boton c-boton--basico js-ventana-modal__cerrar'>Okey.</div>
+            <div class='c-boton c-boton--peligro js-ventana-modal__cerrar'>Okey</div>
             </div>`
             break
         default: //info
