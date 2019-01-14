@@ -18,7 +18,9 @@
 --
 -- Table structure for table `categorias`
 --
-
+drop Database if exists WeekFood;
+CREATE Database WeekFood;
+use WeekFood;
 DROP TABLE IF EXISTS `categorias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -39,29 +41,6 @@ LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
 INSERT INTO `categorias` VALUES ('Paellas','Arroces'),('Cerdo','Carnes'),('Pollo','Carnes'),('Patatas','Hortalizas'),('Puerros','Hortalizas'),('Tortilla','Huevos'),('Gambas','Marisco'),('Macarrones','Pastas'),('Ensaladas','Verduras'),('Espinacas','Verduras'),('Menestras','Verduras'),('Pimientos','Verduras'),('Pisto','Verduras');
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `categorias-principales`
---
-
-DROP TABLE IF EXISTS `categorias-principales`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `categorias-principales` (
-  `nombre` varchar(100) NOT NULL,
-  PRIMARY KEY (`nombre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `categorias-principales`
---
-
-LOCK TABLES `categorias-principales` WRITE;
-/*!40000 ALTER TABLE `categorias-principales` DISABLE KEYS */;
-INSERT INTO `categorias-principales` VALUES ('Arroces'),('Carnes'),('Hortalizas'),('Huevos'),('Marisco'),('Pastas'),('Verduras');
-/*!40000 ALTER TABLE `categorias-principales` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
