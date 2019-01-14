@@ -23,14 +23,23 @@ function vista_Productos_montarMenu(puntoMontaje, categoria) {
     if (categoria.hasOwnProperty("nombre")) {
         $(".c-menu__sub").removeClass("c-menu__item--destacado")
         $(".js-menu__productos__" + categoria["nombre"]).addClass("c-menu__item--destacado")
-        $('<div class="l-distribucion__menu--expandido"><div class="c-menu c-menu--desplegado c-menu--oculto js-menu-expandido"></div></div>').insertBefore(".l-distribucion__menu")
+        if($(".l-distribucion__menu--expandido").length < 1){
+            $(`<div class="l-distribucion__menu--expandido">
+            <div class="c-menu c-menu--plegado c-menu--oculto js-menu-expandido">
+            <div class='c-menu__borde' onclick='vista_Productos_alternarExtendido()'>
+                <i class='fas fa-angle-right c-menu__flecha'></i>
+            </div>
+            <ul style='width:200px' class="js-menu-expandido__listado">
+            </ul>
+            </div></div>`).insertBefore(".l-distribucion__menu")
+        }
         $.getJSON("/api/productos/categorias/" + categoria["nombre"]).then((cates) => {
-            var html = "<ul style='width:200px'>"
+            var html = ""
             cates.forEach(cate => {
                 html += `<li><input type="checkbox" onclick="vista_Productos__montarContenido('` + puntoMontaje + `')" class="c-menu__checkbox js-menu__expandido__checkbox__` + cate["nombre"] + `" checked>` + cate["nombre"] + `</li>`
             })
-            html += "</ul><div class='c-menu__borde' onclick='vista_Productos_alternarExtendido()'><i class='fas fa-angle-left c-menu__flecha'></i></div>"
-            $(".js-menu-expandido").html(html)
+            $(".js-menu-expandido__listado").html(html)
+            console.log(html)
             vista_Productos__montarContenido(puntoMontaje)
         })
     } else {
@@ -64,6 +73,13 @@ function vista_Productos__montarContenido(puntoMontaje) {
     })
 }
 function vista_Productos_alternarExtendido() {
-    $(".js-menu-expandido").toggleClass("c-menu--desplegado").toggleClass("c-menu--plegado")
-    $(".c-menu__flecha").toggleClass("c-menu__flecha--plegado")
+    //$(".js-menu-expandido").toggleClass("c-menu--desplegado").toggleClass("c-menu--plegado")
+
+    $(".c-menu__flecha").toggleClass("c-menu__flecha--plegado").toggleClass("c-menu__flecha--desplegado")
+
+    if ($(".js-menu-expandido").hasClass("c-menu--plegado")){
+        $(".js-menu-expandido").removeClass("c-menu--plegado").addClass("c-menu--desplegando")
+    }else{
+        $(".js-menu-expandido").toggleClass("c-menu--plegando").toggleClass("c-menu--desplegando")
+    }
 }

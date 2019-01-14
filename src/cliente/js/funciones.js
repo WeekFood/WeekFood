@@ -4,7 +4,9 @@ function cargarVista(vistaACargar, parametro = false) {
 function cargarVistaAPunto(vistaACargar, puntoMontaje, parametro = false) {
     if (GLOBAL_VISTAS.hasOwnProperty(vistaACargar)) {
         if (typeof (puntoMontaje) == "string") {
-            $(".l-distribucion__menu--expandido").remove()
+            if(GLOBAL_VISTA_ACTUAL!=vistaACargar){
+                $(".l-distribucion__menu--expandido").remove()
+            }
             GLOBAL_VISTAS[vistaACargar](puntoMontaje, parametro)
             GLOBAL_VISTA_ACTUAL = vistaACargar;
         } else {

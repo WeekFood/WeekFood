@@ -18,21 +18,28 @@
     &--oculto {
         margin-top: -100%
     }
-    &--desplegado {
+    &--desplegando {
         height: auto;
         padding: 15px;
         width: 200px;
         animation: c-menu__desplegar;
-        animation-duration: .3s;
+        animation-duration: 0.3s;
         animation-timing-function: ease-out;
-    }
-    &--plegado {
+        animation-fill-mode: both
+    } 
+    &--plegado{
         height: auto;
         width: 20px;
-        padding: 15px 0px;
+        padding: 15px 0px;  
+    }
+    &--plegando {
+        height: auto;
+        width: 20px;
+        padding: 15px 0px;  
         animation: c-menu__plegar;
-        animation-duration: .3s;
+        animation-duration: 0.3s;
         animation-timing-function: ease-out;
+        animation-fill-mode: both
     }
     @media only screen and (min-width: $mobile-l) {
         display: block;
