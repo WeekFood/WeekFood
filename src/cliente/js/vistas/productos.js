@@ -4,7 +4,7 @@ function vista_Productos(puntoMontaje) {
     html += "<div class='c-productos__container'>";
     return $.when($.getJSON("/api/productos").then((productos) => {
         productos.forEach(producto => {
-            html += "<div class='c-principal c-producto c-producto__container'>";
+            html += "<div class='c-principal c-producto'>";
             html += "</i><img class='c-producto__imagen' src='/imagenes/productos/" + producto["foto"] + "'>";
             html += "<div class='c-producto__datos'>";
             if (producto["destacado"] == 1) {
