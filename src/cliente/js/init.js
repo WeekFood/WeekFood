@@ -58,7 +58,7 @@ function _tmpCarritoArticulos() {
 
 _tmpCarritoArticulos()
 
-let idArticulo = /*3*/carrito.añadirProducto(productoDesdeAPI);
+let idArticulo = /*3*/carrito.añadirProducto(productoDesdeAPI).id;
 
 carrito.incrementarCantidad(idArticulo);
 console.log('@@ incrementado id', idArticulo);

@@ -4,8 +4,8 @@ class Carrito {
     }
 
     /**
-     * 
      * @param {Producto} producto 
+     * 
      * @returns {Articulo} instancia de Articulo convertido
      */
     añadirProducto(producto) {
@@ -28,9 +28,9 @@ class Carrito {
     }
 
     /**
-     * 
      * @param {number} idArticulo 
-     * @returns {}
+     * 
+     * @returns {Articulo} el artículo borrado
      */
     quitarArticulo(idArticulo) {
         let indiceArticulo = this._indiceArticulo(idArticulo);
@@ -40,12 +40,13 @@ class Carrito {
         }
 
         // TODO ver que devuleve
-        return this.articulos.splice(indiceArticulo, 1);
+        return this.articulos.splice(indiceArticulo, 1)[0];
     }
 
     /**
-     *
      * @param {number} idArticulo
+     * 
+     * @returns {number|void} nueva cantidad post incremento
      */
     incrementarCantidad(idArticulo) {
         let articulo = this.getArticulo(idArticulo);
@@ -58,8 +59,9 @@ class Carrito {
     }
 
     /**
-    *
     * @param {number} idArticulo
+    * 
+    * @returns {number|void} nueva cantidad post decremento
     */
     decrementarCantidad(idArticulo) {
         let articulo = this.getArticulo(idArticulo);
@@ -72,8 +74,10 @@ class Carrito {
     }
 
     /**
-    *
     * @param {number} idArticulo
+    * @param {number} cantidad
+    * 
+    * @returns {number|void} nueva cantidad post cambio
     */
     setCantidad(idArticulo, cantidad) {
         let articulo = this.getArticulo(idArticulo);
@@ -90,7 +94,7 @@ class Carrito {
     }
 
     /**
-     * @returns {Articulo[]} 
+     * @returns {Articulo[]} artículos en el carrito
      */
     getArticulos() {
         return this.articulos;
@@ -98,6 +102,7 @@ class Carrito {
 
     /**
      * @param {number} idArticulo
+     * 
      * @returns {Articulo} 
      */
     getArticulo(idArticulo) {
@@ -107,6 +112,8 @@ class Carrito {
     /**
      * @private
      * @param {number} idArticulo 
+     * 
+     * @returns {number} índice del artículo buscado en el array artículos
      */
     _indiceArticulo(idArticulo) {
         return this.articulos.findIndex(articulo => articulo.id === idArticulo);
