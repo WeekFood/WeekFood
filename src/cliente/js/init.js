@@ -41,10 +41,35 @@ let productoDesdeAPI = new Producto(
     false
 );
 
+function _tmpCarritoArticulos() {
+    console.log(
+        JSON.parse(
+            JSON.stringify(carrito.articulos)
+        )
+    );
+}
+
 carrito.añadirProducto(productoDesdeAPI);
 
-console.dir(carrito.articulos);
+_tmpCarritoArticulos()
+
+let idArticulo = carrito.añadirProducto(productoDesdeAPI);
+
+carrito.incrementarCantidad(idArticulo);
+console.log(carrito.getArticulo(idArticulo));
+
+carrito.incrementarCantidad(idArticulo);
+console.log(carrito.getArticulo(idArticulo));
+
+carrito.decrementarCantidad(idArticulo);
+console.log(carrito.getArticulo(idArticulo));
 
 
+_tmpCarritoArticulos()
+
+carrito.quitarArticulo(idArticulo);
+
+
+_tmpCarritoArticulos()
 
 /* END PRUEBAS CARRITO */
