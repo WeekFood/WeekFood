@@ -19,7 +19,7 @@ function cargarVistaAPunto(vistaACargar, puntoMontaje, parametro = false) {
 }
 
 function montarMenu(url, vista) {
-    return $.getJSON(url).then(
+    return GLOBAL_CACHE_JSONS.getJSON(url).then(
         (items) => {
             var menu = ""
             items.forEach(item => {

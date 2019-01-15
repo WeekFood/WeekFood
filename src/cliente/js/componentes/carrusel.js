@@ -1,7 +1,7 @@
 function generarCarrusel(puntoMontaje) {
     let html = "";
 
-    $.getJSON("/api/carrusel", (imagenes) => {
+    GLOBAL_CACHE_JSONS.getJSON("/api/carrusel").then((imagenes) => {
         html += `<div class="c-carrusel">`;
 
         imagenes.forEach(imagen => {

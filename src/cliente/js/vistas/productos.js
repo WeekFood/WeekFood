@@ -12,6 +12,7 @@ function vista_Productos_cargarDe(puntoMontaje, url) {
         $(puntoMontaje).append("<div class='c-productos__container js-productos-normales'></div>")
     }
     $.getJSON(url).then((productos) => {
+
         productos.forEach(producto => {
             if (producto["destacado"] == 1) {
                 $('.js-productos-destacados').append(vista_Productos_generarProducto(producto))
