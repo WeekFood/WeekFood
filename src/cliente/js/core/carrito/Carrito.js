@@ -6,6 +6,7 @@ class Carrito {
     /**
      * 
      * @param {Producto} producto 
+     * @returns {number} id del artículo creado, el mismo que el producto
      */
     añadirProducto(producto) {
         if (!producto instanceof Producto) {
@@ -16,11 +17,11 @@ class Carrito {
 
         // comprobar si el articulo ya existe en el carrito
         let articuloYaExistente = this.getArticulo(articulo.id);
-        
+
         if (articuloYaExistente) {
             articuloYaExistente.incrementarCantidad();
         } else {
-            this.articulos.push(articulo);            
+            this.articulos.push(articulo);
         }
 
         return articulo.id;
@@ -29,6 +30,7 @@ class Carrito {
     /**
      * 
      * @param {number} idArticulo 
+     * @returns {}
      */
     quitarArticulo(idArticulo) {
         let indiceArticulo = this._indiceArticulo(idArticulo);
@@ -37,7 +39,7 @@ class Carrito {
             return console.error('Imposible quitar el articulo, no se ha encontrado');
         }
 
-        this.articulos.splice(indiceArticulo, 1);
+        return this.articulos.splice(indiceArticulo, 1);
     }
 
     /**
@@ -65,32 +67,33 @@ class Carrito {
             return console.error('Imposible decrementar la cantidad, no se ha encontrado el artículo');
         }
 
-        if (articulo.decrementarCantidad() === 0) {
-            // el articulo ha pasado a tener cantidad 0 -> eliminarlo? o no seria responsabilidad de Carrito ??
-        };
+        return articulo.decrementarCantidad();
     }
 
     /**
     *
     * @param {number} idArticulo
     */
-   setCantidad(idArticulo, cantidad) {
-    let articulo = this.getArticulo(idArticulo);
+    setCantidad(idArticulo, cantidad) {
+        let articulo = this.getArticulo(idArticulo);
 
-    if (!articulo) {
-        return console.error('Imposible establecer la cantidad, no se ha encontrado el artículo');
+        if (!articulo) {
+            return console.error('Imposible establecer la cantidad, no se ha encontrado el artículo');
+        }
+
+        if (cantidad < 0) {
+            return console.error('Imposible establecer una cantidad negativa');
+        }
+
+        return articulo.setCantidad(cantidad);
     }
 
-    if (cantidad < 0) {
-        return console.error('Imposible establecer una cantidad negativa');
+    /**
+     * @returns {Articulo[]} 
+     */
+    getArticulos() {
+        return this.articulos;
     }
-
-    if (cantidad === 0) {
-        // el articulo ha pasado a tener cantidad 0 -> eliminarlo? o no seria responsabilidad de Carrito ??
-    }
-
-    articulo.cantidad = cantidad;
-}
 
 
 

@@ -25,4 +25,8 @@ class Articulo extends Producto {
         
         return this.cantidad;
     }
+
+    setCantidad(cantidad) {
+        this.cantidad = cantidad;
+    }
 }

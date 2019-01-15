@@ -60,7 +60,7 @@ carrito.añadirProducto(productoDesdeAPI);
 
 _tmpCarritoArticulos()
 
-let idArticulo = 3/*carrito.añadirProducto(productoDesdeAPI)*/;
+let idArticulo = /*3*/carrito.añadirProducto(productoDesdeAPI);
 
 carrito.incrementarCantidad(idArticulo);
 console.log('@@ incrementado id', idArticulo);
@@ -82,7 +82,9 @@ console.log('@@ añadido id', idArticulo2);
 _tmpCarritoArticulos()
 
 console.log('@@ quitado id', idArticulo);
-carrito.quitarArticulo(idArticulo);
+let quitado = carrito.quitarArticulo(idArticulo);
+
+console.log(quitado);
 
 
 _tmpCarritoArticulos()
