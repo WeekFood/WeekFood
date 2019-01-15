@@ -41,9 +41,9 @@ function montarMenu(url, vista) {
     )
 }
 
-function redirigir() {
+function redirigir(){
     var url = extraerCookie("Redirect")
-    if (url !== null) {
+    if (url !== null){
         url = decodeURIComponent(url.split("=")[1])
         url = url.split("/")[1]
         cargarVista(url)
@@ -52,15 +52,15 @@ function redirigir() {
     }
 }
 
-function extraerCookie(nombre) {
+function extraerCookie(nombre){
     var encontrada = null
     document.cookie.split("; ").forEach(cookie => {
-        if (cookie.split("=")[0] == nombre) {
+        if (cookie.split("=")[0] == nombre){
             encontrada = cookie;
         }
     })
     return encontrada;
 }
-function borrarCookie(nombre) {
+function borrarCookie(nombre){
     document.cookie = nombre + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
