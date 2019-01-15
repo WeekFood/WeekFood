@@ -6,6 +6,7 @@ shopt -s globstar
 OUTPUT=${1:-./dist/js/WeekFood.js}
 
 terser \
+    src/cliente/js/core/**/*.js \
     src/cliente/js/abstractos.js \
     src/cliente/js/funciones.js \
     src/cliente/js/componentes/**/*.js \

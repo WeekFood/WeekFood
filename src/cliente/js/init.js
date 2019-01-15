@@ -25,7 +25,12 @@ $('.js-boton-menu').on('click', () => {
         $(".js-menu").addClass("c-menu--ocultar c-menu--oculto")
     }
 });
+var GLOBAL_GESTOR_PRODUCTOS = new GestorProductos();
 
 if (!redirigir()) {
     cargarVista("portada")
 }
+// Estos se cargan al entrar a la web
+GLOBAL_GESTOR_PRODUCTOS.getProductosCategoriaPrincipal('Carnes').then((categorias)=>{console.log("En carnes",categorias)})
+GLOBAL_GESTOR_PRODUCTOS.getProductosCategoria('Huevos','Tortilla').then((productos) => {console.log("Tortillas",productos)})
+// En vistas/producto hay un ejemplo de cargar al llegar a dicha vista.

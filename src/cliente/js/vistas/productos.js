@@ -1,4 +1,6 @@
 function vista_Productos(puntoMontaje) {
+    // Este se cargara al llegar aqui.
+    console.log("Producto 10",GLOBAL_GESTOR_PRODUCTOS.getProductoId(10))
     montarMenu("/api/menu", "productos")
     var html = "";
     return $.when( GLOBAL_CACHE_JSONS.getJSON("/api/productos").then((productos) => {
