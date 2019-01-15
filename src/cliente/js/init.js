@@ -41,6 +41,13 @@ let productoDesdeAPI = new Producto(
     false
 );
 
+let productoDesdeAPI2 = new Producto(
+    2,
+    'Lomo',
+    'patatas-fritas.png',
+    false
+);
+
 function _tmpCarritoArticulos() {
     console.log(
         JSON.parse(
@@ -53,20 +60,28 @@ carrito.añadirProducto(productoDesdeAPI);
 
 _tmpCarritoArticulos()
 
-let idArticulo = carrito.añadirProducto(productoDesdeAPI);
+let idArticulo = 3/*carrito.añadirProducto(productoDesdeAPI)*/;
 
 carrito.incrementarCantidad(idArticulo);
+console.log('@@ incrementado id', idArticulo);
 console.log(carrito.getArticulo(idArticulo));
 
 carrito.incrementarCantidad(idArticulo);
+console.log('@@ incrementado id', idArticulo);
 console.log(carrito.getArticulo(idArticulo));
 
 carrito.decrementarCantidad(idArticulo);
+console.log('@@ decrementado id', idArticulo);
 console.log(carrito.getArticulo(idArticulo));
 
-
+console.log('@@ estado post incr/decr');
 _tmpCarritoArticulos()
 
+let idArticulo2 = carrito.añadirProducto(productoDesdeAPI2);
+console.log('@@ añadido id', idArticulo2);
+_tmpCarritoArticulos()
+
+console.log('@@ quitado id', idArticulo);
 carrito.quitarArticulo(idArticulo);
 
 
