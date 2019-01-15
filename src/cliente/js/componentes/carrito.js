@@ -13,6 +13,7 @@ function añadirArticulo() {
     var id = $(this).parent().data('id')
     procesarArticulo(carrito.añadirProducto(productos.getProductoPorId(id)))
     $(".js-carrito-basura").on('click', quitarArticulo);
+    $(".c-carrito__vacio").remove()
 }
 function procesarArticulo(articulo) {
     var html = `<p data-id='` + articulo.id + `' class='c-carrito__articulo'>
@@ -31,7 +32,6 @@ function quitarArticulo(elemento) {
     carrito.quitarArticulo($(elemento.currentTarget).parent().data('id'))
     $(elemento.currentTarget).parent().remove()
     if($(".c-carrito").children().length < 1){
-
-    $(".c-carrito").append("<p class='c-carrito__vacio'><i class='far fa-sad-cry fa-3x'></i><br><br>Tu carrito está vacio</p>")
+$(".c-carrito").append("<p class='c-carrito__vacio'><i class='far fa-sad-cry fa-3x'></i><br><br>Tu carrito está vacio</p>")
     }
 }
