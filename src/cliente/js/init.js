@@ -41,10 +41,10 @@ let productoDesdeAPI = new Producto(
     false
 );
 
-let articulo = new Articulo(productoDesdeAPI);
-
-carrito.añadirArticulo(articulo);
+carrito.añadirProducto(productoDesdeAPI);
 
 console.dir(carrito.articulos);
+
+
 
 /* END PRUEBAS CARRITO */
