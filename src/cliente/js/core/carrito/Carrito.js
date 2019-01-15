@@ -71,6 +71,30 @@ class Carrito {
     }
 
     /**
+    *
+    * @param {number} idArticulo
+    */
+   setCantidad(idArticulo, cantidad) {
+    let articulo = this.getArticulo(idArticulo);
+
+    if (!articulo) {
+        return console.error('Imposible establecer la cantidad, no se ha encontrado el artículo');
+    }
+
+    if (cantidad < 0) {
+        return console.error('Imposible establecer una cantidad negativa');
+    }
+
+    if (cantidad === 0) {
+        // el articulo ha pasado a tener cantidad 0 -> eliminarlo? o no seria responsabilidad de Carrito ??
+    }
+
+    articulo.cantidad = cantidad;
+}
+
+
+
+    /**
      * @param {number} idArticulo
      * @returns {Articulo} 
      */
@@ -83,6 +107,6 @@ class Carrito {
      * @param {number} idArticulo 
      */
     _indiceArticulo(idArticulo) {
-        return this.articulos.find(articulo => articulo.id === idArticulo);
+        return this.articulos.findIndex(articulo => articulo.id === idArticulo);
     }
 }
