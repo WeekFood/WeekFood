@@ -27,7 +27,7 @@ function vista_Producto_generarProducto(producto){
         } 
     html += "<div class='c-producto__datos'>";
     html += "<div class='c-producto__titulo-container'><p class='c-producto__titulo'>" + producto["nombre"].charAt(0).toUpperCase() + producto["nombre"].slice(1) + "</p></div>";
-    html += "<div class='c-producto__precio-carrito'><div class='c-producto__precio'>2 €</div>";
-    html += "<div class='c-producto__carrito'><i class='fas fa-cart-plus'></i></div></div></div></div>";
+    html += "<div class='c-producto__precio'>2 €</div>";
+    html += "<div class='c-producto__carrito'><i class='fas fa-cart-plus'></i></div></div></div>";
     return html;
 }
