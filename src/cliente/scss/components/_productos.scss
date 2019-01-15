@@ -1,0 +1,8 @@
+ .c-productos{
+   display: grid;
+   margin: 20px;
+   margin-top: 0px;
+   grid-template-columns: repeat(auto-fill, minmax(260px,3fr));
+   @media only screen and (min-width:$mobile-l) {
+  }
+ }

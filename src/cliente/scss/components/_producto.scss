@@ -17,18 +17,7 @@
                         'titulo titulo'
                         'precio carrito';
  }
- .c-productos__container{
-   display: grid;
-   margin: 20px;
-   margin-top: 0px;
-   grid-template-columns: repeat(auto-fill, minmax(260px,3fr));
-   @media only screen and (min-width:$mobile-l) {
-  }
- }
- .c-productos__container--destacado{
-    margin-bottom: 0px;
-    margin-top: 20px;
- }
+
  .c-producto__imagen{
     display: block;
     border-top-left-radius: 10px;
@@ -48,7 +37,6 @@
  .c-producto__carrito{
    border-radius: 10px;
    font-size: 30px;
-   border: none;
    margin-left: auto;
    grid-area: carrito;
    align-self: center;
@@ -70,8 +58,6 @@
    max-height: 60px;
    padding: 10px;
    text-overflow: ellipsis;
-}
-.c-producto__titulo-container{
    overflow: hidden;
    grid-area: titulo;
 }
