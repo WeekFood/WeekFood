@@ -16,7 +16,7 @@
         animation-timing-function: ease-out;
     }
     &--oculto {
-        margin-top: -100%
+        margin-top:-100%
     }
     &--desplegando {
         height: auto;
@@ -52,6 +52,7 @@
             margin-top:0%
         }
     }
+
 }
 
 .c-menu__boton {
@@ -90,7 +91,7 @@
         animation-timing-function: ease-out;
     }
     @media only screen and (min-width: $mobile-l) {
-        &--oculto {
+        &--oculto{
             opacity: 1;
             margin-left: 0%;
         }

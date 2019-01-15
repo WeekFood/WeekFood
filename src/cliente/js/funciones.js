@@ -54,7 +54,7 @@ function redirigir(){
 
 function extraerCookie(nombre){
     var encontrada = null
-    document.cookie.split("; ").forEach(cookie => {
+    document.cookie.split("; ").forEach(cookie => {    
         if (cookie.split("=")[0] == nombre){
             encontrada = cookie;
         }
