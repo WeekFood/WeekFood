@@ -26,10 +26,11 @@ $('.js-boton-menu').on('click', () => {
     }
 });
 
+$(".js-carrito").on('click',alternarCarrito)
+
 if (!redirigir()) {
     cargarVista("portada")
 }
-
 /* PRUEBAS CARRITO */
 
 let carrito = new Carrito();
