@@ -101,7 +101,7 @@
 
 .c-menu__sub {
     padding-left: 20px;
-    color: green;
+    color: firebrick;
 }
 
 .c-menu__item:hover {
@@ -111,7 +111,7 @@
 }
 
 .c-menu__borde {
-    background: orange;
+    background: #ff2525;
     width: 20px;
     height: 100%;
     position: absolute;
@@ -122,7 +122,7 @@
 
 .c-menu__flecha {
     margin: auto;
-    color: blue;
+    color: $blanco;
     &--plegado {
         transform: rotateZ(180deg);
     }
