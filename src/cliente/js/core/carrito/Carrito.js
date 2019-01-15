@@ -39,6 +39,7 @@ class Carrito {
             return console.error('Imposible quitar el articulo, no se ha encontrado');
         }
 
+        // TODO ver que devuleve
         return this.articulos.splice(indiceArticulo, 1);
     }
 

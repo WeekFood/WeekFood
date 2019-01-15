@@ -56,8 +56,6 @@ function _tmpCarritoArticulos() {
     );
 }
 
-carrito.añadirProducto(productoDesdeAPI);
-
 _tmpCarritoArticulos()
 
 let idArticulo = /*3*/carrito.añadirProducto(productoDesdeAPI);
