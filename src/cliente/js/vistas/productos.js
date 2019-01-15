@@ -25,9 +25,9 @@ function vista_Producto_generarProducto(producto){
     if (producto["destacado"] == 1) {
         html += "<div class='c-producto__imagen-destacado'><i class='fas fa-star fa-3x'></i></div>";
         } 
-    html += "<div class='c-producto__datos'>";
+    //html += "<div class='c-producto__datos'>";
     html += "<div class='c-producto__titulo-container'><p class='c-producto__titulo'>" + producto["nombre"].charAt(0).toUpperCase() + producto["nombre"].slice(1) + "</p></div>";
     html += "<div class='c-producto__precio'>2 €</div>";
-    html += "<div class='c-producto__carrito'><i class='fas fa-cart-plus'></i></div></div></div>";
+    html += "<div class='c-producto__carrito'><i class='fas fa-cart-plus'></i></div></div>";
     return html;
 }

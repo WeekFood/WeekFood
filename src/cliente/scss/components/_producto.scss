@@ -1,7 +1,11 @@
  .c-producto{
    position: relative;
-   border-radius: 10px;
    padding: 0px;
+   display: grid;
+   grid-template-areas: 
+                        'imagen imagen'
+                        'titulo titulo'
+                        'precio carrito';
  }
  .c-productos__container{
    display: grid;
@@ -26,20 +30,22 @@
     top: -25px;
     left: -25px;
  }
- .c-producto__datos{
-   max-width: 90%;
+ /*.c-producto__datos{
+   width: 100%;
    max-height: 100%;
    object-fit: cover;
    display: grid;
    grid-template-areas: 'titulo titulo'
                         'precio carrito';
-}
+}*/
  .c-producto__carrito{
    border-radius: 10px;
    font-size: 20px;
    border: none;
    margin-left: auto;
    grid-area: carrito;
+   align-self: center;
+   margin-right: 5px;
 }
 .c-producto__precio{
    padding: 5px;
@@ -56,8 +62,8 @@
    max-height: 60px;
    padding: 5px;
    text-overflow: ellipsis;
-   grid-area: titulo;
 }
 .c-producto__titulo-container{
    overflow: hidden;
+   grid-area: titulo;
 }
