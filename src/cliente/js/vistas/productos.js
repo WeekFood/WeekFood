@@ -5,56 +5,6 @@ function vista_Productos(puntoMontaje, categoria) {
         vista_Productos_montarMenu(puntoMontaje, categoria);
     }
 }
-function vista_Productos_cargarDe(puntoMontaje, url) {
-    if ($('.js-productos-destacados').length < 1){
-        $(puntoMontaje).append("<div class='c-productos__container js-productos-destacados'></div>")
-    }if ($('.js-productos-normales').length < 1){
-        $(puntoMontaje).append("<div class='c-productos__container js-productos-normales'></div>")
-    }
-    $.getJSON(url).then((productos) => {
-
-        productos.forEach(producto => {
-            if (producto["destacado"] == 1) {
-                $('.js-productos-destacados').append(vista_Productos_generarProducto(producto))
-            } else {
-                $('.js-productos-normales').append(vista_Productos_generarProducto(producto))
-            }
-        })
-        if ($($(".js-productos-destacados")[0]).children().length < 1){
-            console.log("No existen destacados.")
-            $(".js-productos-destacados").remove()
-        }
-    })
-}
-
-function vista_Productos_generarProducto(producto) {
-    var placeHolderPrecio = 4
-    var html = `
-    <div class='c-producto'>
-        <img class='c-producto__imagen' src='/imagenes/productos/`+ producto["foto"] + `'>`
-    if (producto["destacado"] == 1) {
-        html += `
-        <div class='c-producto__imagen-destacado'>
-            <i class='fas fa-star fa-3x'></i>
-        </div>
-        `
-    }
-    html += `
-        <div class='c-producto__titulo-container'>
-            <p class='c-producto__titulo'>
-                `+ producto["nombre"].charAt(0).toUpperCase() + producto["nombre"].slice(1) + `
-            </p> 
-        </div>
-        <div class='c-producto__precio'>
-            `+ placeHolderPrecio + `€
-        </div>
-        <div class='c-producto__carrito'>
-            <i class='fas fa-cart-plus'></i>
-        </div>
-    </div>
-    `
-    return html;
-}
 
 function vista_Productos_montarMenu(puntoMontaje, categoria) {
     if (categoria.hasOwnProperty("nombre")) {
@@ -113,6 +63,58 @@ function vista_Productos__montarContenido(puntoMontaje) {
         }
     })
 }
+
+function vista_Productos_cargarDe(puntoMontaje, url) {
+    if ($('.js-productos-destacados').length < 1) {
+        $(puntoMontaje).append("<div class='c-productos__container js-productos-destacados'></div>")
+    } if ($('.js-productos-normales').length < 1) {
+        $(puntoMontaje).append("<div class='c-productos__container js-productos-normales'></div>")
+    }
+    $.getJSON(url).then((productos) => {
+
+        productos.forEach(producto => {
+            if (producto["destacado"] == 1) {
+                $('.js-productos-destacados').append(vista_Productos_generarProducto(producto))
+            } else {
+                $('.js-productos-normales').append(vista_Productos_generarProducto(producto))
+            }
+        })
+        if ($($(".js-productos-destacados")[0]).children().length < 1) {
+            console.log("No existen destacados.")
+            $(".js-productos-destacados").remove()
+        }
+    })
+}
+
+function vista_Productos_generarProducto(producto) {
+    var placeHolderPrecio = 4
+    var html = `
+    <div class='c-producto'>
+        <img class='c-producto__imagen' src='/imagenes/productos/`+ producto["foto"] + `'>`
+    if (producto["destacado"] == 1) {
+        html += `
+        <div class='c-producto__imagen-destacado'>
+            <i class='fas fa-star fa-3x'></i>
+        </div>
+        `
+    }
+    html += `
+        <div class='c-producto__titulo-container'>
+            <p class='c-producto__titulo'>
+                `+ producto["nombre"].charAt(0).toUpperCase() + producto["nombre"].slice(1) + `
+            </p> 
+        </div>
+        <div class='c-producto__precio'>
+            `+ placeHolderPrecio + `€
+        </div>
+        <div class='c-producto__carrito'>
+            <i class='fas fa-cart-plus'></i>
+        </div>
+    </div>
+    `
+    return html;
+}
+
 function vista_Productos_alternarExtendido() {
     $(".c-menu__flecha").toggleClass("c-menu__flecha--plegado").toggleClass("c-menu__flecha--desplegado")
     if ($(".js-menu-expandido").hasClass("c-menu--plegado")) {
