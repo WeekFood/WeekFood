@@ -1,6 +1,10 @@
 function vista_Productos(puntoMontaje) {
-    // Este se cargara al llegar aqui.
+    // Codigo con propositos de testeo {
+    // Estos se cargaran al llegar aqui.
+    GLOBAL_GESTOR_PRODUCTOS.getCategoriasEnCategoriaPrincipal('Carnes').then((categorias)=>{console.log("En carnes",categorias)})
     console.log("Producto 10",GLOBAL_GESTOR_PRODUCTOS.getProductoId(10))
+    // } Codigo con propositos de testeo 
+    
     montarMenu("/api/menu", "productos")
     var html = "";
     return $.when( GLOBAL_CACHE_JSONS.getJSON("/api/productos").then((productos) => {

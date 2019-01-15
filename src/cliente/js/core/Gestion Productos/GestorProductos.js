@@ -2,12 +2,14 @@ class GestorProductos {
     constructor() {
         this.productos = []
         this.categoriasPrincipales = []
+        this.bloqueado = true
         GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/").then((categoriasPrincipales) => {
             if (categoriasPrincipales !== null) {
                 categoriasPrincipales.forEach(categoria => {
-                   this.categoriasPrincipales.push(new Categoria(categoria))
+                    this.categoriasPrincipales.push(new Categoria(categoria.nombre))
                 })
             }
+            this.bloqueado = false
         })
     }
     /**
@@ -16,6 +18,8 @@ class GestorProductos {
      * @param {Categoria} actual Categoria actual en el array
      */
     filtrarCategoriaPrincipal(categoriaPrincipal, actual) {
+        console.log(actual);
+
         return actual.nombre == categoriaPrincipal
     }
     /**
@@ -38,7 +42,10 @@ class GestorProductos {
      * @param {String} categoriaPrincipal Categoria principal a buscar
      * 
      */
-    getProductosCategoriaPrincipal(categoriaPrincipal) {
+    getCategoriasEnCategoriaPrincipal(categoriaPrincipal) {
+        if (this.bloqueado) {
+            throw "El gestor esta inicializandose";
+        }
         var productosFiltrados = this.categoriasPrincipales.filter(categoria => this.filtrarCategoriaPrincipal(categoriaPrincipal, categoria))
         if (productosFiltrados.length > 0) {
             return $.when(productosFiltrados)
@@ -87,5 +94,12 @@ class GestorProductos {
      */
     getProductoId(id) {
         return this.productos.find(producto => this.filtrarId(id, producto))
+    }
+
+    getCategoriasPrincipales() {
+        if (this.bloqueado) {
+            throw "El gestor esta inicializandose";
+        }
+        return this.categoriasPrincipales.map(cate => cate.nombre)
     }
 } 
