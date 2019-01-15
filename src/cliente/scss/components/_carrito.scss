@@ -1,5 +1,5 @@
 .c-carrito {
-    max-width: 300px !important;
+    width: 300px;
     min-height: 100px;
     z-index: 2;
     position: absolute;
@@ -8,4 +8,48 @@
     margin: 0 !important;
     max-height: 80vh;
     overflow: auto;
+    border-top-left-radius: 0px !important;
+    animation: c-carrito__aparecer 0.5s ;
+    &--desaparecer {
+        animation: c-carrito__desaparecer 0.5s ;
+    }
+}
+
+.c-carrito__articulo {
+    display: flex;
+    margin: 5px 0;
+    height: 30px;
+    font-weight: 900;
+    line-height: 30px;
+}
+
+.c-carrito__nombre {
+    margin-right: auto;
+}
+
+.c-carrito__incrementar,
+.c-carrito__decrementar {
+    margin: 0 10px;
+    padding: 0 5px;
+}
+
+.c-carrito__cantidad {
+    font-size: 20px;
+}
+
+.c-carrito__basura {
+    color: red;
+    padding: 0 5px;
+}
+
+@keyframes c-carrito__aparecer {
+    0% {
+        transform: translateY(-100%)
+    }
+}
+
+@keyframes c-carrito__desaparecer {
+    100% {
+        transform: translateY(-100%)
+    }
 }

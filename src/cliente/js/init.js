@@ -81,9 +81,9 @@ console.log('@@ añadido id', idArticulo2);
 _tmpCarritoArticulos()
 
 console.log('@@ quitado id', idArticulo);
-let quitado = carrito.quitarArticulo(idArticulo);
+//let quitado = carrito.quitarArticulo(idArticulo);
 
-console.log(quitado);
+//console.log(quitado);
 
 
 _tmpCarritoArticulos()
