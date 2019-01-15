@@ -6,19 +6,55 @@ function vista_Productos(puntoMontaje, categoria) {
     }
 }
 function vista_Productos_cargarDe(puntoMontaje, url) {
+    if ($('.js-productos-destacados').length < 1){
+        $(puntoMontaje).append("<div class='c-productos__container js-productos-destacados'></div>")
+    }if ($('.js-productos-normales').length < 1){
+        $(puntoMontaje).append("<div class='c-productos__container js-productos-normales'></div>")
+    }
     $.getJSON(url).then((productos) => {
         productos.forEach(producto => {
-            var html = "";
-            html += "<div class='c-principal c-producto";
             if (producto["destacado"] == 1) {
-                html += " c-producto--destacado'> <img class='c-producto__imagen-destacado' src='imagenes/estrella.png";
+                $('.js-productos-destacados').append(vista_Productos_generarProducto(producto))
+            } else {
+                $('.js-productos-normales').append(vista_Productos_generarProducto(producto))
             }
-            html += "'><img class='c-producto__imagen' src='/imagenes/productos/" + producto["foto"] + "'>";
-            html += "<p class='c-producto__titulo'>" + producto["nombre"].charAt(0).toUpperCase() + producto["nombre"].slice(1) + "</p></div>";
-            $(puntoMontaje).append(html);
         })
+        if ($($(".js-productos-destacados")[0]).children().length < 1){
+            console.log("No existen destacados.")
+            $(".js-productos-destacados").remove()
+        }
     })
 }
+
+function vista_Productos_generarProducto(producto) {
+    var placeHolderPrecio = 4
+    var html = `
+    <div class='c-producto'>
+        <img class='c-producto__imagen' src='/imagenes/productos/`+ producto["foto"] + `'>`
+    if (producto["destacado"] == 1) {
+        html += `
+        <div class='c-producto__imagen-destacado'>
+            <i class='fas fa-star fa-3x'></i>
+        </div>
+        `
+    }
+    html += `
+        <div class='c-producto__titulo-container'>
+            <p class='c-producto__titulo'>
+                `+ producto["nombre"].charAt(0).toUpperCase() + producto["nombre"].slice(1) + `
+            </p> 
+        </div>
+        <div class='c-producto__precio'>
+            `+ placeHolderPrecio + `€
+        </div>
+        <div class='c-producto__carrito'>
+            <i class='fas fa-cart-plus'></i>
+        </div>
+    </div>
+    `
+    return html;
+}
+
 function vista_Productos_montarMenu(puntoMontaje, categoria) {
     if (categoria.hasOwnProperty("nombre")) {
         $(".c-menu__sub").removeClass("c-menu__item--destacado")
@@ -72,7 +108,7 @@ function vista_Productos__montarContenido(puntoMontaje) {
             }
         })
         if (montados < 1) {
-            $(puntoMontaje).html("<div class='c-principal'><center><i class='far fa-sad-tear fa-7x'></i><h1 style='margin: 20px 0px'>Vaya, nos hemos quedado sin productos.</h1><h3 class='c-boton c-boton--basico' onclick='vista_Productos_restablecerFiltro(\""+puntoMontaje+"\")'>Restablecer el filtro</h3></center></div>")
+            $(puntoMontaje).html("<div class='c-principal'><center><i class='far fa-sad-tear fa-7x'></i><h1 style='margin: 20px 0px'>Vaya, nos hemos quedado sin productos.</h1><h3 class='c-boton c-boton--basico' onclick='vista_Productos_restablecerFiltro(\"" + puntoMontaje + "\")'>Restablecer el filtro</h3></center></div>")
         }
     })
 }
