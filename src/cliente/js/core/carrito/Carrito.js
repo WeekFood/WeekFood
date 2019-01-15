@@ -6,7 +6,7 @@ class Carrito {
     /**
      * 
      * @param {Producto} producto 
-     * @returns {number} id del artículo creado, el mismo que el producto
+     * @returns {Articulo} instancia de Articulo convertido
      */
     añadirProducto(producto) {
         if (!producto instanceof Producto) {
@@ -24,7 +24,7 @@ class Carrito {
             this.articulos.push(articulo);
         }
 
-        return articulo.id;
+        return articulo;
     }
 
     /**
@@ -95,8 +95,6 @@ class Carrito {
     getArticulos() {
         return this.articulos;
     }
-
-
 
     /**
      * @param {number} idArticulo
