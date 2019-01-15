@@ -20,7 +20,7 @@ function vista_Productos(puntoMontaje) {
 
 function vista_Producto_generarProducto(producto){
     var html = "";
-    html += "<div class='c-principal c-producto'>";
+    html += "<div class='c-producto'>";
     html += "</i><img class='c-producto__imagen' src='/imagenes/productos/" + producto["foto"] + "'>";
     if (producto["destacado"] == 1) {
         html += "<div class='c-producto__imagen-destacado'><i class='fas fa-star fa-3x'></i></div>";
