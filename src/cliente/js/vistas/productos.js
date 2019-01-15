@@ -2,7 +2,7 @@ function vista_Productos(puntoMontaje) {
     montarMenu("/api/menu", "productos")
     var containerDestacado = "<div class='c-productos__container c-productos__container--destacado'>";
     var containerNoDestacado = "<div class='c-productos__container'>";
-    return $.when($.getJSON("/api/productos").then((productos) => {
+    return $.when( GLOBAL_CACHE_JSONS.getJSON("/api/productos").then((productos) => {
         productos.forEach(producto => {
             if (producto["destacado"] == 1) {
                 containerDestacado += vista_Producto_generarProducto(producto);
