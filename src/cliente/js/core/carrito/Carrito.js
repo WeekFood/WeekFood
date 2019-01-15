@@ -5,21 +5,25 @@ class Carrito {
 
     /**
      * 
-     * @param {Articulo} articulo 
+     * @param {Producto} producto 
      */
-    añadirArticulo(articulo) {
-        if (!articulo instanceof Articulo) {
-            return console.error('Imposible añadir un articulo, no es instancia de Articulo');
+    añadirProducto(producto) {
+        if (!producto instanceof Producto) {
+            return console.error('Imposible añadir un producto, no es instancia de Producto');
         }
 
+        let articulo = new Articulo(producto);
+
         // comprobar si el articulo ya existe en el carrito
-        let articuloYaExistente = this._getArticulo(articulo.id);
+        let articuloYaExistente = this.getArticulo(articulo.id);
         
         if (articuloYaExistente) {
             articuloYaExistente.incrementarCantidad();
         } else {
             this.articulos.push(articulo);            
         }
+
+        return articulo.id;
     }
 
     /**
@@ -41,7 +45,7 @@ class Carrito {
      * @param {number} idArticulo
      */
     incrementarCantidad(idArticulo) {
-        let articulo = this._getArticulo(articulo.id);
+        let articulo = this.getArticulo(idArticulo);
 
         if (!articulo) {
             return console.error('Imposible incrementar la cantidad, no se ha encontrado el artículo');
@@ -55,7 +59,7 @@ class Carrito {
     * @param {number} idArticulo
     */
     decrementarCantidad(idArticulo) {
-        let articulo = this._getArticulo(articulo.id);
+        let articulo = this.getArticulo(idArticulo);
 
         if (!articulo) {
             return console.error('Imposible decrementar la cantidad, no se ha encontrado el artículo');
@@ -67,10 +71,10 @@ class Carrito {
     }
 
     /**
-     * @private
-     * @param {number} idArticulo 
+     * @param {number} idArticulo
+     * @returns {Articulo} 
      */
-    _getArticulo(idArticulo) {
+    getArticulo(idArticulo) {
         return this.articulos.find(articulo => articulo.id === idArticulo);
     }
 
