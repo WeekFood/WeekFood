@@ -18,8 +18,6 @@ class GestorProductos {
      * @param {Categoria} actual Categoria actual en el array
      */
     filtrarCategoriaPrincipal(categoriaPrincipal, actual) {
-        console.log(actual);
-
         return actual.nombre == categoriaPrincipal
     }
     /**
