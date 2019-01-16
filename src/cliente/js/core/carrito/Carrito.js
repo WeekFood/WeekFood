@@ -126,6 +126,19 @@ class Carrito {
     }
 
     /**
+     * @returns {number}
+     */
+    getImporteTotal() {
+        let total = 0;
+
+        this.articulos.forEach(articulo => {
+            total += (articulo.precio * articulo.cantidad);
+        });
+
+        return total;
+    }
+
+    /**
      * @private
      * @param {number} idArticulo 
      * 
