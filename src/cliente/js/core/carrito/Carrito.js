@@ -59,11 +59,10 @@ class Carrito {
         }
 
         if (articulo.cantidad === Carrito.CANTIDAD_MAXIMA) {
-            // no incrementar -> devolver la cantidad máxima
+            // no incrementar -> devolver la cantidad sin cambiar
             return articulo.cantidad;
         }
 
-        // TODO comprobar si la cantidad en los metodos y decidir que hacer
         return articulo.incrementarCantidad();
     }
 
@@ -81,7 +80,7 @@ class Carrito {
         }
 
         if (articulo.cantidad === Carrito.CANTIDAD_MINIMA) {
-            // no incrementar -> devolver la cantidad máxima
+            // no decrementar -> devolver la cantidad sin cambiar
             return articulo.cantidad;
         }
 
