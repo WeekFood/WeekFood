@@ -45,7 +45,7 @@ class GestorProductos {
         var categoriaEncontrada = this.categoriasPrincipales.find(categoria => this.filtrarCategoriaPrincipal(categoriaPrincipal, categoria))
         if (categoriaEncontrada == undefined) { return undefined }
         if (categoriaEncontrada.categorias.length > 0) {
-            return $.when(categoriaEncontrada.categorias)
+            return $.when(categoriaEncontrada.categorias[0])
         } else {
             return GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/" + categoriaPrincipal).then((respuesta) => {
                 var categoriasDescargadas = []
