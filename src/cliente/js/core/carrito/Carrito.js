@@ -49,7 +49,7 @@ class Carrito {
     /**
      * @param {number} idArticulo
      * 
-     * @returns {number|void} nueva cantidad post incremento
+     * @returns {number} nueva cantidad post incremento
      * @throws si no se ha encontrado el artículo
      */
     incrementarCantidad(idArticulo) {
