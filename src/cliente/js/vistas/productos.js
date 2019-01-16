@@ -20,7 +20,7 @@ function vista_Productos_montarMenu(puntoMontaje, categoria) {
             </ul>
             </div></div>`).insertBefore(".l-distribucion__menu")
         }
-        $.getJSON("/api/productos/categorias/" + categoria["nombre"]).then((cates) => {
+        GLOBAL_GESTOR_PRODUCTOS.getCategoriasEnCategoriaPrincipal(categoria["nombre"]).then((cates) => {
             var html = "<li>Filtro</li><hr>"
             cates.forEach(cate => {
                 html += `<li><input style="margin: 0 5px" type="checkbox" onclick="vista_Productos__montarContenido('` + puntoMontaje + `')" class="c-menu__checkbox js-menu__expandido__checkbox__` + cate["nombre"] + `" checked>` + cate["nombre"] + `</li>`
@@ -30,15 +30,13 @@ function vista_Productos_montarMenu(puntoMontaje, categoria) {
         })
     } else {
         if ($(".js-menu-productos__contenedor").length < 1) {
-            $.getJSON("/api/productos/categorias/").then((cates) => {
-                var contenedorCategoriasPrincipales = "<li class='js-menu-productos__contenedor'><ul>"
-                cates.forEach(cate => {
-                    var categoriaNueva = `<li class='c-menu__item c-menu__sub js-menu__productos__` + cate["nombre"] + `' onclick='cargarVista("productos",{"nombre" : "` + cate["nombre"] + `"})'>` + cate["nombre"] + `</li>`
-                    contenedorCategoriasPrincipales += categoriaNueva
-                })
-                contenedorCategoriasPrincipales += "</ul></li>"
-                $(contenedorCategoriasPrincipales).insertAfter(".js-menu-productos")
+            var contenedorCategoriasPrincipales = "<li class='js-menu-productos__contenedor'><ul>"
+            GLOBAL_GESTOR_PRODUCTOS.getCategoriasPrincipales().forEach(cate => {
+                var categoriaNueva = `<li class='c-menu__item c-menu__sub js-menu__productos__` + cate["nombre"] + `' onclick='cargarVista("productos",{"nombre" : "` + cate["nombre"] + `"})'>` + cate["nombre"] + `</li>`
+                contenedorCategoriasPrincipales += categoriaNueva
             })
+            contenedorCategoriasPrincipales += "</ul></li>"
+            $(contenedorCategoriasPrincipales).insertAfter(".js-menu-productos")
         } else {
             $(".js-menu-productos__contenedor").remove()
         }
@@ -48,13 +46,12 @@ function vista_Productos_montarMenu(puntoMontaje, categoria) {
 function vista_Productos__montarContenido(puntoMontaje) {
     var clases = $(".c-menu__item--destacado").last().attr('class').split("js-menu__productos__")
     var categoriaSeleccionada = clases[clases.length - 1].split(" ")[0]
-    $.getJSON("/api/productos/categorias/" + categoriaSeleccionada).then((cates) => {
-        var url = "/api/productos/categorias/" + categoriaSeleccionada + "/"
+    GLOBAL_GESTOR_PRODUCTOS.getCategoriasEnCategoriaPrincipal(categoriaSeleccionada).then((cates) => {
         var montados = 0
         $(puntoMontaje).html("");
         cates.forEach(cate => {
             if ($('.js-menu__expandido__checkbox__' + cate["nombre"]).is(':checked')) {
-                vista_Productos_cargarDe(puntoMontaje, url + cate["nombre"])
+                vista_Productos_cargarDe(puntoMontaje,categoriaSeleccionada,cate["nombre"])
                 montados++;
             }
         })
@@ -64,14 +61,13 @@ function vista_Productos__montarContenido(puntoMontaje) {
     })
 }
 
-function vista_Productos_cargarDe(puntoMontaje, url) {
+function vista_Productos_cargarDe(puntoMontaje, categoriaPrincipal,categoria) {
     if ($('.js-productos-destacados').length < 1) {
         $(puntoMontaje).append("<div class='c-productos js-productos-destacados'></div>")
     } if ($('.js-productos-normales').length < 1) {
         $(puntoMontaje).append("<div class='c-productos js-productos-normales'></div>")
     }
-    $.getJSON(url).then((productos) => {
-
+    GLOBAL_GESTOR_PRODUCTOS.getProductosCategoria(categoriaPrincipal,categoria).then((productos) => {
         productos.forEach(producto => {
             if (producto["destacado"] == 1) {
                 $('.js-productos-destacados').append(vista_Productos_generarProducto(producto))
