@@ -59,6 +59,7 @@ class Carrito {
             throw new Error('Imposible incrementar la cantidad, no se ha encontrado el artículo');
         }
 
+        // TODO comprobar si la cantidad en los metodos y decidir que hacer
         return articulo.incrementarCantidad();
     }
 
