@@ -126,7 +126,7 @@ class Carrito {
     }
 
     /**
-     * @returns {number}
+     * @returns {number} importe total en céntimos
      */
     getImporteTotal() {
         let total = 0;
