@@ -12,18 +12,18 @@ function vista_Productos_montarMenu(puntoMontaje, categoria) {
         $(".js-menu__productos__" + categoria["nombre"]).addClass("c-menu__item--destacado")
         if ($(".l-distribucion__menu--expandido").length < 1) {
             $(`<div class="l-distribucion__menu--expandido">
-            <div class="c-menu c-menu--plegado js-menu-expandido">
-            <div class='c-menu__borde' onclick='vista_Productos_alternarExtendido()'>
-                <i class='fas fa-angle-right c-menu__flecha'></i>
+            <div class="c-menu-expandido c-menu-expandido--plegado js-menu-expandido"> 
+            <div class='c-menu-expandido__borde' onclick='vista_Productos_alternarExtendido()'> 
+            <i class='fas fa-angle-right c-menu-expandido__flecha'></i> 
             </div>
-            <ul style='width:200px' class="js-menu-expandido__listado">
+            <ul class="c-menu-expandido__listado js-menu-expandido__listado">
             </ul>
             </div></div>`).insertBefore(".l-distribucion__menu")
         }
         GLOBAL_GESTOR_PRODUCTOS.getCategoriasEnCategoriaPrincipal(categoria["nombre"]).then((cates) => {
             var html = "<li>Filtro</li><hr>"
             cates.forEach(cate => {
-                html += `<li><input style="margin: 0 5px" type="checkbox" onclick="vista_Productos__montarContenido('` + puntoMontaje + `')" class="c-menu__checkbox js-menu__expandido__checkbox__` + cate["nombre"] + `" checked>` + cate["nombre"] + `</li>`
+                html += `<li><input type="checkbox" onclick="vista_Productos__montarContenido('` + puntoMontaje + `')" class="c-menu-expandido__checkbox js-menu-expandido__checkbox__` + cate["nombre"] + `" checked>` + cate["nombre"] + `</li>`
             })
             $(".js-menu-expandido__listado").html(html)
             vista_Productos__montarContenido(puntoMontaje)
@@ -50,8 +50,8 @@ function vista_Productos__montarContenido(puntoMontaje) {
         var montados = 0
         $(puntoMontaje).html("");
         cates.forEach(cate => {
-            if ($('.js-menu__expandido__checkbox__' + cate["nombre"]).is(':checked')) {
-                vista_Productos_cargarDe(puntoMontaje,categoriaSeleccionada,cate["nombre"])
+            if ($('.js-menu-expandido__checkbox__' + cate["nombre"]).is(':checked')) {
+                vista_Productos_cargarDe(puntoMontaje, categoriaSeleccionada, cate["nombre"])
                 montados++;
             }
         })
@@ -61,13 +61,13 @@ function vista_Productos__montarContenido(puntoMontaje) {
     })
 }
 
-function vista_Productos_cargarDe(puntoMontaje, categoriaPrincipal,categoria) {
+function vista_Productos_cargarDe(puntoMontaje, categoriaPrincipal, categoria) {
     if ($('.js-productos-destacados').length < 1) {
         $(puntoMontaje).append("<div class='c-productos js-productos-destacados'></div>")
     } if ($('.js-productos-normales').length < 1) {
         $(puntoMontaje).append("<div class='c-productos js-productos-normales'></div>")
     }
-    GLOBAL_GESTOR_PRODUCTOS.getProductosCategoria(categoriaPrincipal,categoria).then((productos) => {
+    GLOBAL_GESTOR_PRODUCTOS.getProductosCategoria(categoriaPrincipal, categoria).then((productos) => {
         productos.forEach(producto => {
             if (producto["destacado"] == 1) {
                 $('.js-productos-destacados').append(vista_Productos_generarProducto(producto))
@@ -112,11 +112,11 @@ function vista_Productos_generarProducto(producto) {
 }
 
 function vista_Productos_alternarExtendido() {
-    $(".c-menu__flecha").toggleClass("c-menu__flecha--plegado").toggleClass("c-menu__flecha--desplegado")
-    if ($(".js-menu-expandido").hasClass("c-menu--plegado")) {
-        $(".js-menu-expandido").removeClass("c-menu--plegado").addClass("c-menu--desplegando")
+    $(".c-menu-expandido__flecha").toggleClass("c-menu-expandido__flecha--plegado").toggleClass("c-menu-expandido__flecha--desplegado")
+    if ($(".js-menu-expandido").hasClass("c-menu-expandido--plegado")) {
+        $(".js-menu-expandido").removeClass("c-menu-expandido--plegado").addClass("c-menu-expandido--desplegando")
     } else {
-        $(".js-menu-expandido").toggleClass("c-menu--plegando").toggleClass("c-menu--desplegando")
+        $(".js-menu-expandido").toggleClass("c-menu-expandido--plegando").toggleClass("c-menu-expandido--desplegando")
     }
 }
 
