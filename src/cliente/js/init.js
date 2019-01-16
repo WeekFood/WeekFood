@@ -26,7 +26,7 @@ $('.js-boton-menu').on('click', () => {
     }
 });
 
-$(".js-carrito").on('click',alternarCarrito)
+$(".js-carrito").on('click',carrito_Alternar)
 
 if (!redirigir()) {
     cargarVista("portada")
