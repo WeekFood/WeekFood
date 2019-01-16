@@ -64,6 +64,24 @@ class GestorProductos {
     }
     /**
      * 
+     * @param {*} categoriaPrincipal 
+     */
+    getProductosCategoriaPrincipal(categoriaPrincipal) {
+        console.log("P",categoriaPrincipal);
+        
+        this.getCategoriasEnCategoriaPrincipal(categoriaPrincipal).then((categorias) => {
+            categorias.forEach(categoria => {
+                console.log("C",categoria);
+                this.getProductosCategoria(categoriaPrincipal, categoria.nombre).then(
+                    (productos) => {
+                        console.log("P",productos)
+                    }
+                )
+            })
+        })
+    }
+    /**
+     * 
      * @param {String} categoria Categoria a buscar
      */
     getProductosCategoria(categoriaPrincipal, categoria) {
@@ -81,6 +99,7 @@ class GestorProductos {
                     });
                     return nuevosProductos
                 } else {
+                    console.error(categoriaPrincipal+"/"+categoria,"es nulo.")
                     return null
                 }
             })
