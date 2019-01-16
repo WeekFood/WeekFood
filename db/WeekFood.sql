@@ -66,46 +66,6 @@ INSERT INTO `categoriasprincipales` VALUES ('Arroces'),('Carnes'),('Hortalizas')
 /*!40000 ALTER TABLE `categoriasprincipales` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `menu`
---
-
-DROP TABLE IF EXISTS `menu`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-
---
--- Dumping data for table `categorias`
---
-
-LOCK TABLES `categorias` WRITE;
-/*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
-INSERT INTO `categorias` VALUES ('Paellas','Arroces'),('Cerdo','Carnes'),('Pollo','Carnes'),('Patatas','Hortalizas'),('Puerros','Hortalizas'),('Tortilla','Huevos'),('Gambas','Marisco'),('Macarrones','Pastas'),('Ensaladas','Verduras'),('Espinacas','Verduras'),('Menestras','Verduras'),('Pimientos','Verduras'),('Pisto','Verduras');
-/*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `categoriasprincipales`
---
-
-DROP TABLE IF EXISTS `categoriasprincipales`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `categoriasprincipales` (
-  `nombre` varchar(100) NOT NULL,
-  PRIMARY KEY (`nombre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `categoriasprincipales`
---
-
-LOCK TABLES `categoriasprincipales` WRITE;
-/*!40000 ALTER TABLE `categoriasprincipales` DISABLE KEYS */;
-INSERT INTO `categoriasprincipales` VALUES ('Arroces'),('Carnes'),('Hortalizas'),('Huevos'),('Marisco'),('Pastas'),('Verduras');
-/*!40000 ALTER TABLE `categoriasprincipales` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `menu`
