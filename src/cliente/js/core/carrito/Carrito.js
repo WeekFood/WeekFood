@@ -23,7 +23,6 @@ class Carrito {
             return articuloYaExistente.incrementarCantidad();
         } else {
             nuevoArticulo = new Articulo(producto);
-
             this.articulos.push(nuevoArticulo);
         }
 
@@ -40,7 +39,7 @@ class Carrito {
         let indiceArticulo = this._indiceArticulo(idArticulo);
 
         if (indiceArticulo === -1) {
-            throw new Error('Imposible quitar el articulo, no se ha encontrado');
+            throw new Error('Imposible quitar el artículo, no se ha encontrado');
         }
 
         return this.articulos.splice(indiceArticulo, 1)[0];
