@@ -14,19 +14,31 @@ class Articulo extends Producto {
         this.cantidad = cantidad;
     }
 
+    /**
+     * @returns {number} nueva cantidad post incremento
+     */
     incrementarCantidad() {
         this.cantidad++;
 
         return this.cantidad;
     }
 
+    /**
+     * @returns {number} nueva cantidad post decremento
+     */
     decrementarCantidad() {
         this.cantidad--;
         
         return this.cantidad;
     }
 
+    /**
+     * @param {number} cantidad 
+     * @returns {number} nueva cantidad post cambio
+     */
     setCantidad(cantidad) {
         this.cantidad = cantidad;
+
+        return this.cantidad;
     }
 }

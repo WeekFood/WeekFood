@@ -6,10 +6,10 @@ class Carrito {
     /**
      * @param {Producto} producto 
      * 
-     * @returns {Articulo} instancia de Articulo convertido
+     * @returns {Articulo|void} instancia de Articulo convertido
      */
     añadirProducto(producto) {
-        if (!producto instanceof Producto) {
+        if (!(producto instanceof Producto)) {
             return console.error('Imposible añadir un producto, no es instancia de Producto');
         }
 
@@ -30,7 +30,7 @@ class Carrito {
     /**
      * @param {number} idArticulo 
      * 
-     * @returns {Articulo} el artículo borrado
+     * @returns {Articulo|void} el artículo borrado
      */
     quitarArticulo(idArticulo) {
         let indiceArticulo = this._indiceArticulo(idArticulo);
@@ -39,7 +39,6 @@ class Carrito {
             return console.error('Imposible quitar el articulo, no se ha encontrado');
         }
 
-        // TODO ver que devuleve
         return this.articulos.splice(indiceArticulo, 1)[0];
     }
 
