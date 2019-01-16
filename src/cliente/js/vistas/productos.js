@@ -66,9 +66,9 @@ function vista_Productos__montarContenido(puntoMontaje) {
 
 function vista_Productos_cargarDe(puntoMontaje, url) {
     if ($('.js-productos-destacados').length < 1) {
-        $(puntoMontaje).append("<div class='c-productos__container js-productos-destacados'></div>")
+        $(puntoMontaje).append("<div class='c-productos js-productos-destacados'></div>")
     } if ($('.js-productos-normales').length < 1) {
-        $(puntoMontaje).append("<div class='c-productos__container js-productos-normales'></div>")
+        $(puntoMontaje).append("<div class='c-productos js-productos-normales'></div>")
     }
     $.getJSON(url).then((productos) => {
 
