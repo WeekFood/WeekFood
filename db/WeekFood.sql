@@ -114,7 +114,6 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `menu`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
->>>>>>> 429631ce66f9e70ad1dfbbb70a4a34c3f76c545f
 CREATE TABLE `menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `valor` varchar(100) NOT NULL,
