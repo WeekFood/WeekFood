@@ -85,7 +85,7 @@ function vista_Productos_cargarDe(puntoMontaje, categoriaPrincipal, categoria) {
 function vista_Productos_generarProducto(producto) {
     var placeHolderPrecio = 4
     var html = `
-    <div class='c-producto'>
+    <div data-id='`+producto["id"]+`' class='c-producto js-producto'>
         <img class='c-producto__imagen' src='/imagenes/productos/`+ producto["foto"] + `'>`
     if (producto["destacado"] == 1) {
         html += `
@@ -103,7 +103,7 @@ function vista_Productos_generarProducto(producto) {
         <div class='c-producto__precio'>
             `+ placeHolderPrecio + `€
         </div>
-        <div class='c-producto__carrito'>
+        <div class='c-producto__carrito js-producto-carrito'>
             <i class='fas fa-cart-plus'></i>
         </div>
     </div>
