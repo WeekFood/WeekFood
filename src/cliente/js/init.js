@@ -29,3 +29,10 @@ $('.js-boton-menu').on('click', () => {
 if (!redirigir()) {
     cargarVista("portada")
 }
+
+let carrito = new Carrito();
+
+let producto1 = new Producto(1, '', '', true, []);
+
+carrito.añadirProducto(producto1);
+
