@@ -1,6 +1,6 @@
 function vista_Productos(puntoMontaje, categoria) {
     if (GLOBAL_VISTA_ACTUAL != "productos") {
-        $.when(montarMenu("/api/menu", "productos")).then(()=>{vista_Productos_montarMenu(puntoMontaje, categoria)});
+        $.when(montarMenu("/api/menu", "productos")).then(() => { vista_Productos_montarMenu(puntoMontaje, categoria) });
     } else {
         vista_Productos_montarMenu(puntoMontaje, categoria);
     }
@@ -23,7 +23,7 @@ function vista_Productos_montarMenu(puntoMontaje, categoria) {
         GLOBAL_GESTOR_PRODUCTOS.getCategoriasEnCategoriaPrincipal(categoria["nombre"]).then((cates) => {
             var html = "<li>Filtro</li><hr>"
             cates.forEach(cate => {
-                html += `<li><input type="checkbox" onclick="vista_Productos__montarContenido('` + puntoMontaje + `')" class="c-menu-expandido__checkbox js-menu-expandido__checkbox__` + cate["nombre"] + `" checked>` + cate["nombre"] + `</li>`
+                html += `<li><input type="checkbox" onclick="vista_Productos__montarContenido('` + puntoMontaje + `')" class="c-menu-expandido__checkbox js-menu-expandido__checkbox__` + cate + `" checked>` + cate + `</li>`
             })
             $(".js-menu-expandido__listado").html(html)
             vista_Productos__montarContenido(puntoMontaje)
@@ -32,8 +32,7 @@ function vista_Productos_montarMenu(puntoMontaje, categoria) {
         if ($(".js-menu-productos__contenedor").length < 1) {
             var contenedorCategoriasPrincipales = "<li class='js-menu-productos__contenedor'><ul>"
             GLOBAL_GESTOR_PRODUCTOS.getCategoriasPrincipales().forEach(cate => {
-                var categoriaNueva = `<li class='c-menu__item c-menu__sub js-menu__productos__` + cate["nombre"] + `' onclick='cargarVista("productos",{"nombre" : "` + cate["nombre"] + `"})'>` + cate["nombre"] + `</li>`
-                contenedorCategoriasPrincipales += categoriaNueva
+                contenedorCategoriasPrincipales += `<li class='c-menu__item c-menu__sub js-menu__productos__` + cate + `' onclick='cargarVista("productos",{"nombre" : "` + cate + `"})'>` + cate + `</li>`
             })
             contenedorCategoriasPrincipales += "</ul></li>"
             $(contenedorCategoriasPrincipales).insertAfter(".js-menu-productos")
@@ -50,8 +49,8 @@ function vista_Productos__montarContenido(puntoMontaje) {
         var montados = 0
         $(puntoMontaje).html("");
         cates.forEach(cate => {
-            if ($('.js-menu-expandido__checkbox__' + cate["nombre"]).is(':checked')) {
-                vista_Productos_cargarDe(puntoMontaje, categoriaSeleccionada, cate["nombre"])
+            if ($('.js-menu-expandido__checkbox__' + cate).is(':checked')) {
+                vista_Productos_cargarDe(puntoMontaje, categoriaSeleccionada, cate)
                 montados++;
             }
         })
@@ -69,23 +68,31 @@ function vista_Productos_cargarDe(puntoMontaje, categoriaPrincipal, categoria) {
     }
     GLOBAL_GESTOR_PRODUCTOS.getProductosCategoria(categoriaPrincipal, categoria).then((productos) => {
         productos.forEach(producto => {
-            if (producto["destacado"] == 1) {
-                $('.js-productos-destacados').append(vista_Productos_generarProducto(producto))
-            } else {
-                $('.js-productos-normales').append(vista_Productos_generarProducto(producto))
+            if (!vista_Productos_existeEnGrid(producto.id)) {
+                if (producto["destacado"] == 1) {
+                    $('.js-productos-destacados').append(vista_Productos_generarProducto(producto))
+                } else {
+                    $('.js-productos-normales').append(vista_Productos_generarProducto(producto))
+                }
             }
         })
         if ($($(".js-productos-destacados")[0]).children().length < 1) {
-            console.log("No existen destacados.")
             $(".js-productos-destacados").remove()
         }
     })
 }
-
+function vista_Productos_existeEnGrid(id) {
+    var hijos = $(".js-productos-normales").children()
+    var encontrado = false
+    for (var x = 0; x < hijos.length; x++) {
+        if ($(hijos[x]).data("id") == id) { return true }
+    }
+    return encontrado
+}
 function vista_Productos_generarProducto(producto) {
     var placeHolderPrecio = 4
     var html = `
-    <div data-id='`+producto["id"]+`' class='c-producto js-producto'>
+    <div data-id='`+ producto["id"] + `' class='c-producto js-producto'>
         <img class='c-producto__imagen' src='/imagenes/productos/`+ producto["foto"] + `'>`
     if (producto["destacado"] == 1) {
         html += `
