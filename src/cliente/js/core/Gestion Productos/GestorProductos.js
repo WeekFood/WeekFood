@@ -44,41 +44,20 @@ class GestorProductos {
         if (this.bloqueado) {
             throw "El gestor esta inicializandose";
         }
-        var productosFiltrados = this.categoriasPrincipales.filter(categoria => this.filtrarCategoriaPrincipal(categoriaPrincipal, categoria))
-        if (productosFiltrados.length > 0) {
-            return $.when(productosFiltrados)
+        var categoriaEncontrada = this.categoriasPrincipales.find(categoria => this.filtrarCategoriaPrincipal(categoriaPrincipal, categoria))
+        if (categoriaEncontrada == undefined) { return undefined }
+        if (categoriaEncontrada.categorias.length > 0) {
+            return $.when(categoriaEncontrada.categorias)
         } else {
             return GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/" + categoriaPrincipal).then((respuesta) => {
-                if (respuesta !== null) {
-                    var nuevaCategoriaPrincipal = new Categoria(categoriaPrincipal)
-                    respuesta.forEach(categoria => {
-                        nuevaCategoriaPrincipal.añadirCategoria(categoria.nombre)
-                    });
-                    this.categoriasPrincipales.push(nuevaCategoriaPrincipal)
-                    return nuevaCategoriaPrincipal
-                } else {
-                    return null
-                }
+                var categoriasDescargadas = []
+                respuesta.forEach(categoria => {
+                    categoriasDescargadas.push(categoria.nombre)
+                });
+                categoriaEncontrada.categorias.push(categoriasDescargadas)
+                return categoriaEncontrada
             })
         }
-    }
-    /**
-     * 
-     * @param {*} categoriaPrincipal 
-     */
-    getProductosCategoriaPrincipal(categoriaPrincipal) {
-        console.log("P",categoriaPrincipal);
-        
-        this.getCategoriasEnCategoriaPrincipal(categoriaPrincipal).then((categorias) => {
-            categorias.forEach(categoria => {
-                console.log("C",categoria);
-                this.getProductosCategoria(categoriaPrincipal, categoria.nombre).then(
-                    (productos) => {
-                        console.log("P",productos)
-                    }
-                )
-            })
-        })
     }
     /**
      * 
@@ -99,7 +78,7 @@ class GestorProductos {
                     });
                     return nuevosProductos
                 } else {
-                    console.error(categoriaPrincipal+"/"+categoria,"es nulo.")
+                    console.error(categoriaPrincipal + "/" + categoria, "es nulo.")
                     return null
                 }
             })
