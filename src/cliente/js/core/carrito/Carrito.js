@@ -113,4 +113,7 @@ class Carrito {
     _indiceArticulo(idArticulo) {
         return this.articulos.findIndex(articulo => articulo.id === idArticulo);
     }
+    getImporteTotal(){
+        return 16.20
+    }
 }

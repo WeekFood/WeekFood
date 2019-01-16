@@ -34,7 +34,7 @@ if (!redirigir()) {
 /* PRUEBAS CARRITO */
 
 let carrito = new Carrito();
-
+/*
 let productoDesdeAPI = new Producto(
     1,
     'Patatas fritas',
@@ -60,9 +60,9 @@ function _tmpCarritoArticulos() {
 carrito.añadirProducto(productoDesdeAPI);
 
 _tmpCarritoArticulos()
-
-let idArticulo = /*3*/carrito.añadirProducto(productoDesdeAPI);
-
+*/
+//let idArticulo = /*3*/carrito.añadirProducto(productoDesdeAPI);
+/*
 carrito.incrementarCantidad(idArticulo);
 console.log('@@ incrementado id', idArticulo);
 console.log(carrito.getArticulo(idArticulo));
@@ -89,5 +89,5 @@ console.log('@@ quitado id', idArticulo);
 
 
 _tmpCarritoArticulos()
-
+*/
 /* END PRUEBAS CARRITO */

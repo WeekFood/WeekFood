@@ -15,6 +15,11 @@
     }
 }
 
+.c-carrito__botones{
+    display: flex;
+    justify-content: space-between;
+}
+
 .c-carrito__articulo {
     display: flex;
     margin: 5px 0;
