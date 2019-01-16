@@ -29,4 +29,3 @@ $('.js-boton-menu').on('click', () => {
 if (!redirigir()) {
     cargarVista("portada")
 }
-
