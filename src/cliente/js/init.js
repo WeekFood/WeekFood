@@ -56,12 +56,23 @@ function _tmpCarritoArticulos() {
     );	
 }	
 
- _tmpCarritoArticulos()	
+_tmpCarritoArticulos()	
 
- let idArticulo = /*3*/carrito.añadirProducto(productoDesdeAPI).id;	
+let idArticulo = /*3*/carrito.añadirProducto(productoDesdeAPI).id;	
 
- carrito.añadirProducto(productoDesdeAPI);
+carrito.añadirProducto(productoDesdeAPI);
 
- _tmpCarritoArticulos()	
+_tmpCarritoArticulos()	
+
+console.log('@@ decrementar', carrito.decrementarCantidad(idArticulo));
+console.log('@@ decrementar', carrito.decrementarCantidad(idArticulo));
+console.log('@@ decrementar', carrito.decrementarCantidad(idArticulo));
+console.log('@@ decrementar', carrito.decrementarCantidad(idArticulo));
+
+console.log('@@ set 98', carrito.setCantidad(idArticulo, 98));
+console.log('@@ incrementar', carrito.incrementarCantidad(idArticulo));
+console.log('@@ incrementar', carrito.incrementarCantidad(idArticulo));
+console.log('@@ incrementar', carrito.incrementarCantidad(idArticulo));
+console.log('@@ incrementar', carrito.incrementarCantidad(idArticulo));
 
  /* END PRUEBAS CARRITO */ 

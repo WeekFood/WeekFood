@@ -59,6 +59,11 @@ class Carrito {
             throw new Error('Imposible incrementar la cantidad, no se ha encontrado el artículo');
         }
 
+        if (articulo.cantidad === Carrito.CANTIDAD_MAXIMA) {
+            // no incrementar -> devolver la cantidad máxima
+            return articulo.cantidad;
+        }
+
         // TODO comprobar si la cantidad en los metodos y decidir que hacer
         return articulo.incrementarCantidad();
     }
@@ -76,6 +81,11 @@ class Carrito {
             throw new Error('Imposible decrementar la cantidad, no se ha encontrado el artículo');
         }
 
+        if (articulo.cantidad === Carrito.CANTIDAD_MINIMA) {
+            // no incrementar -> devolver la cantidad máxima
+            return articulo.cantidad;
+        }
+
         return articulo.decrementarCantidad();
     }
 
@@ -85,7 +95,7 @@ class Carrito {
     * 
     * @returns {number} nueva cantidad post cambio
     * @throws si no se ha encontrado el artículo
-    * @throws si la cantidad es negativa
+    * @throws si la cantidad esta fuera de rango
     */
     setCantidad(idArticulo, cantidad) {
         let articulo = this.getArticulo(idArticulo);
@@ -94,8 +104,8 @@ class Carrito {
             throw new Error('Imposible establecer la cantidad, no se ha encontrado el artículo');
         }
 
-        if (cantidad < 0) {
-            throw new Error('Imposible establecer una cantidad negativa');
+        if (cantidad < Carrito.CANTIDAD_MINIMA || cantidad > Carrito.CANTIDAD_MAXIMA) {
+            throw new Error(`Imposible establecer la cantidad - fuera de rango [${Carrito.CANTIDAD_MINIMA}-${Carrito.CANTIDAD_MAXIMA}]`);
         }
 
         return articulo.setCantidad(cantidad);
@@ -127,3 +137,6 @@ class Carrito {
         return this.articulos.findIndex(articulo => articulo.id === idArticulo);
     }
 }
+
+Carrito.CANTIDAD_MINIMA = 0;
+Carrito.CANTIDAD_MAXIMA = 99;
