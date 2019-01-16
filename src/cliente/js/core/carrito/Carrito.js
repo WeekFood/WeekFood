@@ -6,15 +6,16 @@ class Carrito {
     /**
      * @param {Producto} producto 
      * 
-     * @returns {Articulo|number|void} instancia de Articulo convertido
+     * @returns {Articulo|number} instancia de Articulo convertido
+     * @throws si el producto proporcionado no es instancia de Producto
      */
     añadirProducto(producto) {
         if (!(producto instanceof Producto)) {
-            return console.error('Imposible añadir un producto, no es instancia de Producto');
-        }     
+            throw new Error('Imposible añadir un producto, no es instancia de Producto');
+        }
 
-        let nuevoArticulo;        
-        
+        let nuevoArticulo;
+
         // comprobar si el articulo ya existe en el carrito
         let articuloYaExistente = this.getArticulo(producto.id);
 
@@ -32,13 +33,14 @@ class Carrito {
     /**
      * @param {number} idArticulo 
      * 
-     * @returns {Articulo|void} el artículo borrado
+     * @returns {Articulo} el artículo borrado
+     * @throws si no se ha encontrado el artículo
      */
     quitarArticulo(idArticulo) {
         let indiceArticulo = this._indiceArticulo(idArticulo);
 
         if (indiceArticulo === -1) {
-            return console.error('Imposible quitar el articulo, no se ha encontrado');
+            throw new Error('Imposible quitar el articulo, no se ha encontrado');
         }
 
         return this.articulos.splice(indiceArticulo, 1)[0];
@@ -48,12 +50,13 @@ class Carrito {
      * @param {number} idArticulo
      * 
      * @returns {number|void} nueva cantidad post incremento
+     * @throws si no se ha encontrado el artículo
      */
     incrementarCantidad(idArticulo) {
         let articulo = this.getArticulo(idArticulo);
 
         if (!articulo) {
-            return console.error('Imposible incrementar la cantidad, no se ha encontrado el artículo');
+            throw new Error('Imposible incrementar la cantidad, no se ha encontrado el artículo');
         }
 
         return articulo.incrementarCantidad();
@@ -62,13 +65,14 @@ class Carrito {
     /**
     * @param {number} idArticulo
     * 
-    * @returns {number|void} nueva cantidad post decremento
+    * @returns {number} nueva cantidad post decremento
+    * @throws si no se ha encontrado el artículo
     */
     decrementarCantidad(idArticulo) {
         let articulo = this.getArticulo(idArticulo);
 
         if (!articulo) {
-            return console.error('Imposible decrementar la cantidad, no se ha encontrado el artículo');
+            throw new Error('Imposible decrementar la cantidad, no se ha encontrado el artículo');
         }
 
         return articulo.decrementarCantidad();
@@ -78,24 +82,26 @@ class Carrito {
     * @param {number} idArticulo
     * @param {number} cantidad
     * 
-    * @returns {number|void} nueva cantidad post cambio
+    * @returns {number} nueva cantidad post cambio
+    * @throws si no se ha encontrado el artículo
+    * @throws si la cantidad es negativa
     */
     setCantidad(idArticulo, cantidad) {
         let articulo = this.getArticulo(idArticulo);
 
         if (!articulo) {
-            return console.error('Imposible establecer la cantidad, no se ha encontrado el artículo');
+            throw new Error('Imposible establecer la cantidad, no se ha encontrado el artículo');
         }
 
         if (cantidad < 0) {
-            return console.error('Imposible establecer una cantidad negativa');
+            throw new Error('Imposible establecer una cantidad negativa');
         }
 
         return articulo.setCantidad(cantidad);
     }
 
     /**
-     * @returns {Articulo[]} artículos en el carrito
+     * @returns {(Articulo[]|[])} artículos en el carrito
      */
     getArticulos() {
         return this.articulos;
@@ -104,7 +110,7 @@ class Carrito {
     /**
      * @param {number} idArticulo
      * 
-     * @returns {Articulo} 
+     * @returns {(Articulo|undefined)} 
      */
     getArticulo(idArticulo) {
         return this.articulos.find(articulo => articulo.id === idArticulo);
@@ -114,7 +120,7 @@ class Carrito {
      * @private
      * @param {number} idArticulo 
      * 
-     * @returns {number} índice del artículo buscado en el array artículos
+     * @returns {number} índice del artículo buscado en el array artículos o -1 si no se ha encontrado
      */
     _indiceArticulo(idArticulo) {
         return this.articulos.findIndex(articulo => articulo.id === idArticulo);
