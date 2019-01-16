@@ -47,3 +47,21 @@ let productoDesdeAPI2 = new Producto(
     'patatas-fritas.png',
     false
 );
+
+function _tmpCarritoArticulos() {	
+    console.log(	
+        JSON.parse(	
+            JSON.stringify(carrito.articulos)	
+        )	
+    );	
+}	
+
+ _tmpCarritoArticulos()	
+
+ let idArticulo = /*3*/carrito.añadirProducto(productoDesdeAPI).id;	
+
+ carrito.añadirProducto(productoDesdeAPI);
+
+ _tmpCarritoArticulos()	
+
+ /* END PRUEBAS CARRITO */ 

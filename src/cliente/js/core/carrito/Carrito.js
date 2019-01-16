@@ -6,25 +6,27 @@ class Carrito {
     /**
      * @param {Producto} producto 
      * 
-     * @returns {Articulo|void} instancia de Articulo convertido
+     * @returns {Articulo|number|void} instancia de Articulo convertido
      */
     añadirProducto(producto) {
         if (!(producto instanceof Producto)) {
             return console.error('Imposible añadir un producto, no es instancia de Producto');
-        }
+        }     
 
-        let articulo = new Articulo(producto);
-
+        let nuevoArticulo;        
+        
         // comprobar si el articulo ya existe en el carrito
-        let articuloYaExistente = this.getArticulo(articulo.id);
+        let articuloYaExistente = this.getArticulo(producto.id);
 
         if (articuloYaExistente) {
-            articuloYaExistente.incrementarCantidad();
+            return articuloYaExistente.incrementarCantidad();
         } else {
-            this.articulos.push(articulo);
+            nuevoArticulo = new Articulo(producto);
+
+            this.articulos.push(nuevoArticulo);
         }
 
-        return articulo;
+        return nuevoArticulo;
     }
 
     /**
