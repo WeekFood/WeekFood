@@ -13,24 +13,16 @@ function carrito_Actualizar() {
         carrito.getArticulos().slice(Math.max(carrito.getArticulos().length - 5, 0)).forEach((articulo) => { html += carrito_ProcesarArticulo(articulo) })
         html += `
             <p class='c-carrito__articulo c-carrito__botones'>
-            <span class='c-boton c-boton--basico'>(`+carrito.getArticulos().length +`) Ver mi carrito </span>
-            <span class='c-boton c-boton--exito'>`+carrito.getImporteTotal()+`€</span>
+            <span class='c-boton c-boton--basico js-carrito-ver-carrito'>(`+ carrito.getArticulos().length + `) Ver mi carrito </span>
+            <span class='c-boton c-boton--exito js-carrito-pagar'>`+ carrito.getImporteTotal() + `€</span>
             </p>
             `
     }
     $(".c-carrito").html(html)
     carrito_ActualizarTriggers()
 }
-function carrito_AñadirArticulo() {
-    var id = Math.round(Math.random() * 100)
-    let productoDesdeAPI = new Producto(
-        id,
-        'Patatas fritas ' + id.toString(),
-        'patatas-fritas.png',
-        false
-    );
-    //var id = $(this).parent().data('id')
-    carrito.añadirProducto(productoDesdeAPI)//productos.getProductoPorId(id)))
+function carrito_AñadirArticulo(elemento) {
+    carrito.añadirProducto(productos.getProductoId($(elemento.currentTarget).parent().data('id')))
     carrito_Actualizar()
     return id;
 }
@@ -60,4 +52,7 @@ function carrito_ActualizarTriggers() {
     $(".js-carrito-incremento").on('click', carrito_IncrementarArticulo);
     $(".js-carrito-decremento").on('click', carrito_DecrementarArticulo);
     $(".js-carrito-basura").on('click', carrito_QuitarArticulo);
+    // Reservado hasta que pueda implementarse
+    //$(".js-carrito--ver-carrito").on('click', aqui ira vista carrito );
+    //$(".js-carrito-pagar").on('click', aqui ira vista pagar);
 }
