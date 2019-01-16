@@ -7,6 +7,7 @@ class GestorProductos {
             if (categoriasPrincipales !== null) {
                 categoriasPrincipales.forEach(categoria => {
                     this.categoriasPrincipales.push(new Categoria(categoria.nombre))
+                    this.getCategoriasEnCategoriaPrincipal(categoria.nombre)
                 })
             }
             this.bloqueado = false
@@ -41,9 +42,6 @@ class GestorProductos {
      * 
      */
     getCategoriasEnCategoriaPrincipal(categoriaPrincipal) {
-        if (this.bloqueado) {
-            throw "El gestor esta inicializandose";
-        }
         var categoriaEncontrada = this.categoriasPrincipales.find(categoria => this.filtrarCategoriaPrincipal(categoriaPrincipal, categoria))
         if (categoriaEncontrada == undefined) { return undefined }
         if (categoriaEncontrada.categorias.length > 0) {

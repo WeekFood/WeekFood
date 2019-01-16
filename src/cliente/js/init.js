@@ -30,6 +30,7 @@ var GLOBAL_GESTOR_PRODUCTOS = new GestorProductos();
 if (!redirigir()) {
     cargarVista("portada")
 }
+
 // Codigo con propositos de testeo {
 // Estos no se cargan al entrar a la web
 try{
