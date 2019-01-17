@@ -1,0 +1,48 @@
+.c-modal-producto {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.c-modal-producto__imagen {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.c-modal-producto__contenido {
+    padding: 20px;
+}
+
+.c-modal-producto__nombre {
+    font-size: 1.5rem;
+}
+
+.c-modal-producto__descripcion {
+    margin-top: 1.5rem;
+    font-style: italic;
+    font-size: 1rem;
+}
+
+.c-modal-producto__precio {
+    font-size: 2rem;
+}
+
+.c-modal-producto__comprar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 5rem;
+}
+
+.c-modal-producto__categorias {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    margin-top: 1.5rem;
+}
+
+.c-modal-producto__categoria {
+    margin: 2px;
+}
