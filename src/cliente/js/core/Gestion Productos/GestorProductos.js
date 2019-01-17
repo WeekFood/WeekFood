@@ -86,7 +86,13 @@ class GestorProductos {
     getCategoriasPrincipales() {
         return this.categoriasPrincipales.map(cate => cate.nombre)
     }
-
+    /**
+    * 
+    * @param {Int} id Id del producto a generar la ventana modal.
+    * @param {String} tipo tipo de la ventana a generar, defecto info
+    * @param {function} callback_Confirmar callback del boton confirmar en caso de que exista, defecto funcion vacia
+    * @param {function} callback_Denegar callback del boton denegar en caso de que exista, defecto funcion vacia
+    */
     generarModal(id, tipo = "info", callback_Confirmar = () => { }, callback_Denegar = () => { }) {
 
         var producto = this.getProductoId(id)
