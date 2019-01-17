@@ -22,10 +22,11 @@ function carrito_Actualizar() {
     carrito_ActualizarTriggers()
 }
 function carrito_AñadirArticulo(evento) {
+    $(this).addClass("c-producto__carrito--en-carrito")
     var producto = GLOBAL_GESTOR_PRODUCTOS.getProductoId($(this).parent().data('id'))
     carrito.añadirProducto(producto)
     carrito_Actualizar()
-    var producto =carrito.getArticulo(producto.id)
+    producto =carrito.getArticulo(producto.id)
     if (producto.cantidad > 1){
         generarNotificacion(producto.nombre+" tienes "+producto.cantidad +" unidades.",true)
     }else{
@@ -43,7 +44,11 @@ function carrito_ProcesarArticulo(articulo) {
     return html
 }
 function carrito_QuitarArticulo(evento) {
-    var producto = GLOBAL_GESTOR_PRODUCTOS.getProductoId($(this).parent().data('id'))
+    var producto = vista_Productos_existeEnGrid($(this).parent().data('id'))
+    if (producto){
+        $(producto).children('.js-producto-carrito').removeClass('c-producto__carrito--en-carrito')
+    }
+    producto = GLOBAL_GESTOR_PRODUCTOS.getProductoId($(this).parent().data('id'))
     carrito.quitarArticulo(producto.id)
     carrito_Actualizar()
     generarNotificacion(producto.nombre+" eliminado del carrito.",true)
