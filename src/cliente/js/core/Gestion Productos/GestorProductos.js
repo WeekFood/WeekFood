@@ -69,7 +69,7 @@ class GestorProductos {
             return GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/" + categoriaPrincipal + "/" + categoria).then((respuesta) => {
                 var nuevosProductos = []
                 respuesta.forEach(prod => {
-                    var nuevoProducto = new Producto(prod.id, prod.categoria.split(","), prod.nombre, prod.descripcion, prod.foto, (prod.destacado == 1))
+                    var nuevoProducto = new Producto(prod.id, prod.nombre, prod.foto,  (prod.destacado == 1),prod.categoria.split(","), prod.descripcion,400) //Precio dummy
                     this.productos.push(nuevoProducto)
                     nuevosProductos.push(nuevoProducto)
                 });
