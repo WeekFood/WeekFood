@@ -25,6 +25,7 @@ $('.js-boton-menu').on('click', () => {
         $(".js-menu").addClass("c-menu--ocultar c-menu--oculto")
     }
 });
+var GLOBAL_GESTOR_PRODUCTOS = new GestorProductos();
 
 if (!redirigir()) {
     cargarVista("portada")
