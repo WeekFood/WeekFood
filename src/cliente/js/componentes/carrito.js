@@ -25,7 +25,12 @@ function carrito_AñadirArticulo(evento) {
     var producto = GLOBAL_GESTOR_PRODUCTOS.getProductoId($(this).parent().data('id'))
     carrito.añadirProducto(producto)
     carrito_Actualizar()
-    generarNotificacion(producto.nombre+" añadido al carrito.",true)
+    var producto =carrito.getArticulo(producto.id)
+    if (producto.cantidad > 1){
+        generarNotificacion(producto.nombre+" tienes "+producto.cantidad +" unidades.",true)
+    }else{
+        generarNotificacion(producto.nombre+" añadido al carrito.",true)
+    }
 }
 function carrito_ProcesarArticulo(articulo) {
     var html = `<p data-id='` + articulo.id + `' class='c-carrito__articulo'>
