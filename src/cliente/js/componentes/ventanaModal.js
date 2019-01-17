@@ -52,13 +52,11 @@ function generarVentanaModal(opciones) {
                 alert("No se ha podido generar la ventana emergente.")
                 return false;
             }
-            if (opciones.hasOwnProperty("boton_Confirmar")) {
-                stringConfirmar = opciones.boton_Confirmar;
-            } else {
-                stringConfirmar = "Ok";
+            if (!opciones.hasOwnProperty("boton_Confirmar")) {
+                opciones.boton_Confirmar = "Ok";
             }
             modal += `<div class='c-ventana-modal__botones'>
-            <div class='c-boton c-boton--advertencia js-ventana-modal__confirmar'>` + stringConfirmar + `</div>
+            <div class='c-boton c-boton--advertencia js-ventana-modal__confirmar'>` + opciones.boton_Confirmar + `</div>
             </div>`
             break
         case "confirmacion":
@@ -72,29 +70,23 @@ function generarVentanaModal(opciones) {
                 alert("No se ha podido generar la ventana emergente.")
                 return false;
             }
-            if (opciones.hasOwnProperty("boton_Confirmar")) {
-                stringConfirmar = opciones.boton_Confirmar;
-            } else {
-                stringConfirmar = "Aceptar";
+            if (!opciones.hasOwnProperty("boton_Confirmar")) {
+                opciones.boton_Confirmar = "Aceptar";
             }
-            if (opciones.hasOwnProperty("boton_Denegar")) {
-                stringDenegar = opciones.boton_Denegar;
-            } else {
-                stringDenegar = "Cancelar";
+            if (!opciones.hasOwnProperty("boton_Denegar")) {
+                opciones.boton_Denegar = "Cancelar";
             }
             modal += `<div class='c-ventana-modal__botones'>"
-            <div class='c-boton c-boton--exito js-ventana-modal__confirmar'>` + stringConfirmar + `</div>
-            <div class='c-boton c-boton--peligro js-ventana-modal__denegar'>` + stringDenegar + `</div>
+            <div class='c-boton c-boton--exito js-ventana-modal__confirmar'>` + opciones.boton_Confirmar + `</div>
+            <div class='c-boton c-boton--peligro js-ventana-modal__denegar'>` + opciones.boton_Denegar + `</div>
             </div>`
             break
         case "error":
-        if (opciones.hasOwnProperty("boton_Cerrar")) {
-            stringCerrar = opciones.boton_Cerrar;
-        } else {
-            stringCerrar = "Cerrar";
+        if (!opciones.hasOwnProperty("boton_Cerrar")) {
+            opciones.boton_Cerrar = "Cerrar";
         }
             modal += `<div class='c-ventana-modal__botones'>
-            <div class='c-boton c-boton--peligro js-ventana-modal__cerrar'>` + stringCerrar + `</div>
+            <div class='c-boton c-boton--peligro js-ventana-modal__cerrar'>` + opciones.boton_Cerrar + `</div>
             </div>`
             //PREPARAR EL DE ERROR
             break
