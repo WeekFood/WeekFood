@@ -32,6 +32,9 @@ function carrito_AñadirArticulo(evento) {
     }else{
         generarNotificacion(producto.nombre+" añadido al carrito.",true)
     }
+    if ((carrito.getArticulos().length == 1 && $($(".c-carrito")[0]).hasClass('c-carrito--desaparecer'))||($(".c-carrito").length < 1)){
+        carrito_Alternar()
+    }
 }
 function carrito_ProcesarArticulo(articulo) {
     var html = `<p data-id='` + articulo.id + `' class='c-carrito__articulo'>
