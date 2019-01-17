@@ -1,5 +1,6 @@
 .c-final {
     padding: 50px 10px;
+    text-align: center;
     @media only screen and (min-width: $mobile-l) {
         padding: 50px;
     }
@@ -13,7 +14,8 @@
 .c-final__cabecera {
     padding: 30px 0 50px 0;
     font-size: 2rem;
-    &--2 {
+    line-height: 1.5;
+    &--sub-cabecera {
         font-size: 1.3rem;
         @media only screen and (min-width: $mobile-l) {
             font-size: 1.5rem;
@@ -33,6 +35,6 @@
     }
 }
 
-.c-final__font-awesome {
+.c-final__emoticono {
     color: grey
 }

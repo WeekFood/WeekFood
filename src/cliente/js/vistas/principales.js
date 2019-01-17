@@ -28,7 +28,7 @@ function vista_Error(puntoMontaje) {
         "Uy, necesitas una mano?<br>Pista: Regresa a WeekFood.",
         "Algun diseñador con hambre se ha debido de comer la página que buscabas..."
     ]
-    var html = "<div class='c-final'><div class='c-final__texto'><h1 class='c-final__cabecera'>Error 404</h1><h2 class='c-final__cabecera c-final__cabecera--2'>"
+    var html = "<div class='c-final'><div class='c-final__texto'><h1 class='c-final__cabecera'>Error 404</h1><h2 class='c-final__cabecera c-final__cabecera--sub-cabecera'>"
     html += titulosError[Math.floor(Math.random() * titulosError.length)] + "<hr>" + descripcionesError[Math.floor(Math.random() * descripcionesError.length)];
     html += "</h2><div class='c-boton c-final__boton' onclick=cargarVista('portada')>Volver a WeekFood</div></div>"
     $(puntoMontaje).html(html)
