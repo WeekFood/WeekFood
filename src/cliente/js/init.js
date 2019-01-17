@@ -30,21 +30,3 @@ var GLOBAL_GESTOR_PRODUCTOS = new GestorProductos();
 if (!redirigir()) {
     cargarVista("portada")
 }
-
-// Codigo con propositos de testeo {
-// Estos no se cargan al entrar a la web
-try{
-console.log("Principales",GLOBAL_GESTOR_PRODUCTOS.getCategoriasPrincipales())
-}catch(e){
-    console.error("No se ha podido hacer una peticion de principales antes de tiempo:",e)
-}
-try{
-    GLOBAL_GESTOR_PRODUCTOS.getCategoriasEnCategoriaPrincipal('Carnes').then((categorias)=>{console.log("En carnes",categorias)})
-}catch(e){
-    console.error("No se ha podido hacer una peticion de principales antes de tiempo:",e)
-}
-// Este si
-GLOBAL_GESTOR_PRODUCTOS.getProductosCategoria('Huevos','Tortilla').then((productos) => {console.log("Tortillas",productos)})
-// En vistas/producto hay un ejemplo de cargar al llegar a dicha vista.
-
-// } Codigo con propositos de testeo 
