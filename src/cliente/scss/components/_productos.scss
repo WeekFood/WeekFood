@@ -1,0 +1,6 @@
+ .c-productos{
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(200px,3fr));
+   grid-gap: 40px;
+   margin: 40px;
+ }

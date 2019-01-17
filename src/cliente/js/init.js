@@ -27,6 +27,7 @@ $('.js-boton-menu').on('click', () => {
 });
 var carrito = new Carrito();
 $(".js-carrito").on('click', carrito_Alternar)
+var GLOBAL_GESTOR_PRODUCTOS = new GestorProductos();
 
 if (!redirigir()) {
     cargarVista("portada")
