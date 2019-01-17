@@ -64,3 +64,12 @@ function extraerCookie(nombre) {
 function borrarCookie(nombre) {
     document.cookie = nombre + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
+function precioEnEuros(precio) {
+    return (precio / 100).toString() + " €"
+}
+function precioEnDollar(precio) {
+    return (precio / 88).toString() + " $"
+}
+function precioEnLibra(precio) {
+    return (precio * 0.88).toString() + " £"
+}

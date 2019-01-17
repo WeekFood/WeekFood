@@ -96,7 +96,6 @@ function vista_Productos_existeEnGrid(id) {
     return encontrado
 }
 function vista_Productos_generarProducto(producto) {
-    var placeHolderPrecio = 4
     var html = `
     <div data-id='`+ producto["id"] + `' class='c-producto js-producto'>
     <img class='c-producto__imagen js-producto-imagen' src='/imagenes/productos/`+ producto["foto"] + `'>`
@@ -112,7 +111,7 @@ function vista_Productos_generarProducto(producto) {
                 `+ producto["nombre"].charAt(0).toUpperCase() + producto["nombre"].slice(1) + `
             </p> 
         <div class='c-producto__precio'>
-            `+ placeHolderPrecio + `€
+            `+ precioEnEuros(producto["precio"]) + `
         </div>
         <div class='c-producto__carrito js-producto-carrito'>
             <i class='fas fa-cart-plus'></i>
