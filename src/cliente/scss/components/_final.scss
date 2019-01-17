@@ -1,0 +1,40 @@
+.c-final {
+    padding: 50px 10px;
+    text-align: center;
+    @media only screen and (min-width: $mobile-l) {
+        padding: 50px;
+    }
+}
+
+.c-final__texto {
+    padding: 25px 15px;
+    text-align: center;
+}
+
+.c-final__cabecera {
+    padding: 30px 0 50px 0;
+    font-size: 2rem;
+    line-height: 1.5;
+    &--sub-cabecera {
+        font-size: 1.3rem;
+        @media only screen and (min-width: $mobile-l) {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.c-final__boton {
+    font-family: 'Happy Monkey';
+    font-style: italic;
+    background: $acento-basico;
+    @media only screen and (min-width: $mobile-l) {
+        font-size: 1.6rem;
+    }
+    &:hover {
+        background: $acento-exito;
+    }
+}
+
+.c-final__emoticono {
+    color: grey
+}
