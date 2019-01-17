@@ -24,7 +24,6 @@ function carrito_Actualizar() {
 function carrito_AñadirArticulo(evento) {
     carrito.añadirProducto(GLOBAL_GESTOR_PRODUCTOS.getProductoId($(evento.currentTarget).parent().data('id')))
     carrito_Actualizar()
-    return id;
 }
 function carrito_ProcesarArticulo(articulo) {
     var html = `<p data-id='` + articulo.id + `' class='c-carrito__articulo'>
