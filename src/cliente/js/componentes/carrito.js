@@ -51,10 +51,12 @@ function carrito_QuitarArticulo(evento) {
 function carrito_IncrementarArticulo(evento) {
     var cantidadActual = carrito.incrementarCantidad($(this).parent().data('id').toString())
     $($(this).parent().find('.js-carrito-cantidad')[0]).html(cantidadActual)
+    carrito_Actualizar()
 }
 function carrito_DecrementarArticulo(evento) {
     var cantidadActual = carrito.decrementarCantidad($(this).parent().data('id').toString())
     $($(this).parent().find('.js-carrito-cantidad')[0]).html(cantidadActual)
+    carrito_Actualizar()
 }
 function carrito_ActualizarTriggers() {
     $(".js-carrito-incremento").on('click', carrito_IncrementarArticulo);
