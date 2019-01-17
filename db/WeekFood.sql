@@ -107,7 +107,7 @@ CREATE TABLE `productos` (
   `destacado` tinyint(1) NOT NULL DEFAULT '0',
   `precio` int(5) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 --
 -- Dumping data for table `productos`
@@ -128,7 +128,6 @@ INSERT INTO `productos` (`id`, `categoria`, `nombre`, `descripcion`, `foto`, `de
 	(10, 'Tortilla,Puerros,Espinacas', 'Tortilla de espinacas y puerros', 'Un delicioso plato.', 'tortilla-espinacas-puerros.jpg', 0, 450);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
-ALTER TABLE productos AUTO_INCREMENT = 11;
 --
 -- Table structure for table `usuarios`
 --
