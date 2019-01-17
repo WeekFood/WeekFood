@@ -2,7 +2,6 @@ class GestorProductos {
     constructor() {
         this.productos = []
         this.categoriasPrincipales = []
-        this.bloqueado = true
         GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/").then((categoriasPrincipales) => {
             if (categoriasPrincipales !== null) {
                 categoriasPrincipales.forEach(categoria => {
@@ -10,7 +9,6 @@ class GestorProductos {
                     this.getCategoriasEnCategoriaPrincipal(categoria.nombre)
                 })
             }
-            this.bloqueado = false
         })
     }
     /**
@@ -86,9 +84,6 @@ class GestorProductos {
     }
 
     getCategoriasPrincipales() {
-        if (this.bloqueado) {
-            throw "El gestor esta inicializandose";
-        }
         return this.categoriasPrincipales.map(cate => cate.nombre)
     }
 } 
