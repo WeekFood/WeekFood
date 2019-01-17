@@ -1,7 +1,6 @@
 .c-cabecera {
     display: flex;
     align-items: center;
-    padding: 10px 20px;
 
     background: $almendraBlanca;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -11,6 +10,7 @@
 
 .c-cabecera__boton-menu {
     display: block;
+    padding: 15px;
     @media only screen and (min-width: $mobile-l) {
         display: none;
     }
@@ -35,9 +35,12 @@
 .c-cabecera__botones {
     display: grid;
     grid-auto-flow: column;
-    gap: 15px;
-    @media only screen and (min-width: $mobile-l) {
-        gap: 30px;
-    }    
     font-size: 20px;
+    @media only screen and (min-width: $mobile-l) {
+        gap: 10px;
+    } 
+}
+
+.c-cabecera__boton {
+    padding: 15px;
 }
