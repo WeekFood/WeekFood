@@ -54,6 +54,8 @@ function vista_Productos__montarContenido(puntoMontaje) {
                 montados++;
             }
         })
+        $(".js-producto-carrito").on('click',carrito_AñadirArticulo)	
+        $(".js-producto").on('click',GLOBAL_GESTOR_PRODUCTOS.generarVisualizacion)	
         if (montados < 1) {
             $(puntoMontaje).html("<div class='c-principal'><center><i class='far fa-sad-tear fa-7x'></i><h1 style='margin: 20px 0px'>Vaya, nos hemos quedado sin productos.</h1><h3 class='c-boton c-boton--basico' onclick='vista_Productos_restablecerFiltro(\"" + puntoMontaje + "\")'>Restablecer el filtro</h3></center></div>")
         }
@@ -80,9 +82,6 @@ function vista_Productos_cargarDe(puntoMontaje, categoriaPrincipal, categoria) {
                 }
             }
         })
-        $(".js-producto-carrito").off('click').on('click', carrito_AñadirArticulo)
-        //  $(".js-producto").on('click',GLOBAL_GESTOR_PRODUCTOS.generarModal($(this).data('id')))
-        $(".js-producto-imagen").on('click', vista_Productos_generarModal)
         if ($($(".js-productos-destacados")[0]).children().length < 1) {
             $(".js-productos-destacados").remove()
         }
@@ -100,8 +99,8 @@ function vista_Productos_generarProducto(producto) {
     var placeHolderPrecio = 4
     var html = `
     <div data-id='`+ producto["id"] + `' class='c-producto js-producto'>
-        <img class='c-producto__imagen js-producto-imagen' src='/imagenes/productos/`+ producto["foto"] + `'>`
-    if (producto["destacado"] == 1) {
+    <img class='c-producto__imagen' src='/imagenes/productos/`+ producto["foto"] + `'>`	
+        if (producto["destacado"] == 1) {
         html += `
         <div class='c-producto__imagen-destacado'>
             <i class='fas fa-star fa-3x'></i>
