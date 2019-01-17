@@ -61,7 +61,7 @@ function vista_Productos__montarContenido(puntoMontaje) {
 }
 function vista_Productos_generarModal(evento) {
     evento.stopImmediatePropagation()
-    GLOBAL_GESTOR_PRODUCTOS.generarModal($(evento.currentTarget).parent().data('id'))
+    GLOBAL_GESTOR_PRODUCTOS.generarModal($(this).parent().data('id'))
 }
 
 function vista_Productos_cargarDe(puntoMontaje, categoriaPrincipal, categoria) {
