@@ -20,7 +20,7 @@ class Carrito {
         let articuloYaExistente = this.getArticulo(producto.id);
 
         if (articuloYaExistente) {
-            return articuloYaExistente.incrementarCantidad();
+            return this.incrementarCantidad(articuloYaExistente.id);
         } else {
             nuevoArticulo = new Articulo(producto);
             this.articulos.push(nuevoArticulo);
