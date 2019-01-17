@@ -3,6 +3,7 @@ function carrito_Alternar() {
         $(".p-principal").prepend(`<div class='c-carrito'></div>`)
     } else {
         $(".c-carrito").toggleClass("c-carrito--desaparecer")
+        $(".js-carrito").children(".c-carrito__notificacion").remove()
     } carrito_Actualizar()
 }
 function carrito_Actualizar() {
@@ -33,7 +34,11 @@ function carrito_AñadirArticulo(evento) {
         generarNotificacion(producto.nombre+" añadido al carrito.",true)
     }
     if ((carrito.getArticulos().length == 1 && $(".c-carrito").hasClass('c-carrito--desaparecer'))||($(".c-carrito").length < 1)){
-        carrito_Alternar()
+        carrito_Alternar() 
+        $(".js-carrito").prepend(`<div class='c-carrito__notificacion'><i class="fas fa-bell"></i></div>`)
+    }
+    else if($(".c-carrito").hasClass('c-carrito--desaparecer')){
+        $(".js-carrito").prepend(`<div class='c-carrito__notificacion'><i class="fas fa-bell"></i></div>`)
     }
 }
 function carrito_ProcesarArticulo(articulo) {

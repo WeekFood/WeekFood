@@ -61,6 +61,12 @@
     user-select: none;
 }
 
+.c-carrito__notificacion {
+    position: absolute;
+    color: red;
+    margin: -1px 0 0 -35px;
+}
+
 @keyframes c-carrito__aparecer {
     0% {
         transform: translateY(-100%)
