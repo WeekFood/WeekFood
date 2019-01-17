@@ -86,4 +86,18 @@ class GestorProductos {
     getCategoriasPrincipales() {
         return this.categoriasPrincipales.map(cate => cate.nombre)
     }
+
+    generarModal(id, tipo = "info", callback_Confirmar = () => { }, callback_Denegar = () => { }){
+
+    var producto = this.getProductoId(id)
+    if (producto == undefined) { throw "El producto no existe." }
+    generarVentanaModal({
+        tamaño: "grande",
+        tipo: "confirmacion",
+        titulo: producto.nombre,
+        contenido:generarVisualizacionProducto(producto),
+        callback_Confirmar: callback_Confirmar,
+        callback_Denegar: callback_Denegar
+    })
+    }
 } 
