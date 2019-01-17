@@ -98,12 +98,8 @@ class GestorProductos {
         var producto = this.getProductoId(id)
         if (producto == undefined) { throw "El producto no existe." }
         generarVentanaModal({
-            tamaño: "grande",
-            tipo: "confirmacion",
-            titulo: producto.nombre,
+            tamaño: 'medio',
             contenido: generarModalProducto(producto),
-            callback_Confirmar: callback_Confirmar,
-            callback_Denegar: callback_Denegar
         })
 
         // TODO: enlazar con carrito_añadir
