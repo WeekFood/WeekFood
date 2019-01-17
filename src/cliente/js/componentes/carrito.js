@@ -4,7 +4,9 @@ function carrito_Alternar() {
     } else {
         $(".c-carrito").toggleClass("c-carrito--desaparecer")
         $(".js-carrito").children(".c-carrito__notificacion").remove()
-    } carrito_Actualizar()
+    } 
+    $(".js-carrito").children("i").toggleClass("fa-angle-up").toggleClass("fa-shopping-cart")
+    carrito_Actualizar()
 }
 function carrito_Actualizar() {
     var html = ""
