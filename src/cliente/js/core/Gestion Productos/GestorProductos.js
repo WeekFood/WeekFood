@@ -102,6 +102,10 @@ class GestorProductos {
             contenido: generarModalProducto(producto),
         })
 
-        // TODO: enlazar con carrito_añadir
+        $('.js-modal-producto_añadir-carrito').on('click', function() {
+            let idProducto = $(this).parents('.c-modal-producto').data('id-producto');
+
+            console.log(idProducto);
+        }) 
     }
 } 

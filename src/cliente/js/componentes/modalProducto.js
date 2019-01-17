@@ -5,7 +5,7 @@
  */
 function generarModalProducto(producto) {
     let html = `
-        <div class="c-modal-producto">
+        <div class="c-modal-producto" data-id-producto="${producto.id}">
             <img class="c-modal-producto__imagen" src="/imagenes/productos/${producto.foto}">
             <div class="c-modal-producto__contenido">
                 <div class="c-modal-producto__nombre">${producto.nombre}</div>
