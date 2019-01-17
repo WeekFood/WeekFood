@@ -22,7 +22,7 @@ function carrito_Actualizar() {
     carrito_ActualizarTriggers()
 }
 function carrito_AñadirArticulo(elemento) {
-    carrito.añadirProducto(productos.getProductoId($(elemento.currentTarget).parent().data('id')))
+    carrito.añadirProducto(GLOBAL_GESTOR_PRODUCTOS.getProductoId($(elemento.currentTarget).parent().data('id')))
     carrito_Actualizar()
     return id;
 }
