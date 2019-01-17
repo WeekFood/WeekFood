@@ -108,11 +108,9 @@ function vista_Productos_generarProducto(producto) {
         `
     }
     html += `
-        <div class='c-producto__titulo-container'>
             <p class='c-producto__titulo'>
                 `+ producto["nombre"].charAt(0).toUpperCase() + producto["nombre"].slice(1) + `
             </p> 
-        </div>
         <div class='c-producto__precio'>
             `+ placeHolderPrecio + `€
         </div>
