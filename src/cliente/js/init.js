@@ -25,6 +25,8 @@ $('.js-boton-menu').on('click', () => {
         $(".js-menu").addClass("c-menu--ocultar c-menu--oculto")
     }
 });
+var carrito = new Carrito();
+$(".js-carrito").on('click', carrito_Alternar)
 var GLOBAL_GESTOR_PRODUCTOS = new GestorProductos();
 
 if (!redirigir()) {
