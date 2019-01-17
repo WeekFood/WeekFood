@@ -55,7 +55,7 @@ function vista_Productos__montarContenido(puntoMontaje) {
             }
         })
         if (montados < 1) {
-            $(puntoMontaje).html("<div class='c-principal'><center><i class='far fa-sad-tear fa-7x'></i><h1 style='margin: 20px 0px'>Vaya, nos hemos quedado sin productos.</h1><h3 class='c-boton c-boton--basico' onclick='vista_Productos_restablecerFiltro(\"" + puntoMontaje + "\")'>Restablecer el filtro</h3></center></div>")
+            $(puntoMontaje).html("<div class='c-final'><center><i class='far fa-sad-tear fa-7x c-final__font-awesome'></i><h1 class='c-final__cabecera c-final__cabecera--2'>Vaya, nos hemos quedado sin productos.</h1><h3 class='c-boton c-boton--basico' onclick='vista_Productos_restablecerFiltro(\"" + puntoMontaje + "\")'>Restablecer el filtro</h3></center></div>")
         }
     })
 }
