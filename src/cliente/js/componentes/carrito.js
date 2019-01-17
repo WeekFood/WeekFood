@@ -1,6 +1,6 @@
 function carrito_Alternar() {
     if ($(".c-carrito").length < 1) {
-        $(".p-principal").prepend(`<div class='c-carrito c-principal'></div>`)
+        $(".p-principal").prepend(`<div class='c-carrito'></div>`)
     } else {
         $(".c-carrito").toggleClass("c-carrito--desaparecer")
     } carrito_Actualizar()
@@ -21,8 +21,8 @@ function carrito_Actualizar() {
     $(".c-carrito").html(html)
     carrito_ActualizarTriggers()
 }
-function carrito_AñadirArticulo(elemento) {
-    carrito.añadirProducto(GLOBAL_GESTOR_PRODUCTOS.getProductoId($(elemento.currentTarget).parent().data('id')))
+function carrito_AñadirArticulo(evento) {
+    carrito.añadirProducto(GLOBAL_GESTOR_PRODUCTOS.getProductoId($(evento.currentTarget).parent().data('id')))
     carrito_Actualizar()
     return id;
 }
@@ -36,17 +36,17 @@ function carrito_ProcesarArticulo(articulo) {
     </p>`
     return html
 }
-function carrito_QuitarArticulo(elemento) {
-    carrito.quitarArticulo($(elemento.currentTarget).parent().data('id').toString())
+function carrito_QuitarArticulo(evento) {
+    carrito.quitarArticulo($(evento.currentTarget).parent().data('id').toString())
     carrito_Actualizar()
 }
-function carrito_IncrementarArticulo(elemento) {
-    var cantidadActual = carrito.incrementarCantidad($(elemento.currentTarget).parent().data('id').toString())
-    $($(elemento.currentTarget).parent().find('.js-carrito-cantidad')[0]).html(cantidadActual)
+function carrito_IncrementarArticulo(evento) {
+    var cantidadActual = carrito.incrementarCantidad($(evento.currentTarget).parent().data('id').toString())
+    $($(evento.currentTarget).parent().find('.js-carrito-cantidad')[0]).html(cantidadActual)
 }
-function carrito_DecrementarArticulo(elemento) {
-    var cantidadActual = carrito.decrementarCantidad($(elemento.currentTarget).parent().data('id').toString())
-    $($(elemento.currentTarget).parent().find('.js-carrito-cantidad')[0]).html(cantidadActual)
+function carrito_DecrementarArticulo(evento) {
+    var cantidadActual = carrito.decrementarCantidad($(evento.currentTarget).parent().data('id').toString())
+    $($(evento.currentTarget).parent().find('.js-carrito-cantidad')[0]).html(cantidadActual)
 }
 function carrito_ActualizarTriggers() {
     $(".js-carrito-incremento").on('click', carrito_IncrementarArticulo);

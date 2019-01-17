@@ -1,21 +1,25 @@
 .c-carrito {
+    border-radius: 10px;
     max-width: 425px;
     min-height: 30px;
     z-index: 2;
     position: absolute;
-    top: 50px;
+    top: 50px;  
+    background: $blanco;
     right: 0px;
-    margin: 0 !important;
+    padding: 15px;
+    margin: 0;
     max-height: 80vh;
     overflow: auto;
-    border-top-left-radius: 0px !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-top-left-radius: 0px;
     animation: c-carrito__aparecer 0.5s;
     &--desaparecer {
         animation: c-carrito__desaparecer 0.5s both;
     }
 }
 
-.c-carrito__botones{
+.c-carrito__botones {
     display: flex;
     justify-content: space-between;
 }
@@ -45,7 +49,7 @@
 }
 
 .c-carrito__basura {
-    color: red;
+    color: $rojo;
     padding: 0 5px;
 }
 
