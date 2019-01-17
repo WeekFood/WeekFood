@@ -37,15 +37,15 @@ function carrito_ProcesarArticulo(articulo) {
     return html
 }
 function carrito_QuitarArticulo(elemento) {
-    carrito.quitarArticulo($(elemento.currentTarget).parent().data('id'))
+    carrito.quitarArticulo($(elemento.currentTarget).parent().data('id').toString())
     carrito_Actualizar()
 }
 function carrito_IncrementarArticulo(elemento) {
-    var cantidadActual = carrito.incrementarCantidad($(elemento.currentTarget).parent().data('id'))
+    var cantidadActual = carrito.incrementarCantidad($(elemento.currentTarget).parent().data('id').toString())
     $($(elemento.currentTarget).parent().find('.js-carrito-cantidad')[0]).html(cantidadActual)
 }
 function carrito_DecrementarArticulo(elemento) {
-    var cantidadActual = carrito.decrementarCantidad($(elemento.currentTarget).parent().data('id'))
+    var cantidadActual = carrito.decrementarCantidad($(elemento.currentTarget).parent().data('id').toString())
     $($(elemento.currentTarget).parent().find('.js-carrito-cantidad')[0]).html(cantidadActual)
 }
 function carrito_ActualizarTriggers() {
