@@ -103,9 +103,6 @@ class GestorProductos {
         })
 
         $('.js-modal-producto_añadir-carrito').on('click', function() {
-            let idProducto = $(this).parents('.c-modal-producto').data('id-producto');
-            let producto = GLOBAL_GESTOR_PRODUCTOS.getProductoId(idProducto);
-
             carrito.añadirProducto(producto);
 
             let articulo = carrito.getArticulo(producto.id);
