@@ -1,0 +1,83 @@
+.c-menu-expandido {
+    background: $blanco;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: hidden;
+    height: 100%;
+    z-index: 1;
+    position: relative;
+    &--oculto {
+        margin-top: -100%
+    }
+    &--desplegando {
+        height: auto;
+        padding: 15px;
+        width: 200px;
+        animation: c-menu-expandido__desplegar;
+        animation-duration: 0.3s;
+        animation-timing-function: ease-out;
+        animation-fill-mode: both;
+        position: absolute;
+    }
+    &--plegado {
+        height: auto;
+        width: 20px;
+        padding: 15px 0px;
+        position: absolute;
+    }
+    &--plegando {
+        height: auto;
+        width: 20px;
+        padding: 15px 0px;
+        animation: c-menu-expandido__plegar;
+        animation-duration: 0.3s;
+        animation-timing-function: ease-out;
+        animation-fill-mode: both;
+        position: absolute;
+    }
+    @media only screen and (min-width: $mobile-l) {
+        display: block;
+        border-bottom-right-radius: 10px;
+        &--oculto {
+            margin-top: 0%
+        }
+    }
+}
+
+.c-menu-expandido__listado {
+    width: 200px
+}
+
+.c-menu-expandido__borde {
+    background: #ff2525;
+    width: 20px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+}
+
+.c-menu-expandido__flecha {
+    margin: auto;
+    color: $blanco;
+    &--plegado {
+        transform: rotateZ(180deg);
+    }
+}
+
+.c-menu-expandido__checkbox {
+    margin: 0 5px
+}
+
+@keyframes c-menu-expandido__desplegar {
+    0% {
+        width: 20px;
+    }
+}
+
+@keyframes c-menu-expandido__plegar {
+    0% {
+        width: 200px;
+        padding: 15px;
+    }
+}
