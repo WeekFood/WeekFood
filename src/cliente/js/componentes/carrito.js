@@ -49,12 +49,12 @@ function carrito_QuitarArticulo(evento) {
     generarNotificacion(producto.nombre+" eliminado del carrito.",true)
 }
 function carrito_IncrementarArticulo(evento) {
-    var cantidadActual = carrito.incrementarCantidad($(evento.currentTarget).parent().data('id').toString())
-    $($(evento.currentTarget).parent().find('.js-carrito-cantidad')[0]).html(cantidadActual)
+    var cantidadActual = carrito.incrementarCantidad($(this).parent().data('id').toString())
+    $($(this).parent().find('.js-carrito-cantidad')[0]).html(cantidadActual)
 }
 function carrito_DecrementarArticulo(evento) {
-    var cantidadActual = carrito.decrementarCantidad($(evento.currentTarget).parent().data('id').toString())
-    $($(evento.currentTarget).parent().find('.js-carrito-cantidad')[0]).html(cantidadActual)
+    var cantidadActual = carrito.decrementarCantidad($(this).parent().data('id').toString())
+    $($(this).parent().find('.js-carrito-cantidad')[0]).html(cantidadActual)
 }
 function carrito_ActualizarTriggers() {
     $(".js-carrito-incremento").on('click', carrito_IncrementarArticulo);
