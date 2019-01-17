@@ -101,9 +101,11 @@ class GestorProductos {
             tamaño: "grande",
             tipo: "confirmacion",
             titulo: producto.nombre,
-            contenido: generarVisualizacionProducto(producto),
+            contenido: generarModalProducto(producto),
             callback_Confirmar: callback_Confirmar,
             callback_Denegar: callback_Denegar
         })
+
+        // TODO: enlazar con carrito_añadir
     }
 } 
