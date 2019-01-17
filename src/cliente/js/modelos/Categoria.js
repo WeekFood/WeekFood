@@ -1,17 +1,17 @@
-class Categoria{
+class Categoria {
     /**
      * 
      * @param {String} nombre Nombre de la categoriaPrincipal
      */
-    constructor(nombre){
+    constructor(nombre) {
         this.nombre = nombre
-        this.categorias  = []
+        this.categorias = []
     }
     /**
      * 
      * @param {Array} categorias Array de categorias que se incluyen en esta categoria.} categorias 
      */
-    añadirCategoria(categoria){
+    añadirCategoria(categoria) {
         this.categorias.push(categoria)
     }
-} 
+}

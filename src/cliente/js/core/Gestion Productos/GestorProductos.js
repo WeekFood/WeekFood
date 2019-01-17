@@ -67,7 +67,7 @@ class GestorProductos {
             return GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/" + categoriaPrincipal + "/" + categoria).then((respuesta) => {
                 var nuevosProductos = []
                 respuesta.forEach(prod => {
-                    var nuevoProducto = new Producto(prod.id, prod.nombre, prod.foto,  (prod.destacado == 1),prod.categoria.split(","), prod.descripcion,400) //Precio dummy
+                    var nuevoProducto = new Producto(prod.id, prod.nombre, prod.foto, (prod.destacado == 1), prod.categoria.split(","), prod.descripcion, 400) //Precio dummy
                     this.productos.push(nuevoProducto)
                     nuevosProductos.push(nuevoProducto)
                 });
@@ -87,17 +87,17 @@ class GestorProductos {
         return this.categoriasPrincipales.map(cate => cate.nombre)
     }
 
-    generarModal(id, tipo = "info", callback_Confirmar = () => { }, callback_Denegar = () => { }){
+    generarModal(id, tipo = "info", callback_Confirmar = () => { }, callback_Denegar = () => { }) {
 
-    var producto = this.getProductoId(id)
-    if (producto == undefined) { throw "El producto no existe." }
-    generarVentanaModal({
-        tamaño: "grande",
-        tipo: "confirmacion",
-        titulo: producto.nombre,
-        contenido:generarVisualizacionProducto(producto),
-        callback_Confirmar: callback_Confirmar,
-        callback_Denegar: callback_Denegar
-    })
+        var producto = this.getProductoId(id)
+        if (producto == undefined) { throw "El producto no existe." }
+        generarVentanaModal({
+            tamaño: "grande",
+            tipo: "confirmacion",
+            titulo: producto.nombre,
+            contenido: generarVisualizacionProducto(producto),
+            callback_Confirmar: callback_Confirmar,
+            callback_Denegar: callback_Denegar
+        })
     }
 } 

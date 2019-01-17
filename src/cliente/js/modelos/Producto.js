@@ -1,4 +1,4 @@
-class Producto{
+class Producto {
     /**
      * 
      * @param {int} id Id del producto, proveniente de la API.
@@ -9,7 +9,7 @@ class Producto{
      * @param {string} descripcion Descripcion del producto, proveniente de la API
      * @param {int} precio Precio del producto, proveniente de la API
      */
-    constructor(id,nombre,foto,destacado,categorias,descripcion,precio){
+    constructor(id, nombre, foto, destacado, categorias, descripcion, precio) {
         this.id = id
         this.nombre = nombre
         this.foto = foto

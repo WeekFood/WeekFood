@@ -5,7 +5,7 @@
 * @param {function} callback_Confirmar callback del boton confirmar en caso de que exista, defecto funcion vacia
 * @param {function} callback_Denegar callback del boton denegar en caso de que exista, defecto funcion vacia
 */
-function generarVisualizacionProducto(producto){
+function generarVisualizacionProducto(producto) {
     var html = `
         <div>
         <div>
@@ -22,4 +22,4 @@ function generarVisualizacionProducto(producto){
         </div>
         `
     return html
-}       
+}
