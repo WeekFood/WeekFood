@@ -104,8 +104,20 @@ class GestorProductos {
 
         $('.js-modal-producto_añadir-carrito').on('click', function() {
             let idProducto = $(this).parents('.c-modal-producto').data('id-producto');
+            let producto = GLOBAL_GESTOR_PRODUCTOS.getProductoId(idProducto);
 
-            console.log(idProducto);
-        }) 
+            carrito.añadirProducto(producto);
+
+            let articulo = carrito.getArticulo(producto.id);
+            carrito_Actualizar();
+
+            if (articulo.cantidad > 1) {
+                generarNotificacion(articulo.nombre + " tienes " + articulo.cantidad + " unidades.", true);
+            } else {
+                generarNotificacion(articulo.nombre + " añadido al carrito.", true);
+            }
+
+            cerrarVentanaModal();
+        });
     }
 } 
