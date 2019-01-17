@@ -21,16 +21,16 @@ class GestorProductos {
     }
     /**
      * 
-     * @param {String} producto Categoria buscando
-     * @param {Producto} actual Categoria actual en el array
+     * @param {String} categoria Categoria buscando
+     * @param {Producto} actual producto actual en el array
      */
-    filtrarCategoria(producto, actual) {
-        return actual.categorias.indexOf(producto) > -1
+    filtrarCategoria(categoria, actual) {
+        return actual.categorias.indexOf(categoria) > -1
     }
     /**
      * 
-     * @param {String} categoria Id buscando
-     * @param {Producto} producto Categoria actual en el array
+     * @param {String} id Id del producto que se esta buscando
+     * @param {Producto} actual producto actual en el array
      */
     filtrarId(id, actual) {
         return actual.id == id
