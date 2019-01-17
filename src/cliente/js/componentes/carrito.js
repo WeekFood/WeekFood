@@ -22,8 +22,15 @@ function carrito_Actualizar() {
     carrito_ActualizarTriggers()
 }
 function carrito_AñadirArticulo(evento) {
-    carrito.añadirProducto(GLOBAL_GESTOR_PRODUCTOS.getProductoId($(evento.currentTarget).parent().data('id')))
+    var producto = GLOBAL_GESTOR_PRODUCTOS.getProductoId($(this).parent().data('id'))
+    carrito.añadirProducto(producto)
     carrito_Actualizar()
+    var producto =carrito.getArticulo(producto.id)
+    if (producto.cantidad > 1){
+        generarNotificacion(producto.nombre+" tienes "+producto.cantidad +" unidades.",true)
+    }else{
+        generarNotificacion(producto.nombre+" añadido al carrito.",true)
+    }
 }
 function carrito_ProcesarArticulo(articulo) {
     var html = `<p data-id='` + articulo.id + `' class='c-carrito__articulo'>
@@ -36,8 +43,10 @@ function carrito_ProcesarArticulo(articulo) {
     return html
 }
 function carrito_QuitarArticulo(evento) {
-    carrito.quitarArticulo($(evento.currentTarget).parent().data('id').toString())
+    var producto = GLOBAL_GESTOR_PRODUCTOS.getProductoId($(this).parent().data('id'))
+    carrito.quitarArticulo(producto.id)
     carrito_Actualizar()
+    generarNotificacion(producto.nombre+" eliminado del carrito.",true)
 }
 function carrito_IncrementarArticulo(evento) {
     var cantidadActual = carrito.incrementarCantidad($(evento.currentTarget).parent().data('id').toString())
