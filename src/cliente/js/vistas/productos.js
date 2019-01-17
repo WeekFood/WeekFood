@@ -88,7 +88,7 @@ function vista_Productos_cargarDe(puntoMontaje, categoriaPrincipal, categoria) {
     })
 }
 function vista_Productos_existeEnGrid(id) {
-    var hijos = $(".js-productos-normales").children()
+    var hijos = $(".c-productos").children()
     var encontrado = false
     for (var x = 0; x < hijos.length; x++) {
         if ($(hijos[x]).data("id") == id) { return hijos[x] }
