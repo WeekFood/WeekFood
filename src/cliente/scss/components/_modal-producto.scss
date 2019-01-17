@@ -1,6 +1,9 @@
 .c-modal-producto {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    @media only screen and (min-width: $laptop) {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 .c-modal-producto__imagen {
@@ -10,21 +13,29 @@
 }
 
 .c-modal-producto__contenido {
+    display: grid;
+    grid-template-rows: 15px auto 15px auto minmax(15px, 1fr) auto 20px auto;
+    grid-template-areas: 
+                        '.'
+                        'nombre'
+                        '.'
+                        'descripcion'
+                        '.'
+                        'comprar'
+                        '.'
+                        'categorias';
     padding: 20px;
 }
 
 .c-modal-producto__nombre {
     font-size: 1.5rem;
+    grid-area: nombre;
 }
 
 .c-modal-producto__descripcion {
-    margin-top: 1.5rem;
     font-style: italic;
     font-size: 1rem;
-}
-
-.c-modal-producto__precio {
-    font-size: 2rem;
+    grid-area: descripcion;
 }
 
 .c-modal-producto__comprar {
@@ -32,15 +43,16 @@
     justify-content: space-between;
     align-items: center;
 
-    margin-top: 5rem;
+    grid-area: comprar;
 }
 
-.c-modal-producto__categorias {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+.c-modal-producto__precio {
+    font-size: 2rem;
+}
 
-    margin-top: 1.5rem;
+
+.c-modal-producto__categorias {
+    grid-area: categorias;
 }
 
 .c-modal-producto__categoria {
