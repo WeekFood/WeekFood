@@ -11,7 +11,7 @@ function generarModalProducto(producto) {
                 <div class="c-modal-producto__nombre">${producto.nombre}</div>
                 <div class="c-modal-producto__descripcion">${producto.descripcion}</div>
                 <div class="c-modal-producto__comprar">
-                    <div class="c-modal-producto__precio">${producto.precio}€</div>
+                    <div class="c-modal-producto__precio">${producto.precio / 100 /* TODO: cambiar post merge 170 */}€</div>
                     <div class="c-modal-producto__boton">
                         <div class="c-boton c-boton--exito js-modal-producto_añadir-carrito">Añadir al carrito</div>
                     </div>
