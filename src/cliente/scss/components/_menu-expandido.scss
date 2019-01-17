@@ -5,6 +5,7 @@
     height: 100%;
     z-index: 1;
     position: relative;
+    border-bottom-right-radius: 10px;
     &--oculto {
         margin-top: -100%
     }
@@ -36,7 +37,6 @@
     }
     @media only screen and (min-width: $mobile-l) {
         display: block;
-        border-bottom-right-radius: 10px;
         &--oculto {
             margin-top: 0%
         }
