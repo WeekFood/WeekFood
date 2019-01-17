@@ -1,4 +1,4 @@
-.c-menu-expandido{
+.c-menu-expandido {
     background: $blanco;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     overflow: hidden;
@@ -6,7 +6,7 @@
     z-index: 1;
     position: relative;
     &--oculto {
-        margin-top:-100%
+        margin-top: -100%
     }
     &--desplegando {
         height: auto;
@@ -37,18 +37,17 @@
     @media only screen and (min-width: $mobile-l) {
         display: block;
         border-bottom-right-radius: 10px;
-        &--oculto{
-            margin-top:0%
+        &--oculto {
+            margin-top: 0%
         }
     }
-
 }
 
-.c-menu-expandido__listado{
-    width:200px
+.c-menu-expandido__listado {
+    width: 200px
 }
 
-.c-menu-expandido__borde{
+.c-menu-expandido__borde {
     background: #ff2525;
     width: 20px;
     height: 100%;
@@ -57,16 +56,19 @@
     right: 0;
     display: flex;
 }
-.c-menu-expandido__flecha{
+
+.c-menu-expandido__flecha {
     margin: auto;
     color: $blanco;
     &--plegado {
         transform: rotateZ(180deg);
     }
 }
-.c-menu-expandido__checkbox{
+
+.c-menu-expandido__checkbox {
     margin: 0 5px
 }
+
 @keyframes c-menu-expandido__desplegar {
     0% {
         width: 20px;
