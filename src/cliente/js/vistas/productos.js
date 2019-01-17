@@ -135,6 +135,6 @@ function vista_Productos_alternarExtendido() {
 }
 
 function vista_Productos_restablecerFiltro(puntoMontaje) {
-    $(".c-menu__checkbox").prop("checked", true);
+    $(".c-menu-expandido__checkbox").prop("checked", true);
     vista_Productos__montarContenido(puntoMontaje)
 }
