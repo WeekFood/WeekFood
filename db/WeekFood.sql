@@ -105,20 +105,29 @@ CREATE TABLE `productos` (
   `descripcion` varchar(1000) NOT NULL DEFAULT 'Un delicioso plato.',
   `foto` varchar(50) NOT NULL DEFAULT '404.png',
   `destacado` tinyint(1) NOT NULL DEFAULT '0',
+  `precio` int(5) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
 --
 -- Dumping data for table `productos`
 --
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (2,'Cerdo','Lomo asado','Un delicioso plato.','lomo-asado.jpg',1),(3,'Macarrones','Macarrones boloñesa','Un delicioso plato.','macarrones-boloñesa.jpg',1),(4,'Paellas,Gambas','Paella de marisco','Un delicioso plato.','paella-marisco.jpg',1),(5,'Pollo','Pechuga a la plancha','Un delicioso plato.','pechuga-a-la-plancha.jpg',1),(6,'Ensaladas,Pollo','Ensalada césar','Un delicioso plato.','ensalada-cesar.jpg',1),(7,'Pimientos,Pisto','Pimientos rellenos de pisto','Un delicioso plato.','pimientos-pisto.jpg',0),(8,'Menestras','Menestra de verduras','Un delicioso plato.','menestra-verduras-jamon.jpg',0),(9,'Tortilla,Patatas','Tortilla de patata','Un delicioso plato.','tortilla-patata.jpg',0),(10,'Tortilla','Tortilla francesa','Un delicioso plato.','tortilla-francesa.jpg',0),(11,'Tortilla,Puerros,Espinacas','Tortilla de espinacas y puerros','Un delicioso plato.','tortilla-espinacas-puerros.jpg',0);
+INSERT INTO `productos` (`id`, `categoria`, `nombre`, `descripcion`, `foto`, `destacado`, `precio`) VALUES
+	(1, 'Cerdo', 'Lomo asado', 'Lomo de cerdo asado jugoso.', 'lomo-asado.jpg', 1, 1000),
+	(2, 'Macarrones', 'Macarrones boloñesa', 'Un delicioso plato.', 'macarrones-boloñesa.jpg', 1, 600),
+	(3, 'Paellas,Gambas', 'Paella de marisco', 'Verdadera paella valenciana.', 'paella-marisco.jpg', 1, 800),
+	(4, 'Pollo', 'Pechuga a la plancha', 'Plato saludable.', 'pechuga-a-la-plancha.jpg', 1, 500),
+	(5, 'Ensaladas,Pollo', 'Ensalada césar', 'Excelente ensalada con productos locales.', 'ensalada-cesar.jpg', 1, 700),
+	(6, 'Pimientos,Pisto', 'Pimientos rellenos de pisto', 'Preparado al horno.', 'pimientos-pisto.jpg', 0, 400),
+	(7, 'Menestras', 'Menestra de verduras', 'Un delicioso plato.', 'menestra-verduras-jamon.jpg', 0, 500),
+	(8, 'Tortilla,Patatas', 'Tortilla de patata', 'Un delicioso plato.', 'tortilla-patata.jpg', 0, 550),
+	(9, 'Tortilla', 'Tortilla francesa', 'Un delicioso plato.', 'tortilla-francesa.jpg', 0, 350),
+	(10, 'Tortilla,Puerros,Espinacas', 'Tortilla de espinacas y puerros', 'Un delicioso plato.', 'tortilla-espinacas-puerros.jpg', 0, 450);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
-
 --
 -- Table structure for table `usuarios`
 --
