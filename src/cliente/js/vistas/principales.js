@@ -28,7 +28,7 @@ function vista_Error(puntoMontaje) {
         "Uy, necesitas una mano?<br>Pista: Regresa a WeekFood.",
         "Algun diseñador con hambre se ha debido de comer la página que buscabas..."
     ]
-    var html = "<div class='c-final'><div class='c-final__texto'><h1 class='c-final__cabecera'>Error 404</h1><h2 class='c-final__cabecera c-final__cabecera--sub-cabecera'>"
+    var html = "<div class='c-final'><div class='c-final__texto'><i class='far fa-sad-tear fa-7x c-final__emoticono'></i><h2 class='c-final__cabecera c-final__cabecera--sub-cabecera'>"
     html += titulosError[Math.floor(Math.random() * titulosError.length)] + "<hr>" + descripcionesError[Math.floor(Math.random() * descripcionesError.length)];
     html += "</h2><div class='c-boton c-final__boton' onclick=cargarVista('portada')>Volver a WeekFood</div></div>"
     $(puntoMontaje).html(html)
@@ -36,7 +36,7 @@ function vista_Error(puntoMontaje) {
 }
 
 function vista_Portada(puntoMontaje) {
-    $(puntoMontaje).html("<div class='c-principal'><div class='js-carrusel'></div><div class='c-principal__texto'><h1 class='c-principal__cabecera'>¡Bienvenido a <span class='c-logo__parte'>Week</span><span class='c-logo__parte c-logo__parte--alterna'>Food</span>!</h1>Somos una empresa ficticia, ofrecemos gran variedad de platos preparados para entrega en el hogar, el trabajo, o la escuela.<br>Con <span class='c-logo__parte'>Week</span><span class='c-logo__parte c-logo__parte--alterna'>Food</span> nunca mas tendrás que preocuparte de que vas a comer hoy.</div></div>")
+    $(puntoMontaje).html("<div class='c-principal'><div class='js-carrusel'></div><div class='c-principal__texto'></i><h1 class='c-principal__cabecera'>¡Bienvenido a <span class='c-logo__parte'>Week</span><span class='c-logo__parte c-logo__parte--alterna'>Food</span>!</h1>Somos una empresa ficticia, ofrecemos gran variedad de platos preparados para entrega en el hogar, el trabajo, o la escuela.<br>Con <span class='c-logo__parte'>Week</span><span class='c-logo__parte c-logo__parte--alterna'>Food</span> nunca mas tendrás que preocuparte de que vas a comer hoy.</div></div>")
     montarMenu("/api/menu", "portada")
     return $.when($.getScript("libs/slick-1.8.1/slick.min.js")).then(() => { generarCarrusel(".js-carrusel") })
 }
