@@ -88,10 +88,10 @@ function vista_Productos_cargarDe(puntoMontaje, categoriaPrincipal, categoria) {
     })
 }
 function vista_Productos_existeEnGrid(id) {
-    var hijos = $(".js-productos-normales").children()
+    var hijos = $(".c-productos").children()
     var encontrado = false
     for (var x = 0; x < hijos.length; x++) {
-        if ($(hijos[x]).data("id") == id) { return true }
+        if ($(hijos[x]).data("id") == id) { return hijos[x] }
     }
     return encontrado
 }
@@ -113,7 +113,11 @@ function vista_Productos_generarProducto(producto) {
         <div class='c-producto__precio'>
             `+ precioEnEuros(producto["precio"]) + `
         </div>
-        <div class='c-producto__carrito js-producto-carrito'>
+        <div class='c-producto__carrito`
+        if (carrito.getArticulo(producto.id) !== undefined){
+            html += ` c-producto__carrito--en-carrito`
+        }
+    html += ` js-producto-carrito'>
             <i class='fas fa-cart-plus'></i>
         </div>
     </div>

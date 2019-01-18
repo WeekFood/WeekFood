@@ -40,12 +40,18 @@
 .c-carrito__operador {
     margin: 0 10px;
     padding: 0 5px;
+    &--limite{
+        opacity: 0.2;
+    }
 }
 
 .c-carrito__cantidad {
     font-size: 20px;
     width: 25px;
     text-align: center;
+    &--limite{
+        color: red
+    }
 }
 
 .c-carrito__basura {
@@ -59,6 +65,12 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.c-carrito__notificacion {
+    position: absolute;
+    color: red;
+    margin: -1px 0 0 -35px;
 }
 
 @keyframes c-carrito__aparecer {
