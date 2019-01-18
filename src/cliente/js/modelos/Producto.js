@@ -10,12 +10,12 @@ class Producto {
      * @param {int} precio Precio del producto, proveniente de la API
      */
     constructor(id, nombre, foto, destacado, categorias, descripcion, precio) {
-        this.id = id
+        this.id = parseInt(id)
         this.nombre = nombre
         this.foto = foto
         this.destacado = destacado
         this.categorias = categorias
         this.descripcion = descripcion
-        this.precio = precio
+        this.precio = parseInt(precio)
     }
 }
