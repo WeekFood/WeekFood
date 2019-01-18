@@ -9,7 +9,9 @@ class Articulo extends Producto {
             producto.nombre,
             producto.foto,
             producto.destacado,
-            producto.categorias
+            producto.categorias,
+            producto.descripcion,
+            producto.precio
         );
 
         this.cantidad = cantidad;

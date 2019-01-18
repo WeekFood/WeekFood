@@ -17,7 +17,7 @@ function carrito_Actualizar() {
         html += `
             <p class='c-carrito__articulo c-carrito__botones'>
             <span class='c-boton c-boton--basico js-carrito-ver-carrito'>(`+ carrito.getArticulos().length + `) Ver mi carrito </span>
-            <span class='c-boton c-boton--exito js-carrito-pagar'>`+ carrito.getImporteTotal() + `€</span>
+            <span class='c-boton c-boton--exito js-carrito-pagar'>`+precioEnEuros(carrito.getImporteTotal()) + `</span>
             </p>
             `
     }
@@ -64,7 +64,7 @@ function carrito_QuitarArticulo(evento) {
     generarNotificacion(producto.nombre+" eliminado del carrito.",true)
 }
 function carrito_IncrementarArticulo(evento) {
-    var cantidadActual = carrito.incrementarCantidad($(this).parent().data('id').toString())
+    var cantidadActual = carrito.incrementarCantidad($(this).parent().data('id'))
     $(this).parent().find('.js-carrito-cantidad').html(cantidadActual)
     if (cantidadActual >= Carrito.CANTIDAD_MAXIMA){
         $(this).addClass('c-carrito__operador--limite')
@@ -75,7 +75,7 @@ function carrito_IncrementarArticulo(evento) {
     }
 }
 function carrito_DecrementarArticulo(evento) {
-    var cantidadActual = carrito.decrementarCantidad($(this).parent().data('id').toString())
+    var cantidadActual = carrito.decrementarCantidad($(this).parent().data('id'))
     $(this).parent().find('.js-carrito-cantidad').html(cantidadActual)
     if (cantidadActual <= Carrito.CANTIDAD_MINIMA){
         $(this).addClass('c-carrito__operador--limite')
