@@ -73,6 +73,7 @@ function carrito_IncrementarArticulo(evento) {
         $(this).parent().find('.js-carrito-decremento').removeClass('c-carrito__operador--limite')
         $(this).parent().find('.js-carrito-cantidad').removeClass("c-carrito__cantidad--limite")
     }
+    carrito_Actualizar()
 }
 function carrito_DecrementarArticulo(evento) {
     var cantidadActual = carrito.decrementarCantidad($(this).parent().data('id'))
@@ -84,6 +85,7 @@ function carrito_DecrementarArticulo(evento) {
         $(this).parent().find('.js-carrito-incremento').removeClass('c-carrito__operador--limite')
         $(this).parent().find('.js-carrito-cantidad').removeClass("c-carrito__cantidad--limite")
     }
+    carrito_Actualizar()
 }
 function carrito_ActualizarTriggers() {
     $(".js-carrito-incremento").on('click', carrito_IncrementarArticulo);
