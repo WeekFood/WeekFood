@@ -14,19 +14,11 @@
     padding: 25px 15px;
 }
 
-.c-principal__texto h1 {
+.c-principal__cabecera {
     padding-bottom: 25px;
     text-align: center;
     @media only screen and (min-width:$mobile-l) {
         font-size: 2rem;
-    }
-}
-
-.c-principal__texto h2 {
-    padding-bottom: 25px;
-    text-align: center;
-    @media only screen and (min-width:$mobile-l) {
-        font-size: 1.5rem;
     }
 }
 
