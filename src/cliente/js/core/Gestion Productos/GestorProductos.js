@@ -29,7 +29,7 @@ class GestorProductos {
     }
     /**
      * 
-     * @param {String} id Id del producto que se esta buscando
+     * @param {int} id Id del producto que se esta buscando
      * @param {Producto} actual producto actual en el array
      */
     filtrarId(id, actual) {
@@ -77,7 +77,7 @@ class GestorProductos {
     }
     /**
      * 
-     * @param {string} id Id a buscar
+     * @param {int} id Id a buscar
      */
     getProductoId(id) {
         return this.productos.find(producto => this.filtrarId(id, producto))
@@ -88,7 +88,7 @@ class GestorProductos {
     }
     /**
     * 
-    * @param {string} id Id del producto a generar la ventana modal.
+    * @param {int} id Id del producto a generar la ventana modal.
     * @param {String} tipo tipo de la ventana a generar, defecto info
     * @param {function} callback_Confirmar callback del boton confirmar en caso de que exista, defecto funcion vacia
     * @param {function} callback_Denegar callback del boton denegar en caso de que exista, defecto funcion vacia
