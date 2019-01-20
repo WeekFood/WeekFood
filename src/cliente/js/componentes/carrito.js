@@ -41,11 +41,12 @@ function carrito_AñadirArticulo(evento) {
     if ($(".c-carrito").hasClass('c-carrito--desaparecer')){
         if ($(".js-carrito").children().length < 2){
             $(".js-carrito").prepend(`
-            <div class="c-cabecera__notificacion">
+            <div class="c-cabecera__notificacion js-cabecera-notificacion">
             <i class="fas fa-circle c-cabecera__notificacion-interno"></i>
             </div>`)
         }
-        $(".js-carrito-icono").addClass("c-carrito__desplazado")
+        $(".js-cabecera-notificacion").removeClass("c-cabecera__notificacion-animacion")
+        setTimeout(()=>{$(".js-cabecera-notificacion").addClass("c-cabecera__notificacion-animacion")},10)
     }
 }
 function carrito_ProcesarArticulo(articulo) {
