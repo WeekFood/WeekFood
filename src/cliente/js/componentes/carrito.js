@@ -24,9 +24,10 @@ function carrito_Actualizar() {
     $(".c-carrito").html(html)
     carrito_ActualizarTriggers()
 }
-function carrito_AñadirArticulo(evento) {
-    $(this).addClass("c-producto__carrito--en-carrito")
-    var producto = GLOBAL_GESTOR_PRODUCTOS.getProductoId($(this).parent().data('id'))
+function carrito_AñadirArticulo(id) {
+    var producto = GLOBAL_GESTOR_PRODUCTOS.getProductoId(id)
+    console.log("ID",id)
+    console.log("PRODUCTO",producto)
     carrito.añadirProducto(producto)
     carrito_Actualizar()
     producto = carrito.getArticulo(producto.id)
@@ -48,6 +49,10 @@ function carrito_AñadirArticulo(evento) {
         $(".js-cabecera-notificacion").removeClass("c-cabecera__notificacion-animacion")
         setTimeout(()=>{$(".js-cabecera-notificacion").addClass("c-cabecera__notificacion-animacion")},10)
     }
+}
+function carrito_Añadir(evento) {
+    $(this).addClass("c-producto__carrito--en-carrito")
+    carrito_AñadirArticulo($(this).parent().data('id'))
 }
 function carrito_ProcesarArticulo(articulo) {
     var html = `<p data-id='` + articulo.id + `' class='c-carrito__articulo'>

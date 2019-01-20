@@ -80,7 +80,7 @@ function vista_Productos_cargarDe(puntoMontaje, categoriaPrincipal, categoria) {
                 }
             }
         })
-        $(".js-producto-carrito").off('click').on('click', carrito_AñadirArticulo)
+        $(".js-producto-carrito").off('click').on('click', carrito_Añadir)
         $(".js-producto-imagen").on('click', vista_Productos_generarModal)
         if ($($(".js-productos-destacados")[0]).children().length < 1) {
             $(".js-productos-destacados").remove()
