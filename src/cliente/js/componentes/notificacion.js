@@ -14,7 +14,7 @@ function generarNotificacion(contenido, flash = false) {
     }
     notificacion += contenido + "</div>"
     $(".p-principal").prepend(notificacion)
-    $(".js-notificacion--top").on('click',()=>{$(".js-notificacion--top").remove()})
-    $(".js-notificacion--flash").on('click',()=>{$(".js-notificacion--flash").remove()})
+    $(".js-notificacion--top").on('click', () => { $(".js-notificacion--top").remove() })
+    $(".js-notificacion--flash").on('click', () => { $(".js-notificacion--flash").remove() })
 
 }

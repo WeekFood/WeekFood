@@ -78,11 +78,25 @@ function carrito_QuitarArticulo(evento) {
 function carrito_IncrementarArticulo(evento) {
     var cantidadActual = carrito.incrementarCantidad($(this).parent().data('id'))
     $(this).parent().find('.js-carrito-cantidad').html(cantidadActual)
+    if (cantidadActual >= Carrito.CANTIDAD_MAXIMA) {
+        $(this).addClass('c-carrito__operador--limite')
+        $($(this).parent().find('.js-carrito-cantidad')).addClass("c-carrito__cantidad--limite")
+    } else {
+        $(this).parent().find('.js-carrito-decremento').removeClass('c-carrito__operador--limite')
+        $(this).parent().find('.js-carrito-cantidad').removeClass("c-carrito__cantidad--limite")
+    }
     carrito_Actualizar()
 }
 function carrito_DecrementarArticulo(evento) {
     var cantidadActual = carrito.decrementarCantidad($(this).parent().data('id'))
     $(this).parent().find('.js-carrito-cantidad').html(cantidadActual)
+    if (cantidadActual <= Carrito.CANTIDAD_MINIMA) {
+        $(this).addClass('c-carrito__operador--limite')
+        $(this).parent().find('.js-carrito-cantidad').addClass("c-carrito__cantidad--limite")
+    } else {
+        $(this).parent().find('.js-carrito-incremento').removeClass('c-carrito__operador--limite')
+        $(this).parent().find('.js-carrito-cantidad').removeClass("c-carrito__cantidad--limite")
+    }
     carrito_Actualizar()
 }
 function carrito_ActualizarTriggers() {

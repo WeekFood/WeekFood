@@ -102,7 +102,7 @@ class GestorProductos {
             contenido: generarModalProducto(producto),
         })
 
-        $('.js-modal-producto_añadir-carrito').on('click', function() {
+        $('.js-modal-producto_añadir-carrito').on('click', function () {
             carrito.añadirProducto(producto);
 
             let articulo = carrito.getArticulo(producto.id);
@@ -117,4 +117,4 @@ class GestorProductos {
             cerrarVentanaModal();
         });
     }
-} 
+}

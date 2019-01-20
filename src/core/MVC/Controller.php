@@ -3,7 +3,7 @@ namespace core\MVC;
 
 use \core;
 
-class Controller extends Router{
+class Controller extends Router {
 
     private $resourceName = "";
     private $resourcePath = "";
@@ -20,7 +20,7 @@ class Controller extends Router{
         $this->resourcePath = $config["site"]["resources"];
         $this->defaultRoutesConfig = $config["site"]["configs"] . "routes.php";
         $routesFile = $this->defaultRoutesConfig;
-        if(!file_exists($routesFile)) {
+        if (!file_exists($routesFile)) {
             throw new ControllerException("Router configuration file (" . $routesFile . ") not found.");
         }
         $routes = require_once $routesFile;
@@ -28,7 +28,7 @@ class Controller extends Router{
     }
 
     private function setResourceName($resourceName) {
-        if(!is_string($resourceName)) {
+        if (!is_string($resourceName)) {
             throw new ControllerException("Invalid Controller Name.");
         }
 
@@ -36,7 +36,7 @@ class Controller extends Router{
     }
 
     private function setActionName($actionName) {
-        if(!is_string($actionName)) {
+        if (!is_string($actionName)) {
             throw new ControllerException("Invalid Action Name.");
         }
 
@@ -44,16 +44,14 @@ class Controller extends Router{
     }
 
     public function run() {
-        if(($route = $this->parseUriRouter()) != null) {
+        if (($route = $this->parseUriRouter()) != null) {
             $this->setResourceName($route["resource"]);
             $this->setActionName($route["action"]);
-        }
-
-        else {
-            if (substr($_SERVER["REQUEST_URI"],0,5)=="/api/"){
+        } else {
+            if (substr($_SERVER["REQUEST_URI"], 0, 5) == "/api/") {
                 $this->setActionName("error");
                 $this->setResourceName("api");
-            }else{
+            } else {
                 $this->setResourceName($this->defaultResourceName);
                 $this->setActionName($this->defaultActionName);
             }
@@ -65,9 +63,9 @@ class Controller extends Router{
 
     private function includeResource($resourceName) {
         $resourceFile = $this->resourcePath . $resourceName . ".php";
-        if(!file_exists($resourceFile)) {
-            throw new ControllerException("Resource file (".$resourceFile.") cannot be found");
+        if (!file_exists($resourceFile)) {
+            throw new ControllerException("Resource file (" . $resourceFile . ") cannot be found");
         }
-        require_once($resourceFile);
+        require_once $resourceFile;
     }
 }

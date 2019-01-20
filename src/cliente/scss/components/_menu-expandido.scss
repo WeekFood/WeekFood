@@ -7,7 +7,7 @@
     position: relative;
     border-bottom-right-radius: 10px;
     &--oculto {
-        margin-top: -100%
+        margin-top: -100%;
     }
     &--desplegando {
         height: auto;
@@ -38,13 +38,13 @@
     @media only screen and (min-width: $mobile-l) {
         display: block;
         &--oculto {
-            margin-top: 0%
+            margin-top: 0%;
         }
     }
 }
 
 .c-menu-expandido__listado {
-    width: 200px
+    width: 200px;
 }
 
 .c-menu-expandido__borde {
@@ -66,7 +66,7 @@
 }
 
 .c-menu-expandido__checkbox {
-    margin: 0 5px
+    margin: 0 5px;
 }
 
 @keyframes c-menu-expandido__desplegar {

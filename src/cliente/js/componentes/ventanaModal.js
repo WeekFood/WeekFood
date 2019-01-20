@@ -82,9 +82,9 @@ function generarVentanaModal(opciones) {
             </div>`
             break
         case "error":
-        if (!opciones.hasOwnProperty("boton_Cerrar")) {
-            opciones.boton_Cerrar = "Cerrar";
-        }
+            if (!opciones.hasOwnProperty("boton_Cerrar")) {
+                opciones.boton_Cerrar = "Cerrar";
+            }
             modal += `<div class='c-ventana-modal__botones'>
             <div class='c-boton c-boton--peligro js-ventana-modal__cerrar'>` + opciones.boton_Cerrar + `</div>
             </div>`
