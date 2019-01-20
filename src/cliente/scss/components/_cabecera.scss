@@ -54,7 +54,7 @@
     background: blanchedalmond;
     padding: 0;
     border-radius: 10px;
-    animation: c-cabecera__notificacion 3s infinite ease-in;
+    animation: c-cabecera__notificacion 3s ease-in;
 }
 
 .c-cabecera__notificacion-interno {
@@ -66,19 +66,19 @@
 }
 
 @keyframes c-cabecera__notificacion {
-    0% {
+    40% {
         top: 8px
     }
-    5% {
+    45% {
         top: 4px
     }
-    10% {
+    50% {
         top: 8px
     }
-    15% {
+    55% {
         top: 4px
     }
-    20% {
+    60% {
         top: 8px
     }
 }
