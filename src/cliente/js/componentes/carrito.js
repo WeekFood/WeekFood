@@ -3,8 +3,7 @@ function carrito_Alternar() {
         $(".p-principal").prepend(`<div class='c-carrito'></div>`)
     } else {
         $(".c-carrito").toggleClass("c-carrito--desaparecer")
-        $(".js-carrito").children(".c-carrito__notificacion").remove()
-        $(".js-carrito-icono").removeClass("c-carrito__desplazado")
+        $(".js-carrito").children(".c-cabecera__notificacion").remove()
     } 
     $(".js-carrito").children("i").toggleClass("fa-angle-up").toggleClass("fa-shopping-cart")
     carrito_Actualizar()
@@ -41,7 +40,10 @@ function carrito_AñadirArticulo(evento) {
     }
     if ($(".c-carrito").hasClass('c-carrito--desaparecer')){
         if ($(".js-carrito").children().length < 2){
-            $(".js-carrito").prepend(`<i class="fas fa-bell c-carrito__notificacion"></i>`)
+            $(".js-carrito").prepend(`
+            <div class="c-cabecera__notificacion">
+            <i class="fas fa-circle c-cabecera__notificacion-interno"></i>
+            </div>`)
         }
         $(".js-carrito-icono").addClass("c-carrito__desplazado")
     }
