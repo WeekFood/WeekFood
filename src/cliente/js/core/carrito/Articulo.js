@@ -31,7 +31,7 @@ class Articulo extends Producto {
      */
     decrementarCantidad() {
         this.cantidad--;
-        
+
         return this.cantidad;
     }
 

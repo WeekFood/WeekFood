@@ -40,7 +40,7 @@
 .c-carrito__operador {
     margin: 0 10px;
     padding: 0 5px;
-    &--limite{
+    &--limite {
         opacity: 0.2;
     }
 }
@@ -49,8 +49,8 @@
     font-size: 20px;
     width: 25px;
     text-align: center;
-    &--limite{
-        color: red
+    &--limite {
+        color: red;
     }
 }
 
@@ -75,15 +75,15 @@
 
 @keyframes c-carrito__aparecer {
     0% {
-        transform: translateY(-100%)
+        transform: translateY(-100%);
     }
 }
 
 @keyframes c-carrito__desaparecer {
     99% {
-        transform: translateY(-110%)
+        transform: translateY(-110%);
     }
     100% {
-        transform: translateY(-200%)
+        transform: translateY(-200%);
     }
 }

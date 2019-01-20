@@ -3,10 +3,10 @@
     padding: 0.375rem 0.75rem;
     border-radius: 8px;
     line-height: 1.333;
-    
+
     background: $negro;
     color: $blanco;
-    text-align: center;    
+    text-align: center;
 
     cursor: pointer;
     transition: background 150ms;
@@ -17,7 +17,7 @@
             background: darken($acento-basico, 4%);
         }
     }
-    
+
     &--exito {
         background: $acento-exito;
         &:hover {

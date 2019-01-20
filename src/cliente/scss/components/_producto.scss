@@ -1,20 +1,20 @@
- .c-producto{
-   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-   background: $blanco;
-   @media only screen and (min-width:$mobile-l) {
-       max-width: 100%;
-       border-radius: 10px;
-   }
-   position: relative;
-   display: grid;
-   border-radius: 10px;
-   grid-template-areas: 
+.c-producto {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: $blanco;
+    position: relative;
+    display: grid;
+    border-radius: 10px;
+    grid-template-areas:
                         'imagen imagen'
                         'titulo titulo'
                         'precio carrito';
- }
+   @media only screen and (min-width: $mobile-l) {
+      max-width: 100%;
+      border-radius: 10px;
+   }
+}
 
- .c-producto__imagen{
+.c-producto__imagen {
     display: block;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -22,37 +22,41 @@
     height: 150px;
     grid-area: imagen;
     object-fit: cover;
- }
- .c-producto__imagen-destacado{
+}
+
+.c-producto__imagen-destacado {
     position: absolute;
     color: yellow;
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     top: -25px;
     left: -25px;
- }
- .c-producto__carrito{
-   border-radius: 10px;
-   font-size: 30px;
-   margin-left: auto;
-   grid-area: carrito;
-   align-self: center;
-   margin-right: 5px;
-   padding: 14px;
-  &--en-carrito{
-      color:green;
+}
+
+.c-producto__carrito {
+    border-radius: 10px;
+    font-size: 30px;
+    margin-left: auto;
+    grid-area: carrito;
+    align-self: center;
+    margin-right: 5px;
+    padding: 14px;
+    &--en-carrito {
+        color: green;
     }
 }
-.c-producto__precio{
-   padding: 14px;
-   font-size: 30px;
-   font-family: $fuente-principal;
-   grid-area: precio;
+
+.c-producto__precio {
+    padding: 14px;
+    font-size: 30px;
+    font-family: $fuente-principal;
+    grid-area: precio;
 }
-.c-producto__titulo{
-   grid-area: titulo;
-   font-family: $fuente-principal;
-   font-size: 20px;
-   padding: 10px;
-   overflow: hidden;
-   text-overflow: ellipsis;
+
+.c-producto__titulo {
+    grid-area: titulo;
+    font-family: $fuente-principal;
+    font-size: 20px;
+    padding: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

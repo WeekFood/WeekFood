@@ -18,7 +18,7 @@
 .c-cabecera__logo {
     display: block;
     margin: 0 auto;
-    
+
     @media only screen and (min-width: $mobile-l) {
         display: none;
     }
@@ -37,7 +37,7 @@
     font-size: 20px;
     @media only screen and (min-width: $mobile-l) {
         gap: 10px;
-    } 
+    }
 }
 
 .c-cabecera__boton {
