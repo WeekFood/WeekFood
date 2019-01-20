@@ -32,7 +32,7 @@ class ProductosResource extends Resource {
 
     public function getCategoriaAction() {
         $params = [
-            "categoriaEspecifica" => "%".$this->controller->getParam("categoriaEspecifica")."%"
+            "categoriaEspecifica" => "%" . $this->controller->getParam("categoriaEspecifica") . "%"
         ];
         $this->sql = 'SELECT * FROM productos WHERE categoria LIKE :categoriaEspecifica';
         $this->execSQL($params);

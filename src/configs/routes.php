@@ -5,42 +5,42 @@ return [
         "/" => [
             "route" => "/",
             "resource" => "cliente",
-            "action" => "index",
+            "action" => "index"
         ],
         "API" => [
             "route" => "api",
             "resource" => "api",
-            "action" => "error",
+            "action" => "error"
         ],
         "API, carrusel" => [
             "route" => "api/carrusel",
             "resource" => "productos",
-            "action" => "getCarrusel",
+            "action" => "getCarrusel"
         ],
         "API, menu" => [
             "route" => "api/menu",
             "resource" => "menu",
-            "action" => "getTodos",
+            "action" => "getTodos"
         ],
         "API, productos" => [
             "route" => "api/productos",
             "resource" => "productos",
-            "action" => "getTodos",
+            "action" => "getTodos"
         ],
         "API, Categorias (Principales)" => [
             "route" => "api/productos/categorias",
             "resource" => "productos",
-            "action" => "getCategoriasPrincipalesTodos",
+            "action" => "getCategoriasPrincipalesTodos"
         ],
         "API, Categorias" => [
             "route" => "api/productos/categorias/:categoriaPrincipal",
             "resource" => "productos",
-            "action" => "getCategoriasTodos",
+            "action" => "getCategoriasTodos"
         ],
         "API, Producto por categoria" => [
             "route" => "api/productos/categorias/:categoriaPrincipal/:categoriaEspecifica",
             "resource" => "productos",
-            "action" => "getCategoria",
+            "action" => "getCategoria"
         ]
     ]
 ];
