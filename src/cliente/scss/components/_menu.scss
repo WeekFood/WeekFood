@@ -16,17 +16,16 @@
         animation-timing-function: ease-out;
     }
     &--oculto {
-        margin-top:-100%
+        margin-top: -100%;
     }
 
     @media only screen and (min-width: $mobile-l) {
         display: block;
         border-bottom-right-radius: 10px;
-        &--oculto{
-            margin-top:0%
+        &--oculto {
+            margin-top: 0%;
         }
     }
-
 }
 
 .c-menu__boton {
@@ -45,17 +44,17 @@
 .c-menu__item {
     padding: 3px;
     padding-left: 10px;
-    -webkit-user-select: none;      /* Chrome all / Safari all */
-    -moz-user-select: none;         /* Firefox all */
-    -ms-user-select: none;          /* IE 10+ */
-    user-select: none;              /* Likely future */
+    -webkit-user-select: none; /* Chrome all / Safari all */
+    -moz-user-select: none; /* Firefox all */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Likely future */
     border-left: 2px solid transparent;
     &--destacado {
-      color: $rojo;
-      border-color: $rojo;
-      font-weight: bold;
+        color: $rojo;
+        border-color: $rojo;
+        font-weight: bold;
     }
-    &--oculto{
+    &--oculto {
         opacity: 0;
         margin-left: -30%;
     }
@@ -65,7 +64,7 @@
         animation-timing-function: ease-out;
     }
     @media only screen and (min-width: $mobile-l) {
-        &--oculto{
+        &--oculto {
             opacity: 1;
             margin-left: 0%;
         }

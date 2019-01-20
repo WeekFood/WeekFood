@@ -3,20 +3,21 @@
     width: 100vw;
     display: grid;
     grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto 1fr auto;
-        grid-template-areas: 'cabecera'
-                             'menu'
-                             'menu--expandido'
-                             'principal'
-                             'pie';
-    
+    grid-template-rows: auto auto auto 1fr auto;
+    grid-template-areas:
+                        'cabecera'
+                        'menu'
+                        'menu--expandido'
+                        'principal'
+                        'pie';
+
     @media only screen and (min-width: $mobile-l) {
         grid-template-rows: auto 1fr auto;
         grid-template-columns: 200px auto 1fr 1fr;
-        grid-template-areas: 'cabecera  cabecera        cabecera    cabecera'
+        grid-template-areas:
+                            'cabecera  cabecera        cabecera    cabecera'
                             'menu      menu--expandido principal   principal'
                             'pie       pie             pie         pie';
-        
     }
 }
 
@@ -26,7 +27,7 @@
 
 .l-distribucion__menu {
     grid-area: menu;
-    &--expandido{
+    &--expandido {
         grid-area: menu--expandido;
     }
 }

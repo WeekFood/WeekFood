@@ -1,5 +1,10 @@
 {
     "editor.insertSpaces": true,
     "editor.tabSize": 4,
-    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "phpfmt.indent_with_space": 4,
+    "phpfmt.psr2": false,
+    "phpfmt.passes": [
+        "StripExtraCommaInArray"
+    ]
 }

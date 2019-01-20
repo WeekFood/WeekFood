@@ -2,9 +2,9 @@
 namespace core\MVC;
 
 /**********
- Class Router: Esta clase nos servirá para leer nuestras rutas y cargar
- la que toque en cada momento
-**********/
+Class Router: Esta clase nos servirá para leer nuestras rutas y cargar
+la que toque en cada momento
+ **********/
 class Router {
     private $params = array();
     private $queries = array();
@@ -20,14 +20,14 @@ class Router {
     }
 
     public function getParam($key) {
-        if(array_key_exists($key, $this->params)) {
+        if (array_key_exists($key, $this->params)) {
             return $this->params[$key];
         }
         return null;
     }
 
     public function getQuery($key) {
-        if(array_key_exists($key, $this->params)) {
+        if (array_key_exists($key, $this->params)) {
             return $this->queries[$key];
         }
         return null;
@@ -43,13 +43,13 @@ class Router {
         $validRoute = null;
         $uri = trim($_SERVER["REQUEST_URI"], "/");
         $method = strtolower($_SERVER["REQUEST_METHOD"]);
-        foreach($this->routers[$method] as $currentRoute) {
+        foreach ($this->routers[$method] as $currentRoute) {
             $route = trim($currentRoute["route"], "/");
             $routerPattern = "#^" . preg_replace('/\\\:[a-zA-Z0-9\_\-]+/', '([a-zA-Z0-9\-\_]+)', preg_quote($route)) . "$#D";
             // Params values that will be assigned to there respective keys
             $matchesParams = array();
             // Check if the URI matches the current route
-            if(preg_match_all($routerPattern, $uri, $matchesParams)) {
+            if (preg_match_all($routerPattern, $uri, $matchesParams)) {
                 // Keys for the params
                 $keys = array();
                 // Remove the first element
