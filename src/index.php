@@ -5,7 +5,7 @@ $config = require_once "./configs/config.php";
 
 try {
     $mysql = new PDO(
-        "mysql:dbname=" . $config['db']['name'] . ";host=" . $config['db']['host'] . ";port=".$config['db']['port'],
+        "mysql:dbname=" . $config['db']['name'] . ";host=" . $config['db']['host'] . ";port=" . $config['db']['port'],
         $config['db']['user'],
         $config['db']['password']
     );
@@ -17,7 +17,7 @@ try {
     exit();
 }
 
-require_once("./core/AutoLoad.php");
+require_once "./core/AutoLoad.php";
 
 use \core\MVC\Controller;
 
