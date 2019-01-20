@@ -17,7 +17,7 @@ function carrito_Actualizar() {
         html += `
             <p class='c-carrito__articulo c-carrito__botones'>
             <span class='c-boton c-boton--basico js-carrito-ver-carrito'>(`+ carrito.getArticulos().length + `) Ver mi carrito </span>
-            <span class='c-boton c-boton--exito js-carrito-pagar'>`+precioEnEuros(carrito.getImporteTotal()) + `</span>
+            <span class='c-boton c-boton--exito c-carrito__boton js-carrito-pagar'>`+precioEnEuros(carrito.getImporteTotal()) + `</span>
             </p>
             `
     }
