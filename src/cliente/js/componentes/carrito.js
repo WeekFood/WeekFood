@@ -35,7 +35,7 @@ function carrito_AñadirArticulo(evento) {
     } else {
         generarNotificacion(producto.nombre + " añadido al carrito.", true)
     }
-    if (carrito.getArticulos().length == 1){
+    if (carrito.getArticulos().length == 1 && carrito.getArticulos()[0].cantidad == 1){
         carrito_Alternar() 
     }
     if ($(".c-carrito").hasClass('c-carrito--desaparecer')){
