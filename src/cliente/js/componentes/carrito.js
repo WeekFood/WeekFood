@@ -36,14 +36,10 @@ function carrito_AñadirArticulo(evento) {
     }else{
         generarNotificacion(producto.nombre+" añadido al carrito.",true)
     }
-    if ((carrito.getArticulos().length == 1 && $(".c-carrito").hasClass('c-carrito--desaparecer'))||($(".c-carrito").length < 1)){
+    if (carrito.getArticulos().length == 1){
         carrito_Alternar() 
-        if ($(".js-carrito").children().length < 2){
-            $(".js-carrito").prepend(`<i class="fas fa-bell c-carrito__notificacion"></i>`)
-        }
-        $(".js-carrito-icono").addClass("c-carrito__desplazado")
     }
-    else if($(".c-carrito").hasClass('c-carrito--desaparecer')){
+    if ($(".c-carrito").hasClass('c-carrito--desaparecer')){
         if ($(".js-carrito").children().length < 2){
             $(".js-carrito").prepend(`<i class="fas fa-bell c-carrito__notificacion"></i>`)
         }
