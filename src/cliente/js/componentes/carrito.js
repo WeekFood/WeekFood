@@ -38,11 +38,15 @@ function carrito_AñadirArticulo(evento) {
     }
     if ((carrito.getArticulos().length == 1 && $(".c-carrito").hasClass('c-carrito--desaparecer'))||($(".c-carrito").length < 1)){
         carrito_Alternar() 
-        $(".js-carrito").prepend(`<i class="fas fa-bell c-carrito__notificacion"></i>`)
+        if ($(".js-carrito").children().length < 2){
+            $(".js-carrito").prepend(`<i class="fas fa-bell c-carrito__notificacion"></i>`)
+        }
         $(".js-carrito-icono").addClass("c-carrito__desplazado")
     }
     else if($(".c-carrito").hasClass('c-carrito--desaparecer')){
-        $(".js-carrito").prepend(`<i class="fas fa-bell c-carrito__notificacion"></i>`)
+        if ($(".js-carrito").children().length < 2){
+            $(".js-carrito").prepend(`<i class="fas fa-bell c-carrito__notificacion"></i>`)
+        }
         $(".js-carrito-icono").addClass("c-carrito__desplazado")
     }
 }
