@@ -17,8 +17,7 @@ function vista_Productos_montarMenu(puntoMontaje, categoria) {
                         <div class='c-menu-expandido__borde' onclick='vista_Productos_alternarExtendido()'> 
                             <i class='fas fa-angle-right c-menu-expandido__flecha'></i> 
                         </div>
-                        <p>Filtro</p>
-                        <hr>
+                        <p class="c-menu-expandido__titulo">Filtro</p>
                         <ul class="c-menu-expandido__listado js-menu-expandido__listado">
                         </ul>
                     </div>
@@ -28,7 +27,11 @@ function vista_Productos_montarMenu(puntoMontaje, categoria) {
         GLOBAL_GESTOR_PRODUCTOS.getCategoriasEnCategoriaPrincipal(categoria["nombre"]).then((cates) => {
             var html = "";
             cates.forEach(cate => {
-                html += `<li><input type="checkbox" onclick="vista_Productos__montarContenido('` + puntoMontaje + `')" class="c-menu-expandido__checkbox js-menu-expandido__checkbox__` + cate + `" checked>` + cate + `</li>`
+                html += `<li>
+                            <label class="c-menu-expandido__item">
+                                <input type="checkbox" onclick="vista_Productos__montarContenido('` + puntoMontaje + `')" class="c-menu-expandido__checkbox js-menu-expandido__checkbox__` + cate + `" checked>` + cate + 
+                           `</label>
+                        </li>`;
             })
             $(".js-menu-expandido__listado").html(html)
             vista_Productos__montarContenido(puntoMontaje)
