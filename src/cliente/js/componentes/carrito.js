@@ -26,8 +26,6 @@ function carrito_Actualizar() {
 }
 function carrito_AñadirArticulo(id) {
     var producto = GLOBAL_GESTOR_PRODUCTOS.getProductoId(id)
-    console.log("ID",id)
-    console.log("PRODUCTO",producto)
     carrito.añadirProducto(producto)
     carrito_Actualizar()
     producto = carrito.getArticulo(producto.id)
