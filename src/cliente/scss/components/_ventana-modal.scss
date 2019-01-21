@@ -14,23 +14,20 @@
     top: 15vh;
     width: 90vw;
     left: 5vw;
-    height: 85vh;
+    height: 60vh;
     z-index: 1000;
     @media only screen and (min-width: $mobile-l) {
         &--pequeño {
             left: 25vw;
             width: 50vw;
-            height: 50vh;
         }
         &--medio {
-            left: 25vw;
-            width: 50vw;
-            height: 80vh;
+            left: 17.5vw;
+            width: 65vw;
         }
         &--grande {
-            left: 10vw;
-            width: 80vw;
-            height: 80vh;
+            left: 7.5vw;
+            width: 85vw;
         }
     }
     animation: c-ventana-modal__interno-aparecer;
