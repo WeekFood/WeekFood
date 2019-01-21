@@ -120,7 +120,7 @@ INSERT INTO `productos` (`id`, `categoria`, `nombre`, `descripcion`, `foto`, `de
 	(2, 'Macarrones', 'Macarrones boloñesa', 'Un delicioso plato.', 'macarrones-boloñesa.jpg', 1, 600),
 	(3, 'Paellas,Gambas', 'Paella de marisco', 'Verdadera paella valenciana.', 'paella-marisco.jpg', 1, 800),
 	(4, 'Pollo', 'Pechuga a la plancha', 'Plato saludable.', 'pechuga-a-la-plancha.jpg', 1, 500),
-	(5, 'Ensaladas,Pollo', 'Ensalada césar', 'Excelente ensalada con productos locales.', 'ensalada-cesar.jpg', 1, 700),
+	(5, 'Ensaladas,Pollo', 'Ensalada César', 'Excelente ensalada con productos locales.', 'ensalada-cesar.jpg', 1, 700),
 	(6, 'Pimientos,Pisto', 'Pimientos rellenos de pisto', 'Preparado al horno.', 'pimientos-pisto.jpg', 0, 400),
 	(7, 'Menestras', 'Menestra de verduras', 'Un delicioso plato.', 'menestra-verduras-jamon.jpg', 0, 500),
 	(8, 'Tortilla,Patatas', 'Tortilla de patata', 'Un delicioso plato.', 'tortilla-patata.jpg', 0, 550),
