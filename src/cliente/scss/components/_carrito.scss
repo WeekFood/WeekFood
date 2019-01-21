@@ -24,6 +24,9 @@
     justify-content: space-between;
 }
 
+.c-carrito__boton {
+    min-width: 90px;
+}
 .c-carrito__articulo {
     display: flex;
     margin: 5px 0;
@@ -65,12 +68,6 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
-
-.c-carrito__notificacion {
-    position: absolute;
-    color: red;
-    margin: -1px 0 0 -20px;
 }
 
 @keyframes c-carrito__aparecer {

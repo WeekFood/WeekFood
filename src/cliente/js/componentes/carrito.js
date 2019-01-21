@@ -3,8 +3,8 @@ function carrito_Alternar() {
         $(".p-principal").prepend(`<div class='c-carrito'></div>`)
     } else {
         $(".c-carrito").toggleClass("c-carrito--desaparecer")
-        $(".js-carrito").children(".c-carrito__notificacion").remove()
-    }
+        $(".js-carrito").children(".c-cabecera__notificacion").remove()
+    } 
     $(".js-carrito").children("i").toggleClass("fa-angle-up").toggleClass("fa-shopping-cart")
     carrito_Actualizar()
 }
@@ -17,7 +17,7 @@ function carrito_Actualizar() {
         html += `
             <p class='c-carrito__articulo c-carrito__botones'>
             <span class='c-boton c-boton--basico js-carrito-ver-carrito'>(`+ carrito.getArticulos().length + `) Ver mi carrito </span>
-            <span class='c-boton c-boton--exito js-carrito-pagar'>`+ precioEnEuros(carrito.getImporteTotal()) + `</span>
+            <span class='c-boton c-boton--exito c-carrito__boton js-carrito-pagar'>`+precioEnEuros(carrito.getImporteTotal()) + `</span>
             </p>
             `
     }
@@ -35,12 +35,18 @@ function carrito_AñadirArticulo(evento) {
     } else {
         generarNotificacion(producto.nombre + " añadido al carrito.", true)
     }
-    if ((carrito.getArticulos().length == 1 && $(".c-carrito").hasClass('c-carrito--desaparecer')) || ($(".c-carrito").length < 1)) {
-        carrito_Alternar()
-        $(".js-carrito").prepend(`<div class='c-carrito__notificacion'><i class="fas fa-bell"></i></div>`)
+    if (carrito.getArticulos().length == 1 && carrito.getArticulos()[0].cantidad == 1){
+        carrito_Alternar() 
     }
-    else if ($(".c-carrito").hasClass('c-carrito--desaparecer')) {
-        $(".js-carrito").prepend(`<div class='c-carrito__notificacion'><i class="fas fa-bell"></i></div>`)
+    if ($(".c-carrito").hasClass('c-carrito--desaparecer')){
+        if ($(".js-carrito").children().length < 2){
+            $(".js-carrito").prepend(`
+            <div class="c-cabecera__notificacion js-cabecera-notificacion">
+            <i class="fas fa-circle c-cabecera__notificacion-interno"></i>
+            </div>`)
+        }
+        $(".js-cabecera-notificacion").removeClass("c-cabecera__notificacion-animacion")
+        setTimeout(()=>{$(".js-cabecera-notificacion").addClass("c-cabecera__notificacion-animacion")},10)
     }
 }
 function carrito_ProcesarArticulo(articulo) {
