@@ -46,6 +46,9 @@
 .c-menu-expandido__titulo {
     font-size: 18px;
     margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid;
+    border-bottom-color: $rojo;
 }
 
 .c-menu-expandido__item {
