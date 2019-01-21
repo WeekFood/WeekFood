@@ -48,7 +48,7 @@
     margin-bottom: 10px;
     padding-bottom: 5px;
     border-bottom: 1px solid;
-    border-bottom-color: $rojo;
+    border-bottom-color: #cacaca;
 }
 
 .c-menu-expandido__item {
@@ -63,7 +63,7 @@
 }
 
 .c-menu-expandido__borde {
-    background: #ff2525;
+    background: $rojo;
     width: 20px;
     height: 100%;
     position: absolute;
