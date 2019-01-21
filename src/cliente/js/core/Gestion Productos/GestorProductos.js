@@ -103,17 +103,7 @@ class GestorProductos {
         })
 
         $('.js-modal-producto_añadir-carrito').on('click', function () {
-            carrito.añadirProducto(producto);
-
-            let articulo = carrito.getArticulo(producto.id);
-            carrito_Actualizar();
-
-            if (articulo.cantidad > 1) {
-                generarNotificacion(articulo.nombre + " tienes " + articulo.cantidad + " unidades.", true);
-            } else {
-                generarNotificacion(articulo.nombre + " añadido al carrito.", true);
-            }
-
+            carrito_AñadirArticulo(producto.id);
             cerrarVentanaModal();
         });
     }
