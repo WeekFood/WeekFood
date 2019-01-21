@@ -15,24 +15,24 @@ class ProductosResource extends Resource {
         $this->setData();
     }
 
-    public function getCategoriasPrincipalesTodosAction() {
-        $this->sql = 'SELECT * FROM categoriasprincipales';
+    public function getCategoriasPrincipalesAction() {
+        $this->sql = 'SELECT nombre FROM categoriasprincipales';
         $this->execSQL();
         $this->setData();
     }
 
-    public function getCategoriasTodosAction() {
+    public function getCategoriaPrincipalAction() {
         $params = [
-            "categoriaPrincipal" => $this->controller->getParam("categoriaPrincipal")
+            "nombre" => $this->controller->getParam("nombre")
         ];
-        $this->sql = 'SELECT nombre FROM categorias WHERE subCategoriaDe = :categoriaPrincipal';
+        $this->sql = 'SELECT nombre FROM categorias WHERE subCategoriaDe = :nombre';
         $this->execSQL($params);
         $this->setData();
     }
-
-    public function getCategoriaAction() {
+    
+    public function getCategoriaAction(){
         $params = [
-            "categoriaEspecifica" => "%" . $this->controller->getParam("categoriaEspecifica") . "%"
+            "categoriaEspecifica" => "%" . $this->controller->getParam("categoria") . "%"
         ];
         $this->sql = 'SELECT * FROM productos WHERE categoria LIKE :categoriaEspecifica';
         $this->execSQL($params);
