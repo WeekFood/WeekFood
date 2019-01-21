@@ -117,13 +117,13 @@ LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
 INSERT INTO `productos` (`id`, `categoria`, `nombre`, `descripcion`, `foto`, `destacado`, `precio`) VALUES
 	(1, 'Cerdo', 'Lomo asado', 'Lomo de cerdo asado jugoso.', 'lomo-asado.jpg', 1, 1000),
-	(2, 'Macarrones', 'Macarrones boloñesa', 'Un delicioso plato.', 'macarrones-boloñesa.jpg', 1, 600),
+	(2, 'Macarrones', 'Macarrones boloñesa', 'Un clásico de la cocina italiana.', 'macarrones-boloñesa.jpg', 1, 600),
 	(3, 'Paellas,Gambas', 'Paella de marisco', 'Verdadera paella valenciana.', 'paella-marisco.jpg', 1, 800),
-	(4, 'Pollo', 'Pechuga a la plancha', 'Plato saludable, aprobado por Sergio Peinado.', 'pechuga-a-la-plancha.jpg', 1, 500),
+	(4, 'Pollo', 'Pechuga a la plancha', 'Plato sano y jugoso.', 'pechuga-a-la-plancha.jpg', 1, 500),
 	(5, 'Ensaladas,Pollo', 'Ensalada César', 'Excelente ensalada con productos locales.', 'ensalada-cesar.jpg', 1, 700),
 	(6, 'Pimientos,Pisto', 'Pimientos rellenos de pisto', 'Preparado al horno.', 'pimientos-pisto.jpg', 0, 400),
-	(7, 'Menestras', 'Menestra de verduras', 'Con hortalizas recien cogidas del campo.', 'menestra-verduras-jamon.jpg', 0, 500),
-	(8, 'Tortilla,Patatas', 'Tortilla de patata', 'Plato típico español.', 'tortilla-patata.jpg', 0, 550),
+	(7, 'Menestras', 'Menestra de verduras', 'Plato repleto de vitaminas, minerales y un gran número de nutrientes necesarios para nuestro organismo+.', 'menestra-verduras-jamon.jpg', 0, 500),
+	(8, 'Tortilla,Patatas', 'Tortilla de patata', 'Tortilla muy jugosa con cebolla.', 'tortilla-patata.jpg', 0, 550),
 	(9, 'Tortilla', 'Tortilla francesa', 'Hecha con huevos seleccionados y con aceite de oliva.', 'tortilla-francesa.jpg', 0, 350),
 	(10, 'Tortilla,Puerros,Espinacas', 'Tortilla de espinacas y puerros', 'Tortilla muy jugosa y con muchos nutrientes.', 'tortilla-espinacas-puerros.jpg', 0, 450);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
