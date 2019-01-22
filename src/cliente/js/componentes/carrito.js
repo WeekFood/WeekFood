@@ -31,9 +31,9 @@ function carrito_AñadirArticulo(id) {
     carrito_Actualizar()
     producto = carrito.getArticulo(producto.id)
     if (producto.cantidad > 1) {
-        generarNotificacion(producto.nombre + " tienes " + producto.cantidad + " unidades.", true)
+        generarNotificacion("Tienes " + producto.cantidad + " raciones de " + producto.nombre + " en el carrito.", true)
     } else {
-        generarNotificacion(producto.nombre + " añadido al carrito.", true)
+        generarNotificacion(producto.nombre + " ha sido añadido al carrito.", true)
     }
     if (carrito.getArticulos().length == 1 && carrito.getArticulos()[0].cantidad == 1){
         carrito_Alternar() 
@@ -80,7 +80,7 @@ function carrito_QuitarArticulo(evento) {
     producto = GLOBAL_GESTOR_PRODUCTOS.getProductoId($(this).parent().data('id'))
     carrito.quitarArticulo(producto.id)
     carrito_Actualizar()
-    generarNotificacion(producto.nombre + " eliminado del carrito.", true)
+    generarNotificacion("Has eliminado " + producto.nombre + " del carrito.", true)
 }
 function carrito_IncrementarArticulo(evento) {
     var cantidadActual = carrito.incrementarCantidad($(this).parent().data('id'))
