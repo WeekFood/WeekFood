@@ -4,6 +4,10 @@ var GLOBAL_VISTAS = {
     productos: vista_Productos,
     ofertas: vista_Ofertas
 }
+var GLOBAL_REDIRECCIONES = {
+    productos:'ofertas',
+    ofertas:'ofertas',
+}
 var GLOBAL_VISTA_ACTUAL = "";
 var GLOBAL_CACHE_JSONS = new CacheJSONs();
 var GLOBAL_NOTIFICACION_TOP = null;

@@ -1,4 +1,7 @@
 function vista_Productos(puntoMontaje, categoria) {
+    if ($(puntoMontaje).children().length < 1 || $(puntoMontaje).children(".c-final").length > 0){
+        cargarVista('ofertas'); return false;
+    }
     if (GLOBAL_VISTA_ACTUAL != "productos" && GLOBAL_VISTA_ACTUAL != "ofertas") {
         $.when(montarMenu("/api/menu", "productos")).then(() => { vista_Productos_montarMenu(puntoMontaje, categoria) });
     } else {
