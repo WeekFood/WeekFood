@@ -121,7 +121,7 @@ INSERT INTO `productos` (`id`, `categoria`, `nombre`, `descripcion`, `foto`, `de
 	(3, 'Paellas,Gambas', 'Paella de marisco', 'Verdadera paella valenciana.', 'paella-marisco.jpg', 1, 800),
 	(4, 'Pollo', 'Pechuga a la plancha', 'Exquisita pechuga de pollo a la plancha.', 'pechuga-a-la-plancha.jpg', 1, 500),
 	(5, 'Ensaladas,Pollo', 'Ensalada César', 'Excelente ensalada con productos locales.', 'ensalada-cesar.jpg', 1, 700),
-	(6, 'Pimientos,Pisto', 'Una receta muy mediterránea, sin gluten y llena de sabor.', 'Preparado al horno.', 'pimientos-pisto.jpg', 0, 400),
+	(6, 'Pimientos,Pisto', 'Pimientos rellenos.', 'Una receta muy mediterránea, sin gluten y llena de sabor.', 'pimientos-pisto.jpg', 0, 400),
 	(7, 'Menestras', 'Menestra de verduras', 'Plato repleto de vitaminas, minerales y un gran número de nutrientes necesarios para nuestro organismo+.', 'menestra-verduras-jamon.jpg', 0, 500),
 	(8, 'Tortilla,Patatas', 'Tortilla de patata', 'Tortilla muy sabrosa con cebolla.', 'tortilla-patata.jpg', 0, 550),
 	(9, 'Tortilla', 'Tortilla francesa', 'Hecha con huevos seleccionados y con aceite de oliva.', 'tortilla-francesa.jpg', 0, 350),
