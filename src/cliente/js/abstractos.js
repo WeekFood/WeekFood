@@ -1,7 +1,8 @@
 var GLOBAL_VISTAS = {
     error: vista_Error,
     portada: vista_Portada,
-    productos: vista_Productos
+    productos: vista_Productos,
+    quienesSomos: vista_QuienesSomos,
 }
 var GLOBAL_VISTA_ACTUAL = "";
 var GLOBAL_CACHE_JSONS = new CacheJSONs();

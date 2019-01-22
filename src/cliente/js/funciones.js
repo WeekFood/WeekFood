@@ -73,3 +73,19 @@ function precioEnDollar(precio) {
 function precioEnLibra(precio) {
     return (precio * 0.88).toString() + " £"
 }
+function cargarEnIdioma(contenido, apartado, idioma = 0) {
+    if (contenido.hasOwnProperty(apartado)) {
+        if (contenido[apartado].length >= idioma + 1) {
+            if (contenido[apartado][idioma].length > 0) {
+                return contenido[apartado][idioma]
+            } else {
+                console.warn(apartado, "no tiene contenido en el idioma", idioma)
+                return contenido[apartado][0]
+            }
+        } else {
+            console.warn(apartado, "no tiene el idioma", idioma)
+            return contenido[apartado][0]
+        }
+    }
+    throw 'El contenido de la página no tiene el apartado seleccionado.'
+}
