@@ -10,14 +10,14 @@ function carrito_Alternar() {
 }
 function carrito_Actualizar() {
     var html = ""
-    if (carrito.getArticulos().length < 1) {
+    if (GLOBAL_CARRITO.getArticulos().length < 1) {
         html = "<p class='c-carrito__vacio'><i class='far fa-sad-cry fa-3x'></i><br><br>Tu carrito está vacio</p>"
     } else {
-        carrito.getArticulos().slice(Math.max(carrito.getArticulos().length - 5, 0)).forEach((articulo) => { html += carrito_ProcesarArticulo(articulo) })
+        GLOBAL_CARRITO.getArticulos().slice(Math.max(GLOBAL_CARRITO.getArticulos().length - 5, 0)).forEach((articulo) => { html += carrito_ProcesarArticulo(articulo) })
         html += `
             <p class='c-carrito__articulo c-carrito__botones'>
-            <span class='c-boton c-boton--basico js-carrito-ver-carrito'>(`+ carrito.getArticulos().length + `) Ver mi carrito </span>
-            <span class='c-boton c-boton--exito c-carrito__boton js-carrito-pagar'>`+precioEnEuros(carrito.getImporteTotal()) + `</span>
+            <span class='c-boton c-boton--basico js-carrito-ver-carrito'>(`+ GLOBAL_CARRITO.getArticulos().length + `) Ver mi carrito </span>
+            <span class='c-boton c-boton--exito c-carrito__boton js-carrito-pagar'>`+precioEnEuros(GLOBAL_CARRITO.getImporteTotal()) + `</span>
             </p>
             `
     }
@@ -27,15 +27,15 @@ function carrito_Actualizar() {
 function carrito_AñadirArticulo(evento) {
     $(this).addClass("c-producto__carrito--en-carrito")
     var producto = GLOBAL_GESTOR_PRODUCTOS.getProductoId($(this).parent().data('id'))
-    carrito.añadirProducto(producto)
+    GLOBAL_CARRITO.añadirProducto(producto)
     carrito_Actualizar()
-    producto = carrito.getArticulo(producto.id)
+    producto = GLOBAL_CARRITO.getArticulo(producto.id)
     if (producto.cantidad > 1) {
         generarNotificacion(producto.nombre + " tienes " + producto.cantidad + " unidades.", true)
     } else {
         generarNotificacion(producto.nombre + " añadido al carrito.", true)
     }
-    if (carrito.getArticulos().length == 1 && carrito.getArticulos()[0].cantidad == 1){
+    if (GLOBAL_CARRITO.getArticulos().length == 1 && GLOBAL_CARRITO.getArticulos()[0].cantidad == 1){
         carrito_Alternar() 
     }
     if ($(".c-carrito").hasClass('c-carrito--desaparecer')){
@@ -53,17 +53,17 @@ function carrito_ProcesarArticulo(articulo) {
     var html = `<p data-id='` + articulo.id + `' class='c-carrito__articulo'>
     <span class='c-carrito__nombre js-carrito-nombre'>`+ articulo.nombre + `</span>
     <span class='c-carrito__operador js-carrito-incremento`
-    if (articulo.cantidad >= Carrito.CANTIDAD_MAXIMA) {
+    if (articulo.cantidad >= GLOBAL_CARRITO.CANTIDAD_MAXIMA) {
         html += ' c-carrito__operador--limite'
     }
     html += `'><i class="fas fa-plus"></i></span>
     <span class='c-carrito__cantidad js-carrito-cantidad`
-    if (articulo.cantidad <= Carrito.CANTIDAD_MINIMA || articulo.cantidad >= Carrito.CANTIDAD_MAXIMA) {
+    if (articulo.cantidad <= GLOBAL_CARRITO.CANTIDAD_MINIMA || articulo.cantidad >= GLOBAL_CARRITO.CANTIDAD_MAXIMA) {
         html += ' c-carrito__cantidad--limite'
     }
     html += `'>` + articulo.cantidad + `</span>
     <span class='c-carrito__operador js-carrito-decremento`
-    if (articulo.cantidad <= Carrito.CANTIDAD_MINIMA) {
+    if (articulo.cantidad <= GLOBAL_CARRITO.CANTIDAD_MINIMA) {
         html += ' c-carrito__operador--limite'
     }
     html += `'><i class="fas fa-minus"></i></span>
@@ -77,17 +77,17 @@ function carrito_QuitarArticulo(evento) {
         $(producto).children('.js-producto-carrito').removeClass('c-producto__carrito--en-carrito')
     }
     producto = GLOBAL_GESTOR_PRODUCTOS.getProductoId($(this).parent().data('id'))
-    carrito.quitarArticulo(producto.id)
+    GLOBAL_CARRITO.quitarArticulo(producto.id)
     carrito_Actualizar()
     generarNotificacion(producto.nombre + " eliminado del carrito.", true)
 }
 function carrito_IncrementarArticulo(evento) {
-    var cantidadActual = carrito.incrementarCantidad($(this).parent().data('id'))
+    var cantidadActual = GLOBAL_CARRITO.incrementarCantidad($(this).parent().data('id'))
     $(this).parent().find('.js-carrito-cantidad').html(cantidadActual)
     carrito_Actualizar()
 }
 function carrito_DecrementarArticulo(evento) {
-    var cantidadActual = carrito.decrementarCantidad($(this).parent().data('id'))
+    var cantidadActual = GLOBAL_CARRITO.decrementarCantidad($(this).parent().data('id'))
     $(this).parent().find('.js-carrito-cantidad').html(cantidadActual)
     carrito_Actualizar()
 }

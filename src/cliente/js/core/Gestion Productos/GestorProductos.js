@@ -103,9 +103,9 @@ class GestorProductos {
         })
 
         $('.js-modal-producto_añadir-carrito').on('click', function () {
-            carrito.añadirProducto(producto);
+            GLOBAL_CARRITO.añadirProducto(producto);
 
-            let articulo = carrito.getArticulo(producto.id);
+            let articulo = GLOBAL_CARRITO.getArticulo(producto.id);
             carrito_Actualizar();
 
             if (articulo.cantidad > 1) {
