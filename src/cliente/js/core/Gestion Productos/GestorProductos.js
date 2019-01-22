@@ -1,6 +1,7 @@
 class GestorProductos {
     constructor() {
         this.productos = []
+        this.productosDestacados = []
         this.categoriasPrincipales = []
         GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/").then((categoriasPrincipales) => {
             if (categoriasPrincipales !== null) {
@@ -60,7 +61,10 @@ class GestorProductos {
      * @param {String} categoria Categoria a buscar
      */
     getProductosCategoria(categoriaPrincipal, categoria) {
-        var productosFiltrados = this.productos.filter(producto => this.filtrarCategoria(categoria, producto))
+        var productosFiltrados = []
+        productosFiltrados = productosFiltrados.concat(
+            this.productosDestacados.filter(producto => this.filtrarCategoria(categoria, producto)),
+            this.productos.filter(producto => this.filtrarCategoria(categoria, producto)))
         if (productosFiltrados.length > 0) {
             return $.when(productosFiltrados)
         } else {
@@ -68,7 +72,11 @@ class GestorProductos {
                 var nuevosProductos = []
                 respuesta.forEach(prod => {
                     var nuevoProducto = new Producto(prod.id, prod.nombre, prod.foto, (prod.destacado == 1), prod.categoria.split(","), prod.descripcion, prod.precio)
-                    this.productos.push(nuevoProducto)
+                    if (nuevoProducto.destacado) {
+                        this.productosDestacados.push(nuevoProducto)
+                    } else {
+                        this.productos.push(nuevoProducto)
+                    }
                     nuevosProductos.push(nuevoProducto)
                 });
                 return nuevosProductos
