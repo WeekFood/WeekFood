@@ -33,7 +33,7 @@ function carrito_AñadirArticulo(id) {
     if (producto.cantidad > 1) {
         generarNotificacion("Tienes " + producto.cantidad + " raciones de " + producto.nombre + " en el carrito.", true)
     } else {
-        generarNotificacion("Ha sido añadido " + producto.nombre + " al carrito.", true)
+        generarNotificacion("Has añadido " + producto.nombre + " al carrito.", true)
     }
     if (carrito.getArticulos().length == 1 && carrito.getArticulos()[0].cantidad == 1){
         carrito_Alternar() 
