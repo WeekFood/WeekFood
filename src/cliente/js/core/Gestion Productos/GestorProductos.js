@@ -115,4 +115,18 @@ class GestorProductos {
             cerrarVentanaModal();
         });
     }
+
+    getProductosDestacados(){
+        if (this.productosDestacados.length > 0) {
+            return $.when(productosDestacados)
+        } else {
+            return GLOBAL_CACHE_JSONS.getJSON("/api/productos?destacados=1").then((respuesta) => {
+                respuesta.forEach(prod => {
+                    var nuevoProducto = new Producto(prod.id, prod.nombre, prod.foto, (prod.destacado == 1), prod.categoria.split(","), prod.descripcion, prod.precio)
+                    this.productosDestacados.push(nuevoProducto)
+                });
+                return this.productosDestacados
+            })
+        }
+    }
 }
