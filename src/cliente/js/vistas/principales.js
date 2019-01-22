@@ -50,7 +50,9 @@ function vista_Ofertas(puntoMontaje) {
                 $('.js-productos-destacados').append(vista_Productos_generarProducto(producto))
             }
         })
-        $(".js-producto-carrito").off('click').on('click', carrito_AñadirArticulo)
+        $(".js-producto-carrito").off('click').on('click', function() {
+            carrito_AñadirArticulo($(this).parent().data('id'));
+        })
         $(".js-producto-imagen").on('click', vista_Productos_generarModal)
     })
 }
