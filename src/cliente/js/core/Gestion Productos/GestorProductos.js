@@ -1,7 +1,6 @@
 class GestorProductos {
     constructor() {
         this.productos = []
-        this.productosDestacados = []
         this.categoriasPrincipales = []
         GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/").then((categoriasPrincipales) => {
             if (categoriasPrincipales !== null) {
@@ -41,7 +40,9 @@ class GestorProductos {
      * 
      */
     getCategoriasEnCategoriaPrincipal(categoriaPrincipal) {
+        console.log(categoriaPrincipal)
         var categoriaEncontrada = this.categoriasPrincipales.find(categoria => this.filtrarCategoriaPrincipal(categoriaPrincipal, categoria))
+        console.log(categoriaEncontrada)
         if (categoriaEncontrada == undefined) { return undefined }
         if (categoriaEncontrada.categorias.length > 0) {
             return $.when(categoriaEncontrada.categorias[0])
@@ -61,10 +62,7 @@ class GestorProductos {
      * @param {String} categoria Categoria a buscar
      */
     getProductosCategoria(categoriaPrincipal, categoria) {
-        var productosFiltrados = []
-        productosFiltrados = productosFiltrados.concat(
-            this.productosDestacados.filter(producto => this.filtrarCategoria(categoria, producto)),
-            this.productos.filter(producto => this.filtrarCategoria(categoria, producto)))
+        var productosFiltrados = this.productos.filter(producto => this.filtrarCategoria(categoria, producto))
         if (productosFiltrados.length > 0) {
             return $.when(productosFiltrados)
         } else {
@@ -72,11 +70,7 @@ class GestorProductos {
                 var nuevosProductos = []
                 respuesta.forEach(prod => {
                     var nuevoProducto = new Producto(prod.id, prod.nombre, prod.foto, (prod.destacado == 1), prod.categoria.split(","), prod.descripcion, prod.precio)
-                    if (nuevoProducto.destacado) {
-                        this.productosDestacados.push(nuevoProducto)
-                    } else {
-                        this.productos.push(nuevoProducto)
-                    }
+                    this.productos.push(nuevoProducto)
                     nuevosProductos.push(nuevoProducto)
                 });
                 return nuevosProductos
@@ -88,11 +82,7 @@ class GestorProductos {
      * @param {int} id Id a buscar
      */
     getProductoId(id) {
-        var producto = this.productos.find(producto => this.filtrarId(id, producto))
-        if (producto == undefined) {
-            producto = this.productosDestacados.find(producto => this.filtrarId(id, producto))
-        }
-        return producto
+        return this.productos.find(producto => this.filtrarId(id, producto))
     }
 
     getCategoriasPrincipales() {
@@ -121,15 +111,18 @@ class GestorProductos {
     }
 
     getProductosDestacados() {
-        if (this.productosDestacados.length > 0) {
-            return $.when(this.productosDestacados)
+        var productosFiltrados = this.productos.filter(producto => producto.destacado)
+        if (productosFiltrados.length > 0) {
+            return $.when(productosFiltrados)
         } else {
             return GLOBAL_CACHE_JSONS.getJSON("/api/productos?destacados=1").then((respuesta) => {
+                var nuevosProductos = []
                 respuesta.forEach(prod => {
                     var nuevoProducto = new Producto(prod.id, prod.nombre, prod.foto, (prod.destacado == 1), prod.categoria.split(","), prod.descripcion, prod.precio)
-                    this.productosDestacados.push(nuevoProducto)
+                    this.productos.push(nuevoProducto)
+                    nuevosProductos.push(nuevoProducto)
                 });
-                return this.productosDestacados
+                return nuevosProductos
             })
         }
     }
