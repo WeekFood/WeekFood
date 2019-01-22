@@ -1,0 +1,68 @@
+.c-quienes-somos {
+    display: grid;
+    grid-template-areas: "banderas banderas banderas" "cabecera cabecera cabecera" "contenido contenido contenido" "equipo attCliente redes";
+    height: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 60px auto 1fr auto;
+}
+
+.c-quienes-somos__banderas {
+    grid-area: banderas;
+}
+
+.c-quienes-somos__contenedor-bandera {
+    height: 60px;
+    padding: 5px;
+    display: inline-block;
+    border-radius: 50px;
+    &--seleccionada {
+        background: $rojo;
+    }
+}
+
+.c-quienes-somos__bandera {
+    height: 100%;
+}
+
+.c-quienes-somos__cabecera {
+    grid-area: cabecera;
+    text-align: center;
+    line-height: 40px;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 5px 50px;
+    border-radius: 50px;
+}
+
+.c-quienes-somos__contenido {
+    grid-area: contenido;
+}
+
+.c-quienes-somos__contenido-interno {
+    line-height: 35px;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 15px 25px 15px 50px;
+    border-radius: 50px;
+    margin: 20px 50px;
+}
+
+.c-quienes-somos__equipo {
+    grid-area: equipo;
+}
+
+.c-quienes-somos__attCliente {
+    grid-area: attCliente;
+}
+
+.c-quienes-somos__redes {
+    grid-area: redes;
+}
+
+.c-quienes-somos__titulo {
+    font-size: 30px;
+}
+
+.c-quienes-somos__titulo-menor {
+    font-size: 20px;
+}
