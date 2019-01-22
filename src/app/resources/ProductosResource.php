@@ -38,4 +38,10 @@ class ProductosResource extends Resource {
         $this->execSQL($params);
         $this->setData();
     }
+
+    public function getDestacadosAction() {
+        $this->sql = 'SELECT * FROM productos WHERE destacado = 1';
+        $this->execSQL();
+        $this->setData();
+    }
 }

@@ -41,6 +41,11 @@ return [
             "route" => "api/productos/categorias/:categoriaPrincipal/:categoriaEspecifica",
             "resource" => "productos",
             "action" => "getCategoria"
-        ]
+        ],
+        "API, Productos destacados" => [
+            "route" => "api/productos?destacados=1",
+            "resource" => "productos",
+            "action" => "getDestacados"
+        ],
     ]
 ];
