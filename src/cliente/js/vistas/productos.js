@@ -1,5 +1,5 @@
 function vista_Productos(puntoMontaje, categoria) {
-    if (GLOBAL_VISTA_ACTUAL != "productos") {
+    if (GLOBAL_VISTA_ACTUAL != "productos" && GLOBAL_VISTA_ACTUAL != "ofertas") {
         $.when(montarMenu("/api/menu", "productos")).then(() => { vista_Productos_montarMenu(puntoMontaje, categoria) });
     } else {
         vista_Productos_montarMenu(puntoMontaje, categoria);

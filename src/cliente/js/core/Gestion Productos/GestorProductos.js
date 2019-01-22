@@ -40,9 +40,7 @@ class GestorProductos {
      * 
      */
     getCategoriasEnCategoriaPrincipal(categoriaPrincipal) {
-        console.log(categoriaPrincipal)
         var categoriaEncontrada = this.categoriasPrincipales.find(categoria => this.filtrarCategoriaPrincipal(categoriaPrincipal, categoria))
-        console.log(categoriaEncontrada)
         if (categoriaEncontrada == undefined) { return undefined }
         if (categoriaEncontrada.categorias.length > 0) {
             return $.when(categoriaEncontrada.categorias[0])
