@@ -58,7 +58,6 @@ function vista_Productos__montarContenido(puntoMontaje,categoria) {
    }
 }
 function vista_Productos_montarContenidoCategoria(puntoMontaje,categoria){
-    console.log('cargando',categoria)
     GLOBAL_GESTOR_PRODUCTOS.getCategoriasEnCategoriaPrincipal(categoria).then((cates) => {
         var montados = 0
         $(puntoMontaje).html("");
