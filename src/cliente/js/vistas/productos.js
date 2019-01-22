@@ -10,6 +10,22 @@ function vista_Productos(puntoMontaje, categoria) {
     }
 }
 
+function vista_Productos_Ofertas(puntoMontaje) {
+    $.when(montarMenu("/api/menu", "productos")).then(() => { vista_Productos_montarMenu(puntoMontaje, false) });
+    $(puntoMontaje).html("<div class='c-productos js-productos-destacados'></div>")
+    GLOBAL_GESTOR_PRODUCTOS.getProductosDestacados().then((productos) => {
+        productos.forEach(producto => {
+            if (!vista_Productos_existeEnGrid(producto.id)) {
+                $('.js-productos-destacados').append(vista_Productos_generarProducto(producto))
+            }
+        })
+        $(".js-producto-carrito").off('click').on('click', function() {
+            carrito_AñadirArticulo($(this).parent().data('id'));
+        })
+        $(".js-producto-imagen").on('click', vista_Productos_generarModal)
+    })
+}
+
 function vista_Productos_montarMenu(puntoMontaje, categoria) {
     if (categoria.hasOwnProperty("nombre")) {
         $(".c-menu__sub").removeClass("c-menu__item--destacado")

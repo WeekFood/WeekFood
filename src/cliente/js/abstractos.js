@@ -2,7 +2,7 @@ var GLOBAL_VISTAS = {
     error: vista_Error,
     portada: vista_Portada,
     productos: vista_Productos,
-    ofertas: vista_Ofertas
+    ofertas: vista_Productos_Ofertas
 }
 var GLOBAL_REDIRECCIONES = {
     productos:'ofertas',
