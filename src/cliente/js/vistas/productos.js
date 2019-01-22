@@ -1,5 +1,5 @@
 function vista_Productos(puntoMontaje, categoria) {
-    if ($(puntoMontaje).children().length < 1 || $(puntoMontaje).children(".c-final").length > 0){
+    if (($(puntoMontaje).children().length < 1 || $(puntoMontaje).children(".c-final").length > 0) && GLOBAL_VISTA_ACTUAL !== "productos"){
         cargarVista('ofertas'); 
         return false;
     }
@@ -35,6 +35,7 @@ function vista_Productos_montarMenu(puntoMontaje, categoria) {
     } else {
         if ($(".js-menu-productos__contenedor").length < 1) {
             var contenedorCategoriasPrincipales = "<li class='js-menu-productos__contenedor'><ul>"
+            contenedorCategoriasPrincipales += `<li class="c-menu__item  c-menu__sub c-menu__item--destacado" onclick="cargarVista(&quot;ofertas&quot;)">Ofertas</li>`
             GLOBAL_GESTOR_PRODUCTOS.getCategoriasPrincipales().forEach(cate => {
                 contenedorCategoriasPrincipales += `<li class='c-menu__item c-menu__sub js-menu__productos__` + cate + `' onclick='cargarVista("productos",{"nombre" : "` + cate + `"})'>` + cate + `</li>`
             })
@@ -47,6 +48,17 @@ function vista_Productos_montarMenu(puntoMontaje, categoria) {
 }
 
 function vista_Productos__montarContenido(puntoMontaje,categoria) {
+    if (categoria == undefined){
+        var clases = $(".c-menu__item--destacado").last().attr('class').split("js-menu__productos__")	
+        var categoria = clases[clases.length - 1].split(" ")[0]	
+        vista_Productos_montarContenidoCategoria(puntoMontaje,categoria)
+            
+    }else{
+        vista_Productos_montarContenidoCategoria(puntoMontaje,categoria)
+   }
+}
+function vista_Productos_montarContenidoCategoria(puntoMontaje,categoria){
+    console.log('cargando',categoria)
     GLOBAL_GESTOR_PRODUCTOS.getCategoriasEnCategoriaPrincipal(categoria).then((cates) => {
         var montados = 0
         $(puntoMontaje).html("");
