@@ -10,14 +10,14 @@ function carrito_Alternar() {
 }
 function carrito_Actualizar() {
     var html = ""
-    if (carrito.getArticulos().length < 1) {
+    if (GLOBAL_CARRITO.getArticulos().length < 1) {
         html = "<p class='c-carrito__vacio'><i class='far fa-sad-cry fa-3x'></i><br><br>Tu carrito está vacio</p>"
     } else {
-        carrito.getArticulos().slice(Math.max(carrito.getArticulos().length - 5, 0)).forEach((articulo) => { html += carrito_ProcesarArticulo(articulo) })
+        GLOBAL_CARRITO.getArticulos().slice(Math.max(GLOBAL_CARRITO.getArticulos().length - 5, 0)).forEach((articulo) => { html += carrito_ProcesarArticulo(articulo) })
         html += `
             <p class='c-carrito__articulo c-carrito__botones'>
-            <span class='c-boton c-boton--basico js-carrito-ver-carrito'>(`+ carrito.getArticulos().length + `) Ver mi carrito </span>
-            <span class='c-boton c-boton--exito c-carrito__boton js-carrito-pagar'>`+precioEnEuros(carrito.getImporteTotal()) + `</span>
+            <span class='c-boton c-boton--basico js-carrito-ver-carrito'>(`+ GLOBAL_CARRITO.getArticulos().length + `) Ver mi carrito </span>
+            <span class='c-boton c-boton--exito c-carrito__boton js-carrito-pagar'>`+precioEnEuros(GLOBAL_CARRITO.getImporteTotal()) + `</span>
             </p>
             `
     }
@@ -26,10 +26,10 @@ function carrito_Actualizar() {
 }
 function carrito_AñadirArticulo(id) {
     var producto = GLOBAL_GESTOR_PRODUCTOS.getProductoId(id)
-    carrito.añadirProducto(producto)
+    GLOBAL_CARRITO.añadirProducto(producto)
     $(`.c-producto[data-id=${id}] .c-producto__carrito`).addClass("c-producto__carrito--en-carrito");
     carrito_Actualizar()
-    producto = carrito.getArticulo(producto.id)
+    producto = GLOBAL_CARRITO.getArticulo(producto.id)
     if (producto.cantidad > 1) {
         generarNotificacion(producto.nombre + " tienes " + producto.cantidad + " unidades.", true)
     } else {
@@ -78,17 +78,17 @@ function carrito_QuitarArticulo(evento) {
         $(producto).children('.js-producto-carrito').removeClass('c-producto__carrito--en-carrito')
     }
     producto = GLOBAL_GESTOR_PRODUCTOS.getProductoId($(this).parent().data('id'))
-    carrito.quitarArticulo(producto.id)
+    GLOBAL_CARRITO.quitarArticulo(producto.id)
     carrito_Actualizar()
     generarNotificacion(producto.nombre + " eliminado del carrito.", true)
 }
 function carrito_IncrementarArticulo(evento) {
-    var cantidadActual = carrito.incrementarCantidad($(this).parent().data('id'))
+    var cantidadActual = GLOBAL_CARRITO.incrementarCantidad($(this).parent().data('id'))
     $(this).parent().find('.js-carrito-cantidad').html(cantidadActual)
     carrito_Actualizar()
 }
 function carrito_DecrementarArticulo(evento) {
-    var cantidadActual = carrito.decrementarCantidad($(this).parent().data('id'))
+    var cantidadActual = GLOBAL_CARRITO.decrementarCantidad($(this).parent().data('id'))
     $(this).parent().find('.js-carrito-cantidad').html(cantidadActual)
     carrito_Actualizar()
 }

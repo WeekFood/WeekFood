@@ -28,7 +28,7 @@ $('.js-boton-menu').on('click', () => {
 $(".js-carrito").on('click', carrito_Alternar)
 
 var GLOBAL_CACHE_JSONS = new CacheJSONs();
-var carrito = new Carrito();
+var GLOBAL_CARRITO = new Carrito();
 var GLOBAL_GESTOR_PRODUCTOS = new GestorProductos();
 
 if (!redirigir()) {
