@@ -24,10 +24,10 @@ function carrito_Actualizar() {
     $(".c-carrito").html(html)
     carrito_ActualizarTriggers()
 }
-function carrito_AñadirArticulo(evento) {
-    $(this).addClass("c-producto__carrito--en-carrito")
-    var producto = GLOBAL_GESTOR_PRODUCTOS.getProductoId($(this).parent().data('id'))
+function carrito_AñadirArticulo(id) {
+    var producto = GLOBAL_GESTOR_PRODUCTOS.getProductoId(id)
     carrito.añadirProducto(producto)
+    $(`.c-producto[data-id=${id}] .c-producto__carrito`).addClass("c-producto__carrito--en-carrito");
     carrito_Actualizar()
     producto = carrito.getArticulo(producto.id)
     if (producto.cantidad > 1) {
@@ -49,6 +49,7 @@ function carrito_AñadirArticulo(evento) {
         setTimeout(()=>{$(".js-cabecera-notificacion").addClass("c-cabecera__notificacion-animacion")},10)
     }
 }
+
 function carrito_ProcesarArticulo(articulo) {
     var html = `<p data-id='` + articulo.id + `' class='c-carrito__articulo'>
     <span class='c-carrito__nombre js-carrito-nombre'>`+ articulo.nombre + `</span>
