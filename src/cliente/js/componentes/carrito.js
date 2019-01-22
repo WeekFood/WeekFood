@@ -53,17 +53,17 @@ function carrito_ProcesarArticulo(articulo) {
     var html = `<p data-id='` + articulo.id + `' class='c-carrito__articulo'>
     <span class='c-carrito__nombre js-carrito-nombre'>`+ articulo.nombre + `</span>
     <span class='c-carrito__operador js-carrito-incremento`
-    if (articulo.cantidad >= GLOBAL_CARRITO.CANTIDAD_MAXIMA) {
+    if (articulo.cantidad >= Carrito.CANTIDAD_MAXIMA) {
         html += ' c-carrito__operador--limite'
     }
     html += `'><i class="fas fa-plus"></i></span>
     <span class='c-carrito__cantidad js-carrito-cantidad`
-    if (articulo.cantidad <= GLOBAL_CARRITO.CANTIDAD_MINIMA || articulo.cantidad >= GLOBAL_CARRITO.CANTIDAD_MAXIMA) {
+    if (articulo.cantidad <= Carrito.CANTIDAD_MINIMA || articulo.cantidad >= GLOBAL_CARRITO.CANTIDAD_MAXIMA) {
         html += ' c-carrito__cantidad--limite'
     }
     html += `'>` + articulo.cantidad + `</span>
     <span class='c-carrito__operador js-carrito-decremento`
-    if (articulo.cantidad <= GLOBAL_CARRITO.CANTIDAD_MINIMA) {
+    if (articulo.cantidad <= Carrito.CANTIDAD_MINIMA) {
         html += ' c-carrito__operador--limite'
     }
     html += `'><i class="fas fa-minus"></i></span>
