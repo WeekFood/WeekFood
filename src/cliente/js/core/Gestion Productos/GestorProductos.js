@@ -88,7 +88,11 @@ class GestorProductos {
      * @param {int} id Id a buscar
      */
     getProductoId(id) {
-        return this.productos.find(producto => this.filtrarId(id, producto))
+        var producto = this.productos.find(producto => this.filtrarId(id, producto))
+        if (producto == undefined) {
+            producto = this.productosDestacados.find(producto => this.filtrarId(id, producto))
+        }
+        return producto
     }
 
     getCategoriasPrincipales() {
@@ -116,9 +120,9 @@ class GestorProductos {
         });
     }
 
-    getProductosDestacados(){
+    getProductosDestacados() {
         if (this.productosDestacados.length > 0) {
-            return $.when(productosDestacados)
+            return $.when(this.productosDestacados)
         } else {
             return GLOBAL_CACHE_JSONS.getJSON("/api/productos?destacados=1").then((respuesta) => {
                 respuesta.forEach(prod => {
