@@ -59,7 +59,7 @@ function carrito_ProcesarArticulo(articulo) {
     }
     html += `'><i class="fas fa-plus"></i></span>
     <span class='c-carrito__cantidad js-carrito-cantidad`
-    if (articulo.cantidad <= Carrito.CANTIDAD_MINIMA || articulo.cantidad >= GLOBAL_CARRITO.CANTIDAD_MAXIMA) {
+    if (articulo.cantidad <= Carrito.CANTIDAD_MINIMA || articulo.cantidad >= Carrito.CANTIDAD_MAXIMA) {
         html += ' c-carrito__cantidad--limite'
     }
     html += `'>` + articulo.cantidad + `</span>
