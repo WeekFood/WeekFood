@@ -37,6 +37,7 @@ class CarritosResource extends Resource {
 
         $this->setData();
     }
+    // CODIGO PRUEBA -->
     public function getPruebaAction(){
         
         header('Content-Type: application/json; charset=utf-8');
@@ -47,4 +48,5 @@ class CarritosResource extends Resource {
         $this->setData();
         */
     }
+    // <-- CODIGO PRUEBA
 }
