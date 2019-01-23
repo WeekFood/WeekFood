@@ -51,7 +51,7 @@ function vista_Productos_montarMenu(puntoMontaje, categoria) {
     } else {
         if ($(".js-menu-productos__contenedor").length < 1) {
             var contenedorCategoriasPrincipales = "<li class='js-menu-productos__contenedor'><ul>"
-            contenedorCategoriasPrincipales += `<li class="c-menu__item  c-menu__sub c-menu__item--destacado" onclick="cargarVista(&quot;ofertas&quot;)">Ofertas</li>`
+            contenedorCategoriasPrincipales += `<li class="c-menu__item  c-menu__sub c-menu__item--destacado" onclick="cargarVista('ofertas')">Ofertas</li>`
             GLOBAL_GESTOR_PRODUCTOS.getCategoriasPrincipales().forEach(cate => {
                 contenedorCategoriasPrincipales += `<li class='c-menu__item c-menu__sub js-menu__productos__` + cate + `' onclick='cargarVista("productos",{"nombre" : "` + cate + `"})'>` + cate + `</li>`
             })
