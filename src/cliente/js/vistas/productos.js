@@ -41,9 +41,13 @@ function vista_Productos_montarMenu(puntoMontaje, categoria) {
             </div></div>`).insertBefore(".l-distribucion__menu")
         }
         GLOBAL_GESTOR_PRODUCTOS.getCategoriasEnCategoriaPrincipal(categoria["nombre"]).then((cates) => {
-            var html = "<li>Filtro</li><hr>"
+            var html = "";
             cates.forEach(cate => {
-                html += `<li><input type="checkbox" onclick="vista_Productos__montarContenido('` + puntoMontaje + `')" class="c-menu-expandido__checkbox js-menu-expandido__checkbox__` + cate + `" checked>` + cate + `</li>`
+                html += `<li>
+                            <label class="c-menu-expandido__item">
+                                <input type="checkbox" onclick="vista_Productos__montarContenido('` + puntoMontaje + `')" class="c-menu-expandido__checkbox js-menu-expandido__checkbox__` + cate + `" checked>` + cate + 
+                           `</label>
+                        </li>`;
             })
             $(".js-menu-expandido__listado").html(html)
             vista_Productos__montarContenido(puntoMontaje, categoria["nombre"])
