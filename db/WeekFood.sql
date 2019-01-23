@@ -60,7 +60,6 @@ DROP TABLE IF EXISTS `carritos`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `carritos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `titulo` varchar(100) NOT NULL,
   `idUsuario` int(11) NOT NULL,
   `fecha` datetime NOT NULL,
   PRIMARY KEY (`id`),
@@ -215,4 +214,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-23 10:54:39
+-- Dump completed on 2019-01-23 10:56:25
