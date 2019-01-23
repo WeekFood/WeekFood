@@ -43,7 +43,7 @@ return [
             "action" => "getCategoria"
         ],
         "API, Productos destacados" => [
-            "route" => "api/productos?destacado=1",
+            "route" => "api/productos?destacado=:destacado",
             "resource" => "productos",
             "action" => "getDestacados"
         ],

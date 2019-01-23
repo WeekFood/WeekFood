@@ -40,8 +40,15 @@ class ProductosResource extends Resource {
     }
 
     public function getDestacadosAction() {
-        $this->sql = 'SELECT * FROM productos WHERE destacado = 1';
-        $this->execSQL();
+        if ($this->controller->getParam("destacado") !== '1'){
+            $this->setError(400, 'Petición incorrecta');
+            return false;
+        }
+        $params = [
+            "destacado" =>  $this->controller->getParam("destacado")
+        ];
+        $this->sql = 'SELECT * FROM productos WHERE destacado = :destacado';
+        $this->execSQL($params);
         $this->setData();
     }
 }
