@@ -73,18 +73,13 @@ function precioEnDollar(precio) {
 function precioEnLibra(precio) {
     return (precio * 0.88).toString() + " £"
 }
-function cargarEnIdioma(contenido, apartado, idioma = 0) {
+function cargarEnIdioma(contenido, apartado, idioma = 'es') {
     if (contenido.hasOwnProperty(apartado)) {
-        if (contenido[apartado].length >= idioma + 1) {
-            if (contenido[apartado][idioma].length > 0) {
-                return contenido[apartado][idioma]
-            } else {
-                console.warn(apartado, "no tiene contenido en el idioma", idioma)
-                return contenido[apartado][0]
-            }
+        if (contenido[apartado].hasOwnProperty(idioma)) {
+            return contenido[apartado][idioma]
         } else {
             console.warn(apartado, "no tiene el idioma", idioma)
-            return contenido[apartado][0]
+            return contenido[apartado].es
         }
     }
     throw 'El contenido de la página no tiene el apartado seleccionado.'
