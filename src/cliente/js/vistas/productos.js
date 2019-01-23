@@ -148,7 +148,7 @@ function vista_Productos_generarProducto(producto) {
             `+ precioEnEuros(producto["precio"]) + `
         </div>
         <div class='c-producto__carrito`
-    if (carrito.getArticulo(producto.id) !== undefined) {
+    if (GLOBAL_CARRITO.getArticulo(producto.id) !== undefined) {
         html += ` c-producto__carrito--en-carrito`
     }
     html += ` js-producto-carrito'>
