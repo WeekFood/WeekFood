@@ -47,12 +47,22 @@ return [
             "resource" => "productos",
             "action" => "getDestacados"
         ],
+        "API, carritos, por id" => [
+            "route" => "api/carritos/:id",
+            "resource" => "carritos",
+            "action" => "getCarrito"
+        ]
     ],
     "post" => [
         'API, test' => [
             "route" => "api/test",
             "resource" => "api",
             "action" => "postTest"
+        ],
+        "API, carritos" => [
+            "route" => "api/carritos",
+            "resource" => "carritos",
+            "action" => "postCarrito"
         ]
     ]
 ];
