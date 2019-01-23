@@ -115,3 +115,11 @@ function carrito_Guardar(){
         data: GLOBAL_CARRITO.exportar()
     }).catch(() => generarNotificacion('<i class="far fa-frown"></i> No se ha podido guardar tu carrito'));
 }
+function carrito_Sincronizar(){
+    //todo
+}
+function carrito_Descargar(){
+    $.getJSON('/api/carritos').then((respuesta)=>{
+        
+    })
+}
