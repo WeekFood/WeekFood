@@ -47,5 +47,12 @@ return [
             "resource" => "productos",
             "action" => "getDestacados"
         ],
+    ],
+    "post" => [
+        'API, test' => [
+            "route" => "api/test",
+            "resource" => "api",
+            "action" => "postTest"
+        ]
     ]
 ];
