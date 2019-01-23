@@ -1,8 +1,8 @@
 -- MySQL dump 10.16  Distrib 10.1.34-MariaDB, for debian-linux-gnu (x86_64)
 --
--- Host: 192.168.1.10    Database: WeekFood
+-- Host: localhost    Database: WeekFood
 -- ------------------------------------------------------
--- Server version	10.1.37-MariaDB
+-- Server version	10.1.34-MariaDB-0ubuntu0.18.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,11 +16,71 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Current Database: `WeekFood`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `WeekFood` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+
+USE `WeekFood`;
+
+--
+-- Table structure for table `articulosEnCarritos`
+--
+
+DROP TABLE IF EXISTS `articulosEnCarritos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `articulosEnCarritos` (
+  `idCarrito` int(11) NOT NULL,
+  `idArticulo` int(11) NOT NULL,
+  `cantidad` int(2) NOT NULL DEFAULT '0',
+  KEY `carritos_id_FK` (`idCarrito`),
+  KEY `productos_id_FK` (`idArticulo`),
+  CONSTRAINT `carritos_id_FK` FOREIGN KEY (`idCarrito`) REFERENCES `carritos` (`id`),
+  CONSTRAINT `productos_id_FK` FOREIGN KEY (`idArticulo`) REFERENCES `productos` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `articulosEnCarritos`
+--
+
+LOCK TABLES `articulosEnCarritos` WRITE;
+/*!40000 ALTER TABLE `articulosEnCarritos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `articulosEnCarritos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `carritos`
+--
+
+DROP TABLE IF EXISTS `carritos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `carritos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(100) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `fecha` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`),
+  CONSTRAINT `carritos_usuarios_FK` FOREIGN KEY (`id`) REFERENCES `usuarios` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `carritos`
+--
+
+LOCK TABLES `carritos` WRITE;
+/*!40000 ALTER TABLE `carritos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `carritos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `categorias`
 --
-drop Database if exists WeekFood;
-CREATE Database WeekFood;
-use WeekFood;
+
 DROP TABLE IF EXISTS `categorias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -78,7 +138,7 @@ CREATE TABLE `menu` (
   `valor` varchar(100) NOT NULL,
   `direccion` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,25 +169,17 @@ CREATE TABLE `productos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
 --
 -- Dumping data for table `productos`
 --
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` (`id`, `categoria`, `nombre`, `descripcion`, `foto`, `destacado`, `precio`) VALUES
-	(1, 'Cerdo', 'Lomo asado', 'Lomo de cerdo asado jugoso', 'lomo-asado.jpg', 1, 1000),
-	(2, 'Macarrones', 'Macarrones boloñesa', 'Un clásico de la cocina italiana', 'macarrones-boloñesa.jpg', 1, 600),
-	(3, 'Paellas,Gambas', 'Paella de marisco', 'Verdadera paella valenciana', 'paella-marisco.jpg', 1, 800),
-	(4, 'Pollo', 'Pechuga a la plancha', 'Exquisita pechuga de pollo a la plancha', 'pechuga-a-la-plancha.jpg', 1, 500),
-	(5, 'Ensaladas,Pollo', 'Ensalada César', 'Excelente ensalada con productos locales', 'ensalada-cesar.jpg', 1, 700),
-	(6, 'Pimientos,Pisto', 'Pimientos rellenos', 'Una receta muy mediterránea, sin gluten y llena de sabor', 'pimientos-pisto.jpg', 0, 400),
-	(7, 'Menestras', 'Menestra de verduras', 'Guisado compuesto con diferentes hortalizas y con trozos pequeños de carne o jamón', 'menestra-verduras-jamon.jpg', 0, 500),
-	(8, 'Tortilla,Patatas', 'Tortilla de patata', 'Tortilla muy sabrosa con cebolla', 'tortilla-patata.jpg', 0, 550),
-	(9, 'Tortilla', 'Tortilla francesa', 'Hecha con huevos seleccionados y con aceite de oliva', 'tortilla-francesa.jpg', 0, 350),
-	(10, 'Tortilla,Puerros,Espinacas', 'Tortilla de espinacas y puerros', 'Tortilla deliciosa y con muchos nutrientes', 'tortilla-espinacas-puerros.jpg', 0, 450);
+INSERT INTO `productos` VALUES (1,'Cerdo','Lomo asado','Lomo de cerdo asado jugoso.','lomo-asado.jpg',1,1000),(2,'Macarrones','Macarrones boloñesa','Un delicioso plato.','macarrones-boloñesa.jpg',1,600),(3,'Paellas,Gambas','Paella de marisco','Verdadera paella valenciana.','paella-marisco.jpg',1,800),(4,'Pollo','Pechuga a la plancha','Plato saludable.','pechuga-a-la-plancha.jpg',1,500),(5,'Ensaladas,Pollo','Ensalada César','Excelente ensalada con productos locales.','ensalada-cesar.jpg',1,700),(6,'Pimientos,Pisto','Pimientos rellenos de pisto','Preparado al horno.','pimientos-pisto.jpg',0,400),(7,'Menestras','Menestra de verduras','Un delicioso plato.','menestra-verduras-jamon.jpg',0,500),(8,'Tortilla,Patatas','Tortilla de patata','Un delicioso plato.','tortilla-patata.jpg',0,550),(9,'Tortilla','Tortilla francesa','Un delicioso plato.','tortilla-francesa.jpg',0,350),(10,'Tortilla,Puerros,Espinacas','Tortilla de espinacas y puerros','Un delicioso plato.','tortilla-espinacas-puerros.jpg',0,450);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
+
 --
 -- Table structure for table `usuarios`
 --
@@ -162,4 +214,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-12 20:12:50
+-- Dump completed on 2019-01-23 10:03:51
