@@ -1,18 +1,18 @@
 function vista_QuienesSomos(puntoMontaje, idioma) {
     var contenido = {
-        bandera: {es:"ES", en:"EN"}, // http://www.countryflags.com iconos
+        bandera: { es: "ES", en: "EN" }, // http://www.countryflags.com iconos
         cabecera: {
-            es:`<div class='c-quienes-somos__cabecera'>
+            es: `<div class='c-quienes-somos__cabecera'>
             <p class='c-quienes-somos__titulo'>¿Quienes somos?</p>
             <p class='c-quienes-somos__titulo-menor'>Somos una empresa ficticia, para el proyecto de final de curso de Desarrollo de Aplicaciones Web.</p>
             </div>`,
-            en:`<div class='c-quienes-somos__cabecera'>
+            en: `<div class='c-quienes-somos__cabecera'>
             <p class='c-quienes-somos__titulo'>About us?</p>
             <p class='c-quienes-somos__titulo-menor'>Blah blah blah blah, allan fix this, blah blah.</p>
             </div>`
         },
         contenido: {
-            es:`<div class='c-quienes-somos__contenido'>
+            es: `<div class='c-quienes-somos__contenido'>
             <div class='c-quienes-somos__contenido-interno'>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             <p>Vivamus venenatis lorem quis elit elementum, ut tempus lectus volutpat.</p>
@@ -23,7 +23,7 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             </div></div>`
         },
         equipo: {
-            es:`<div class='c-quienes-somos__equipo'>
+            es: `<div class='c-quienes-somos__equipo'>
             <p class='c-quienes-somos__titulo-menor'>Nuestro equipo</p>
             <p><i class="far fa-smile"></i>Jefe de operaciones, YB</p>
             <p><i class="far fa-smile-wink"></i>Director ejecutivo, TD</p>
@@ -31,7 +31,7 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             </div>`
         },
         attCliente: {
-            es:`<div class='c-quienes-somos__attCliente'>
+            es: `<div class='c-quienes-somos__attCliente'>
             <p class='c-quienes-somos__titulo-menor'>Atención al cliente</p>
             <p><i class="fas fa-phone"></i>902 - 123- 469</p>
             <p><i class="far fa-envelope"></i>* info@weekfood.com</p>
@@ -40,32 +40,29 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             </div>`
         },
         redes: {
-            es:`<div class='c-quienes-somos__redes'>
+            es: `<div class='c-quienes-somos__redes'>
             <p class='c-quienes-somos__titulo-menor'>¡Siguenos en nuestras redes sociales!</p>
             <p><i class="fab fa-instagram"></i> @WeekFood</p>
             <p><i class="fab fa-twitter"></i></i> @WeekFood</p>
             <p><i class="fab fa-facebook"></i> /WeekFood</p>
             </div>`
-    }
+        }
 
     }
     if (!idioma) { idioma = 'es' }
     var html = `<div class='c-quienes-somos'>
     <div class='c-quienes-somos__banderas'>`
-    /*
-    <div class='c-quienes-somos__contenedor-bandera`
-    /*
-    for (var x = 0; x < contenido.bandera.length; x++) {
+    //for (var x = 0; x < contenido.bandera.length; x++) {
+    for (var idiomaAdmitido in contenido.bandera) {
         html += "<div class='c-quienes-somos__contenedor-bandera"
-        if (x == idioma) {
+        if (idiomaAdmitido == idioma) {
             html += " c-quienes-somos__contenedor-bandera--seleccionada"
         }
         html += `'>
-                <img class='c-quienes-somos__bandera' src='/imagenes/bandera_` + cargarEnIdioma(contenido, 'bandera', x)
-        html += `.png' onclick="cargarVista('quienesSomos',` + x + `)">
+                <img class='c-quienes-somos__bandera' src='/imagenes/bandera_` + contenido.bandera[idiomaAdmitido]
+        html += `.png' onclick="cargarVista('quienesSomos','` + idiomaAdmitido + `')">
                 </div>`
     }
-    */
     html += '</div>'
     html += cargarEnIdioma(contenido, 'cabecera', idioma)
     html += cargarEnIdioma(contenido, 'contenido', idioma)
