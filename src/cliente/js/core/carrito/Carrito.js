@@ -1,6 +1,7 @@
 class Carrito {
     constructor() {
         this.articulos = [];
+        // TODO Comprobar si existe un carrito en el servidor
     }
 
     /**

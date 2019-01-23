@@ -105,6 +105,10 @@ function carrito_ActualizarTriggers() {
     //$(".js-carrito-pagar").on('click', aqui ira vista pagar);
 }
 function carrito_Guardar(){
+    /*
+        TODO:
+        Solo debe hacerse POST si no existe un carrito en el servidor, en caso contrario se usa PUT para actualizar el contenido
+    */
     $.post({
         url: '/api/carritos',
         contentType: 'application/json',
