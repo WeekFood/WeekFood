@@ -116,7 +116,7 @@ class GestorProductos {
         if (productosFiltrados.length > 0 && this.seHaPedidoExplicitamenteDestacados) {
             return $.when(productosFiltrados)
         } else {
-            return GLOBAL_CACHE_JSONS.getJSON("/api/productos?destacados=1").then((respuesta) => {
+            return GLOBAL_CACHE_JSONS.getJSON("/api/productos?destacado=1").then((respuesta) => {
                 this.seHaPedidoExplicitamenteDestacados = true
                 var nuevosProductos = []
                 respuesta.forEach(prod => {
