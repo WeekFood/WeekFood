@@ -54,11 +54,6 @@ return [
         ]
     ],
     "post" => [
-        'API, test' => [
-            "route" => "api/test",
-            "resource" => "api",
-            "action" => "postTest"
-        ],
         "API, carritos" => [
             "route" => "api/carritos",
             "resource" => "carritos",
