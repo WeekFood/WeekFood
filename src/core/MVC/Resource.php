@@ -35,7 +35,7 @@ abstract class Resource {
             $i++;
         }
         if ($i == 0){
-            $this->data = (object) null;
+            $this->data = [];
         }
     }
 

@@ -49,7 +49,7 @@ class ProductosResource extends Resource {
             $this->sql = 'SELECT * FROM productos WHERE categoria LIKE :categoriaEspecifica';
             $this->execSQL($params);
         }else{
-            $this->data = (object) null;
+            $this->data = [];
         }
         $this->setData();
     }
