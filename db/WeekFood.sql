@@ -34,6 +34,7 @@ CREATE TABLE `articulosEnCarritos` (
   `idCarrito` int(11) NOT NULL,
   `idArticulo` int(11) NOT NULL,
   `cantidad` int(2) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`idCarrito`,`idArticulo`),
   KEY `carritos_id_FK` (`idCarrito`),
   KEY `productos_id_FK` (`idArticulo`),
   CONSTRAINT `carritos_id_FK` FOREIGN KEY (`idCarrito`) REFERENCES `carritos` (`id`),
@@ -214,4 +215,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-23 10:03:51
+-- Dump completed on 2019-01-23 10:54:39
