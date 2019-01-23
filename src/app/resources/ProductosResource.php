@@ -41,6 +41,7 @@ class ProductosResource extends Resource {
         foreach($this->data as $categoriaEnBase){
             if ($categoriaEnBase["nombre"] == $this->controller->getParam("categoria")){
                 $categoriaIgual = TRUE;
+                break;
             }
         }
 
