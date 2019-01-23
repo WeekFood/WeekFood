@@ -45,7 +45,7 @@ class GestorProductos {
         if (categoriaEncontrada.categorias.length > 0) {
             return $.when(categoriaEncontrada.categorias[0])
         } else {
-            return GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/" + categoriaPrincipal).then((respuesta) => {
+            return GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/" + categoriaPrincipal+"/subcategorias").then((respuesta) => {
                 var categoriasDescargadas = []
                 respuesta.forEach(categoria => {
                     categoriasDescargadas.push(categoria.nombre)
@@ -64,7 +64,7 @@ class GestorProductos {
         if (productosFiltrados.length > 0) {
             return $.when(productosFiltrados)
         } else {
-            return GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/" + categoriaPrincipal + "/" + categoria).then((respuesta) => {
+            return GLOBAL_CACHE_JSONS.getJSON("/api/productos?categoria="+ categoria).then((respuesta) => {
                 var nuevosProductos = []
                 respuesta.forEach(prod => {
                     var nuevoProducto = new Producto(prod.id, prod.nombre, prod.foto, (prod.destacado == 1), prod.categoria.split(","), prod.descripcion, prod.precio)
