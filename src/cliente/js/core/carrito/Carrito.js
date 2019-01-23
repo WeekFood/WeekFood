@@ -147,6 +147,20 @@ class Carrito {
     _indiceArticulo(idArticulo) {
         return this.articulos.findIndex(articulo => articulo.id === idArticulo);
     }
+    
+    exportar() {
+        var json = {
+            fecha: new Date().getTime(),
+            articulos: []
+        }
+        this.articulos.forEach(articulo => {
+            json.articulos.push({
+                id: articulo.id,
+                cantidad: articulo.cantidad
+            })
+        })
+        return json
+    }
 }
 
 Carrito.CANTIDAD_MINIMA = 0;

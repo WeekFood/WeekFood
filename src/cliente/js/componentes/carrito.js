@@ -48,6 +48,7 @@ function carrito_AñadirArticulo(id) {
         $(".js-cabecera-notificacion").removeClass("c-cabecera__notificacion-animacion")
         setTimeout(()=>{$(".js-cabecera-notificacion").addClass("c-cabecera__notificacion-animacion")},10)
     }
+    carrito_Guardar()
 }
 
 function carrito_ProcesarArticulo(articulo) {
@@ -81,16 +82,19 @@ function carrito_QuitarArticulo(evento) {
     GLOBAL_CARRITO.quitarArticulo(producto.id)
     carrito_Actualizar()
     generarNotificacion("Has eliminado " + producto.nombre + " del carrito", true)
+    carrito_Guardar()
 }
 function carrito_IncrementarArticulo(evento) {
     var cantidadActual = GLOBAL_CARRITO.incrementarCantidad($(this).parent().data('id'))
     $(this).parent().find('.js-carrito-cantidad').html(cantidadActual)
     carrito_Actualizar()
+    carrito_Guardar()
 }
 function carrito_DecrementarArticulo(evento) {
     var cantidadActual = GLOBAL_CARRITO.decrementarCantidad($(this).parent().data('id'))
     $(this).parent().find('.js-carrito-cantidad').html(cantidadActual)
     carrito_Actualizar()
+    carrito_Guardar()
 }
 function carrito_ActualizarTriggers() {
     $(".js-carrito-incremento").on('click', carrito_IncrementarArticulo);
@@ -99,4 +103,7 @@ function carrito_ActualizarTriggers() {
     // Reservado hasta que pueda implementarse
     //$(".js-carrito--ver-carrito").on('click', aqui ira vista carrito );
     //$(".js-carrito-pagar").on('click', aqui ira vista pagar);
+}
+function carrito_Guardar(){
+ $.post('/api/carritos',JSON.stringify(GLOBAL_CARRITO.exportar())).fail(()=>{generarNotificacion('<i class="far fa-frown"></i> No se ha podido guardar tu carrito')})
 }
