@@ -27,10 +27,20 @@ class CarritosResource extends Resource {
 
         $this->setData();
     }
+    public function putCarritoAction() {
+
+        $plain = file_get_contents('php://input');
+
+        $data = json_decode($plain);
+
+        $this->data = $data;
+
+        $this->setData();
+    }
     public function getPruebaAction(){
         
         header('Content-Type: application/json; charset=utf-8');
-        echo '{"fecha":1548268821065,"articulos":[{"id":8,"cantidad":1},{"id":10,"cantidad":10}]}';
+        echo '{"fecha":1548268821065,"articulos":[{"id":8,"cantidad":1},{"id":10,"cantidad":1}]}';
         
         /*
         $this->data = [];

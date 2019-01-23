@@ -69,5 +69,15 @@ return [
             "resource" => "carritos",
             "action" => "postCarrito"
         ]
+    ],
+    "put" => [
+        "API, carritos" => [
+            "route" => "api/carritos",
+            "resource" => "carritos",
+            "action" => "putCarrito"
+        ]
+    ],
+    "delete" =>[
+
     ]
 ];

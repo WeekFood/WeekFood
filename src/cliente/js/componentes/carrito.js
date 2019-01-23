@@ -104,16 +104,26 @@ function carrito_ActualizarTriggers() {
     //$(".js-carrito--ver-carrito").on('click', aqui ira vista carrito );
     //$(".js-carrito-pagar").on('click', aqui ira vista pagar);
 }
-function carrito_Guardar(){
+function carrito_Guardar() {
     /*
         TODO:
         Solo debe hacerse POST si no existe un carrito en el servidor, en caso contrario se usa PUT para actualizar el contenido
     */
-    $.post({
-        url: '/api/carritos',
-        contentType: 'application/json',
-        data: GLOBAL_CARRITO.exportar()
-    }).catch(() => generarNotificacion('<i class="far fa-frown"></i> No se ha podido guardar tu carrito'));
+    if (!GLOBAL_CARRITO_EXISTE) {
+        GLOBAL_CARRITO_EXISTE = true
+        $.post({
+            url: '/api/carritos',
+            contentType: 'application/json',
+            data: GLOBAL_CARRITO.exportar()
+        }).catch(() => generarNotificacion('<i class="far fa-frown"></i> No se ha podido guardar tu carrito'));
+    } else {
+        $.ajax({
+            url: '/api/carritos',
+            type: 'PUT',
+            contentType: "application/json",
+            data: GLOBAL_CARRITO.exportar()
+        }).fail(() => generarNotificacion('<i class="far fa-frown"></i> No se ha podido guardar tu carrito'));
+    }
 }
 function carrito_Descargar() {
     // Esto descargara el carrito de la API
@@ -122,10 +132,11 @@ function carrito_Descargar() {
         if (respuesta.length == undefined) {
             GLOBAL_CARRITO_EXISTE = true
             respuesta.articulos.forEach(articulo => {
-                GLOBAL_GESTOR_PRODUCTOS.descargarProductoId(articulo.id).then(()=>{
+                GLOBAL_GESTOR_PRODUCTOS.descargarProductoId(articulo.id).then(() => {
                     GLOBAL_CARRITO.añadirProducto(GLOBAL_GESTOR_PRODUCTOS.getProductoId(articulo.id))
                     GLOBAL_CARRITO.setCantidad(articulo.id, articulo.cantidad)
-                })}
+                })
+            }
             )
         } else {
             GLOBAL_CARRITO_EXISTE = false
