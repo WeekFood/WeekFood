@@ -40,4 +40,3 @@ function vista_Portada(puntoMontaje) {
     montarMenu("/api/menu", "portada")
     return $.when($.getScript("libs/slick-1.8.1/slick.min.js")).then(() => { generarCarrusel(".js-carrusel") })
 }
-

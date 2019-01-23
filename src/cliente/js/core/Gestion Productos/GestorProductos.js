@@ -1,5 +1,6 @@
 class GestorProductos {
     constructor() {
+        this.seHaPedidoExplicitamenteDestacados = false
         this.productos = []
         this.categoriasPrincipales = []
         GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/").then((categoriasPrincipales) => {
@@ -68,7 +69,9 @@ class GestorProductos {
                 var nuevosProductos = []
                 respuesta.forEach(prod => {
                     var nuevoProducto = new Producto(prod.id, prod.nombre, prod.foto, (prod.destacado == 1), prod.categoria.split(","), prod.descripcion, prod.precio)
-                    this.productos.push(nuevoProducto)
+                    if (this.getProductoId(nuevoProducto.id) == undefined){
+                        this.productos.push(nuevoProducto)
+                    }
                     nuevosProductos.push(nuevoProducto)
                 });
                 return nuevosProductos
@@ -106,5 +109,25 @@ class GestorProductos {
             carrito_AñadirArticulo(producto.id);
             cerrarVentanaModal();
         });
+    }
+
+    getProductosDestacados() {
+        var productosFiltrados = this.productos.filter(producto => producto.destacado)
+        if (productosFiltrados.length > 0 && this.seHaPedidoExplicitamenteDestacados) {
+            return $.when(productosFiltrados)
+        } else {
+            return GLOBAL_CACHE_JSONS.getJSON("/api/productos?destacado=1").then((respuesta) => {
+                this.seHaPedidoExplicitamenteDestacados = true
+                var nuevosProductos = []
+                respuesta.forEach(prod => {
+                    var nuevoProducto = new Producto(prod.id, prod.nombre, prod.foto, (prod.destacado == 1), prod.categoria.split(","), prod.descripcion, prod.precio)
+                    if (this.getProductoId(nuevoProducto.id) == undefined){
+                        this.productos.push(nuevoProducto)
+                    }
+                    nuevosProductos.push(nuevoProducto)
+                });
+                return nuevosProductos
+            })
+        }
     }
 }

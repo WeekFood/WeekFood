@@ -43,13 +43,16 @@ function montarMenu(url, vista) {
 
 function redirigir() {
     var url = extraerCookie("Redirect")
+    borrarCookie("Redirect")
     if (url !== null) {
         url = decodeURIComponent(url.split("=")[1])
-        url = url.split("/")[1]
-        cargarVista(url)
-        borrarCookie("Redirect")
-        return true
+        url = url.split("/")[1].toLowerCase()
+        if (GLOBAL_REDIRECCIONES.hasOwnProperty(url)){
+            cargarVista(GLOBAL_REDIRECCIONES[url])
+            return true
     }
+    }
+    return false
 }
 
 function extraerCookie(nombre) {
