@@ -34,8 +34,22 @@ class ProductosResource extends Resource {
         $params = [
             "categoriaEspecifica" => "%" . $this->controller->getParam("categoria") . "%"
         ];
-        $this->sql = 'SELECT * FROM productos WHERE categoria LIKE :categoriaEspecifica';
+        $this->sql = 'SELECT nombre FROM categorias WHERE nombre LIKE :categoriaEspecifica';
         $this->execSQL($params);
+
+        $categoriaIgual = FALSE;
+        foreach($this->data as $categoriaEnBase){
+            if ($categoriaEnBase["nombre"] == $this->controller->getParam("categoria")){
+                $categoriaIgual = TRUE;
+            }
+        }
+
+        if ($categoriaIgual){
+            $this->sql = 'SELECT * FROM productos WHERE categoria LIKE :categoriaEspecifica';
+            $this->execSQL($params);
+        }else{
+            $this->data = (object) null;
+        }
         $this->setData();
     }
 
