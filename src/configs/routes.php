@@ -33,7 +33,7 @@ return [
             "action" => "getCategoriasPrincipales"
         ],
         "API, productos, query categorias principales" =>[
-            "route" => "api/productos/categorias/:nombre",
+            "route" => "api/productos/categorias/:nombre/subcategorias",
             "resource" => "productos",
             "action" => "getCategoriaPrincipal"
         ],

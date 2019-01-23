@@ -45,7 +45,7 @@ class GestorProductos {
         if (categoriaEncontrada.categorias.length > 0) {
             return $.when(categoriaEncontrada.categorias[0])
         } else {
-            return GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/" + categoriaPrincipal).then((respuesta) => {
+            return GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/" + categoriaPrincipal+"/subcategorias").then((respuesta) => {
                 var categoriasDescargadas = []
                 respuesta.forEach(categoria => {
                     categoriasDescargadas.push(categoria.nombre)
