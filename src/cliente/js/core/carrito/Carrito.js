@@ -159,7 +159,7 @@ class Carrito {
                 cantidad: articulo.cantidad
             })
         })
-        return json
+        return JSON.stringify(json)
     }
 }
 

@@ -105,5 +105,5 @@ function carrito_ActualizarTriggers() {
     //$(".js-carrito-pagar").on('click', aqui ira vista pagar);
 }
 function carrito_Guardar(){
- $.post('/api/carritos',JSON.stringify(GLOBAL_CARRITO.exportar())).fail(()=>{generarNotificacion('<i class="far fa-frown"></i> No se ha podido guardar tu carrito')})
+ $.post('/api/carritos',GLOBAL_CARRITO.exportar()).fail(()=>{generarNotificacion('<i class="far fa-frown"></i> No se ha podido guardar tu carrito')})
 }
