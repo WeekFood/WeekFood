@@ -83,7 +83,7 @@ class GestorProductos {
      * @param {int} id Id a buscar
      */
     getProductoId(id){
-        return this.productos.find(producto => this.filtrarId(id, producto))
+        return this.productos.find(producto => this.filtrarId(id, producto)) 
     }
 
     getCategoriasPrincipales() {
@@ -135,13 +135,11 @@ class GestorProductos {
      * @param {int} id Id a descargar
      */
     descargarProductoId(id) {
-        var productoFiltrado = this.productos.find(producto => this.filtrarId(id, producto))
-        console.log(id,productoFiltrado)
-        if (productoFiltrado !== undefined){
+        var productoFiltrado = this.getProductoId(id)
+        if (productoFiltrado !== undefined) {
             return $.when(productoFiltrado)
-        }else{
-            console.log("Aqui")
-            return GLOBAL_CACHE_JSONS.getJSON("/api/productos/id/"+ id).then((respuesta) => {
+        } else {
+            return GLOBAL_CACHE_JSONS.getJSON("/api/productos/id/" + id).then((respuesta) => {
                 var nuevoProducto = new Producto(respuesta[0].id, respuesta[0].nombre, respuesta[0].foto, (respuesta[0].destacado == 1), respuesta[0].categoria.split(","), respuesta[0].descripcion, respuesta[0].precio)
                 this.productos.push(nuevoProducto)
                 return nuevoProducto

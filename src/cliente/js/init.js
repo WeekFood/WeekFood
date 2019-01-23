@@ -30,6 +30,8 @@ $(".js-carrito").on('click', carrito_Alternar)
 var GLOBAL_CACHE_JSONS = new CacheJSONs();
 var GLOBAL_CARRITO = new Carrito();
 var GLOBAL_GESTOR_PRODUCTOS = new GestorProductos();
+//var GLOBAL_CARRITO_SINCRONIZANDO = setInterval(carrito_Descargar,1000)
+carrito_Descargar()
 
 if (!redirigir()) {
     cargarVista("portada")

@@ -115,11 +115,21 @@ function carrito_Guardar(){
         data: GLOBAL_CARRITO.exportar()
     }).catch(() => generarNotificacion('<i class="far fa-frown"></i> No se ha podido guardar tu carrito'));
 }
-function carrito_Sincronizar(){
-    //todo
-}
-function carrito_Descargar(){
-    $.getJSON('/api/carritos').then((respuesta)=>{
-        
+function carrito_Descargar() {
+    // Esto descargara el carrito de la API
+    // Esto es practicamente pseudocodigo
+    $.getJSON('/api/carritos').then((respuesta) => {
+        if (respuesta.length == undefined) {
+            GLOBAL_CARRITO_EXISTE = true
+            respuesta.articulos.forEach(articulo => {
+                GLOBAL_GESTOR_PRODUCTOS.descargarProductoId(articulo.id).then((articulo)=>{
+                    console.log(articulo)
+                    GLOBAL_CARRITO.añadirProducto(articulo.id)
+                    GLOBAL_CARRITO.setCantidad(articulo.id, articulo.cantidad)
+                })}
+            )
+        } else {
+            GLOBAL_CARRITO_EXISTE = false
+        }
     })
 }
