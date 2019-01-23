@@ -31,14 +31,18 @@ function vista_Productos_montarMenu(puntoMontaje, categoria) {
         $(".c-menu__sub").removeClass("c-menu__item--destacado")
         $("[data-id=" + categoria["nombre"] + "]").addClass("c-menu__item--destacado")
         if ($(".l-distribucion__menu--expandido").length < 1) {
-            $(`<div class="l-distribucion__menu--expandido">
-            <div class="c-menu-expandido c-menu-expandido--plegado js-menu-expandido"> 
-            <div class='c-menu-expandido__borde' onclick='vista_Productos_alternarExtendido()'>     
-            <i class='fas fa-angle-right c-menu-expandido__flecha'></i> 
+            $(`
+            <div class="l-distribucion__menu--expandido">
+                <div class="c-menu-expandido c-menu-expandido--plegado js-menu-expandido"> 
+                    <div class='c-menu-expandido__borde' onclick='vista_Productos_alternarExtendido()'> 
+                        <i class='fas fa-angle-right c-menu-expandido__flecha'></i> 
+                    </div>
+                    <p class="c-menu-expandido__titulo">Filtro</p>
+                    <ul class="c-menu-expandido__listado js-menu-expandido__listado">
+                    </ul>
+                </div>
             </div>
-            <ul class="c-menu-expandido__listado js-menu-expandido__listado">
-            </ul>
-            </div></div>`).insertBefore(".l-distribucion__menu")
+        `).insertBefore(".l-distribucion__menu")
         }
         GLOBAL_GESTOR_PRODUCTOS.getCategoriasEnCategoriaPrincipal(categoria["nombre"]).then((cates) => {
             var html = "";
