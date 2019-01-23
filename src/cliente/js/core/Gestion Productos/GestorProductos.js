@@ -101,7 +101,7 @@ class GestorProductos {
         var producto = this.getProductoId(id)
         if (producto == undefined) { throw "El producto no existe." }
         generarVentanaModal({
-            tamaño: 'medio',
+            tamaño: 'pequeño',
             contenido: generarModalProducto(producto),
         })
 
