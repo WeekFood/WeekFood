@@ -142,7 +142,7 @@ class GestorProductos {
             return GLOBAL_CACHE_JSONS.getJSON("/api/productos/id/" + id).then((respuesta) => {
                 var nuevoProducto = new Producto(respuesta[0].id, respuesta[0].nombre, respuesta[0].foto, (respuesta[0].destacado == 1), respuesta[0].categoria.split(","), respuesta[0].descripcion, respuesta[0].precio)
                 this.productos.push(nuevoProducto)
-                return nuevoProducto
+                return true
             })
         }
     }

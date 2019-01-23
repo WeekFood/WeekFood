@@ -122,9 +122,8 @@ function carrito_Descargar() {
         if (respuesta.length == undefined) {
             GLOBAL_CARRITO_EXISTE = true
             respuesta.articulos.forEach(articulo => {
-                GLOBAL_GESTOR_PRODUCTOS.descargarProductoId(articulo.id).then((articulo)=>{
-                    console.log(articulo)
-                    GLOBAL_CARRITO.añadirProducto(articulo.id)
+                GLOBAL_GESTOR_PRODUCTOS.descargarProductoId(articulo.id).then(()=>{
+                    GLOBAL_CARRITO.añadirProducto(GLOBAL_GESTOR_PRODUCTOS.getProductoId(articulo.id))
                     GLOBAL_CARRITO.setCantidad(articulo.id, articulo.cantidad)
                 })}
             )

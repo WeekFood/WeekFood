@@ -30,7 +30,7 @@ class CarritosResource extends Resource {
     public function getPruebaAction(){
         
         header('Content-Type: application/json; charset=utf-8');
-        echo '{"fecha":1548268821065,"articulos":[{"id":8,"cantidad":1},{"id":10,"cantidad":1}]}';
+        echo '{"fecha":1548268821065,"articulos":[{"id":8,"cantidad":1},{"id":10,"cantidad":10}]}';
         
         /*
         $this->data = [];
