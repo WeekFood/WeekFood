@@ -51,4 +51,13 @@ class ProductosResource extends Resource {
         $this->execSQL($params);
         $this->setData();
     }
+
+    public function getProductoIDAction(){
+        $params = [
+            "id" => $this->controller->getParam("id")
+        ];
+        $this->sql = 'SELECT * FROM productos WHERE id = :id';
+        $this->execSQL($params);
+        $this->setData();
+    }
 }
