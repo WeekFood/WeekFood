@@ -33,7 +33,7 @@ function vista_Productos_montarMenu(puntoMontaje, categoria) {
         if ($(".l-distribucion__menu--expandido").length < 1) {
             $(`<div class="l-distribucion__menu--expandido">
             <div class="c-menu-expandido c-menu-expandido--plegado js-menu-expandido"> 
-            <div class='c-menu-expandido__borde' onclick='vista_Productos_alternarExtendido()'> 
+            <div class='c-menu-expandido__borde' onclick='vista_Productos_alternarExtendido()'>     
             <i class='fas fa-angle-right c-menu-expandido__flecha'></i> 
             </div>
             <ul class="c-menu-expandido__listado js-menu-expandido__listado">
