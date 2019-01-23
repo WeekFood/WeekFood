@@ -1,9 +1,12 @@
 .c-quienes-somos {
     display: grid;
-    grid-template-areas: "banderas banderas banderas" "cabecera cabecera cabecera" "contenido contenido contenido" "equipo attCliente redes";
+    grid-template-areas: "banderas banderas"
+                        "cabecera cabecera"
+                        "contenido contenido"
+                        "attCliente redes";
     height: 100%;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 60px auto 1fr auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 60px auto 1fr 1fr;
 }
 
 .c-quienes-somos__banderas {
@@ -47,6 +50,23 @@
     margin: 20px 50px;
 }
 
+.c-quienes-somos__equipo-interno{
+    display: grid;
+    padding: 15px 25px 15px 50px;
+    grid-template-columns: auto auto auto;
+}
+
+.c-quienes-somos__equipo-imagen{
+    display: block;
+    max-width: 100%;
+    height: 250px;
+}
+
+.c-quienes-somos__equipo-imagen-card{
+    max-width: 100%;
+    height: 250px;
+}
+
 .c-quienes-somos__equipo {
     grid-area: equipo;
 }
@@ -64,5 +84,6 @@
 }
 
 .c-quienes-somos__titulo-menor {
+    margin: 20px;
     font-size: 20px;
 }

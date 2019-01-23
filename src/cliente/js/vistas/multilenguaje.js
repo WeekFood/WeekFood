@@ -14,22 +14,28 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
         contenido: {
             es: `<div class='c-quienes-somos__contenido'>
             <div class='c-quienes-somos__contenido-interno'>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <p>Vivamus venenatis lorem quis elit elementum, ut tempus lectus volutpat.</p>
-            <p>Cras a sapien euismod lorem ullamcorper tincidunt quis nec dolor.</p>
-            <p>Nunc sit amet imperdiet est. Vivamus sed laoreet enim.</p>
-            <p>Fusce sollicitudin vitae lorem id facilisis.</p>
-            <p>Donec vitae ex ante. Nullam ac ante sed eros rutrum aliquam.</p>
-            </div></div>`
+            <p>Hola a todos, somos una web para gestionar encargos a casas de comidas.</p>
+            <p>Nuestra idea de negocio se basa en, satisfacer la necesidad de comer comida casera</p>
+            <p>sin que gasteis tiempo en cocinar y/o en planear.</p>
+            <p>De este modo el cliente puede dedicar su tiempo a otras cosas.</p>
+            <p class='c-quienes-somos__titulo-menor'>Plantilla de WeekFood</p>
+            <div class='c-quienes-somos__equipo-interno'>
+            <p>Jefe de operaciones, YB<img class='c-quienes-somos__equipo-imagen' src='/imagenes/yury.jpg'></p>
+            <p>Director ejecutivo, TD<img class='c-quienes-somos__equipo-imagen' src='/imagenes/toni.jpg'></p>
+            <p>Master del universo, JL<img class='c-quienes-somos__equipo-imagen' src='/imagenes/jl.jpg'></p>
+            </div></div></div>`,
+            //en:'Hola que tal'
         },
-        equipo: {
+        /*equipo: {
             es: `<div class='c-quienes-somos__equipo'>
-            <p class='c-quienes-somos__titulo-menor'>Nuestro equipo</p>
-            <p><i class="far fa-smile"></i>Jefe de operaciones, YB</p>
-            <p><i class="far fa-smile-wink"></i>Director ejecutivo, TD</p>
-            <p><i class="far fa-smile-beam"></i>Master del universo, JL</p>
+            <p class='c-quienes-somos__titulo-menor'>Plantilla de WeekFood</p>
+            <div class='c-quienes-somos__equipo-interno'>
+            <p>Jefe de operaciones, YB<img class='c-quienes-somos__equipo-imagen' src='/imagenes/yury.jpg'></p>
+            <p>Director ejecutivo, TD<img class='c-quienes-somos__equipo-imagen' src='/imagenes/toni.jpg'></p>
+            <p>Master del universo, JL<img class='c-quienes-somos__equipo-imagen' src='/imagenes/jl.jpg'></p>
+            </div>
             </div>`
-        },
+        },*/
         attCliente: {
             es: `<div class='c-quienes-somos__attCliente'>
             <p class='c-quienes-somos__titulo-menor'>Atención al cliente</p>
@@ -52,7 +58,6 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
     if (!idioma) { idioma = 'es' }
     var html = `<div class='c-quienes-somos'>
     <div class='c-quienes-somos__banderas'>`
-    //for (var x = 0; x < contenido.bandera.length; x++) {
     for (var idiomaAdmitido in contenido.bandera) {
         html += "<div class='c-quienes-somos__contenedor-bandera"
         if (idiomaAdmitido == idioma) {
@@ -66,7 +71,7 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
     html += '</div>'
     html += cargarEnIdioma(contenido, 'cabecera', idioma)
     html += cargarEnIdioma(contenido, 'contenido', idioma)
-    html += cargarEnIdioma(contenido, 'equipo', idioma)
+    //html += cargarEnIdioma(contenido, 'equipo', idioma)
     html += cargarEnIdioma(contenido, 'attCliente', idioma)
     html += cargarEnIdioma(contenido, 'redes', idioma)
     html += "</div>"
