@@ -22,6 +22,7 @@ class Articulo extends Producto {
      */
     incrementarCantidad() {
         this.cantidad++;
+        
         return this.cantidad;
     }
 
@@ -30,6 +31,7 @@ class Articulo extends Producto {
      */
     decrementarCantidad() {
         this.cantidad--;
+
         return this.cantidad;
     }
 
@@ -39,6 +41,7 @@ class Articulo extends Producto {
      */
     setCantidad(cantidad) {
         this.cantidad = cantidad;
+
         return this.cantidad;
     }
 }
