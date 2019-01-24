@@ -3,10 +3,16 @@ class GestorProductos {
         this.seHaPedidoExplicitamenteDestacados = false
         this.productos = []
         this.categoriasPrincipales = []
-        GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/").then((categoriasPrincipales) => {
-            categoriasPrincipales.forEach(categoria => {
-                this.categoriasPrincipales.push(new Categoria(categoria.nombre))
-                this.getCategoriasEnCategoriaPrincipal(categoria.nombre)
+        GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/subcategorias").then((respuesta) => {
+            respuesta.forEach(categoria => {
+                var categoriaEncontrada = this.categoriasPrincipales.find(categoriaPrincipal => this.filtrarCategoriaPrincipal(categoria["subCategoriaDe"], categoriaPrincipal))
+                if (categoriaEncontrada == undefined) {
+                    var nuevaCategoria = new Categoria(categoria.subCategoriaDe)
+                    nuevaCategoria.categorias.push(categoria["nombre"])
+                    this.categoriasPrincipales.push(nuevaCategoria)
+                } else {
+                    categoriaEncontrada.categorias.push(categoria["nombre"])
+                }
             })
         })
     }
@@ -42,14 +48,14 @@ class GestorProductos {
         var categoriaEncontrada = this.categoriasPrincipales.find(categoria => this.filtrarCategoriaPrincipal(categoriaPrincipal, categoria))
         if (categoriaEncontrada == undefined) { return undefined }
         if (categoriaEncontrada.categorias.length > 0) {
-            return $.when(categoriaEncontrada.categorias[0])
+            return $.when(categoriaEncontrada.categorias)
         } else {
             return GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/" + categoriaPrincipal+"/subcategorias").then((respuesta) => {
                 var categoriasDescargadas = []
                 respuesta.forEach(categoria => {
                     categoriasDescargadas.push(categoria.nombre)
+                    categoriaEncontrada.categorias.push(categoria.nombre)
                 });
-                categoriaEncontrada.categorias.push(categoriasDescargadas)
                 return categoriaEncontrada
             })
         }

@@ -39,6 +39,12 @@ class ProductosResource extends Resource {
         $this->setData();
     }
 
+    public function getCategoriasAction(){
+        $this->sql = 'SELECT * FROM categorias';
+        $this->execSQL();
+        $this->setData();
+    }
+
     public function getDestacadosAction() {
         if ($this->controller->getParam("destacado") !== '1'){
             $this->setError(400, 'Petición incorrecta');
