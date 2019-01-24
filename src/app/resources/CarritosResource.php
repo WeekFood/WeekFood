@@ -8,7 +8,7 @@ class CarritosResource extends Resource {
             "id" => $this->controller->getParam("id")
         ];
 
-        $this->sql = 'SELECT * FROM carritos WHERE id = :id';
+        $this->sql = 'SELECT *, UNIX_TIMESTAMP(fecha) as fecha FROM carritos WHERE id = :id';
         $this->execSQL($params);
 
         if ($this->data == null) {
