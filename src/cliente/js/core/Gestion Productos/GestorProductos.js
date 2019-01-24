@@ -4,12 +4,10 @@ class GestorProductos {
         this.productos = []
         this.categoriasPrincipales = []
         GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/").then((categoriasPrincipales) => {
-            if (categoriasPrincipales !== null) {
-                categoriasPrincipales.forEach(categoria => {
-                    this.categoriasPrincipales.push(new Categoria(categoria.nombre))
-                    this.getCategoriasEnCategoriaPrincipal(categoria.nombre)
-                })
-            }
+            categoriasPrincipales.forEach(categoria => {
+                this.categoriasPrincipales.push(new Categoria(categoria.nombre))
+                this.getCategoriasEnCategoriaPrincipal(categoria.nombre)
+            })
         })
     }
     /**
