@@ -27,13 +27,13 @@ abstract class Resource {
             }
         }
         $ps->execute();
-        $i = 0;
+        $i = 0;/*
         foreach ($ps->fetchAll(\PDO::FETCH_ASSOC) as $row) {
             foreach ($row as $key => $value) {
                 $this->data[$i][$key] = $value;
             }
             $i++;
-        }
+        }*/
     }
 
     protected function setData() {

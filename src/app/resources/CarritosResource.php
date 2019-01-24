@@ -17,16 +17,28 @@ class CarritosResource extends Resource {
         }
         $this->setData();
     }
+
     public function postCarritoAction() {
 
-        $plain = file_get_contents('php://input');
+        // TODO: insert
+        // TODO: select y devolver el carrito hecho para que se pueda quedar con el id
 
-        $data = json_decode($plain);
+        $json = file_get_contents('php://input');
+        $carrito = json_decode($json);
 
-        $this->data = $data;
+        $idUsuario = 1; // TODO, usar id usuario de la sesion
+
+        $params = [
+            "fecha" => "'2019-12-31 23:59:59'"
+        ];
+
+        $this->sql = "INSERT INTO carritos (idUsuario, fecha) VALUES (1, '2019-12-31 23:59:59')";
+
+        $this->execSQL();
 
         $this->setData();
     }
+
     public function putCarritoAction() {
 
         $plain = file_get_contents('php://input');
