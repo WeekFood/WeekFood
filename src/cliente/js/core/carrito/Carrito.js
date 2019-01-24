@@ -20,6 +20,7 @@ class Carrito {
         let articuloYaExistente = this.getArticulo(producto.id);
 
         if (articuloYaExistente) {
+            this.añadirProducto(this.quitarArticulo(producto.id));
             return this.incrementarCantidad(articuloYaExistente.id);
         } else {
             nuevoArticulo = new Articulo(producto);
@@ -115,7 +116,6 @@ class Carrito {
     getArticulos() {
         return this.articulos;
     }
-
     /**
      * @param {number} idArticulo
      * 
