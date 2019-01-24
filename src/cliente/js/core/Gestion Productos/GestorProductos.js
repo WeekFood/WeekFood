@@ -7,9 +7,9 @@ class GestorProductos {
             respuesta.forEach(categoria => {
                 var categoriaEncontrada = this.categoriasPrincipales.find(categoriaPrincipal => this.filtrarCategoriaPrincipal(categoria["subCategoriaDe"], categoriaPrincipal))
                 if (categoriaEncontrada == undefined) {
-                    categoriaEncontrada = new Categoria(categoria.subCategoriaDe)
-                    categoriaEncontrada.categorias.push(categoria["nombre"])
-                    this.categoriasPrincipales.push(categoriaEncontrada)
+                    var nuevaCategoria = new Categoria(categoria.subCategoriaDe)
+                    nuevaCategoria.categorias.push(categoria["nombre"])
+                    this.categoriasPrincipales.push(nuevaCategoria)
                 } else {
                     categoriaEncontrada.categorias.push(categoria["nombre"])
                 }
