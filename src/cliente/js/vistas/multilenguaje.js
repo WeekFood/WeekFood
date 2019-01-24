@@ -19,10 +19,10 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             <p>sin que gasteis tiempo en cocinar y/o en planear.</p>
             <p>De este modo el cliente puede dedicar su tiempo a otras cosas.</p>
             <p class='c-quienes-somos__titulo-menor'>Plantilla de WeekFood</p>
-            <div class='c-quienes-somos__equipo-interno'>
-            <p>Jefe de operaciones, YB<img class='c-quienes-somos__equipo-imagen' src='/imagenes/yury.jpg'></p>
-            <p>Director ejecutivo, TD<img class='c-quienes-somos__equipo-imagen' src='/imagenes/toni.jpg'></p>
-            <p>Master del universo, JL<img class='c-quienes-somos__equipo-imagen' src='/imagenes/jl.jpg'></p>
+            <div class='c-quienes-somos__contenido-equipo'>
+            <div class='c-quienes-somos__contenido-equipo-container'>Jefe de operaciones, YB<img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'></div>
+            <div class='c-quienes-somos__contenido-equipo-container'>Director ejecutivo, TD<img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/toni.jpg'></div>
+            <div class='c-quienes-somos__contenido-equipo-container'>Master del universo, JL<img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/jl.jpg'></div>
             </div></div></div>`,
             //en:'Hola que tal'
         },
