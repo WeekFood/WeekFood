@@ -19,7 +19,7 @@ $('.js-boton-menu').on('click', () => {
             } else {
                 clearInterval(modificarListado);
             }
-        }, 175)
+        }, 100)
 
     } else {
         $(".js-menu").addClass("c-menu--ocultar c-menu--oculto")

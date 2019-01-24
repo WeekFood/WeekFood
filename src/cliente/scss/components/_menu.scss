@@ -5,21 +5,25 @@
     height: 100%;
     z-index: 1;
     position: relative;
+    padding-top: 5%;
     &--ocultar {
         animation: c-menu__ocultar;
-        animation-duration: 0.2s;
+        animation-duration: 0.5s;
         animation-timing-function: ease-in;
+        animation-fill-mode: forwards;
     }
     &--descubrir {
         animation: c-menu__descubrir;
-        animation-duration: 0.2s;
+        animation-duration: 0.5s;
         animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
     }
     &--oculto {
         margin-top: -100%;
     }
 
     @media only screen and (min-width: $mobile-l) {
+        padding-top: 0%;
         display: block;
         border-bottom-right-radius: 10px;
         &--oculto {
@@ -60,8 +64,9 @@
     }
     &--descubrir {
         animation: c-menu__lista__descubrir;
-        animation-duration: 0.5s;
+        animation-duration: .7s;
         animation-timing-function: ease-out;
+        animation-fill-mode: both;
     }
     @media only screen and (min-width: $mobile-l) {
         &--oculto {
@@ -84,19 +89,44 @@
 
 @keyframes c-menu__ocultar {
     0% {
+        margin-top: -3%;
+    }
+    55%{
+        margin-top:0%;
+    }
+    60%{
         margin-top: 0%;
     }
-}
-
-@keyframes c-menu__descubrir {
-    0% {
+    100%{
         margin-top: -100%;
     }
 }
 
+@keyframes c-menu__descubrir {
+    0% {    
+        transform: translateY(-100%);
+    }
+    55%{    
+        transform: translateY(0%);
+    }
+    60%{    
+        transform: translateY(0%);
+    }
+    90%{    
+        transform: translateY(-7%);
+    }
+    100%{    
+        transform: translateY(-10%);
+    }
+}
 @keyframes c-menu__lista__descubrir {
     0% {
-        margin-left: -5%;
-        opacity: 0;
+        margin-left: -50%;
+    }
+    75% {
+        margin-left: 10%;
+    }
+    80% {
+        margin-left: 10%;
     }
 }
