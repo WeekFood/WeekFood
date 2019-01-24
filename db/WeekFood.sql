@@ -64,7 +64,7 @@ CREATE TABLE `carritos` (
   `fecha` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`),
-  CONSTRAINT `carritos_usuarios_FK` FOREIGN KEY (`id`) REFERENCES `usuarios` (`id`)
+  CONSTRAINT `carritos_usuarios_FK` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
