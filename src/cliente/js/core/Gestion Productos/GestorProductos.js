@@ -6,11 +6,9 @@ class GestorProductos {
         GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/subcategorias").then((respuesta) => {
             respuesta.forEach(categoria => {
                 var categoriaEncontrada = this.categoriasPrincipales.find(categoriaPrincipal => this.filtrarCategoriaPrincipal(categoria["subCategoriaDe"], categoriaPrincipal))
-                console.log(categoriaEncontrada)
                 if (categoriaEncontrada == undefined) {
                     categoriaEncontrada = new Categoria(categoria.subCategoriaDe)
                     categoriaEncontrada.categorias.push(categoria["nombre"])
-                    console.log(categoriaEncontrada)
                     this.categoriasPrincipales.push(categoriaEncontrada)
                 } else {
                     categoriaEncontrada.categorias.push(categoria["nombre"])
