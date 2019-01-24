@@ -3,15 +3,18 @@ class GestorProductos {
         this.seHaPedidoExplicitamenteDestacados = false
         this.productos = []
         this.categoriasPrincipales = []
-        GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/").then((categoriasPrincipales) => {
-            categoriasPrincipales.forEach(categoria => {
-                this.categoriasPrincipales.push(new Categoria(categoria.nombre))
-            })
-            GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/subcategorias").then((respuesta)=>{
-                respuesta.forEach(categoria=>{
-                    var categoriaEncontrada = this.categoriasPrincipales.find(categoriaPrincipal => this.filtrarCategoriaPrincipal(categoria["subCategoriaDe"],categoriaPrincipal))
+        GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/subcategorias").then((respuesta) => {
+            respuesta.forEach(categoria => {
+                var categoriaEncontrada = this.categoriasPrincipales.find(categoriaPrincipal => this.filtrarCategoriaPrincipal(categoria["subCategoriaDe"], categoriaPrincipal))
+                console.log(categoriaEncontrada)
+                if (categoriaEncontrada == undefined) {
+                    categoriaEncontrada = new Categoria(categoria.subCategoriaDe)
                     categoriaEncontrada.categorias.push(categoria["nombre"])
-                })
+                    console.log(categoriaEncontrada)
+                    this.categoriasPrincipales.push(categoriaEncontrada)
+                } else {
+                    categoriaEncontrada.categorias.push(categoria["nombre"])
+                }
             })
         })
     }
