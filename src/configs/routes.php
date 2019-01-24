@@ -53,7 +53,7 @@ return [
             "action" => "getCarrito"
         ],
         "API, Productos, por id" => [
-            "route" => "api/productos/id/:id",
+            "route" => "api/productos/:id",
             "resource" => "productos",
             "action" => "getProductoID"
         ],

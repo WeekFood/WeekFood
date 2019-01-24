@@ -139,7 +139,7 @@ class GestorProductos {
         if (productoFiltrado !== undefined) {
             return $.when(productoFiltrado)
         } else {
-            return GLOBAL_CACHE_JSONS.getJSON("/api/productos/id/" + id).then((respuesta) => {
+            return GLOBAL_CACHE_JSONS.getJSON("/api/productos/" + id).then((respuesta) => {
                 var nuevoProducto = new Producto(respuesta[0].id, respuesta[0].nombre, respuesta[0].foto, (respuesta[0].destacado == 1), respuesta[0].categoria.split(","), respuesta[0].descripcion, respuesta[0].precio)
                 this.productos.push(nuevoProducto)
                 return true
