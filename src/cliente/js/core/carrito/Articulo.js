@@ -22,7 +22,7 @@ class Articulo extends Producto {
      */
     incrementarCantidad() {
         this.cantidad++;
-        
+
         return this.cantidad;
     }
 
