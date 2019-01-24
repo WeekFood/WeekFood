@@ -20,6 +20,11 @@ class Carrito {
         let articuloYaExistente = this.getArticulo(producto.id);
 
         if (articuloYaExistente) {
+            /*
+            Si existe en el carrito, hay que ponerlo al final del carrito, para que se vea en el mini-carrito
+            Al eliminarlo, se devuelve el articulo que era, con lo que al volver a añadirlo se posiciona al final
+            */
+            this.añadirProducto(this.quitarArticulo(producto.id));
             return this.incrementarCantidad(articuloYaExistente.id);
         } else {
             nuevoArticulo = new Articulo(producto);
