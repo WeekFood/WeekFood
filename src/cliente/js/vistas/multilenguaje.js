@@ -23,7 +23,24 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             <div class='c-quienes-somos__contenido-equipo-container'>Jefe de operaciones, YB<img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'></div>
             <div class='c-quienes-somos__contenido-equipo-container'>Director ejecutivo, TD<img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/toni.jpg'></div>
             <div class='c-quienes-somos__contenido-equipo-container'>Master del universo, JL<img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/jl.jpg'></div>
-            </div></div></div>`,
+            </div>
+            <div class='c-quienes-somos__servicios'>
+            <div class='c-quienes-somos__attCliente'>
+            <p class='c-quienes-somos__titulo-menor'>Atención al cliente</p>
+            <p><i class="fas fa-phone"></i>902 - 123- 469</p>
+            <p><i class="far fa-envelope"></i>* info@weekfood.com</p>
+            <p><i class="fab fa-whatsapp"></i>* 603 - 123- 469</p>
+            <p>*(Atención automatizada)</p>
+            </div>
+            <div class='c-quienes-somos__redes'>
+            <p class='c-quienes-somos__titulo-menor'>¡Siguenos en nuestras redes sociales!</p>
+            <p><i class="fab fa-instagram"></i> @WeekFood</p>
+            <p><i class="fab fa-twitter"></i></i> @WeekFood</p>
+            <p><i class="fab fa-facebook"></i> /WeekFood</p>
+            </div>
+            </div>
+            </div>
+            </div>`,
             //en:'Hola que tal'
         },
         /*equipo: {
@@ -36,7 +53,7 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             </div>
             </div>`
         },*/
-        attCliente: {
+        /*attCliente: {
             es: `<div class='c-quienes-somos__attCliente'>
             <p class='c-quienes-somos__titulo-menor'>Atención al cliente</p>
             <p><i class="fas fa-phone"></i>902 - 123- 469</p>
@@ -44,15 +61,15 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             <p><i class="fab fa-whatsapp"></i>* 603 - 123- 469</p>
             <p>*(Atención automatizada)</p>
             </div>`
-        },
-        redes: {
+        },*/
+        /*redes: {
             es: `<div class='c-quienes-somos__redes'>
             <p class='c-quienes-somos__titulo-menor'>¡Siguenos en nuestras redes sociales!</p>
             <p><i class="fab fa-instagram"></i> @WeekFood</p>
             <p><i class="fab fa-twitter"></i></i> @WeekFood</p>
             <p><i class="fab fa-facebook"></i> /WeekFood</p>
             </div>`
-        }
+        }*/
 
     }
     if (!idioma) { idioma = 'es' }
@@ -72,8 +89,8 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
     html += cargarEnIdioma(contenido, 'cabecera', idioma)
     html += cargarEnIdioma(contenido, 'contenido', idioma)
     //html += cargarEnIdioma(contenido, 'equipo', idioma)
-    html += cargarEnIdioma(contenido, 'attCliente', idioma)
-    html += cargarEnIdioma(contenido, 'redes', idioma)
-    html += "</div>"
+    //html += cargarEnIdioma(contenido, 'attCliente', idioma)
+    //html += cargarEnIdioma(contenido, 'redes', idioma)
+    //html += "</div>"
     $(puntoMontaje).html(html)
 }

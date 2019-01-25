@@ -2,8 +2,7 @@
     display: grid;
     grid-template-areas: "banderas banderas"
                         "cabecera cabecera"
-                        "contenido contenido"
-                        "attCliente redes";
+                        "contenido contenido";
     height: 100%;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 60px auto 1fr 1fr;
@@ -71,16 +70,24 @@
     height: 100%;
 }
 
+.c-quienes-somos__servicios{
+    display: inline;
+}
+
 .c-quienes-somos__equipo {
     grid-area: equipo;
 }
 
 .c-quienes-somos__attCliente {
     grid-area: attCliente;
+    justify-self: center;
+    font-size: 20px;
 }
 
 .c-quienes-somos__redes {
     grid-area: redes;
+    justify-self: center;
+    font-size: 20px;
 }
 
 .c-quienes-somos__titulo {
