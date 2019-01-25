@@ -26,6 +26,7 @@ $('.js-boton-menu').on('click', () => {
     }
 });
 $(".js-carrito").on('click', carrito_Alternar)
+$(".js-acceso").on('click', acceso_Alternar)
 
 var GLOBAL_CACHE_JSONS = new CacheJSONs();
 var GLOBAL_CARRITO = new Carrito();
