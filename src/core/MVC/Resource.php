@@ -22,13 +22,10 @@ abstract class Resource {
     protected function execSQL($params = null) {
         $ps = $this->db->prepare($this->sql);
         if (!is_null($params)) {
-            foreach ($params as $key => $value) {
-                echo "@@@ key: $key | value: $value\n";
+            foreach ($params as $key => &$value) {
                 $ps->bindParam($key, $value);
             }
         }
-
-        var_dump($ps->debugDumpParams());
 
         $ps->execute();
         $i = 0;/*

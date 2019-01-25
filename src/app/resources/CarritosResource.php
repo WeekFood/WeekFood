@@ -23,17 +23,23 @@ class CarritosResource extends Resource {
         // TODO: insert
         // TODO: select y devolver el carrito hecho para que se pueda quedar con el id
 
+        // $ps = $this->db->prepare('INSERT INTO carritos (idUsuario, fecha) VALUES (1, :fecha)');
+
+        // // $ps->bindParam('idUsuario', 1);
+        // $ps->bindParam('fecha', "2019-12-31 23:59:59");
+
+        // var_dump($ps->debugDumpParams());
+        // $ps->execute();
+
         $json = file_get_contents('php://input');
         $carrito = json_decode($json);
 
         $idUsuario = 1; // TODO, usar id usuario de la sesion
 
         $params = [
-            "fecha" => "2019-12-31 23:59:59",
-            "idUsuario" => 1
+            "idUsuario" => $idUsuario,
+            "fecha" => $carrito->fecha
         ];
-
-        var_dump($params);
 
         $this->sql = "INSERT INTO carritos (idUsuario, fecha) VALUES (:idUsuario, :fecha)";
 
