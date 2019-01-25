@@ -1,7 +1,7 @@
-.c-acceso__panel {
+.c-acceso {
     border-radius: 10px;
     border-top-left-radius: 10px;
-    width: 425px;
+    max-width: 425px;
     z-index: 2;
     position: absolute;
     top: 50px;
@@ -27,7 +27,12 @@
     margin: 5px 0;
     width: 100%
 }
+.c-acceso__botones{
+    width: 100%;
+    display:flex;
+    text-align: center;
+}
 .c-acceso__boton{
-    margin-top: 10px;
-    width: 100%
+    margin: 10px auto 0 auto;
+    width: 40%;
 }
