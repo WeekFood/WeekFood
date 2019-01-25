@@ -7,19 +7,21 @@
     position: relative;
     &--ocultar {
         animation: c-menu__ocultar;
-        animation-duration: 0.2s;
+        animation-duration: 0.5s;
         animation-timing-function: ease-in;
     }
     &--descubrir {
         animation: c-menu__descubrir;
-        animation-duration: 0.2s;
+        animation-duration: 0.7s;
         animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
     }
     &--oculto {
         margin-top: -100%;
     }
 
     @media only screen and (min-width: $mobile-l) {
+        padding-top: 0%;
         display: block;
         border-bottom-right-radius: 10px;
         &--oculto {
@@ -60,8 +62,9 @@
     }
     &--descubrir {
         animation: c-menu__lista__descubrir;
-        animation-duration: 0.5s;
+        animation-duration: .7s;
         animation-timing-function: ease-out;
+        animation-fill-mode: both;
     }
     @media only screen and (min-width: $mobile-l) {
         &--oculto {
@@ -84,19 +87,51 @@
 
 @keyframes c-menu__ocultar {
     0% {
-        margin-top: 0%;
+        padding-top: 10px;
+        margin-top: -7px;
     }
-}
-
-@keyframes c-menu__descubrir {
-    0% {
+    40%{
+        padding-top: 10px;
+        margin-top:0;
+    }
+    45%{
+        padding-top: 10px;
+        margin-top: 0;
+    }
+    100%{
         margin-top: -100%;
     }
 }
 
+@keyframes c-menu__descubrir {
+    0% { 
+        padding-top: 10px;
+        margin-top: -100%;
+    }
+    15%{
+        padding-top: 10px;
+        margin-top: -30%;
+    }
+    70%{    
+        padding-top: 10px;
+        margin-top: 0;
+    }
+    75%{    
+        padding-top: 10px;
+        margin-top: 0;
+    }
+    100%{    
+        padding-top: 0;
+    }
+}
 @keyframes c-menu__lista__descubrir {
     0% {
-        margin-left: -5%;
-        opacity: 0;
+        margin-left: -50%;
+    }
+    75% {
+        margin-left: 10px;
+    }
+    80% {
+        margin-left: 10px;
     }
 }
