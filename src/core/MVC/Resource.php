@@ -23,9 +23,13 @@ abstract class Resource {
         $ps = $this->db->prepare($this->sql);
         if (!is_null($params)) {
             foreach ($params as $key => $value) {
+                echo "@@@ key: $key | value: $value\n";
                 $ps->bindParam($key, $value);
             }
         }
+
+        var_dump($ps->debugDumpParams());
+
         $ps->execute();
         $i = 0;/*
         foreach ($ps->fetchAll(\PDO::FETCH_ASSOC) as $row) {

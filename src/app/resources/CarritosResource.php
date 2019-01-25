@@ -29,12 +29,15 @@ class CarritosResource extends Resource {
         $idUsuario = 1; // TODO, usar id usuario de la sesion
 
         $params = [
-            "fecha" => "'2019-12-31 23:59:59'"
+            "fecha" => "2019-12-31 23:59:59",
+            "idUsuario" => 1
         ];
 
-        $this->sql = "INSERT INTO carritos (idUsuario, fecha) VALUES (1, '2019-12-31 23:59:59')";
+        var_dump($params);
 
-        $this->execSQL();
+        $this->sql = "INSERT INTO carritos (idUsuario, fecha) VALUES (:idUsuario, :fecha)";
+
+        $this->execSQL($params);
 
         $this->setData();
     }
