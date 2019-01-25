@@ -5,7 +5,6 @@
     height: 100%;
     z-index: 1;
     position: relative;
-    padding-top: 5%;
     &--ocultar {
         animation: c-menu__ocultar;
         animation-duration: 0.5s;
@@ -13,7 +12,7 @@
     }
     &--descubrir {
         animation: c-menu__descubrir;
-        animation-duration: 0.5s;
+        animation-duration: 0.7s;
         animation-timing-function: ease-out;
         animation-fill-mode: forwards;
     }
@@ -88,13 +87,16 @@
 
 @keyframes c-menu__ocultar {
     0% {
-        margin-top: -3%;
+        padding-top: 10px;
+        margin-top: -7px;
     }
-    55%{
-        margin-top:0%;
+    40%{
+        padding-top: 10px;
+        margin-top:0;
     }
-    60%{
-        margin-top: 0%;
+    45%{
+        padding-top: 10px;
+        margin-top: 0;
     }
     100%{
         margin-top: -100%;
@@ -102,20 +104,24 @@
 }
 
 @keyframes c-menu__descubrir {
-    0% {    
-        transform: translateY(-100%);
+    0% { 
+        padding-top: 10px;
+        margin-top: -100%;
     }
-    55%{    
-        transform: translateY(0%);
-    }
-    60%{    
-        transform: translateY(0%);
+    15%{
+        padding-top: 10px;
+        margin-top: -30%;
     }
     90%{    
-        transform: translateY(-7%);
+        padding-top: 10px;
+        margin-top: 0;
+    }
+    95%{    
+        padding-top: 10px;
+        margin-top: 0;
     }
     100%{    
-        transform: translateY(-10%);
+        padding-top: 0;
     }
 }
 @keyframes c-menu__lista__descubrir {
@@ -123,9 +129,9 @@
         margin-left: -50%;
     }
     75% {
-        margin-left: 10%;
+        margin-left: 10px;
     }
     80% {
-        margin-left: 10%;
+        margin-left: 10px;
     }
 }
