@@ -42,7 +42,7 @@ class Usuario {
         }
         if (pass.length < 6) {
             errores.push(2)
-        } else if (!pass == passRepe) {
+        } else if (!pass.localeCompare(passRepe) == 0) {
             errores.push(3)
         }
         if (errores.length == 0) {
