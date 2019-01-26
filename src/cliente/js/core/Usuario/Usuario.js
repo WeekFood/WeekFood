@@ -22,7 +22,8 @@ class Usuario {
         var errores = []
         // Todo conectar con server y autenticar
         if (this.existeElUsuario(usuario)) {
-            errores.push(0)
+            //errores.push(0)
+            console.log("Saltada comprobacion <Existe el usuario>")
         } else {
             if (this.acceder(usuario, pass)) {
                 // Todo almacenar credenciales
@@ -35,7 +36,8 @@ class Usuario {
     validarRegistro(usuario, pass, passRepe) {
         var errores = []
         if (this.existeElUsuario(usuario)) {
-            errores.push(0)
+           //errores.push(0)
+           console.log("Saltada comprobacion <Existe el usuario>")
         }
         if (usuario.length < 4) {
             errores.push(1)

@@ -1,5 +1,4 @@
 function perfil_Alternar() {
-    $(".js-acceso").remove()
     if ($(".c-carrito").length == 1) {
         if (!$(".c-carrito").hasClass("c-carrito--desaparecer")) {
             carrito_Alternar()
@@ -38,4 +37,5 @@ function forzarLogueo() {
     <img class='c-perfil__imagen c-perfil__imagen--cabecera' src='`+ GLOBAL_USUARIO.imagen + `'>
     </div></div>`)
     $(".js-perfil").on("click", perfil_Alternar)
+    $(".c-acceso, .c-acceso__errores").remove()
 }

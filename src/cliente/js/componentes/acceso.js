@@ -35,6 +35,7 @@ function acceso_Entrar() {
     if ($(".c-acceso").data("modo") == 1) {
         if (!acceso_ErroresEntrada()) {
             // Todo Login conseguido
+            forzarLogueo()
         }
     } else {
         acceso_ReiniciarCampos()
@@ -49,6 +50,7 @@ function acceso_Registro() {
     if ($(".c-acceso").data("modo") == 2) {
         if (!acceso_ErroresRegistro()) {
             // Todo registro conseguido
+            forzarLogueo()
         }
     } else {
         acceso_ReiniciarCampos()
@@ -74,27 +76,31 @@ function acceso_Escribiendo(evento) {
 
 function acceso_ErroresEntrada() {
     var comprobacion = GLOBAL_USUARIO.validarAcceso($(".js-acceso__nombre").val(), $(".js-acceso__contra").val())
+    $(".c-acceso__errores").html("")
     if (comprobacion.length > 0) {
         if ($(".c-acceso__errores").length == 0) {
             $("<div class='c-acceso__errores c-acceso__errores--acceso'></div>").insertBefore(".c-acceso")
         }
-        $(".c-acceso__errores").html("")
         comprobacion.forEach(error => {
             $(".c-acceso__errores").append("<p class='c-acceso__error-mensaje'>" + GLOBAL_USUARIO.erroresAcceso[error] + "</p>")
         })
+    } else {
+        $(".c-acceso__errores").remove()
     }
     return comprobacion.length > 0
 }
 function acceso_ErroresRegistro() {
     var comprobacion = GLOBAL_USUARIO.validarRegistro($(".js-acceso__nombre").val(), $(".js-acceso__contra").val(), $(".js-acceso__contra-repe").val())
+    $(".c-acceso__errores").html("")
     if (comprobacion.length > 0) {
         if ($(".c-acceso__errores").length == 0) {
             $("<div class='c-acceso__errores c-acceso__errores--registro'></div>").insertBefore(".c-acceso")
         }
-        $(".c-acceso__errores").html("")
         comprobacion.forEach(error => {
             $(".c-acceso__errores").append("<p class='c-acceso__error-mensaje'>" + GLOBAL_USUARIO.erroresRegistro[error] + "</p>")
         })
+    } else {
+        $(".c-acceso__errores").remove()
     }
     return comprobacion.length > 0
 }
