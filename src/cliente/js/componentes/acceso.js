@@ -8,7 +8,7 @@ function acceso_Alternar() {
         $(".p-principal").prepend(`<div data-modo="1" class='c-acceso'>
             <p class="c-acceso__titulo">Acceso</p>
             <input class="c-acceso__campo js-acceso__nombre" type="text" placeholder="Usuario">
-            <input class="c-acceso__campo js-acceso__contra" type="text" placeholder="Contraseña">
+            <input class="c-acceso__campo js-acceso__contra" type="password" placeholder="Contraseña">
             <div class="c-acceso__botones">
             <div class="c-boton c-boton--exito c-acceso__boton js-acceso__entrar">Entrar</div>
             <div class="c-boton c-boton--basico c-acceso__boton js-acceso__registro">Registrarme</div>
@@ -57,7 +57,7 @@ function acceso_Registro() {
         $(".js-acceso__entrar").toggleClass("c-boton--basico").toggleClass("c-boton--exito")
         $(".js-acceso__registro").toggleClass("c-boton--basico").toggleClass("c-boton--exito")
         $(".c-acceso__titulo").html("Registro")
-        $('<input class="c-acceso__campo js-acceso__contra-repe" type="text" placeholder="Contraseña">').insertAfter(".js-acceso__contra")
+        $('<input class="c-acceso__campo js-acceso__contra-repe" type="password" placeholder="Contraseña">').insertAfter(".js-acceso__contra")
         $(".c-acceso").data("modo", "2")
         $(".js-acceso__contra-repe").on('keyup', acceso_Escribiendo);
     }
@@ -77,8 +77,10 @@ function acceso_Escribiendo(evento) {
 function acceso_ErroresEntrada() {
     var comprobacion = GLOBAL_USUARIO.validarAcceso($(".js-acceso__nombre").val(), $(".js-acceso__contra").val())
     if (comprobacion.length > 0) {
-        $(".c-acceso__errores").remove()
-        $("<div class='c-acceso__errores c-acceso__errores--acceso'></div>").insertBefore(".c-acceso")
+        if ($(".c-acceso__errores").length == 0){
+            $("<div class='c-acceso__errores c-acceso__errores--acceso'></div>").insertBefore(".c-acceso")
+        }
+        $(".c-acceso__errores").html("")
         comprobacion.forEach(error => {
             $(".c-acceso__errores").append("<p class='c-acceso__error-mensaje'>" + GLOBAL_USUARIO.erroresAcceso[error] + "</p>")
         })
@@ -88,8 +90,10 @@ function acceso_ErroresEntrada() {
 function acceso_ErroresRegistro() {
     var comprobacion = GLOBAL_USUARIO.validarRegistro($(".js-acceso__nombre").val(), $(".js-acceso__contra").val(), $(".js-acceso__contra-repe").val())
     if (comprobacion.length > 0) {
-        $(".c-acceso__errores").remove()
-        $("<div class='c-acceso__errores c-acceso__errores--registro'></div>").insertBefore(".c-acceso")
+        if ($(".c-acceso__errores").length == 0){
+            $("<div class='c-acceso__errores c-acceso__errores--registro'></div>").insertBefore(".c-acceso")
+        }
+        $(".c-acceso__errores").html("")
         comprobacion.forEach(error => {
             $(".c-acceso__errores").append("<p class='c-acceso__error-mensaje'>" + GLOBAL_USUARIO.erroresRegistro[error] + "</p>")
         })
