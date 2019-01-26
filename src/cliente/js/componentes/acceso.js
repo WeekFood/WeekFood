@@ -32,7 +32,6 @@ function acceso_Alternar() {
     acceso_ReiniciarCampos()
 }
 function acceso_Entrar() {
-    $(".c-acceso__errores").remove()
     if ($(".c-acceso").data("modo") == 1) {
         if (!acceso_ErroresEntrada()) {
             // Todo Login conseguido
@@ -47,7 +46,6 @@ function acceso_Entrar() {
     }
 }
 function acceso_Registro() {
-    $(".c-acceso__errores").remove()
     if ($(".c-acceso").data("modo") == 2) {
         if (!acceso_ErroresRegistro()) {
             // Todo registro conseguido
