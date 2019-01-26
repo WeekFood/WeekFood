@@ -75,7 +75,7 @@ function acceso_Escribiendo(evento) {
 function acceso_ErroresEntrada() {
     var comprobacion = GLOBAL_USUARIO.validarAcceso($(".js-acceso__nombre").val(), $(".js-acceso__contra").val())
     if (comprobacion.length > 0) {
-        if ($(".c-acceso__errores").length == 0){
+        if ($(".c-acceso__errores").length == 0) {
             $("<div class='c-acceso__errores c-acceso__errores--acceso'></div>").insertBefore(".c-acceso")
         }
         $(".c-acceso__errores").html("")
@@ -88,7 +88,7 @@ function acceso_ErroresEntrada() {
 function acceso_ErroresRegistro() {
     var comprobacion = GLOBAL_USUARIO.validarRegistro($(".js-acceso__nombre").val(), $(".js-acceso__contra").val(), $(".js-acceso__contra-repe").val())
     if (comprobacion.length > 0) {
-        if ($(".c-acceso__errores").length == 0){
+        if ($(".c-acceso__errores").length == 0) {
             $("<div class='c-acceso__errores c-acceso__errores--registro'></div>").insertBefore(".c-acceso")
         }
         $(".c-acceso__errores").html("")
