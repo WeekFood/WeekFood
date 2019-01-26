@@ -20,7 +20,6 @@ class Usuario {
     }
     validarAcceso(usuario, pass) {
         var errores = []
-        // Todo conectar con server y autenticar
         if (this.existeElUsuario(usuario)) {
             //errores.push(0)
             console.log("Saltada comprobacion <Existe el usuario>")
@@ -65,7 +64,8 @@ class Usuario {
         return false
     }
     guardarCredenciales() {
-        // Todo
+        // Todo guardar token en la bd interna
+        window.localStorage.setItem("tokenAcceso",0)
     }
     accederConToken() {
         //Todo conectar a server, authenticar
