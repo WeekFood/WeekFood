@@ -20,6 +20,7 @@ try {
 require_once "./core/AutoLoad.php";
 
 use \core\MVC\Controller;
+use core\Auth;
 
 $globals = \core\Globals::getInstance();
 
@@ -27,6 +28,7 @@ $globals->set("db", $mysql);
 
 //Utilizar el método set de $globals para añadir $config ($key será "config")
 $globals->set("config", $config);
+$globals->set("auth", new Auth($globals->get('db')));
 
 //Crear un nuevo objeto de tipo Controller
 $controller = new Controller();
