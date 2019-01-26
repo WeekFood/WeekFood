@@ -1,6 +1,5 @@
 .c-acceso {
-    border-radius: 10px;
-    border-top-left-radius: 10px;
+    border-radius: 0px 0px 10px 10px;
     width: 425px;
     z-index: 2;
     position: absolute;
@@ -12,7 +11,6 @@
     max-height: 80vh;
     overflow: auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-top-left-radius: 0px;
     animation: c-acceso__aparecer 0.5s;
     &--desaparecer {
         animation: c-acceso__desaparecer 0.5s both;
@@ -20,6 +18,38 @@
     @media only screen and (min-width: $mobile-l) {
         width: 315px;
     }
+}
+
+.c-acceso__errores {
+    border-radius: 0px 0px 10px 10px;
+    width: 425px;
+    z-index: 2;
+    position: absolute;
+    background: red;
+    right: 0px;
+    padding: 15px;
+    margin: 0;
+    max-height: 80vh;
+    color: white;
+    overflow: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation: c-acceso__aparecer 0.5s;
+    &--desaparecer {
+        animation: c-acceso__desaparecer 0.5s both;
+    }
+    @media only screen and (min-width: $mobile-l) {
+        width: 315px;
+    }
+    &--acceso {
+        top: 220px;
+    }
+    &--registro {
+        top: 255px;
+    }
+}
+
+.c-acceso__error-mensaje {
+    padding: 5px 0;
 }
 
 .c-acceso__titulo {
