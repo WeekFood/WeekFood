@@ -1,7 +1,7 @@
 .c-acceso {
     border-radius: 10px;
     border-top-left-radius: 10px;
-    max-width: 425px;
+    width: 425px;
     z-index: 2;
     position: absolute;
     top: 50px;
@@ -13,9 +13,16 @@
     overflow: auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-top-left-radius: 0px;
-    animation: c-carrito__aparecer 0.5s;
+    animation: c-acceso__aparecer 0.5s;
+    &--desaparecer {
+        animation: c-acceso__desaparecer 0.5s both;
+    }
+    @media only screen and (min-width: $mobile-l) {
+        width: 315px;
+    }
 }
-.c-acceso__titulo{
+
+.c-acceso__titulo {
     margin-bottom: 10px;
     text-align: center;
     font-size: 30px;
@@ -23,16 +30,35 @@
         font-size: 25px;
     }
 }
-.c-acceso__campo{
+
+.c-acceso__campo {
     margin: 5px 0;
-    width: 100%
-}
-.c-acceso__botones{
     width: 100%;
-    display:flex;
+    display: inline-block;
+}
+
+.c-acceso__botones {
+    width: 100%;
+    display: flex;
     text-align: center;
 }
-.c-acceso__boton{
+
+.c-acceso__boton {
     margin: 10px auto 0 auto;
     width: 40%;
+}
+
+@keyframes c-acceso__aparecer {
+    0% {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes c-acceso__desaparecer {
+    99% {
+        transform: translateY(-110%);
+    }
+    100% {
+        transform: translateY(-200%);
+    }
 }

@@ -1,4 +1,9 @@
 function carrito_Alternar() {
+    if ($(".c-acceso").length == 1) {
+        if (!$(".c-acceso").hasClass("c-acceso--desaparecer")) {
+            acceso_Alternar()
+        }
+    }
     if ($(".c-carrito").length < 1) {
         $(".p-principal").prepend(`<div class='c-carrito'></div>`)
     } else {
