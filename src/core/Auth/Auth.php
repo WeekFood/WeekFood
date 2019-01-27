@@ -30,6 +30,7 @@ class Auth {
     public function register(string $nick, string $password, string $name, bool $rememberMe = false) {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
+        // TODO: endpoint (y metodo) para la comprobacion de nick existente (necesario para la rama 214 de toni)
         $sqlNickTaken = 'SELECT nick FROM usuarios WHERE nick = :nick';
         $psNickTaken = $this->db->prepare($sqlNickTaken);
         $psNickTaken->bindParam(':nick', $nick);
