@@ -30,6 +30,8 @@ $globals->set("db", $mysql);
 $globals->set("config", $config);
 $globals->set("auth", new Auth($globals->get('db')));
 
+session_start();
+
 //Crear un nuevo objeto de tipo Controller
 $controller = new Controller();
 

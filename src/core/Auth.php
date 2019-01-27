@@ -1,12 +1,17 @@
 <?php
 namespace core;
 
+/**
+ * Based on https://stackoverflow.com/a/17266448/3499595 y https://github.com/delight-im/PHP-Auth/
+ */
 class Auth {
     const ERR_NO_TOKEN = 'ERR_NO_TOKEN';
     const ERR_ROLE_FORBIDDEN = 'ERR_ROLE_FORBIDDEN';
     const ERR_ACCESS_FORBIDDEN = 'ERR_ACCESS_FORBIDDEN';
     const ERR_LOGIN_USER_NOT_FOUND = 'ERR_LOGIN_USER_NOT_FOUND';
     const ERR_LOGIN_WRONG_PASSWORD = 'ERR_LOGIN_WRONG_PASSWORD';
+    const ERR_RENEW_LOGIN_INVALID_SIGNATURE = 'ERR_RENEW_LOGIN_INVALID_SIGNATURE';
+    const ERR_LOGOUT_NO_TOKEN = 'ERR_LOGOUT_NO_TOKEN';
 
     const RESOURCE_CARRITO_ID = 'RESOURCE_CARRITO_ID';
 
@@ -71,10 +76,7 @@ class Auth {
     }
 
     private function setCookies(string $userId, bool $rememberMe): bool {
-        session_start();
-
-        $_SESSION['idUsuario'] = $userId;
-        // TODO: nivel de privilegio ?
+        $this->setSession($userId);
 
         if ($rememberMe) {
             $token = $this->generateRandomToken();
@@ -100,7 +102,47 @@ class Auth {
                 '1', /* al parecer es necesario algun valor, no puede estar vacio, sino es como si se borrase (segun Postman, por lo menos) */
                 time() + self::COOKIE_LIFETIME_SEC
             );
+
+            $_SESSION['recuerdame'] = true;
         }
+
+        return true;
+    }
+
+    public function renewLogin(): bool {
+        if (isset($_COOKIE[self::COOKIE_NAME_TOKEN])) {
+            list($userId, $token, $signedHash) = explode('.', $_COOKIE[self::COOKIE_NAME_TOKEN]);
+
+            if (!hash_equals(hash_hmac('sha256', $userId . '.' . $token, self::SECRET_KEY), $signedHash)) {
+                $this->sendError(self::ERR_RESUME_LOGIN_INVALID_SIGNATURE);
+                return false;
+            }
+
+            // renew cookies
+            $this->setCookies($userId, isset($_COOKIE[self::COOKIE_NAME_REMEMBER_ME]));
+            return true;
+        } else {
+            $this->sendError(self::ERR_NO_TOKEN);
+            return false;
+        }
+    }
+    
+    public function logout(): bool {
+        // TODO: if isAuth
+        if (isset($_COOKIE[COOKIE_NAME_TOKEN])) {
+            return session_destroy()
+            && setcookie(self::COOKIE_NAME_TOKEN, '', 0)
+            && setcookie(self::COOKIE_NAME_REMEMBER_ME, '', 0);
+        } else {
+            $this->sendError(self::ERR_LOGOUT_NO_TOKEN);
+            return false;
+        }
+    }
+
+    private function setSession(string $userId): bool {
+        $_SESSION['logueado'] = true;
+        $_SESSION['idUsuario'] = $userId;
+        // TODO: nivel de privilegio ?
 
         return true;
     }
@@ -110,8 +152,12 @@ class Auth {
     }
 
     public function isAuthenticated(): bool {
-        // TODO
-        return false;
+        return isset($_COOKIE[COOKIE_NAME_TOKEN])
+                && session_status() !== PHP_SESSION_NONE
+                && isset($_SESSION['logueado'])
+                && $_SESSION['logueado']
+                && isset($_SESSION['idUsuario'])
+                && $_SESSION['idUsuario'];
     }
 
     public function hasPrivilegeLvl(int $lvl): bool {
@@ -125,18 +171,20 @@ class Auth {
     }
 
     public function sendError(string $errorConst) {
-        switch ($type) {
-        case (self::ERR_NO_TOKEN):
-        case (self::ERR_LOGIN_USER_NOT_FOUND):
-        case (self::ERR_LOGIN_WRONG_PASSWORD):
-            http_response_code(401);
-            break;
-        case (self::ERR_ROLE_FORBIDDEN):
-        case (self::ERR_ACCESS_FORBIDDEN):
-            http_response_code(403);
-            break;
-        default:
-            http_response_code(500);
+        switch ($errorConst) {
+            case (self::ERR_NO_TOKEN):
+            case (self::ERR_LOGIN_USER_NOT_FOUND):
+            case (self::ERR_LOGIN_WRONG_PASSWORD):
+            case (self::ERR_RENEW_LOGIN_INVALID_SIGNATURE):
+            case (self::ERR_LOGOUT_NO_TOKEN):
+                http_response_code(401);
+                break;
+            case (self::ERR_ROLE_FORBIDDEN):
+            case (self::ERR_ACCESS_FORBIDDEN):
+                http_response_code(403);
+                break;
+            default:
+                http_response_code(500);
         }
     }
 }

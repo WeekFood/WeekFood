@@ -51,6 +51,16 @@ return [
             "route" => "api/productos?destacado=:destacado",
             "resource" => "productos",
             "action" => "getDestacados"
+        ],
+        "API, Auth, renovar login" => [
+            "route" => "api/auth/renovar_login",
+            "resource" => "auth",
+            "action" => "getRenovarLogin"
+        ],
+        "API, Auth, logout" => [
+            "route" => "api/auth/logout",
+            "resource" => "auth",
+            "action" => "getLogout"
         ]
     ],
     "post" => [

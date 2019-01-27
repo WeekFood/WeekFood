@@ -26,4 +26,12 @@ class AuthResource extends Resource {
 
         $this->auth->login($nick, $contraseña, true);
     }
+
+    public function getRenovarLoginAction() {
+        $this->auth->renewLogin();
+    }
+
+    public function getLogoutAction() {
+        $this->auth->logout();
+    }
 }
