@@ -29,16 +29,20 @@ abstract class Resource {
 
         $ps->execute();
         switch (explode(' ',trim($this->sql))[0]){
-            case "SELECT":$i = 0;
+            case "SELECT":
+                $i = 0;
                 foreach ($ps->fetchAll(\PDO::FETCH_ASSOC) as $row) {
                     foreach ($row as $key => $value) {
                         $this->data[$i][$key] = $value;
                     }
                     $i++;
                 }
+                break;
             case "INSERT": 
                 $this->data = $this->db->lastInsertId();
-
+                break;
+            default:
+                $this->data = [];
         }
     }
 

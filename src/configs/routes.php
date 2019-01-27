@@ -57,13 +57,11 @@ return [
             "resource" => "productos",
             "action" => "getProductoID"
         ],
-        // CODIGO PRUEBA -->
-        "API, carritos, prueba" => [
+        "API, carritos" => [
             "route" => "api/carritos",
             "resource" => "carritos",
-            "action" => "getPrueba"
+            "action" => "getCarrito"
         ],
-        // <-- CODIGO PRUEBA
     ],
     "post" => [
         "API, carritos" => [

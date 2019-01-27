@@ -4,6 +4,36 @@ use core\MVC\Resource as Resource;
 
 class CarritosResource extends Resource {
     public function getCarritoAction() {
+        $this->sql =    "SELECT 
+                            carritos.id,
+                            carritos.fecha, 
+                            articulosencarritos.idArticulo,
+                            articulosencarritos.cantidad 
+                        FROM 
+                            carritos RIGHT JOIN articulosencarritos ON 
+                                articulosencarritos.idCarrito = carritos.id
+                        WHERE carritos.idUsuario = :idUsuario";
+
+        $idUsuario = 1; // TODO, usar id usuario de la sesion
+        $params = [
+            "idUsuario" => $idUsuario
+        ];
+        $this->execSQL($params);
+        $carrito = [
+            "id" => $this->data[0]["id"],
+            "fecha" => $this->data[0]["fecha"],
+            "articulos" => []
+        ];
+        foreach($this->data as $linea){
+            $articulo = ["id"=>$linea["idArticulo"],"cantidad"=>$linea["cantidad"]];
+            array_push($carrito["articulos"],$articulo);
+        }
+        $this->data = $carrito;
+        $this->setData();
+    }
+    /*
+    // original yuriy
+    public function getCarritoAction() {
         $params = [
             "id" => $this->controller->getParam("id")
         ];
@@ -16,13 +46,11 @@ class CarritosResource extends Resource {
             $this->data = (object) null;
         }
         $this->setData();
-    }
+    }*/
 
     public function postCarritoAction() {
-
         $json = file_get_contents('php://input');
         $carrito = json_decode($json,true);
-        $this->data = $carrito;
         $idUsuario = 1; // TODO, usar id usuario de la sesion
 
         $params = [
@@ -48,24 +76,12 @@ class CarritosResource extends Resource {
 
     public function putCarritoAction() {
 
-        $plain = file_get_contents('php://input');
+        $json = file_get_contents('php://input');
 
-        $data = json_decode($plain);
+        $carrito = json_decode($json,true);
 
-        $this->data = $data;
+        $this->data = $carrito;
 
         $this->setData();
     }
-    // CODIGO PRUEBA -->
-    public function getPruebaAction(){
-        
-        header('Content-Type: application/json; charset=utf-8');
-        echo '{"fecha":1548268821065,"articulos":[{"id":8,"cantidad":1},{"id":10,"cantidad":1}]}';
-        
-        /*
-        $this->data = [];
-        $this->setData();
-        */
-    }
-    // <-- CODIGO PRUEBA
 }
