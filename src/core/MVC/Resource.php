@@ -28,16 +28,18 @@ abstract class Resource {
         }
 
         $ps->execute();
-        $sentencia = explode(' ',trim($this->sql))[0];
-        if (strtoupper($sentencia) == "SELECT"){
-            $i = 0;
-            foreach ($ps->fetchAll(\PDO::FETCH_ASSOC) as $row) {
-                foreach ($row as $key => $value) {
-                    $this->data[$i][$key] = $value;
+        switch (explode(' ',trim($this->sql))[0]){
+            case "SELECT":$i = 0;
+                foreach ($ps->fetchAll(\PDO::FETCH_ASSOC) as $row) {
+                    foreach ($row as $key => $value) {
+                        $this->data[$i][$key] = $value;
+                    }
+                    $i++;
                 }
-                $i++;
-            }
-        } 
+            case "INSERT": 
+                $this->data = $this->db->lastInsertId();
+
+        }
     }
 
     protected function setData() {

@@ -151,7 +151,7 @@ class Carrito {
     
     exportar() {
         var json = {
-            fecha: new Date().getTime(),
+            fecha: new Date().toISOString().slice(0, 19).replace('T', ' '),
             articulos: []
         }
         this.articulos.forEach(articulo => {

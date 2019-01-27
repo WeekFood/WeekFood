@@ -20,31 +20,29 @@ class CarritosResource extends Resource {
 
     public function postCarritoAction() {
 
-        // TODO: insert
-        // TODO: select y devolver el carrito hecho para que se pueda quedar con el id
-
-        // $ps = $this->db->prepare('INSERT INTO carritos (idUsuario, fecha) VALUES (1, :fecha)');
-
-        // // $ps->bindParam('idUsuario', 1);
-        // $ps->bindParam('fecha', "2019-12-31 23:59:59");
-
-        // var_dump($ps->debugDumpParams());
-        // $ps->execute();
-
         $json = file_get_contents('php://input');
-        $carrito = json_decode($json);
-
+        $carrito = json_decode($json,true);
+        $this->data = $carrito;
         $idUsuario = 1; // TODO, usar id usuario de la sesion
 
         $params = [
             "idUsuario" => $idUsuario,
-            "fecha" => $carrito->fecha
+            "fecha" => $carrito["fecha"]
         ];
-
         $this->sql = "INSERT INTO carritos (idUsuario, fecha) VALUES (:idUsuario, :fecha)";
 
         $this->execSQL($params);
-
+        $carrito["id"] = $this->data;
+        foreach($carrito["articulos"] as $articulo){
+            $this->sql = "INSERT INTO articulosencarritos VALUES (:idCarrito, :idArticulo, :cantidad)";
+            $params = [
+                "idCarrito" => $carrito["id"],
+                "idArticulo" => $articulo["id"],
+                "cantidad" => $articulo["cantidad"]
+            ];
+            $this->execSQL($params);
+        }
+        $this->data = $carrito;
         $this->setData();
     }
 
