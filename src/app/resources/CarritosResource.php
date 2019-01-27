@@ -19,34 +19,19 @@ class CarritosResource extends Resource {
             "idUsuario" => $idUsuario
         ];
         $this->execSQL($params);
-        $carrito = [
-            "id" => $this->data[0]["id"],
-            "fecha" => $this->data[0]["fecha"],
-            "articulos" => []
-        ];
-        foreach($this->data as $linea){
-            $articulo = ["id"=>$linea["idArticulo"],"cantidad"=>$linea["cantidad"]];
-            array_push($carrito["articulos"],$articulo);
+        $carrito = [];
+        if($this->data != NULL){
+            $carrito["id"] = $this->data[0]["id"];
+            $carrito["fecha"] = $this->data[0]["fecha"];
+            $carrito["articulos"] = [];
+            foreach($this->data as $linea){
+                $articulo = ["id"=>$linea["idArticulo"],"cantidad"=>$linea["cantidad"]];
+                array_push($carrito["articulos"],$articulo);
+            }
         }
         $this->data = $carrito;
         $this->setData();
     }
-    /*
-    // original yuriy
-    public function getCarritoAction() {
-        $params = [
-            "id" => $this->controller->getParam("id")
-        ];
-
-        $this->sql = 'SELECT *, UNIX_TIMESTAMP(fecha) as fecha FROM carritos WHERE id = :id';
-        $this->execSQL($params);
-
-        if ($this->data == null) {
-            header('HTTP/1.1 404 Not Found', true, 404);
-            $this->data = (object) null;
-        }
-        $this->setData();
-    }*/
 
     public function postCarritoAction() {
         $json = file_get_contents('php://input');

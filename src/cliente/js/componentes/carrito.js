@@ -105,10 +105,6 @@ function carrito_ActualizarTriggers() {
     //$(".js-carrito-pagar").on('click', aqui ira vista pagar);
 }
 function carrito_Guardar() {
-    /*
-        TODO:
-        Solo debe hacerse POST si no existe un carrito en el servidor, en caso contrario se usa PUT para actualizar el contenido
-    */
     if (!GLOBAL_CARRITO_EXISTE) {
         GLOBAL_CARRITO_EXISTE = true
         $.post({
@@ -126,8 +122,6 @@ function carrito_Guardar() {
     }
 }
 function carrito_Descargar() {
-    // Esto descargara el carrito de la API
-    // Esto es practicamente pseudocodigo
     $.getJSON('/api/carritos').then((respuesta) => {
         if (respuesta.length == undefined) {
             GLOBAL_CARRITO_EXISTE = true
@@ -136,8 +130,7 @@ function carrito_Descargar() {
                 GLOBAL_GESTOR_PRODUCTOS.descargarProductoId(articulo.id).then(() => {
                     GLOBAL_CARRITO.añadirProducto(GLOBAL_GESTOR_PRODUCTOS.getProductoId(articulo.id),articulo.cantidad)
                 })
-            }
-            )
+            })
         } else {
             GLOBAL_CARRITO_EXISTE = false
         }

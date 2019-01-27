@@ -19,6 +19,8 @@
 -- Current Database: `WeekFood`
 --
 
+DROP DATABASE WeekFood;
+
 CREATE DATABASE /*!32312 IF NOT EXISTS*/ `WeekFood` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
 USE `WeekFood`;
