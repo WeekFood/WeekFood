@@ -10,7 +10,7 @@ class Carrito {
      * @returns {Articulo|number} instancia de Articulo convertido
      * @throws si el producto proporcionado no es instancia de Producto
      */
-    añadirProducto(producto) {
+    añadirProducto(producto,cantidad = 1) {
         if (!(producto instanceof Producto)) {
             throw new Error('Imposible añadir un producto, no es instancia de Producto');
         }
@@ -19,11 +19,10 @@ class Carrito {
 
         // comprobar si el articulo ya existe en el carrito
         let articuloYaExistente = this.getArticulo(producto.id);
-
         if (articuloYaExistente) {
             return this.incrementarCantidad(articuloYaExistente.id);
         } else {
-            nuevoArticulo = new Articulo(producto);
+            nuevoArticulo = new Articulo(producto,cantidad);
             this.articulos.push(nuevoArticulo);
         }
 
