@@ -2,7 +2,9 @@
 
 use core\MVC\Resource as Resource;
 use core\Globals;
-use core\Auth;
+use core\Auth\Auth;
+use core\Auth\UserNotFoundException;
+use core\Auth\WrongPasswordException;
 
 class AuthResource extends Resource {
     /** @var Auth  */
@@ -25,7 +27,16 @@ class AuthResource extends Resource {
         $contraseña = $_POST['contraseña'];
         $recuerdame = isset($_POST['recuerdame']);
 
-        $this->auth->login($nick, $contraseña, $recuerdame);
+        $usuario;
+
+        try {
+            $usuario = $this->auth->login($nick, $contraseña, $recuerdame);
+            $this->setData();
+        } catch (UserNotFoundException $e) {
+            $this->setError(401, 'USUARIO_NO_ENCONTRADO');
+        } catch (WrongPasswordException $e) {
+            $this->setError(401, 'CONTRASEÑA_INCORRECTA');
+        }
     }
 
     public function getRenovarLoginAction() {

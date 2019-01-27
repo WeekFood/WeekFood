@@ -1,5 +1,5 @@
 <?php
-namespace core;
+namespace core\Auth;
 
 /**
  * Based on https://stackoverflow.com/a/17266448/3499595 & https://github.com/delight-im/PHP-Auth/
@@ -51,27 +51,29 @@ class Auth {
         $this->login($nick, $password, $rememberMe);
     }
 
-    public function login(string $nick, string $password, bool $rememberMe = false): bool {
+    public function login(string $nick, string $password, bool $rememberMe = false): array {
         $sql = 'SELECT * FROM usuarios WHERE nick = :nick LIMIT 1;';
 
         $ps = $this->db->prepare($sql);
         $ps->bindParam(':nick', $nick);
         $ps->execute();
 
-        $result = $ps->fetch();
+        $user = $ps->fetch(\PDO::FETCH_ASSOC);
 
-        if (!empty($result)) {
-            $dbHashedPassword = $result['contraseña'];
+        if (!empty($user)) {
+            $dbHashedPassword = $user['contraseña'];
 
             if (password_verify($password, $dbHashedPassword)) {
-                return $this->setCookies($result['id'], $rememberMe);
+                var_dump($user);
+                $this->setCookies($user['id'], $rememberMe);
+                return $user;
             } else {
                 $this->sendError(self::ERR_LOGIN_WRONG_PASSWORD);
-                return false;
+                throw new WrongPasswordException();
             }
         } else {
             $this->sendError(self::ERR_LOGIN_USER_NOT_FOUND);
-            return false;
+            throw new UserNotFoundException();
         }
     }
 
@@ -93,14 +95,16 @@ class Auth {
             setcookie(
                 self::COOKIE_NAME_TOKEN,
                 $cookie,
-                time() + self::COOKIE_LIFETIME_SEC
+                time() + self::COOKIE_LIFETIME_SEC,
+                '/'
                 /* TODO: movida dominio localhost [2] necesario para asignar httponly */
             );
 
             setcookie(
                 self::COOKIE_NAME_REMEMBER_ME,
                 '1', /* al parecer es necesario algun valor, no puede estar vacio, sino es como si se borrase (segun Postman, por lo menos) */
-                time() + self::COOKIE_LIFETIME_SEC
+                time() + self::COOKIE_LIFETIME_SEC,
+                '/'
             );
 
             $_SESSION['recuerdame'] = true;
@@ -128,7 +132,7 @@ class Auth {
 
     public function logout(): bool {
         // TODO: if isAuth
-        if (isset($_COOKIE[COOKIE_NAME_TOKEN])) {
+        if (isset($_COOKIE[self::COOKIE_NAME_TOKEN])) {
             return session_destroy()
             && setcookie(self::COOKIE_NAME_TOKEN, '', 0)
             && setcookie(self::COOKIE_NAME_REMEMBER_ME, '', 0);
@@ -186,3 +190,6 @@ class Auth {
         }
     }
 }
+
+
+
