@@ -64,7 +64,7 @@ class Auth {
             $dbHashedPassword = $result['contraseña'];
 
             if (password_verify($password, $dbHashedPassword)) {
-                return $this->setCookies($result['id'], true);
+                return $this->setCookies($result['id'], $rememberMe);
             } else {
                 $this->sendError(self::ERR_LOGIN_WRONG_PASSWORD);
                 return false;
@@ -75,7 +75,7 @@ class Auth {
         }
     }
 
-    private function setCookies(string $userId, bool $rememberMe): bool {
+    private function setCookies(string $userId, bool $rememberMe = false): bool {
         $this->setSession($userId);
 
         if ($rememberMe) {
@@ -163,7 +163,7 @@ class Auth {
         return false;
     }
 
-    public function canAccess(string $resourceConst, $credentials): bool {
+    public function canAccess(string $resourceConst, array $credentials = []): bool {
         // TODO
         return false;
     }

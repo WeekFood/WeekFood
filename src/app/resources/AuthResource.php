@@ -23,8 +23,9 @@ class AuthResource extends Resource {
     public function postLoginAction() {
         $nick = $_POST['nick'];
         $contraseña = $_POST['contraseña'];
+        $recuerdame = isset($_POST['recuerdame']);
 
-        $this->auth->login($nick, $contraseña, true);
+        $this->auth->login($nick, $contraseña, $recuerdame);
     }
 
     public function getRenovarLoginAction() {
