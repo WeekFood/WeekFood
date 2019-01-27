@@ -2,7 +2,7 @@
 namespace core;
 
 /**
- * Based on https://stackoverflow.com/a/17266448/3499595 y https://github.com/delight-im/PHP-Auth/
+ * Based on https://stackoverflow.com/a/17266448/3499595 & https://github.com/delight-im/PHP-Auth/
  */
 class Auth {
     const ERR_NO_TOKEN = 'ERR_NO_TOKEN';
@@ -118,7 +118,6 @@ class Auth {
                 return false;
             }
 
-            // renew cookies
             $this->setCookies($userId, isset($_COOKIE[self::COOKIE_NAME_REMEMBER_ME]));
             return true;
         } else {
@@ -126,7 +125,7 @@ class Auth {
             return false;
         }
     }
-    
+
     public function logout(): bool {
         // TODO: if isAuth
         if (isset($_COOKIE[COOKIE_NAME_TOKEN])) {
@@ -151,9 +150,8 @@ class Auth {
         return bin2hex(random_bytes(32));
     }
 
-    public function isAuthenticated(): bool {
-        return isset($_COOKIE[COOKIE_NAME_TOKEN])
-                && session_status() !== PHP_SESSION_NONE
+    public function isLoggedIn(): bool {
+        return session_status() !== PHP_SESSION_NONE
                 && isset($_SESSION['logueado'])
                 && $_SESSION['logueado']
                 && isset($_SESSION['idUsuario'])
