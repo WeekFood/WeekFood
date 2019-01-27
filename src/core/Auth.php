@@ -16,21 +16,21 @@ class Auth {
         $this->db = $db;
     }
 
-    public function login($user, $password, $rememberMe) {
+    public function login(string $user, string $password, bool $rememberMe) {
         // TODO
     }
 
-    public function isAuthenticated(): \boolean {
-        // TODO
-        return false;
-    }
-
-    public function hasPrivilegeLvl(int $lvl): \boolean {
+    public function isAuthenticated(): bool {
         // TODO
         return false;
     }
 
-    public function canAccess(string $resourceConst, $credentials): \boolean {
+    public function hasPrivilegeLvl(int $lvl): bool {
+        // TODO
+        return false;
+    }
+
+    public function canAccess(string $resourceConst, $credentials): bool {
         // TODO
         return false;
     }
