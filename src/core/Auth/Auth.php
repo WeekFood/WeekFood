@@ -30,6 +30,16 @@ class Auth {
     public function register(string $nick, string $password, string $name, bool $rememberMe = false) {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
+        $sqlNickTaken = 'SELECT nick FROM usuarios WHERE nick = :nick';
+        $psNickTaken = $this->db->prepare($sqlNickTaken);
+        $psNickTaken->bindParam(':nick', $nick);
+        $psNickTaken->execute();
+        $userWithSameNick = $psNickTaken->fetch(\PDO::FETCH_ASSOC);
+
+        if (!empty($userWithSameNick)) {
+            throw new NickTakenException();
+        }
+
         $sql = 'INSERT INTO
                     usuarios (nick, contraseña, nombre)
                 VALUES (

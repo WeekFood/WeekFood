@@ -5,6 +5,7 @@ use core\Globals;
 use core\Auth\Auth;
 use core\Auth\UserNotFoundException;
 use core\Auth\WrongPasswordException;
+use core\Auth\NickTakenException;
 
 class AuthResource extends Resource {
     /** @var Auth  */
@@ -19,7 +20,12 @@ class AuthResource extends Resource {
         $nombre = $_POST['nombre'];
         $contraseña = $_POST['contraseña'];
 
-        $this->auth->register($nick, $contraseña, $nombre, true);
+        try {
+            $this->auth->register($nick, $contraseña, $nombre, true);
+        } catch (NickTakenException $e) {
+            // no seria error... pero tampoco seria 200? hmm
+            $this->setError(200, 'NICK_YA_EXISTE');
+        }
     }
 
     public function postLoginAction() {
