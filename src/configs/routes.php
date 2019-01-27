@@ -51,6 +51,13 @@ return [
             "route" => "api/productos?destacado=:destacado",
             "resource" => "productos",
             "action" => "getDestacados"
-        ],
+        ]
+    ],
+    "post" => [
+        "API, Auth, registro" => [
+            "route" => "api/auth/registro",
+            "resource" => "auth",
+            "action" => "postRegistro"
+        ]
     ]
 ];
