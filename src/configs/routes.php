@@ -52,5 +52,17 @@ return [
             "resource" => "productos",
             "action" => "getDestacados"
         ],
+    ],
+    "post" => [
+        "API, Auth, registro" => [
+            "route" => "api/auth/registro",
+            "resource" => "auth",
+            "action" => "postRegistro"
+        ],
+        "API, Auth, login" => [
+            "route" => "api/auth/login",
+            "resource" => "auth",
+            "action" => "postLogin"
+        ]
     ]
 ];
