@@ -10,7 +10,7 @@ class Auth {
 
     const RESOURCE_CARRITO_ID = 'RESOURCE_CARRITO_ID';
 
-    private const PRIVATE_KEY = "F4Ev-17IbLRcEkwr2p8NRL62bys5fo6AqJrfWZwd5wBUBqDdDueKZz4VlJiWaD1TOXkmNtrU2gCmhNeZvimikm-3yI293zaufdnSoJ0isJ_i1SDmR8GeWVTVkBIPRewP4yBlb2uHbm1Uxppd0wkFau8iNmm5tqQppG0O5Rij5oojForsrvT8ahB9YYkX3fbM5u0RAW4AHbXqrN62xlN17FuXzZUtknI_W_HSOnnrQH5Rj0ZaT2GzRdR9PyaoXfLEduCq_2NowAxIzznsn-OnTFf7VuSrqmj5z1cvO_qyGM0sDNJiUQjKV-R-FQYK9yBkWsWclncU7CVN8uz44CSQng";
+    private const SECRET_KEY = "F4Ev-17IbLRcEkwr2p8NRL62bys5fo6AqJrfWZwd5wBUBqDdDueKZz4VlJiWaD1TOXkmNtrU2gCmhNeZvimikm-3yI293zaufdnSoJ0isJ_i1SDmR8GeWVTVkBIPRewP4yBlb2uHbm1Uxppd0wkFau8iNmm5tqQppG0O5Rij5oojForsrvT8ahB9YYkX3fbM5u0RAW4AHbXqrN62xlN17FuXzZUtknI_W_HSOnnrQH5Rj0ZaT2GzRdR9PyaoXfLEduCq_2NowAxIzznsn-OnTFf7VuSrqmj5z1cvO_qyGM0sDNJiUQjKV-R-FQYK9yBkWsWclncU7CVN8uz44CSQng";
 
     private const COOKIE_LIFETIME_SEC = 60 * 60 * 24 * 7; /* 7 days */
     private const COOKIE_NAME_TOKEN = 'token';
@@ -80,7 +80,7 @@ class Auth {
             $token = $this->generateRandomToken();
 
             $body = $userId . '.' . $token;
-            $bodySignedHash = hash_hmac('sha256', $body, self::PRIVATE_KEY);
+            $bodySignedHash = hash_hmac('sha256', $body, self::SECRET_KEY);
 
             $cookie = $body . '.' . $bodySignedHash;
 

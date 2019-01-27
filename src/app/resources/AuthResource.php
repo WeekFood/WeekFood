@@ -19,4 +19,11 @@ class AuthResource extends Resource {
 
         $this->auth->register($nick, $contraseña, $nombre, true);
     }
+
+    public function postLoginAction() {
+        $nick = $_POST['nick'];
+        $contraseña = $_POST['contraseña'];
+
+        $this->auth->login($nick, $contraseña, true);
+    }
 }

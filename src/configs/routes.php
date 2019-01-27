@@ -58,6 +58,11 @@ return [
             "route" => "api/auth/registro",
             "resource" => "auth",
             "action" => "postRegistro"
+        ],
+        "API, Auth, login" => [
+            "route" => "api/auth/login",
+            "resource" => "auth",
+            "action" => "postLogin"
         ]
     ]
 ];
