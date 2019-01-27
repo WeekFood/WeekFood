@@ -1,5 +1,6 @@
 class Carrito {
     constructor() {
+        this.id = undefined;
         this.articulos = [];
         // TODO Comprobar si existe un carrito en el servidor
     }
@@ -150,6 +151,7 @@ class Carrito {
     
     exportar() {
         var json = {
+            id : this.id,
             fecha: new Date().toISOString().slice(0, 19).replace('T', ' '),
             articulos: []
         }
@@ -160,6 +162,9 @@ class Carrito {
             })
         })
         return JSON.stringify(json)
+    }
+    setID(id){
+        this.id = id
     }
 }
 

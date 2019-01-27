@@ -75,13 +75,77 @@ class CarritosResource extends Resource {
     }
 
     public function putCarritoAction() {
-
         $json = file_get_contents('php://input');
-
         $carrito = json_decode($json,true);
-
-        $this->data = $carrito;
-
+        $idUsuario = 1; // TODO, usar id usuario de la sesion
+        $this->sql = "UPDATE carritos SET fecha = :fechaCarrito WHERE id = :idCarrito";
+        $params = [
+            "idCarrito" => $carrito["id"],
+            "fechaCarrito" => $carrito["fecha"]
+        ];
+        $this->execSQL($params);
+        $this->sql =    "SELECT 
+                            carritos.id,
+                            carritos.fecha, 
+                            articulosencarritos.idArticulo,
+                            articulosencarritos.cantidad 
+                        FROM 
+                            carritos RIGHT JOIN articulosencarritos ON 
+                                articulosencarritos.idCarrito = carritos.id
+                        WHERE carritos.id = :idCarrito AND carritos.idUsuario = :idUsuario";
+        
+        $params = [
+            "idUsuario" => $idUsuario,
+            "idCarrito" => $carrito["id"]
+        ];
+        $this->execSQL($params);
+        $datosEnDB = $this->data;
+        // Si existen en la DB pero no en el carrito, se eliminan de la DB
+        foreach($datosEnDB as $linea){
+            $enCarrito = FALSE;
+            foreach($carrito["articulos"] as $articulo){
+                if ($articulo["id"] == $linea["idArticulo"]){
+                    $enCarrito = TRUE;
+                    break;
+                }
+            }
+            if (!$enCarrito){
+                $this->sql = "DELETE FROM articulosencarritos WHERE idArticulo = :idArticulo AND idCarrito = :idCarrito";
+                $params = [
+                    "idArticulo" => $linea["idArticulo"],
+                    "idCarrito" => $carrito["id"]
+                ];
+                $this->execSQL($params);
+            }
+        }
+        // Si existen en el carrito pero no en la base se crean, y sino se actualizan
+        foreach($carrito["articulos"] as $articulo){
+            $enDB = FALSE;
+            foreach($datosEnDB as $linea){
+                if ($articulo["id"] == $linea["idArticulo"]){
+                    $enDB = TRUE;
+                    if ($articulo["cantidad"] != $linea["cantidad"]){
+                        $this->sql = "UPDATE articulosencarritos SET cantidad = :cantidadArticulo WHERE idArticulo = :idArticulo AND idCarrito = :idCarrito";
+                        $params = [
+                            "idArticulo" => $linea["idArticulo"],
+                            "idCarrito" => $carrito["id"],
+                            "cantidadArticulo" => $articulo["cantidad"]
+                        ];
+                        $this->execSQL($params);
+                    }
+                    break;
+                }
+            }
+            if (!$enDB){
+                $this->sql = "INSERT INTO articulosencarritos VALUES (:idCarrito, :idArticulo, :cantidad)";
+                $params = [
+                    "idCarrito" => $carrito["id"],
+                    "idArticulo" => $articulo["id"],
+                    "cantidad" => $articulo["cantidad"]
+                ];
+                $this->execSQL($params);
+            }
+        }
         $this->setData();
     }
 }

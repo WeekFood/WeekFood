@@ -131,6 +131,7 @@ function carrito_Descargar() {
     $.getJSON('/api/carritos').then((respuesta) => {
         if (respuesta.length == undefined) {
             GLOBAL_CARRITO_EXISTE = true
+            GLOBAL_CARRITO.setID(respuesta.id)
             respuesta.articulos.forEach(articulo => {
                 GLOBAL_GESTOR_PRODUCTOS.descargarProductoId(articulo.id).then(() => {
                     GLOBAL_CARRITO.añadirProducto(GLOBAL_GESTOR_PRODUCTOS.getProductoId(articulo.id),articulo.cantidad)
