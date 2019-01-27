@@ -6,6 +6,7 @@ class Auth {
     const ERR_ROLE_FORBIDDEN = 'ERR_ROLE_FORBIDDEN';
     const ERR_ACCESS_FORBIDDEN = 'ERR_ACCESS_FORBIDDEN';
     const ERR_LOGIN_USER_NOT_FOUND = 'ERR_LOGIN_USER_NOT_FOUND';
+    const ERR_LOGIN_WRONG_PASSWORD = 'ERR_LOGIN_WRONG_PASSWORD';
 
     const RESOURCE_CARRITO_ID = 'RESOURCE_CARRITO_ID';
 
@@ -28,14 +29,14 @@ class Auth {
                     usuarios (nick, contraseña, nombre)
                 VALUES (
                     :nick,
-                    :contraseña,
-                    :nombre
+                    :password,
+                    :name
                 );';
 
         $ps = $this->db->prepare($sql);
         $ps->bindParam(':nick', $nick);
-        $ps->bindParam(':contraseña', $password);
-        $ps->bindParam(':nombre', $name);
+        $ps->bindParam(':password', $hashedPassword);
+        $ps->bindParam(':name', $name);
 
         $ps->execute();
 
@@ -56,9 +57,12 @@ class Auth {
 
         if (!empty($result)) {
             $dbHashedPassword = $result['contraseña'];
-            
+
             if (password_verify($password, $dbHashedPassword)) {
                 return $this->setCookies($result['id'], true);
+            } else {
+                $this->sendError(self::ERR_LOGIN_WRONG_PASSWORD);
+                return false;
             }
         } else {
             $this->sendError(self::ERR_LOGIN_USER_NOT_FOUND);
@@ -69,15 +73,16 @@ class Auth {
     private function setCookies(string $userId, bool $rememberMe): bool {
         session_start();
 
-        // TODO: asignar a SESSION el id de usuario y ¿ nivel de privilegio ?
+        $_SESSION['idUsuario'] = $userId;
+        // TODO: nivel de privilegio ?
 
         if ($rememberMe) {
             $token = $this->generateRandomToken();
 
-            $body = $userId . ':' . $token;
+            $body = $userId . '.' . $token;
             $bodySignedHash = hash_hmac('sha256', $body, self::PRIVATE_KEY);
 
-            $cookie = $boby . ':' . $bodySignedHash;
+            $cookie = $body . '.' . $bodySignedHash;
 
             /* TODO: movida dominio localhost [1] */
             // https://stackoverflow.com/a/1188145/3499595
@@ -92,7 +97,7 @@ class Auth {
 
             setcookie(
                 self::COOKIE_NAME_REMEMBER_ME,
-                '',
+                '1', /* al parecer es necesario algun valor, no puede estar vacio, sino es como si se borrase (segun Postman, por lo menos) */
                 time() + self::COOKIE_LIFETIME_SEC
             );
         }
@@ -123,6 +128,7 @@ class Auth {
         switch ($type) {
         case (self::ERR_NO_TOKEN):
         case (self::ERR_LOGIN_USER_NOT_FOUND):
+        case (self::ERR_LOGIN_WRONG_PASSWORD):
             http_response_code(401);
             break;
         case (self::ERR_ROLE_FORBIDDEN):
