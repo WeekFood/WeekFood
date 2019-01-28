@@ -3,9 +3,15 @@
     grid-template-areas: "banderas banderas"
                         "cabecera cabecera"
                         "contenido contenido";
-    height: 100%;
-    grid-template-columns: 1fr 1fr;
+    max-height: 100%;
+    //grid-template-columns: 1fr 1fr;
     grid-template-rows: 60px auto 1fr 1fr;
+    @media only screen and (min-width: $mobile-l) {
+        .c-quienes-somos__contenido, .c-quienes-somos__cabecera{
+        max-width: 100%;
+        margin:5px 10px;
+        }
+     }
 }
 
 .c-quienes-somos__banderas {
@@ -16,7 +22,7 @@
     height: 60px;
     padding: 5px;
     display: inline-block;
-    border-radius: 50px;
+    border-radius: 30px;
     &--seleccionada {
         background: $rojo;
     }
@@ -32,12 +38,14 @@
     line-height: 40px;
     background: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin: 5px 50px;
-    border-radius: 50px;
+    //margin: 5px 50px;
+    border-radius: 30px;
 }
 
 .c-quienes-somos__contenido {
     grid-area: contenido;
+    margin-top: 5px;
+    //margin: 20px 50px;
 }
 
 .c-quienes-somos__contenido-interno {
@@ -45,8 +53,7 @@
     background: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 15px 25px 0px;
-    border-radius: 50px;
-    margin: 20px 50px;
+    border-radius: 30px;
 }
 
 .c-quienes-somos__contenido-equipo{
@@ -71,22 +78,18 @@
 }
 
 .c-quienes-somos__servicios{
-    display: inline;
-}
-
-.c-quienes-somos__equipo {
-    grid-area: equipo;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .c-quienes-somos__attCliente {
-    grid-area: attCliente;
-    justify-self: center;
     font-size: 20px;
 }
 
 .c-quienes-somos__redes {
-    grid-area: redes;
-    justify-self: center;
     font-size: 20px;
 }
 
