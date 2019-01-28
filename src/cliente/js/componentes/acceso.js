@@ -52,7 +52,14 @@ function acceso_Registro() {
     if ($(".c-acceso").data("modo") == 2) {
         if (!acceso_ErroresRegistro()) {
             GLOBAL_USUARIO.acceso_RegistroUsuarioLibre(($(".js-acceso__nombre").val()))
-                .done(() => { forzarLogueo() })
+                .done((respuesta) => { 
+                    if (respuesta.yaExiste){
+                        $("<div class='c-acceso__errores c-acceso__errores--registro'></div>").insertBefore(".c-acceso")
+                        $(".c-acceso__errores").append("<p class='c-acceso__error-mensaje'>" + GLOBAL_USUARIO.erroresRegistro[0] + "</p>")
+                    }else{
+                        forzarLogueo()
+                    }
+                 })
                 .fail(()=>{
                         $("<div class='c-acceso__errores c-acceso__errores--registro'></div>").insertBefore(".c-acceso")
                         $(".c-acceso__errores").append("<p class='c-acceso__error-mensaje'>" + GLOBAL_USUARIO.erroresRegistro[0] + "</p>")

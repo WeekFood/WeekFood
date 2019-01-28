@@ -33,7 +33,7 @@ class Usuario {
     }
     acceso_RegistroUsuarioLibre(usuario){
         return $.post({
-            url: "/api/auth/usuarioLibre",
+            url: "/api/auth/usuario_ya_existe",
             type: "POST",
             contentType: "application/x-www-form-urlencoded",
             data: "nick=" + usuario 
