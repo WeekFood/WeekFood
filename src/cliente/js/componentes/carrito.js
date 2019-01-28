@@ -131,6 +131,11 @@ function carrito_Descargar() {
             respuesta.articulos.forEach(articulo => {
                 GLOBAL_GESTOR_PRODUCTOS.descargarProductoId(articulo.id).then(() => {
                     GLOBAL_CARRITO.añadirProducto(GLOBAL_GESTOR_PRODUCTOS.getProductoId(articulo.id),articulo.cantidad)
+                    if ($(".c-carrito").length > 0) {
+                        if (!$(".c-carrito").hasClass("c-carrito--desaparecer")){
+                            carrito_Actualizar();
+                        }
+                    }
                 })
             })
         } else {
