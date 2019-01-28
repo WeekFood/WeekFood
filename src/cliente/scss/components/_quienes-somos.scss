@@ -1,17 +1,16 @@
 .c-quienes-somos {
     display: grid;
     grid-template-areas: "banderas banderas"
-                        "cabecera cabecera"
                         "contenido contenido";
     max-height: 100%;
     //grid-template-columns: 1fr 1fr;
     grid-template-rows: 60px auto 1fr 1fr;
-    @media only screen and (min-width: $mobile-l) {
+    /*@media only screen and (min-width: $mobile-l) {
         .c-quienes-somos__contenido, .c-quienes-somos__cabecera{
         max-width: 100%;
         margin:5px 10px;
         }
-     }
+     }*/
 }
 
 .c-quienes-somos__banderas {
@@ -33,27 +32,29 @@
 }
 
 .c-quienes-somos__cabecera {
-    grid-area: cabecera;
     text-align: center;
     line-height: 40px;
-    background: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    //margin: 5px 50px;
-    border-radius: 30px;
+    display: cabecera;
 }
 
 .c-quienes-somos__contenido {
+    display: grid;
     grid-area: contenido;
-    margin-top: 5px;
-    //margin: 20px 50px;
-}
-
-.c-quienes-somos__contenido-interno {
-    line-height: 35px;
     background: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 15px 25px 0px;
     border-radius: 30px;
+    margin: 5%;
+    margin-top: 0px;
+    grid-template-areas: 'cabecera cabecera'
+                            'contenido-interno .'
+                            'equipo equipo'
+                            'attCliente redes';
+}
+
+.c-quienes-somos__contenido-interno {
+    line-height: 35px;
+    grid-area: contenido-interno;
 }
 
 .c-quienes-somos__contenido-equipo{
@@ -61,6 +62,7 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 40px;
     justify-items: center;
+    grid-area: equipo;
 }
 
 .c-quienes-somos__contenido-equipo-imagen{
@@ -71,26 +73,22 @@
 }
 
 .c-quienes-somos__contenido-equipo-container{
-    font-family: $fuente-logo;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 22px;
     max-width: 100%;
     height: 100%;
 }
 
-.c-quienes-somos__servicios{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    max-width: 100%;
-    max-height: 100%;
-}
-
 .c-quienes-somos__attCliente {
     font-size: 20px;
+    grid-area: attCliente;
+    justify-self: center;
 }
 
 .c-quienes-somos__redes {
     font-size: 20px;
+    grid-area: redes;
+    justify-self: center;
 }
 
 .c-quienes-somos__titulo {
