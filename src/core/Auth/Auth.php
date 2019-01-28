@@ -11,7 +11,7 @@ class Auth {
     const ERR_LOGIN_USER_NOT_FOUND = 'ERR_LOGIN_USER_NOT_FOUND';
     const ERR_LOGIN_WRONG_PASSWORD = 'ERR_LOGIN_WRONG_PASSWORD';
     const ERR_RENEW_LOGIN_INVALID_SIGNATURE = 'ERR_RENEW_LOGIN_INVALID_SIGNATURE';
-    const ERR_LOGOUT_NO_TOKEN = 'ERR_LOGOUT_NO_TOKEN';
+    const ERR_LOGOUT_NO_LOGIN = 'ERR_LOGOUT_NO_LOGIN';
 
     const RESOURCE_CARRITO_ID = 'RESOURCE_CARRITO_ID';
 
@@ -30,7 +30,7 @@ class Auth {
     public function register(string $nick, string $password, string $name, bool $rememberMe = false) {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-        if (!empty($userWithSameNick)) {
+        if ($this->nickTaken($nick)) {
             throw new NickTakenException();
         }
 
@@ -48,9 +48,6 @@ class Auth {
         $ps->bindParam(':name', $name);
 
         $ps->execute();
-
-        // TODO: if insertado con exito ?
-        // TODO: throw error si ya existe
 
         $this->login($nick, $password, $rememberMe);
     }
@@ -106,19 +103,14 @@ class Auth {
 
             setcookie(
                 self::COOKIE_NAME_REMEMBER_ME,
-                '1', /* al parecer es necesario algun valor, no puede estar vacio, sino es como si se borrase (segun Postman, por lo menos) */
+                '1', // al parecer es necesario algun valor, no puede estar vacio, sino es como si se borrase (segun Postman, por lo menos)
                 time() + self::COOKIE_LIFETIME_SEC,
                 '/'
             );
 
             $_SESSION['recuerdame'] = true;
         }
-
-        echo '<pre>';
-        echo "postSetCookies :::::\n";
-        var_dump($_SESSION);
-        var_dump($_COOKIE);
-        echo '</pre>';
+        
         return true;
     }
 
@@ -140,15 +132,18 @@ class Auth {
     }
 
     public function logout(): bool {
-        // TODO: if isAuth
-        if (isset($_COOKIE[self::COOKIE_NAME_TOKEN])) {
-            return session_destroy()
-            && setcookie(self::COOKIE_NAME_TOKEN, '', 0)
-            && setcookie(self::COOKIE_NAME_REMEMBER_ME, '', 0);
+        if ($this->isLoggedIn()) {
+            session_destroy();
+            if (isset($_COOKIE[self::COOKIE_NAME_TOKEN])) {
+                setcookie(self::COOKIE_NAME_TOKEN, '', 0);
+                setcookie(self::COOKIE_NAME_REMEMBER_ME, '', 0);
+            }
         } else {
-            $this->sendError(self::ERR_LOGOUT_NO_TOKEN);
+            $this->sendError(self::ERR_LOGOUT_NO_LOGIN);
             return false;
         }
+
+        return true;
     }
 
     private function setSession(string $userId): bool {
@@ -159,7 +154,7 @@ class Auth {
         return true;
     }
 
-    public function nickTaken(string $nick): bool {        
+    public function nickTaken(string $nick): bool {
         $sql = 'SELECT nick FROM usuarios WHERE nick = :nick';
         $ps = $this->db->prepare($sql);
         $ps->bindParam(':nick', $nick);
@@ -194,22 +189,19 @@ class Auth {
 
     public function sendError(string $errorConst) {
         switch ($errorConst) {
-            case (self::ERR_NO_TOKEN):
-            case (self::ERR_LOGIN_USER_NOT_FOUND):
-            case (self::ERR_LOGIN_WRONG_PASSWORD):
-            case (self::ERR_RENEW_LOGIN_INVALID_SIGNATURE):
-            case (self::ERR_LOGOUT_NO_TOKEN):
-                http_response_code(401);
-                break;
-            case (self::ERR_ROLE_FORBIDDEN):
-            case (self::ERR_ACCESS_FORBIDDEN):
-                http_response_code(403);
-                break;
-            default:
-                http_response_code(500);
+        case (self::ERR_NO_TOKEN):
+        case (self::ERR_LOGIN_USER_NOT_FOUND):
+        case (self::ERR_LOGIN_WRONG_PASSWORD):
+        case (self::ERR_RENEW_LOGIN_INVALID_SIGNATURE):
+        case (self::ERR_LOGOUT_NO_LOGIN):
+            http_response_code(401);
+            break;
+        case (self::ERR_ROLE_FORBIDDEN):
+        case (self::ERR_ACCESS_FORBIDDEN):
+            http_response_code(403);
+            break;
+        default:
+            http_response_code(500);
         }
     }
 }
-
-
-
