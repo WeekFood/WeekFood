@@ -88,16 +88,11 @@ class Auth {
 
             $cookie = $body . '.' . $bodySignedHash;
 
-            /* TODO: movida dominio localhost [1] */
-            // https://stackoverflow.com/a/1188145/3499595
-            $domain = ($_SERVER['HTTP_HOST'] != 'localhost') ? $_SERVER['HTTP_HOST'] : false;
-
             setcookie(
                 self::COOKIE_NAME_TOKEN,
                 $cookie,
                 time() + self::COOKIE_LIFETIME_SEC,
                 '/'
-                /* TODO: movida dominio localhost [2] necesario para asignar httponly */
             );
 
             setcookie(
