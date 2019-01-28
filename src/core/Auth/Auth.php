@@ -49,8 +49,17 @@ class Auth {
         $ps->bindParam(':name', $name);
 
         $ps->execute();
+        $idInserted = $this->db->lastInsertId();
+
+        $sqlSelect = 'SELECT * FROM usuarios WHERE id = :id LIMIT 1;';
+        $psSelect = $this->db->prepare($sqlSelect);
+        $psSelect->bindParam(':id', $idInserted);
+
+        $psSelect->execute();
 
         $this->login($nick, $password, $rememberMe);
+
+        return $psSelect->fetch(\PDO::FETCH_ASSOC);
     }
 
     public function login(string $nick, string $password, bool $rememberMe = false): array {

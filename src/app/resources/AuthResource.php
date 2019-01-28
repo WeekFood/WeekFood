@@ -26,7 +26,15 @@ class AuthResource extends Resource {
         $contraseña = $_POST['contraseña'];
 
         try {
-            $this->auth->register($nick, $contraseña, $nombre, true);
+            $usuario = $this->auth->register($nick, $contraseña, $nombre, true);
+
+            $this->data = [
+                "nick" => $usuario['nick'],
+                "nombre" => $usuario['nombre']
+            ];
+
+            header('HTTP/1.1 201 Created', true, 201);
+            $this->setData();
         } catch (NickTakenException $e) {
             $this->setError(409, 'NICK_YA_EXISTE');
         }
