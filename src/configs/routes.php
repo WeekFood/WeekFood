@@ -73,6 +73,11 @@ return [
             "route" => "api/auth/login",
             "resource" => "auth",
             "action" => "postLogin"
+        ],
+        "API, Auth, login" => [
+            "route" => "api/auth/usuario_ya_existe",
+            "resource" => "auth",
+            "action" => "postUsuarioYaExiste"
         ]
     ]
 ];

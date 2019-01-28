@@ -16,6 +16,11 @@ class AuthResource extends Resource {
     }
 
     public function postRegistroAction() {
+        if (!isset($_POST['nick']) || !isset($_POST['contraseña'])) {
+            $this->setError(400, 'FALTAN_CAMPOS');
+            return;
+        }
+
         $nick = $_POST['nick'];
         $nombre = $_POST['nombre'];
         $contraseña = $_POST['contraseña'];
@@ -29,6 +34,11 @@ class AuthResource extends Resource {
     }
 
     public function postLoginAction() {
+        if (!isset($_POST['nick']) || !isset($_POST['contraseña'])) {
+            $this->setError(400, 'FALTAN_CAMPOS');
+            return;
+        }
+
         $nick = $_POST['nick'];
         $contraseña = $_POST['contraseña'];
         $recuerdame = isset($_POST['recuerdame']);
@@ -51,5 +61,18 @@ class AuthResource extends Resource {
 
     public function getLogoutAction() {
         $this->auth->logout();
+    }
+
+    public function postUsuarioYaExisteAction() {
+        if (!isset($_POST['nick'])) {
+            $this->setError(400, 'FALTAN_CAMPOS');
+            return;
+        }
+
+        $this->data = [
+            "yaExiste" => $this->auth->nickTaken($_POST['nick'])
+        ];
+
+        $this->setData();
     }
 }

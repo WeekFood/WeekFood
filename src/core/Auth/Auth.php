@@ -30,13 +30,6 @@ class Auth {
     public function register(string $nick, string $password, string $name, bool $rememberMe = false) {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-        // TODO: endpoint (y metodo) para la comprobacion de nick existente (necesario para la rama 214 de toni)
-        $sqlNickTaken = 'SELECT nick FROM usuarios WHERE nick = :nick';
-        $psNickTaken = $this->db->prepare($sqlNickTaken);
-        $psNickTaken->bindParam(':nick', $nick);
-        $psNickTaken->execute();
-        $userWithSameNick = $psNickTaken->fetch(\PDO::FETCH_ASSOC);
-
         if (!empty($userWithSameNick)) {
             throw new NickTakenException();
         }
@@ -121,6 +114,11 @@ class Auth {
             $_SESSION['recuerdame'] = true;
         }
 
+        echo '<pre>';
+        echo "postSetCookies :::::\n";
+        var_dump($_SESSION);
+        var_dump($_COOKIE);
+        echo '</pre>';
         return true;
     }
 
@@ -159,6 +157,17 @@ class Auth {
         // TODO: nivel de privilegio ?
 
         return true;
+    }
+
+    public function nickTaken(string $nick): bool {        
+        $sql = 'SELECT nick FROM usuarios WHERE nick = :nick';
+        $ps = $this->db->prepare($sql);
+        $ps->bindParam(':nick', $nick);
+        $ps->execute();
+
+        $userWithSameNick = $ps->fetch(\PDO::FETCH_ASSOC);
+
+        return !empty($userWithSameNick);
     }
 
     private function generateRandomToken(): string {
