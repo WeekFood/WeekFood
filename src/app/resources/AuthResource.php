@@ -28,8 +28,7 @@ class AuthResource extends Resource {
         try {
             $this->auth->register($nick, $contraseña, $nombre, true);
         } catch (NickTakenException $e) {
-            // no seria error... pero tampoco seria 200? hmm
-            $this->setError(200, 'NICK_YA_EXISTE');
+            $this->setError(409, 'NICK_YA_EXISTE');
         }
     }
 
