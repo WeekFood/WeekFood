@@ -65,7 +65,6 @@ class Auth {
             $dbHashedPassword = $user['contraseña'];
 
             if (password_verify($password, $dbHashedPassword)) {
-                var_dump($user);
                 $this->setCookies($user['id'], $rememberMe);
                 return $user;
             } else {
@@ -110,7 +109,7 @@ class Auth {
 
             $_SESSION['recuerdame'] = true;
         }
-        
+
         return true;
     }
 
