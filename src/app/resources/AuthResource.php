@@ -47,6 +47,12 @@ class AuthResource extends Resource {
 
         try {
             $usuario = $this->auth->login($nick, $contraseña, $recuerdame);
+
+            $this->data = [
+                "nick" => $usuario['nick'],
+                "nombre" => $usuario['nombre']
+            ];
+
             $this->setData();
         } catch (UserNotFoundException $e) {
             $this->setError(401, 'USUARIO_NO_ENCONTRADO');
@@ -70,6 +76,7 @@ class AuthResource extends Resource {
         }
 
         $this->data = [
+            "nick" => $_POST['nick'],
             "yaExiste" => $this->auth->nickTaken($_POST['nick'])
         ];
 

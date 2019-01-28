@@ -188,19 +188,19 @@ class Auth {
 
     public function sendError(string $errorConst) {
         switch ($errorConst) {
-        case (self::ERR_NO_TOKEN):
-        case (self::ERR_LOGIN_USER_NOT_FOUND):
-        case (self::ERR_LOGIN_WRONG_PASSWORD):
-        case (self::ERR_RENEW_LOGIN_INVALID_SIGNATURE):
-        case (self::ERR_LOGOUT_NO_LOGIN):
-            http_response_code(401);
-            break;
-        case (self::ERR_ROLE_FORBIDDEN):
-        case (self::ERR_ACCESS_FORBIDDEN):
-            http_response_code(403);
-            break;
-        default:
-            http_response_code(500);
+            case (self::ERR_NO_TOKEN):
+            case (self::ERR_LOGIN_USER_NOT_FOUND):
+            case (self::ERR_LOGIN_WRONG_PASSWORD):
+            case (self::ERR_RENEW_LOGIN_INVALID_SIGNATURE):
+            case (self::ERR_LOGOUT_NO_LOGIN):
+                http_response_code(401);
+                break;
+            case (self::ERR_ROLE_FORBIDDEN):
+            case (self::ERR_ACCESS_FORBIDDEN):
+                http_response_code(403);
+                break;
+            default:
+                http_response_code(500);
         }
     }
 }
