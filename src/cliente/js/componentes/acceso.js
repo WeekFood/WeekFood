@@ -33,10 +33,12 @@ function acceso_Alternar() {
 }
 function acceso_Entrar() {
     if ($(".c-acceso").data("modo") == 1) {
-        if (!acceso_ErroresEntrada()) {
-            // Todo Login conseguido
-            forzarLogueo()
-        }
+        GLOBAL_USUARIO.acceder($(".js-acceso__nombre").val(), $(".js-acceso__contra").val())
+            .done(() => { forzarLogueo() })
+            .fail(() => {
+                    $("<div class='c-acceso__errores c-acceso__errores--acceso'></div>").insertBefore(".c-acceso")
+                    $(".c-acceso__errores").append("<p class='c-acceso__error-mensaje'>" + GLOBAL_USUARIO.erroresAcceso[0] + "</p>")
+            })
     } else {
         acceso_ReiniciarCampos()
         $(".js-acceso__entrar").toggleClass("c-boton--basico").toggleClass("c-boton--exito")
@@ -49,8 +51,12 @@ function acceso_Entrar() {
 function acceso_Registro() {
     if ($(".c-acceso").data("modo") == 2) {
         if (!acceso_ErroresRegistro()) {
-            // Todo registro conseguido
-            forzarLogueo()
+            GLOBAL_USUARIO.acceso_RegistroUsuarioLibre(($(".js-acceso__nombre").val()))
+                .done(() => { forzarLogueo() })
+                .fail(()=>{
+                        $("<div class='c-acceso__errores c-acceso__errores--registro'></div>").insertBefore(".c-acceso")
+                        $(".c-acceso__errores").append("<p class='c-acceso__error-mensaje'>" + GLOBAL_USUARIO.erroresRegistro[0] + "</p>")
+                    })
         }
     } else {
         acceso_ReiniciarCampos()
@@ -64,7 +70,7 @@ function acceso_Registro() {
 }
 function acceso_Escribiendo(evento) {
     if ($(".c-acceso").data("modo") == 1) {
-        if (!acceso_ErroresEntrada() && evento.keyCode === 13) {
+        if (evento.keyCode === 13) {
             acceso_Entrar()
         }
     } else {
@@ -72,22 +78,6 @@ function acceso_Escribiendo(evento) {
             acceso_Registro()
         }
     }
-}
-
-function acceso_ErroresEntrada() {
-    var comprobacion = GLOBAL_USUARIO.validarAcceso($(".js-acceso__nombre").val(), $(".js-acceso__contra").val())
-    $(".c-acceso__errores").html("")
-    if (comprobacion.length > 0) {
-        if ($(".c-acceso__errores").length == 0) {
-            $("<div class='c-acceso__errores c-acceso__errores--acceso'></div>").insertBefore(".c-acceso")
-        }
-        comprobacion.forEach(error => {
-            $(".c-acceso__errores").append("<p class='c-acceso__error-mensaje'>" + GLOBAL_USUARIO.erroresAcceso[error] + "</p>")
-        })
-    } else {
-        $(".c-acceso__errores").remove()
-    }
-    return comprobacion.length > 0
 }
 function acceso_ErroresRegistro() {
     var comprobacion = GLOBAL_USUARIO.validarRegistro($(".js-acceso__nombre").val(), $(".js-acceso__contra").val(), $(".js-acceso__contra-repe").val())

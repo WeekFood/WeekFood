@@ -2,8 +2,7 @@ class Usuario {
     constructor() {
         this.imagen = undefined
         this.erroresAcceso = [
-            "El usuario no existe",
-            "La contraseña no es válida"
+            "Usuario y contraseña no coinciden"
         ]
         this.erroresRegistro = [
             "El usuario ya existe",
@@ -11,33 +10,9 @@ class Usuario {
             "La contraseña no es valida, minimo 6 carácteres",
             "Las contraseñas no coinciden",
         ]
-        if (window.localStorage.hasOwnProperty("tokenAcceso")) {
-            if (!this.accederConToken()) {
-                console.error("EL TOKEN DEL USUARIO NO ES VALIDO")
-                localStorage.clear()
-            }
-        }
-    }
-    validarAcceso(usuario, pass) {
-        var errores = []
-        if (this.existeElUsuario(usuario)) {
-            //errores.push(0)
-            console.log("Saltada comprobacion <Existe el usuario>")
-        } else {
-            if (this.acceder(usuario, pass)) {
-                // Todo almacenar credenciales
-            } else {
-                errores.push(1)
-            }
-        }
-        return errores
     }
     validarRegistro(usuario, pass, passRepe) {
         var errores = []
-        if (this.existeElUsuario(usuario)) {
-           //errores.push(0)
-           console.log("Saltada comprobacion <Existe el usuario>")
-        }
         if (usuario.length < 4) {
             errores.push(1)
         }
@@ -46,29 +21,22 @@ class Usuario {
         } else if (!pass.localeCompare(passRepe) == 0) {
             errores.push(3)
         }
-        if (errores.length == 0) {
-            this.registrar(usuario, pass, passRepe)
-        }
         return errores
     }
-    existeElUsuario(usuario) {
-        // Todo conectar con el server y comprobar
-        return true
-    }
     acceder(usuario, pass) {
-        // Todo conectar con el server y comprobar
-        return false
+        return $.post({
+            url: "/api/auth/login",
+            type: "POST",
+            contentType: "application/x-www-form-urlencoded",
+            data: "nick=" + usuario + "&contraseña=" + pass
+        })
     }
-    registrar(usuario, pass, passRepe) {
-        // Todo conectar con el server y registrar
-        return false
-    }
-    guardarCredenciales() {
-        // Todo guardar token en la bd interna
-        window.localStorage.setItem("tokenAcceso",0)
-    }
-    accederConToken() {
-        //Todo conectar a server, authenticar
-        return false
+    acceso_RegistroUsuarioLibre(usuario){
+        return $.post({
+            url: "/api/auth/usuarioLibre",
+            type: "POST",
+            contentType: "application/x-www-form-urlencoded",
+            data: "nick=" + usuario 
+        })
     }
 }
