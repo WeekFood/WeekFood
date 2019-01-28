@@ -87,7 +87,7 @@ CREATE TABLE `menu` (
 
 LOCK TABLES `menu` WRITE;
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
-INSERT INTO `menu` VALUES (1,'Inicio','portada'),(2,'Productos','productos'),(3,'Quiénes somos','quienesSomos');
+INSERT INTO `menu` VALUES (1,'Inicio','portada'),(2,'Mi perfil','perfil'),(3,'Productos','productos'),(4,'Quiénes somos','quienesSomos');
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
