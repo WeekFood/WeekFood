@@ -10,7 +10,7 @@ class CarritosResource extends Resource {
                             articulosencarritos.idArticulo,
                             articulosencarritos.cantidad 
                         FROM 
-                            carritos RIGHT JOIN articulosencarritos ON 
+                            carritos JOIN articulosencarritos ON 
                                 articulosencarritos.idCarrito = carritos.id
                         WHERE carritos.idUsuario = :idUsuario";
 
@@ -75,7 +75,7 @@ class CarritosResource extends Resource {
                             articulosencarritos.idArticulo,
                             articulosencarritos.cantidad 
                         FROM 
-                            carritos RIGHT JOIN articulosencarritos ON 
+                            carritos JOIN articulosencarritos ON 
                                 articulosencarritos.idCarrito = carritos.id
                         WHERE carritos.id = :idCarrito AND carritos.idUsuario = :idUsuario";
         
