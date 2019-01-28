@@ -13,6 +13,7 @@ class Auth {
     const ERR_RENEW_LOGIN_INVALID_SIGNATURE = 'ERR_RENEW_LOGIN_INVALID_SIGNATURE';
     const ERR_LOGOUT_NO_LOGIN = 'ERR_LOGOUT_NO_LOGIN';
 
+    // placeholder para futuro uso (un usuario solo puede ver su carrito)
     const RESOURCE_CARRITO_ID = 'RESOURCE_CARRITO_ID';
 
     private const SECRET_KEY = "F4Ev-17IbLRcEkwr2p8NRL62bys5fo6AqJrfWZwd5wBUBqDdDueKZz4VlJiWaD1TOXkmNtrU2gCmhNeZvimikm-3yI293zaufdnSoJ0isJ_i1SDmR8GeWVTVkBIPRewP4yBlb2uHbm1Uxppd0wkFau8iNmm5tqQppG0O5Rij5oojForsrvT8ahB9YYkX3fbM5u0RAW4AHbXqrN62xlN17FuXzZUtknI_W_HSOnnrQH5Rj0ZaT2GzRdR9PyaoXfLEduCq_2NowAxIzznsn-OnTFf7VuSrqmj5z1cvO_qyGM0sDNJiUQjKV-R-FQYK9yBkWsWclncU7CVN8uz44CSQng";
