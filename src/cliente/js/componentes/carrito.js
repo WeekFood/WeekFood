@@ -111,7 +111,9 @@ function carrito_Guardar() {
             url: '/api/carritos',
             contentType: 'application/json',
             data: GLOBAL_CARRITO.exportar()
-        }).catch(() => generarNotificacion('<i class="far fa-frown"></i> No se ha podido guardar tu carrito'));
+        }).catch(() => generarNotificacion('<i class="far fa-frown"></i> No se ha podido guardar tu carrito')).done((respuesta)=>{
+            GLOBAL_CARRITO.setID(respuesta.id)
+        })
     } else {
         $.ajax({
             url: '/api/carritos',

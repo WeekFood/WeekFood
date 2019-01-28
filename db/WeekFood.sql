@@ -29,10 +29,10 @@ USE `WeekFood`;
 -- Table structure for table `articulosEnCarritos`
 --
 
-DROP TABLE IF EXISTS `articulosEnCarritos`;
+DROP TABLE IF EXISTS `articulosencarritos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `articulosEnCarritos` (
+CREATE TABLE `articulosencarritos` (
   `idCarrito` int(11) NOT NULL,
   `idArticulo` int(11) NOT NULL,
   `cantidad` int(2) NOT NULL DEFAULT '0',

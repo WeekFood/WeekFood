@@ -131,6 +131,7 @@ class CarritosResource extends Resource {
                 $this->execSQL($params);
             }
         }
+        $this->data = $carrito;
         $this->setData();
     }
 }
