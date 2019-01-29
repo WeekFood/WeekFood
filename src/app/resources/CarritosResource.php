@@ -59,7 +59,6 @@ class CarritosResource extends Resource {
             "fecha" => $carrito["fecha"]
         ];
         $this->sql = "INSERT INTO carritos (idUsuario, fecha) VALUES (:idUsuario, :fecha)";
-
         try {
             $this->execSQL($params);
         } catch (Exception $e) {
@@ -73,7 +72,8 @@ class CarritosResource extends Resource {
                 "idCarrito" => $carrito["id"],
                 "idArticulo" => $articulo["id"],
                 "cantidad" => $articulo["cantidad"]
-            ];try {
+            ];
+            try {
                 $this->execSQL($params);
             } catch (Exception $e) {
                 $this->setError(409, 'Carrito y/o articulo inexistente');
@@ -114,8 +114,7 @@ class CarritosResource extends Resource {
         $params = [
             "idCarrito" => $carrito["id"],
             "fechaCarrito" => $carrito["fecha"]
-        ]
-        ;
+        ];
         try {
             $this->execSQL($params);
         } catch (Exception $e) {
