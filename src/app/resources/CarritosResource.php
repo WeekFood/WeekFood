@@ -5,17 +5,17 @@ use core\MVC\Resource as Resource;
 class CarritosResource extends Resource {
     public function getCarritoAction() {
         $idUsuario = 1; // TODO, usar id usuario de la sesion
-        if ($idUsuario != $this->controller->getParam("idUsuario")){
-            $this->setError(401,'Desautorizado');
+        if ($idUsuario != $this->controller->getParam("idUsuario")) {
+            $this->setError(401, 'Desautorizado');
             die();
         }
-        $this->sql =    "SELECT 
+        $this->sql = "SELECT
                             carritos.id,
-                            carritos.fecha, 
+                            carritos.fecha,
                             articulosencarritos.idArticulo,
-                            articulosencarritos.cantidad 
-                        FROM 
-                            carritos JOIN articulosencarritos ON 
+                            articulosencarritos.cantidad
+                        FROM
+                            carritos JOIN articulosencarritos ON
                                 articulosencarritos.idCarrito = carritos.id
                         WHERE carritos.idUsuario = :idUsuario";
 
@@ -24,38 +24,38 @@ class CarritosResource extends Resource {
         ];
         $this->execSQL($params);
         $carrito = [];
-        if($this->data != NULL){
+        if ($this->data != NULL) {
             $carrito["id"] = $this->data[0]["id"];
             $carrito["fecha"] = $this->data[0]["fecha"];
             $carrito["articulos"] = [];
-            foreach($this->data as $linea){
-                $articulo = ["id"=>$linea["idArticulo"],"cantidad"=>$linea["cantidad"]];
-                array_push($carrito["articulos"],$articulo);
+            foreach ($this->data as $linea) {
+                $articulo = ["id" => $linea["idArticulo"], "cantidad" => $linea["cantidad"]];
+                array_push($carrito["articulos"], $articulo);
             }
         }
         $this->data = $carrito;
         $this->setData();
     }
 
-    public function postCarritoAction() {  
+    public function postCarritoAction() {
         $json = file_get_contents('php://input');
-        $carrito = json_decode($json,true);
+        $carrito = json_decode($json, true);
         $idUsuario = 1; // TODO, usar id usuario de la sesion
-        if ($idUsuario != $this->controller->getParam("idUsuario")){
-            $this->setError(401,'Desautorizado');
+        if ($idUsuario != $this->controller->getParam("idUsuario")) {
+            $this->setError(401, 'Desautorizado');
             die();
         }
-        if (!array_key_exists("fecha",$carrito)){
-            $this->setError(400,'Petición incorrecta');
+        if (!array_key_exists("fecha", $carrito)) {
+            $this->setError(400, 'Petición incorrecta');
             die();
-        }else if (strlen($carrito["fecha"]) != 19){
-            $this->setError(400,'Petición incorrecta');
+        } else if (strlen($carrito["fecha"]) != 19) {
+            $this->setError(400, 'Petición incorrecta');
             die();
 
         }
-        foreach($carrito["articulos"] as $articulo){
-            if (($articulo["id"] == NULL) || ($articulo["cantidad"] == NULL)){
-                $this->setError(400,'Petición incorrecta');
+        foreach ($carrito["articulos"] as $articulo) {
+            if (($articulo["id"] == NULL) || ($articulo["cantidad"] == NULL)) {
+                $this->setError(400, 'Petición incorrecta');
                 die();
             }
         }
@@ -67,7 +67,7 @@ class CarritosResource extends Resource {
 
         $this->execSQL($params);
         $carrito["id"] = $this->data;
-        foreach($carrito["articulos"] as $articulo){
+        foreach ($carrito["articulos"] as $articulo) {
             $this->sql = "INSERT INTO articulosencarritos VALUES (:idCarrito, :idArticulo, :cantidad)";
             $params = [
                 "idCarrito" => $carrito["id"],
@@ -82,23 +82,23 @@ class CarritosResource extends Resource {
 
     public function putCarritoAction() {
         $json = file_get_contents('php://input');
-        $carrito = json_decode($json,true);
+        $carrito = json_decode($json, true);
         $idUsuario = 1; // TODO, usar id usuario de la sesion
-        if ($carrito["id"] == NULL){
-            $this->setError(400,'Petición incorrecta');
+        if ($carrito["id"] == NULL) {
+            $this->setError(400, 'Petición incorrecta');
             die();
         }
-        if (($idUsuario !=  $this->controller->getParam("idUsuario")) || ($carrito["id"] != $this->controller->getParam("idCarrito"))){
-            $this->setError(401,'Desautorizado');
+        if (($idUsuario != $this->controller->getParam("idUsuario")) || ($carrito["id"] != $this->controller->getParam("idCarrito"))) {
+            $this->setError(401, 'Desautorizado');
             die();
         }
-        if (($carrito["fecha"] == NULL) || (strlen($carrito["fecha"]) != 19)){
-            $this->setError(400,'Petición incorrecta');
+        if (($carrito["fecha"] == NULL) || (strlen($carrito["fecha"]) != 19)) {
+            $this->setError(400, 'Petición incorrecta');
             die();
         }
-        foreach($carrito["articulos"] as $articulo){
-            if (($articulo["id"] == NULL) || ($articulo["cantidad"] == NULL)){
-                $this->setError(400,'Petición incorrecta');
+        foreach ($carrito["articulos"] as $articulo) {
+            if (($articulo["id"] == NULL) || ($articulo["cantidad"] == NULL)) {
+                $this->setError(400, 'Petición incorrecta');
                 die();
             }
         }
@@ -108,16 +108,16 @@ class CarritosResource extends Resource {
             "fechaCarrito" => $carrito["fecha"]
         ];
         $this->execSQL($params);
-        $this->sql =    "SELECT 
+        $this->sql = "SELECT
                             carritos.id,
-                            carritos.fecha, 
+                            carritos.fecha,
                             articulosencarritos.idArticulo,
-                            articulosencarritos.cantidad 
-                        FROM 
-                            carritos JOIN articulosencarritos ON 
+                            articulosencarritos.cantidad
+                        FROM
+                            carritos JOIN articulosencarritos ON
                                 articulosencarritos.idCarrito = carritos.id
                         WHERE carritos.id = :idCarrito AND carritos.idUsuario = :idUsuario";
-        
+
         $params = [
             "idUsuario" => $idUsuario,
             "idCarrito" => $carrito["id"]
@@ -125,15 +125,15 @@ class CarritosResource extends Resource {
         $this->execSQL($params);
         $datosEnDB = $this->data;
         // Si existen en la DB pero no en el carrito, se eliminan de la DB
-        foreach($datosEnDB as $linea){
+        foreach ($datosEnDB as $linea) {
             $enCarrito = FALSE;
-            foreach($carrito["articulos"] as $articulo){
-                if ($articulo["id"] == $linea["idArticulo"]){
+            foreach ($carrito["articulos"] as $articulo) {
+                if ($articulo["id"] == $linea["idArticulo"]) {
                     $enCarrito = TRUE;
                     break;
                 }
             }
-            if (!$enCarrito){
+            if (!$enCarrito) {
                 $this->sql = "DELETE FROM articulosencarritos WHERE idArticulo = :idArticulo AND idCarrito = :idCarrito";
                 $params = [
                     "idArticulo" => $linea["idArticulo"],
@@ -143,12 +143,12 @@ class CarritosResource extends Resource {
             }
         }
         // Si existen en el carrito pero no en la base se crean, y sino se actualizan
-        foreach($carrito["articulos"] as $articulo){
+        foreach ($carrito["articulos"] as $articulo) {
             $enDB = FALSE;
-            foreach($datosEnDB as $linea){
-                if ($articulo["id"] == $linea["idArticulo"]){
+            foreach ($datosEnDB as $linea) {
+                if ($articulo["id"] == $linea["idArticulo"]) {
                     $enDB = TRUE;
-                    if ($articulo["cantidad"] != $linea["cantidad"]){
+                    if ($articulo["cantidad"] != $linea["cantidad"]) {
                         $this->sql = "UPDATE articulosencarritos SET cantidad = :cantidadArticulo WHERE idArticulo = :idArticulo AND idCarrito = :idCarrito";
                         $params = [
                             "idArticulo" => $linea["idArticulo"],
@@ -160,7 +160,7 @@ class CarritosResource extends Resource {
                     break;
                 }
             }
-            if (!$enDB){
+            if (!$enDB) {
                 $this->sql = "INSERT INTO articulosencarritos VALUES (:idCarrito, :idArticulo, :cantidad)";
                 $params = [
                     "idCarrito" => $carrito["id"],

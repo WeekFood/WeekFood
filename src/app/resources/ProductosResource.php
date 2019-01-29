@@ -29,8 +29,8 @@ class ProductosResource extends Resource {
         $this->execSQL($params);
         $this->setData();
     }
-    
-    public function getCategoriaAction(){
+
+    public function getCategoriaAction() {
         $params = [
             "categoriaEspecifica" => "%" . $this->controller->getParam("categoria") . "%"
         ];
@@ -40,19 +40,19 @@ class ProductosResource extends Resource {
     }
 
     public function getDestacadosAction() {
-        if ($this->controller->getParam("destacado") !== '1'){
+        if ($this->controller->getParam("destacado") !== '1') {
             $this->setError(400, 'Petición incorrecta');
             return false;
         }
         $params = [
-            "destacado" =>  $this->controller->getParam("destacado")
+            "destacado" => $this->controller->getParam("destacado")
         ];
         $this->sql = 'SELECT * FROM productos WHERE destacado = :destacado';
         $this->execSQL($params);
         $this->setData();
     }
 
-    public function getProductoIDAction(){
+    public function getProductoIDAction() {
         $params = [
             "id" => $this->controller->getParam("id")
         ];
