@@ -21,13 +21,11 @@ class AuthResource extends Resource {
         $LONGITUD_MINIMA_CONTRASEÑA = 6;
 
         if (!isset($_POST['nick']) || !isset($_POST['contraseña'])) {
-            // TODO: validar nombre cuando el frontend lo tenga en cuenta
             $this->setError(400, 'FALTAN_CAMPOS');
             return;
         }
 
         if (empty($_POST['nick']) || empty($_POST['contraseña'])) {
-            // TODO: validar nombre cuando el frontend lo tenga en cuenta
             $this->setError(400, 'CAMPOS_VACIOS');
             return;
         }
@@ -42,7 +40,7 @@ class AuthResource extends Resource {
         }
 
         $nick = $_POST['nick'];
-        $nombre = $_POST['nombre'];
+        $nombre = $nick;
         $contraseña = $_POST['contraseña'];
 
         try {
