@@ -1,6 +1,8 @@
 class Usuario {
     constructor() {
         this.imagen = undefined
+        this.nick = undefined
+        this.datos = undefined
         this.erroresAcceso = [
             "Usuario no existe",
             "Contraseña no es valida",
@@ -15,12 +17,12 @@ class Usuario {
         ]
         this.errorGenerico = "Algo ha fallado. Vuelve a intentarlo más tarde."
     }
-    validarAcceso(usuario, pass){
+    validarAcceso(usuario, pass) {
         var errores = []
-        if (usuario.length == 0){
+        if (usuario.length == 0) {
             errores.push(2)
         }
-        if (pass.length == 0){
+        if (pass.length == 0) {
             errores.push(3)
         }
         return errores
@@ -45,20 +47,20 @@ class Usuario {
             data: "nick=" + usuario + "&contraseña=" + pass
         })
     }
-    acceso_RegistroUsuarioLibre(usuario){
+    acceso_RegistroUsuarioLibre(usuario) {
         return $.post({
             url: "/api/auth/usuario_ya_existe",
             type: "POST",
             contentType: "application/x-www-form-urlencoded",
-            data: "nick=" + usuario 
+            data: "nick=" + usuario
         })
     }
-    registrar(usuario, pass){
+    registrar(usuario, pass) {
         return $.post({
             url: "/api/auth/registro",
             type: "POST",
             contentType: "application/x-www-form-urlencoded",
             data: "nick=" + usuario + "&contraseña=" + pass
-        }) 
+        })
     }
 }
