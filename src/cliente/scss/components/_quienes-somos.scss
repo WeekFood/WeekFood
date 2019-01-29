@@ -39,8 +39,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 15px 25px;
     border-radius: 10px;
-    margin: 5%;
-    margin-top: 2%;
+    margin: 3%;
     grid-template-areas: 'cabecera cabecera'
                             'contenido-interno equipo'
                             'servicios servicios';
@@ -105,4 +104,7 @@
     display: flex;
     justify-content: space-around;
     margin: 20px;
+}
+.c-quienes-somos__servicios-icono{
+    margin: 10px;
 }

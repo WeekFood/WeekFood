@@ -34,7 +34,7 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             </div>
             <div class='c-quienes-somos__redes'>
             <p class='c-quienes-somos__titulo-menor'>¡Siguenos en nuestras redes sociales!</p>
-            <p><i class="fab fa-instagram"></i> @WeekFood</p>
+            <p><div class='c-quienes-somos__servicios-icono'><i class="fab fa-instagram"></i></div> @WeekFood</p>
             <p><i class="fab fa-twitter"></i></i> @WeekFood</p>
             <p><i class="fab fa-facebook"></i> /WeekFood</p>
             </div>
