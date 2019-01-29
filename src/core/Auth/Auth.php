@@ -123,7 +123,7 @@ class Auth {
             list($userId, $token, $signedHash) = explode('.', $_COOKIE[self::COOKIE_NAME_TOKEN]);
 
             if (!hash_equals(hash_hmac('sha256', $userId . '.' . $token, self::SECRET_KEY), $signedHash)) {
-                $this->sendError(self::ERR_RESUME_LOGIN_INVALID_SIGNATURE);
+                $this->sendError(self::ERR_RENEW_LOGIN_INVALID_SIGNATURE);
                 return false;
             }
 
