@@ -63,7 +63,7 @@ class Auth {
     }
 
     public function login(string $nick, string $password, bool $rememberMe = false): array {
-        $sql = 'SELECT * FROM usuarios WHERE nick = :nick LIMIT 1;';
+        $sql = 'SELECT * FROM usuarios WHERE BINARY nick = :nick LIMIT 1;';
 
         $ps = $this->db->prepare($sql);
         $ps->bindParam(':nick', $nick);
