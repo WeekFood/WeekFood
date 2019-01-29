@@ -13,9 +13,8 @@ class CarritosResource extends Resource {
                         carritos JOIN articulosencarritos ON
                         articulosencarritos.idCarrito = carritos.id
                       WHERE carritos.idUsuario = :idUsuario";
-        $idUsuario = 1; // TODO, usar id usuario de la sesion
         $params = [
-            "idUsuario" => $idUsuario
+            "idUsuario" => $this->controller->getParam("id")
         ];
         $this->execSQL($params);
         $carrito = [];
@@ -76,6 +75,10 @@ class CarritosResource extends Resource {
         $carrito = json_decode($json, true);
         $idUsuario = 1; // TODO, usar id usuario de la sesion
         if (!array_key_exists("id", $carrito)) {
+            $this->setError(400, 'Petición incorrecta');
+            die();
+        }
+        if ($this->controller->getParam("id") != $carrito["id"]) {
             $this->setError(400, 'Petición incorrecta');
             die();
         }

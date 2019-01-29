@@ -52,22 +52,22 @@ return [
             "resource" => "productos",
             "action" => "getProductoID"
         ],
-        "API, carrito" => [
-            "route" => "api/carrito",
+        "API, carritos por id usuario" => [
+            "route" => "api/carritos?usuario=:id",
             "resource" => "carritos",
             "action" => "getCarrito"
         ]
     ],
     "post" => [
         "API, carrito" => [
-            "route" => "api/carrito",
+            "route" => "api/carritos",
             "resource" => "carritos",
             "action" => "postCarrito"
         ]
     ],
     "put" => [
         "API, carrito" => [
-            "route" => "api/carrito",
+            "route" => "api/carritos/:id",
             "resource" => "carritos",
             "action" => "putCarrito"
         ]

@@ -107,7 +107,7 @@ function carrito_ActualizarTriggers() {
 function carrito_Guardar() {
     if (!GLOBAL_CARRITO_EXISTE) {
         $.post({
-            url: '/api/carrito',
+            url: '/api/carritos',
             contentType: 'application/json',
             data: GLOBAL_CARRITO.exportar()
         }).catch(() => generarNotificacion('<i class="far fa-frown"></i> No se ha podido guardar tu carrito')).done((respuesta) => {
@@ -116,7 +116,7 @@ function carrito_Guardar() {
         })
     } else {
         $.ajax({
-            url: '/api/carrito',
+            url: '/api/carritos/'+GLOBAL_CARRITO.id,
             type: 'PUT',
             contentType: "application/json",
             data: GLOBAL_CARRITO.exportar()
@@ -124,7 +124,7 @@ function carrito_Guardar() {
     }
 }
 function carrito_Descargar() {
-    $.getJSON('/api/carrito').then((respuesta) => {
+    $.getJSON('/api/carritos?usuario='+GLOBAL_USUARIO.id).then((respuesta) => {
         if (respuesta.length == undefined) {
             GLOBAL_CARRITO_EXISTE = true
             GLOBAL_CARRITO.setID(respuesta.id)
