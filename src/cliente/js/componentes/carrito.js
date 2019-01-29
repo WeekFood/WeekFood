@@ -107,7 +107,7 @@ function carrito_ActualizarTriggers() {
 function carrito_Guardar() {
     if (!GLOBAL_CARRITO_EXISTE) {
         $.post({
-            url: '/api/carritos/'+GLOBAL_USUARIO.id,
+            url: '/api/carrito',
             contentType: 'application/json',
             data: GLOBAL_CARRITO.exportar()
         }).catch(() => generarNotificacion('<i class="far fa-frown"></i> No se ha podido guardar tu carrito')).done((respuesta) => {
@@ -116,7 +116,7 @@ function carrito_Guardar() {
         })
     } else {
         $.ajax({
-            url: '/api/carritos/'+GLOBAL_USUARIO.id+"/"+GLOBAL_CARRITO.id,
+            url: '/api/carrito',
             type: 'PUT',
             contentType: "application/json",
             data: GLOBAL_CARRITO.exportar()
@@ -124,9 +124,9 @@ function carrito_Guardar() {
     }
 }
 function carrito_Descargar() {
-    $.getJSON('/api/carritos/'+GLOBAL_USUARIO.id).then((respuesta) => {
+    $.getJSON('/api/carrito').then((respuesta) => {
         if (respuesta.length == undefined) {
-            GLOBAL_CARRITO_EXISTE = true    
+            GLOBAL_CARRITO_EXISTE = true
             GLOBAL_CARRITO.setID(respuesta.id)
             respuesta.articulos.forEach(articulo => {
                 GLOBAL_GESTOR_PRODUCTOS.descargarProductoId(articulo.id).then(() => {

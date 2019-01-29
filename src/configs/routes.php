@@ -27,17 +27,17 @@ return [
             "resource" => "productos",
             "action" => "getTodos"
         ],
-        "API, productos, query todas categorias principales" =>[
+        "API, productos, query todas categorias principales" => [
             "route" => "api/productos/categorias",
             "resource" => "productos",
             "action" => "getCategoriasPrincipales"
         ],
-        "API, productos, query categorias principales" =>[
+        "API, productos, query categorias principales" => [
             "route" => "api/productos/categorias/:nombre/subcategorias",
             "resource" => "productos",
             "action" => "getCategoriaPrincipal"
         ],
-        "API, productos, query categorias" =>[
+        "API, productos, query categorias" => [
             "route" => "api/productos?categoria=:categoria",
             "resource" => "productos",
             "action" => "getCategoria"
@@ -52,27 +52,27 @@ return [
             "resource" => "productos",
             "action" => "getProductoID"
         ],
-        "API, carritos, por id usuario" => [
-            "route" => "api/carritos/:idUsuario",
+        "API, carrito" => [
+            "route" => "api/carrito",
             "resource" => "carritos",
             "action" => "getCarrito"
-        ],
+        ]
     ],
     "post" => [
-        "API, carritos" => [
-            "route" => "api/carritos/:idUsuario",
+        "API, carrito por id" => [
+            "route" => "api/carrito",
             "resource" => "carritos",
             "action" => "postCarrito"
         ]
     ],
     "put" => [
-        "API, carritos" => [
-            "route" => "api/carritos/:idUsuario/:idCarrito",
+        "API, carritos por id" => [
+            "route" => "api/carrito",
             "resource" => "carritos",
             "action" => "putCarrito"
         ]
     ],
-    "delete" =>[
+    "delete" => [
 
     ]
 ];
