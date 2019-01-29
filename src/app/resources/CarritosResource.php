@@ -16,7 +16,12 @@ class CarritosResource extends Resource {
         $params = [
             "idUsuario" => $this->controller->getParam("idUsuario")
         ];
-        $this->execSQL($params);
+        try {
+            $this->execSQL($params);
+        } catch (Exception $e) {
+            $this->setError(409, 'Usuario inexistente');
+            die();
+        }
         $carrito = [];
         if ($this->data != NULL) {
             $carrito["id"] = $this->data[0]["id"];
@@ -55,7 +60,12 @@ class CarritosResource extends Resource {
         ];
         $this->sql = "INSERT INTO carritos (idUsuario, fecha) VALUES (:idUsuario, :fecha)";
 
-        $this->execSQL($params);
+        try {
+            $this->execSQL($params);
+        } catch (Exception $e) {
+            $this->setError(409, 'Usuario inexistente');
+            die();
+        }
         $carrito["id"] = $this->data;
         foreach ($carrito["articulos"] as $articulo) {
             $this->sql = "INSERT INTO articulosencarritos VALUES (:idCarrito, :idArticulo, :cantidad)";
@@ -63,8 +73,12 @@ class CarritosResource extends Resource {
                 "idCarrito" => $carrito["id"],
                 "idArticulo" => $articulo["id"],
                 "cantidad" => $articulo["cantidad"]
-            ];
-            $this->execSQL($params);
+            ];try {
+                $this->execSQL($params);
+            } catch (Exception $e) {
+                $this->setError(409, 'Carrito y/o articulo inexistente');
+                die();
+            }
         }
         $this->data = $carrito;
         $this->setData();
@@ -100,8 +114,14 @@ class CarritosResource extends Resource {
         $params = [
             "idCarrito" => $carrito["id"],
             "fechaCarrito" => $carrito["fecha"]
-        ];
-        $this->execSQL($params);
+        ]
+        ;
+        try {
+            $this->execSQL($params);
+        } catch (Exception $e) {
+            $this->setError(409, 'Carrito inexistente');
+            die();
+        }
         $this->sql = "SELECT
                             carritos.id,
                             carritos.fecha,
@@ -116,7 +136,12 @@ class CarritosResource extends Resource {
             "idUsuario" => $idUsuario,
             "idCarrito" => $carrito["id"]
         ];
-        $this->execSQL($params);
+        try {
+            $this->execSQL($params);
+        } catch (Exception $e) {
+            $this->setError(409, 'Usuario y/o carrito inexistente');
+            die();
+        }
         $datosEnDB = $this->data;
         // Si existen en la DB pero no en el carrito, se eliminan de la DB
         foreach ($datosEnDB as $linea) {
@@ -133,7 +158,12 @@ class CarritosResource extends Resource {
                     "idArticulo" => $linea["idArticulo"],
                     "idCarrito" => $carrito["id"]
                 ];
-                $this->execSQL($params);
+                try {
+                    $this->execSQL($params);
+                } catch (Exception $e) {
+                    $this->setError(409, 'Carrito y/o articulo inexistente');
+                    die();
+                }
             }
         }
         // Si existen en el carrito pero no en la base se crean, y sino se actualizan
@@ -149,7 +179,12 @@ class CarritosResource extends Resource {
                             "idCarrito" => $carrito["id"],
                             "cantidadArticulo" => $articulo["cantidad"]
                         ];
-                        $this->execSQL($params);
+                        try {
+                            $this->execSQL($params);
+                        } catch (Exception $e) {
+                            $this->setError(409, 'Carrito y/o articulo inexistente');
+                            die();
+                        }
                     }
                     break;
                 }
@@ -161,7 +196,12 @@ class CarritosResource extends Resource {
                     "idArticulo" => $articulo["id"],
                     "cantidad" => $articulo["cantidad"]
                 ];
-                $this->execSQL($params);
+                try {
+                    $this->execSQL($params);
+                } catch (Exception $e) {
+                    $this->setError(409, 'Carrito y/o articulo inexistente');
+                    die();
+                }
             }
         }
         $this->data = $carrito;
