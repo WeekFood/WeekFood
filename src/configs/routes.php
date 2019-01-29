@@ -59,14 +59,14 @@ return [
         ]
     ],
     "post" => [
-        "API, carrito por id" => [
+        "API, carrito" => [
             "route" => "api/carrito",
             "resource" => "carritos",
             "action" => "postCarrito"
         ]
     ],
     "put" => [
-        "API, carritos por id" => [
+        "API, carrito" => [
             "route" => "api/carrito",
             "resource" => "carritos",
             "action" => "putCarrito"
