@@ -6,7 +6,7 @@ namespace core\Auth;
  */
 class Auth {
     const ERR_NO_TOKEN = 'ERR_NO_TOKEN';
-    const ERR_ROLE_FORBIDDEN = 'ERR_ROLE_FORBIDDEN';
+    const ERR_INSUFFICIENT_PRIVILEGE_LVL = 'ERR_INSUFFICIENT_PRIVILEGE_LVL';
     const ERR_ACCESS_FORBIDDEN = 'ERR_ACCESS_FORBIDDEN';
     const ERR_LOGIN_USER_NOT_FOUND = 'ERR_LOGIN_USER_NOT_FOUND';
     const ERR_LOGIN_WRONG_PASSWORD = 'ERR_LOGIN_WRONG_PASSWORD';
@@ -200,10 +200,12 @@ class Auth {
             case (self::ERR_LOGOUT_NO_LOGIN):
                 http_response_code(401);
                 break;
-            case (self::ERR_ROLE_FORBIDDEN):
+            /* TODO: hasPrivilegeLvl y canAccess */
+            case (self::ERR_INSUFFICIENT_PRIVILEGE_LVL):
             case (self::ERR_ACCESS_FORBIDDEN):
                 http_response_code(403);
                 break;
+            /* end TODO */
             default:
                 http_response_code(500);
         }
