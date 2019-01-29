@@ -9,23 +9,24 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
         },
         contenido: {
             es: `<div class='c-quienes-somos__contenido'>
-            <div class='c-quienes-somos__contenido-interno'>
             <div class='c-quienes-somos__cabecera'>
             <p class='c-quienes-somos__titulo'>¿Quienes somos?</p>
-            <p class='c-quienes-somos__titulo-menor'>Somos una empresa ficticia, para el proyecto de final de curso de Desarrollo de Aplicaciones Web.</p>
             </div>
-            <p>Hola a todos, somos una web para gestionar encargos a casas de comidas.</p>
-            <p>Nuestra idea de negocio se basa en, satisfacer la necesidad de comer comida casera</p>
-            <p>sin que gasteis tiempo en cocinar y/o en planear.</p>
-            <p>De este modo, vosotros podeis dedicar vuestro tiempo a otras cosas.</p>
+            <div class='c-quienes-somos__contenido-interno'>
+            <p class='c-quienes-somos__texto'>Somos una empresa que gestiona el reparto de casas de comida.
+            Hola a todos, somos una web para gestionar encargos a casas de comidas.
+            Nuestra idea de negocio se basa en, satisfacer la necesidad de comer comida casera
+            sin que gasteis tiempo en cocinar y/o en planear.
+            De este modo, vosotros podeis dedicar vuestro tiempo a otras cosas.</p>
             </div>
             <div class='c-quienes-somos__contenido-equipo'>
-            <div class='c-quienes-somos__contenido-equipo-container'><i class="fas fa-laptop"></i>Jefe de operaciones, YB<img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'></div>
-            <div class='c-quienes-somos__contenido-equipo-container'><i class="fas fa-laptop"></i>Director ejecutivo, TD<img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/toni.jpg'></div>
-            <div class='c-quienes-somos__contenido-equipo-container'><i class="fas fa-blind"></i>Master del universo, JL<img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/jl.jpg'></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'><div class='c-quienes-somos__texto'><i class="fas fa-laptop"></i>Jefe de operaciones, YB</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/toni.jpg'><div class='c-quienes-somos__texto'><i class="fas fa-laptop"></i>Director ejecutivo, TD</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/jl.jpg'><div class='c-quienes-somos__texto'><i class="fas fa-blind"></i>Master del universo, JL</div></div>
             </div>
+            <div class='c-quienes-somos__servicios'>
             <div class='c-quienes-somos__attCliente'>
-            <p class='c-quienes-somos__titulo-menor'>Atención al cliente</p>
+            <p class='c-quienes-somos__titulo-menor'>Si tienes alguna duda, no dudes en contactar con nosotros</p>
             <p><i class="fas fa-phone"></i>902 - 123- 469</p>
             <p><i class="far fa-envelope"></i>* info@weekfood.com</p>
             <p><i class="fab fa-whatsapp"></i>* 603 - 123- 469</p>
@@ -36,6 +37,7 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             <p><i class="fab fa-instagram"></i> @WeekFood</p>
             <p><i class="fab fa-twitter"></i></i> @WeekFood</p>
             <p><i class="fab fa-facebook"></i> /WeekFood</p>
+            </div>
             </div>
             </div>
             </div>`,
