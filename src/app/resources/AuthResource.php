@@ -42,10 +42,11 @@ class AuthResource extends Resource {
         }
 
         $nick = $_POST['nick'];
+        $nombre = $_POST['nombre'];
         $contraseña = $_POST['contraseña'];
 
         try {
-            $usuario = $this->auth->register($nick, $contraseña, true);
+            $usuario = $this->auth->register($nick, $contraseña, $nombre, true);
 
             $this->data = [
                 "nick" => $usuario['nick'],

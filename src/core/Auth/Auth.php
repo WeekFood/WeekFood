@@ -28,7 +28,7 @@ class Auth {
         $this->db = $db;
     }
 
-    public function register(string $nick, string $password, bool $rememberMe = false) {
+    public function register(string $nick, string $password, string $name, bool $rememberMe = false) {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
         if ($this->nickTaken($nick)) {
