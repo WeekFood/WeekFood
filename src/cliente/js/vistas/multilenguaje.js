@@ -26,17 +26,17 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             </div>
             <div class='c-quienes-somos__servicios'>
             <div class='c-quienes-somos__attCliente'>
-            <p class='c-quienes-somos__titulo-menor'>Si tienes alguna duda, no dudes en contactar con nosotros</p>
+            <p class='c-quienes-somos__texto'>Si tienes alguna duda, no dudes en contactar con nosotros</p>
             <p><i class="fas fa-phone"></i>902 - 123- 469</p>
             <p><i class="far fa-envelope"></i>* info@weekfood.com</p>
             <p><i class="fab fa-whatsapp"></i>* 603 - 123- 469</p>
             <p>*(Atención automatizada)</p>
             </div>
             <div class='c-quienes-somos__redes'>
-            <p class='c-quienes-somos__titulo-menor'>¡Siguenos en nuestras redes sociales!</p>
-            <p><div class='c-quienes-somos__servicios-icono'><i class="fab fa-instagram"></i></div> @WeekFood</p>
-            <p><i class="fab fa-twitter"></i></i> @WeekFood</p>
-            <p><i class="fab fa-facebook"></i> /WeekFood</p>
+            <p class='c-quienes-somos__texto'>¡Siguenos en nuestras redes sociales!</p>
+            <div class='c-quienes-somos__servicios-icono'><i class="fab fa-instagram"></i></div><div class='c-quienes-somos__texto-icono'> @WeekFood</div>
+            <div class='c-quienes-somos__servicios-icono'><i class="fab fa-twitter"></i></div></i><div class='c-quienes-somos__texto-icono'> @WeekFood</p></div>
+            <div class='c-quienes-somos__servicios-icono'><p><i class="fab fa-facebook"></i></div><div class='c-quienes-somos__texto-icono'> /WeekFood</p></div>
             </div>
             </div>
             </div>

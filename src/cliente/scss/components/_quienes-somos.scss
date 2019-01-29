@@ -99,6 +99,13 @@
     margin: 20px;
     font-size: 20px;
 }
+
+.c-quienes-somos__texto-icono {
+    min-height: 20px;
+    margin: 20px;
+    font-size: 20px;
+    display: inline;
+}
 .c-quienes-somos__servicios{
     grid-area: servicios;
     display: flex;
@@ -106,5 +113,6 @@
     margin: 20px;
 }
 .c-quienes-somos__servicios-icono{
+    display: inline;
     margin: 10px;
 }
