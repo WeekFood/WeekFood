@@ -38,6 +38,9 @@ abstract class Resource {
                 }
                 $i++;
             }
+            if ($i == 0) {
+                $this->data = [];
+            }
             break;
         case "INSERT":
             $this->data = $this->db->lastInsertId();
