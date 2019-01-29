@@ -2,7 +2,10 @@ class Usuario {
     constructor() {
         this.imagen = undefined
         this.erroresAcceso = [
-            "Usuario y contraseña no coinciden"
+            "Usuario no existe",
+            "Contraseña no es valida",
+            "Usuario está vacio",
+            "Contraseña está vacia",
         ]
         this.erroresRegistro = [
             "El usuario ya existe",
@@ -10,6 +13,17 @@ class Usuario {
             "La contraseña no es valida, minimo 6 carácteres",
             "Las contraseñas no coinciden",
         ]
+        this.errorGenerico = "Algo ha fallado. Vuelve a intentarlo más tarde."
+    }
+    validarAcceso(usuario, pass){
+        var errores = []
+        if (usuario.length == 0){
+            errores.push(2)
+        }
+        if (pass.length == 0){
+            errores.push(3)
+        }
+        return errores
     }
     validarRegistro(usuario, pass, passRepe) {
         var errores = []
@@ -38,5 +52,13 @@ class Usuario {
             contentType: "application/x-www-form-urlencoded",
             data: "nick=" + usuario 
         })
+    }
+    registrar(usuario, pass){
+        return $.post({
+            url: "/api/auth/registro",
+            type: "POST",
+            contentType: "application/x-www-form-urlencoded",
+            data: "nick=" + usuario + "&contraseña=" + pass
+        }) 
     }
 }
