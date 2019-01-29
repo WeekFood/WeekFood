@@ -14,7 +14,7 @@ class CarritosResource extends Resource {
                         articulosencarritos.idCarrito = carritos.id
                       WHERE carritos.idUsuario = :idUsuario";
         $params = [
-            "idUsuario" => $this->controller->getParam("id")
+            "idUsuario" => $this->controller->getParam("idUsuario")
         ];
         $this->execSQL($params);
         $carrito = [];
