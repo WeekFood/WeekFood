@@ -116,7 +116,7 @@ function carrito_Guardar() {
         })
     } else {
         $.ajax({
-            url: '/api/carritos/'+GLOBAL_CARRITO.id,
+            url: '/api/carritos/' + GLOBAL_CARRITO.id,
             type: 'PUT',
             contentType: "application/json",
             data: GLOBAL_CARRITO.exportar()
@@ -124,11 +124,11 @@ function carrito_Guardar() {
     }
 }
 function carrito_Descargar() {
-    $.getJSON('/api/carritos?usuario='+GLOBAL_USUARIO.id).then((respuesta) => {
-        if (respuesta.length == undefined) {
+    $.getJSON('/api/carritos?usuario=' + GLOBAL_USUARIO.id).then((respuesta) => {
+        if (respuesta.length > 0) {
             GLOBAL_CARRITO_EXISTE = true
-            GLOBAL_CARRITO.setID(respuesta.id)
-            respuesta.articulos.forEach(articulo => {
+            GLOBAL_CARRITO.setID(respuesta[0].id)
+            respuesta[0].articulos.forEach(articulo => {
                 GLOBAL_GESTOR_PRODUCTOS.descargarProductoId(articulo.id).then(() => {
                     if (GLOBAL_CARRITO.getArticulo(articulo.id) == undefined) {
                         GLOBAL_CARRITO.añadirProducto(GLOBAL_GESTOR_PRODUCTOS.getProductoId(articulo.id), articulo.cantidad)

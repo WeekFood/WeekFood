@@ -32,6 +32,9 @@ class CarritosResource extends Resource {
                 array_push($carrito["articulos"], $articulo);
             }
         }
+        if (count($carrito) > 0) {
+            $carrito = [$carrito];
+        }
         $this->data = $carrito;
         $this->setData();
     }
