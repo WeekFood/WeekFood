@@ -86,10 +86,8 @@ class AuthResource extends Resource {
             ];
 
             $this->setData();
-        } catch (UserNotFoundException $e) {
-            $this->setError(401, 'USUARIO_NO_ENCONTRADO');
-        } catch (WrongPasswordException $e) {
-            $this->setError(401, 'CONTRASEÑA_INCORRECTA');
+        } catch (UserNotFoundException | WrongPasswordException $e) {
+            $this->setError(401, 'USUARIO_Y_O_CONTRASEÑA_INCORRECTOS');
         }
     }
 
