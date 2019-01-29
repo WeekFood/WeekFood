@@ -4,6 +4,11 @@ use core\MVC\Resource as Resource;
 
 class CarritosResource extends Resource {
     public function getCarritoAction() {
+        $idUsuario = 1; // TODO, usar id usuario de la sesion
+        if ($idUsuario != $this->controller->getParam("idUsuario")){
+            $this->setError(401,'Desautorizado');
+            die();
+        }
         $this->sql =    "SELECT 
                             carritos.id,
                             carritos.fecha, 
@@ -14,7 +19,6 @@ class CarritosResource extends Resource {
                                 articulosencarritos.idCarrito = carritos.id
                         WHERE carritos.idUsuario = :idUsuario";
 
-        $idUsuario = 1; // TODO, usar id usuario de la sesion
         $params = [
             "idUsuario" => $idUsuario
         ];
@@ -33,11 +37,28 @@ class CarritosResource extends Resource {
         $this->setData();
     }
 
-    public function postCarritoAction() {
+    public function postCarritoAction() {  
         $json = file_get_contents('php://input');
         $carrito = json_decode($json,true);
         $idUsuario = 1; // TODO, usar id usuario de la sesion
+        if ($idUsuario != $this->controller->getParam("idUsuario")){
+            $this->setError(401,'Desautorizado');
+            die();
+        }
+        if (!array_key_exists("fecha",$carrito)){
+            $this->setError(400,'Petición incorrecta');
+            die();
+        }else if (strlen($carrito["fecha"]) != 19){
+            $this->setError(400,'Petición incorrecta');
+            die();
 
+        }
+        foreach($carrito["articulos"] as $articulo){
+            if (($articulo["id"] == NULL) || ($articulo["cantidad"] == NULL)){
+                $this->setError(400,'Petición incorrecta');
+                die();
+            }
+        }
         $params = [
             "idUsuario" => $idUsuario,
             "fecha" => $carrito["fecha"]
@@ -63,6 +84,24 @@ class CarritosResource extends Resource {
         $json = file_get_contents('php://input');
         $carrito = json_decode($json,true);
         $idUsuario = 1; // TODO, usar id usuario de la sesion
+        if ($carrito["id"] == NULL){
+            $this->setError(400,'Petición incorrecta');
+            die();
+        }
+        if (($idUsuario !=  $this->controller->getParam("idUsuario")) || ($carrito["id"] != $this->controller->getParam("idCarrito"))){
+            $this->setError(401,'Desautorizado');
+            die();
+        }
+        if (($carrito["fecha"] == NULL) || (strlen($carrito["fecha"]) != 19)){
+            $this->setError(400,'Petición incorrecta');
+            die();
+        }
+        foreach($carrito["articulos"] as $articulo){
+            if (($articulo["id"] == NULL) || ($articulo["cantidad"] == NULL)){
+                $this->setError(400,'Petición incorrecta');
+                die();
+            }
+        }
         $this->sql = "UPDATE carritos SET fecha = :fechaCarrito WHERE id = :idCarrito";
         $params = [
             "idCarrito" => $carrito["id"],
