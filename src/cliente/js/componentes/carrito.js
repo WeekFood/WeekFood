@@ -106,13 +106,13 @@ function carrito_ActualizarTriggers() {
 }
 function carrito_Guardar() {
     if (!GLOBAL_CARRITO_EXISTE) {
-        GLOBAL_CARRITO_EXISTE = true
         $.post({
             url: '/api/carritos/'+GLOBAL_USUARIO.id,
             contentType: 'application/json',
             data: GLOBAL_CARRITO.exportar()
         }).catch(() => generarNotificacion('<i class="far fa-frown"></i> No se ha podido guardar tu carrito')).done((respuesta) => {
             GLOBAL_CARRITO.setID(respuesta.id)
+            GLOBAL_CARRITO_EXISTE = true
         })
     } else {
         $.ajax({

@@ -22,6 +22,7 @@ abstract class Resource {
     protected function execSQL($params = null) {
         $ps = $this->db->prepare($this->sql);
         if (!is_null($params)) {
+            // bindParam necesita una referencia, con "&" se evitan problemas de que a veces recibe un valor directamente y no lo acepta
             foreach ($params as $key => &$value) {
                 $ps->bindParam($key, $value);
             }
