@@ -41,38 +41,44 @@
     border-radius: 10px;
     margin: 5%;
     margin-top: 2%;
-    grid-template-areas: 'cabecera'
-                            'contenido-interno'
-                            'equipo'
-                            'servicios';
+    grid-template-areas: 'cabecera cabecera'
+                            'contenido-interno equipo'
+                            'servicios servicios';
+    @media only screen and (max-width: $mobile-l) {
+        grid-template-areas: 'cabecera'
+        'contenido-interno'
+        'equipo'
+        'servicios';
+        }
 }
 
 .c-quienes-somos__contenido-interno {
     line-height: 35px;
+    max-width: 500px;
     grid-area: contenido-interno;
 }
 
 .c-quienes-somos__contenido-equipo{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-gap: 40px;
     justify-items: center;
     grid-area: equipo;
 }
 
 .c-quienes-somos__contenido-equipo-imagen{
-    display: block;
-    width: 250px;
-    height: 80%;
+    width: 200px;
+    height: 200px;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .c-quienes-somos__contenido-equipo-container{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 22px;
-    max-width: 100%;
-    height: 100%;
 }
 
 .c-quienes-somos__attCliente {
