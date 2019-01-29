@@ -82,8 +82,8 @@ class GestorProductos {
      * 
      * @param {int} id Id a buscar
      */
-    getProductoId(id){
-        return this.productos.find(producto => this.filtrarId(id, producto)) 
+    getProductoId(id) {
+        return this.productos.find(producto => this.filtrarId(id, producto))
     }
 
     getCategoriasPrincipales() {

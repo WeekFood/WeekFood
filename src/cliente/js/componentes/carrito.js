@@ -4,7 +4,7 @@ function carrito_Alternar() {
     } else {
         $(".c-carrito").toggleClass("c-carrito--desaparecer")
         $(".js-carrito").children(".c-cabecera__notificacion").remove()
-    } 
+    }
     $(".js-carrito").children("i").toggleClass("fa-angle-up").toggleClass("fa-shopping-cart")
     carrito_Actualizar()
 }
@@ -17,7 +17,7 @@ function carrito_Actualizar() {
         html += `
             <p class='c-carrito__articulo c-carrito__botones'>
             <span class='c-boton c-boton--basico js-carrito-ver-carrito'>(`+ GLOBAL_CARRITO.getArticulos().length + `) Ver mi carrito </span>
-            <span class='c-boton c-boton--exito c-carrito__boton js-carrito-pagar'>`+precioEnEuros(GLOBAL_CARRITO.getImporteTotal()) + `</span>
+            <span class='c-boton c-boton--exito c-carrito__boton js-carrito-pagar'>`+ precioEnEuros(GLOBAL_CARRITO.getImporteTotal()) + `</span>
             </p>
             `
     }
@@ -35,18 +35,18 @@ function carrito_AñadirArticulo(id) {
     } else {
         generarNotificacion("Has añadido " + producto.nombre + " al carrito", true)
     }
-    if ((GLOBAL_CARRITO.getArticulos().length == 1 && GLOBAL_CARRITO.getArticulos()[0].cantidad == 1) && ($(".c-carrito").length < 1 || $(".c-carrito").hasClass("c-carrito--desaparecer"))){
-        carrito_Alternar() 
+    if ((GLOBAL_CARRITO.getArticulos().length == 1 && GLOBAL_CARRITO.getArticulos()[0].cantidad == 1) && ($(".c-carrito").length < 1 || $(".c-carrito").hasClass("c-carrito--desaparecer"))) {
+        carrito_Alternar()
     }
-    if ($(".c-carrito").hasClass('c-carrito--desaparecer')){
-        if ($(".js-carrito").children().length < 2){
+    if ($(".c-carrito").hasClass('c-carrito--desaparecer')) {
+        if ($(".js-carrito").children().length < 2) {
             $(".js-carrito").prepend(`
             <div class="c-cabecera__notificacion js-cabecera-notificacion">
             <i class="fas fa-circle c-cabecera__notificacion-interno"></i>
             </div>`)
         }
         $(".js-cabecera-notificacion").removeClass("c-cabecera__notificacion-animacion")
-        setTimeout(()=>{$(".js-cabecera-notificacion").addClass("c-cabecera__notificacion-animacion")},10)
+        setTimeout(() => { $(".js-cabecera-notificacion").addClass("c-cabecera__notificacion-animacion") }, 10)
     }
     carrito_Guardar()
 }
@@ -111,7 +111,7 @@ function carrito_Guardar() {
             url: '/api/carritos',
             contentType: 'application/json',
             data: GLOBAL_CARRITO.exportar()
-        }).catch(() => generarNotificacion('<i class="far fa-frown"></i> No se ha podido guardar tu carrito')).done((respuesta)=>{
+        }).catch(() => generarNotificacion('<i class="far fa-frown"></i> No se ha podido guardar tu carrito')).done((respuesta) => {
             GLOBAL_CARRITO.setID(respuesta.id)
         })
     } else {
@@ -126,14 +126,16 @@ function carrito_Guardar() {
 function carrito_Descargar() {
     $.getJSON('/api/carritos').then((respuesta) => {
         if (respuesta.length == undefined) {
-            GLOBAL_CARRITO_EXISTE = true
+            GLOBAL_CARRITO_EXISTE = true    
             GLOBAL_CARRITO.setID(respuesta.id)
             respuesta.articulos.forEach(articulo => {
                 GLOBAL_GESTOR_PRODUCTOS.descargarProductoId(articulo.id).then(() => {
-                    GLOBAL_CARRITO.añadirProducto(GLOBAL_GESTOR_PRODUCTOS.getProductoId(articulo.id),articulo.cantidad)
-                    if ($(".c-carrito").length > 0) {
-                        if (!$(".c-carrito").hasClass("c-carrito--desaparecer")){
-                            carrito_Actualizar();
+                    if (GLOBAL_CARRITO.getArticulo(articulo.id) == undefined) {
+                        GLOBAL_CARRITO.añadirProducto(GLOBAL_GESTOR_PRODUCTOS.getProductoId(articulo.id), articulo.cantidad)
+                        if ($(".c-carrito").length > 0) {
+                            if (!$(".c-carrito").hasClass("c-carrito--desaparecer")) {
+                                carrito_Actualizar();
+                            }
                         }
                     }
                 })
