@@ -78,6 +78,33 @@
     width: 40%;
 }
 
+.c-acceso__bienvenida {
+    padding: 30px 15px;
+}
+
+.c-acceso__bienvenida-titulo {
+    font-size: 1.7rem;
+    text-align: center;
+    @media only screen and (min-width: $mobile-l) {
+        font-size: 2rem;
+    }
+}
+
+.c-acceso__bienvenida-contenido {
+    font-size: 1.2rem;
+    line-height: 1.3rem;
+    margin-top: 25px;
+    @media only screen and (min-width: $mobile-l) {
+        margin-top: 30px;
+    }
+    &--nota {
+        font-size: 1rem;
+        line-height: 1rem;
+        margin-top: 0px;
+        font-style: italic;
+    }
+}
+
 @keyframes c-acceso__aparecer {
     0% {
         transform: translateY(-100%);
