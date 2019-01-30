@@ -86,7 +86,8 @@ function acceso_Registro() {
                                         <div class="c-acceso__bienvenida-contenido">Esperamos que quedes satisfecho, como el 98% de los usuarios.</div>
                                         <div class="c-acceso__bienvenida-contenido--nota">Fuente: Encuesta de satisfacción</div>
                                         </div>`,
-                                        info_boton_basico: true
+                                        info_boton_basico: true,
+                                        callback_Confirmar: () => { }
                                     })
                                 }
                                     , 500
