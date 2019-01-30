@@ -12,8 +12,10 @@ try {
     $mysql->exec("set names utf8");
     $mysql->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    echo "<p>Error: Cannot connect to database server.</p>\n";
-    echo $e;
+    http_response_code(500);
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode(["error" => "FALLO_CONECTAR_BD"]);
+
     exit();
 }
 

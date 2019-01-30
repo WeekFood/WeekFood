@@ -19,10 +19,11 @@ function vista_Productos_Ofertas(puntoMontaje) {
                 $('.js-productos-destacados').append(vista_Productos_generarProducto(producto))
             }
         })
-        $(".js-producto-carrito").off('click').on('click', function () {
+        $(".js-producto-carrito").off('click').on('click', function (evento) {
+            evento.stopPropagation();
             carrito_AñadirArticulo($(this).parent().data('id'));
         })
-        $(".js-producto-imagen").on('click', vista_Productos_generarModal)
+        $(".js-producto").on('click', vista_Productos_generarModal)
     })
 }
 
@@ -97,7 +98,7 @@ function vista_Productos_montarContenidoCategoria(puntoMontaje, categoria) {
 }
 function vista_Productos_generarModal(evento) {
     evento.stopImmediatePropagation()
-    GLOBAL_GESTOR_PRODUCTOS.generarModal($(this).parent().data('id'))
+    GLOBAL_GESTOR_PRODUCTOS.generarModal($(this).data('id'))
 }
 
 function vista_Productos_cargarDe(puntoMontaje, categoriaPrincipal, categoria) {
@@ -116,10 +117,11 @@ function vista_Productos_cargarDe(puntoMontaje, categoriaPrincipal, categoria) {
                 }
             }
         })
-        $(".js-producto-carrito").off('click').on('click', function () {
+        $(".js-producto-carrito").off('click').on('click', function (evento) {
+            evento.stopPropagation();
             carrito_AñadirArticulo($(this).parent().data('id'));
         })
-        $(".js-producto-imagen").on('click', vista_Productos_generarModal)
+        $(".js-producto").on('click', vista_Productos_generarModal)
         if ($($(".js-productos-destacados")[0]).children().length < 1) {
             $(".js-productos-destacados").remove()
         }
@@ -136,7 +138,7 @@ function vista_Productos_existeEnGrid(id) {
 function vista_Productos_generarProducto(producto) {
     var html = `
     <div data-id='`+ producto["id"] + `' class='c-producto js-producto'>
-    <img class='c-producto__imagen js-producto-imagen' src='/imagenes/productos/`+ producto["foto"] + `'>`
+    <img class='c-producto__imagen' src='/imagenes/productos/`+ producto["foto"] + `'>`
     if (producto["destacado"] == 1) {
         html += `
         <div class='c-producto__imagen-destacado'>
