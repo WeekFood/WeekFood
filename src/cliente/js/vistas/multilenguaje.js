@@ -1,12 +1,6 @@
 function vista_QuienesSomos(puntoMontaje, idioma) {
     var contenido = {
         bandera: { es: "ES", en: "EN" }, // http://www.countryflags.com iconos
-        cabecera: {
-            en: `<div class='c-quienes-somos__cabecera'>
-            <p class='c-quienes-somos__titulo'>About us?</p>
-            <p class='c-quienes-somos__titulo-menor'>We are a fictitious company, for the final project of Web Application Development.</p>
-            </div>`
-        },
         contenido: {
             es: `<div class='c-quienes-somos__contenido'>
             <div class='c-quienes-somos__cabecera'>
@@ -25,45 +19,47 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             </div>
             <div class='c-quienes-somos__servicios'>
             <div class='c-quienes-somos__attCliente'>
-            <p class='c-quienes-somos__texto'>Si tienes alguna duda, no dudes en contactar con nosotros</p>
+            <p class='c-quienes-somos__texto'>Si tienes alguna duda, no dudes en contactar con nosotros.</p>
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fas fa-phone"></i></div><div class='c-quienes-somos__texto-icono'>902 - 123- 469</div></div>
-            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="far fa-envelope"></i></div><div class='c-quienes-somos__texto-icono'>* info@weekfood.com</div></div>
-            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-whatsapp"></i></div><div class='c-quienes-somos__texto-icono'>* 603 - 123- 469</div></div>
+            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="far fa-envelope"></i></div><div class='c-quienes-somos__texto-icono'>info@weekfood.com</div></div>
+            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-whatsapp"></i></div><div class='c-quienes-somos__texto-icono'>603 - 123- 469</div></div>
             </div>
             <div class='c-quienes-somos__redes'>
             <p class='c-quienes-somos__texto'>¡Siguenos en nuestras redes sociales!</p>
-            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-instagram"></i></div><div class='c-quienes-somos__texto-icono'> @WeekFood</div></div>
-            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-twitter"></i></div></i><div class='c-quienes-somos__texto-icono'> @WeekFood</div></div>
-            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-facebook"></i></div><div class='c-quienes-somos__texto-icono'> /WeekFood</div></div>
+            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-instagram"></i></div><div class='c-quienes-somos__texto-icono'>@WeekFood</div></div>
+            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-twitter"></i></div></i><div class='c-quienes-somos__texto-icono'>@WeekFood</div></div>
+            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-facebook"></i></div><div class='c-quienes-somos__texto-icono'>/WeekFood</div></div>
             </div>
             </div>
             </div>
             </div>`,
             en: `<div class='c-quienes-somos__contenido'>
+            <div class='c-quienes-somos__cabecera'>
+            <p class='c-quienes-somos__titulo'>About us?</p>
+            </div>
             <div class='c-quienes-somos__contenido-interno'>
-            <p>Hola a todos, somos una web para gestionar encargos a casas de comidas.</p>
-            <p>Nuestra idea de negocio se basa en, satisfacer la necesidad de comer comida casera</p>
-            <p>sin que gasteis tiempo en cocinar y/o en planear.</p>
-            <p>De este modo, vosotros podeis dedicar vuestro tiempo a otras cosas.</p>
-            <p class='c-quienes-somos__titulo-menor'>Payroll from WeekFood</p>
+            <p class='c-quienes-somos__texto'>We are a company that manages the distribution of food houses.
+            Our business idea is based on, satisfying the need to eat homemade food
+            without spending time cooking or planning.
+            In this way, you can dedicate your time to other things.</p>
+            </div>
             <div class='c-quienes-somos__contenido-equipo'>
-            <div class='c-quienes-somos__contenido-equipo-container'><i class="fas fa-laptop"></i>Jefe de operaciones, YB<img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'></div>
-            <div class='c-quienes-somos__contenido-equipo-container'><i class="fas fa-laptop"></i>Director ejecutivo, TD<img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/toni.jpg'></div>
-            <div class='c-quienes-somos__contenido-equipo-container'><i class="fas fa-blind"></i>Master of univers, JL<img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/jl.jpg'></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'><div class='c-quienes-somos__texto'>Yuriy Burychka</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/toni.jpg'><div class='c-quienes-somos__texto'>Juan Antonio Donet Peiró</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/jl.jpg'><div class='c-quienes-somos__texto'>José Luis Sanchez Delgado</div></div>
             </div>
             <div class='c-quienes-somos__servicios'>
             <div class='c-quienes-somos__attCliente'>
-            <p class='c-quienes-somos__titulo-menor'>Atención al cliente</p>
-            <p><i class="fas fa-phone"></i>902 - 123- 469</p>
-            <p><i class="far fa-envelope"></i>* info@weekfood.com</p>
-            <p><i style="color:green;" class="fab fa-whatsapp"></i>* 603 - 123- 469</p>
-            <p>*(Atención automatizada)</p>
+            <p class='c-quienes-somos__texto'>If you have some doubt, contact us.</p>
+            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fas fa-phone"></i></div><div class='c-quienes-somos__texto-icono'>902 - 123- 469</div></div>
+            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="far fa-envelope"></i></div><div class='c-quienes-somos__texto-icono'>info@weekfood.com</div></div>
+            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-whatsapp"></i></div><div class='c-quienes-somos__texto-icono'>603 - 123- 469</div></div>
             </div>
             <div class='c-quienes-somos__redes'>
-            <p class='c-quienes-somos__titulo-menor'>¡Siguenos en nuestras redes sociales!</p>
-            <p><i style="color:pink;" class="fab fa-instagram"></i> @WeekFood</p>
-            <p><i style="color:lightblue;" class="fab fa-twitter"></i></i> @WeekFood</p>
-            <p><i style="color:blue;" class="fab fa-facebook"></i> /WeekFood</p>
+            <p class='c-quienes-somos__texto'>Follow in our social medias!</p>
+            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-instagram"></i></div><div class='c-quienes-somos__texto-icono'>@WeekFood</div></div>
+            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-twitter"></i></div></i><div class='c-quienes-somos__texto-icono'>@WeekFood</div></div>
+            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-facebook"></i></div><div class='c-quienes-somos__texto-icono'>/WeekFood</div></div>
             </div>
             </div>
             </div>

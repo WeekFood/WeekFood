@@ -2,16 +2,13 @@
     display: grid;
     grid-template-areas: "banderas banderas"
                         "contenido contenido";
-    //max-height: 100%;
-    //grid-template-columns: 1fr 1fr;
-    //grid-template-rows: 60px auto 1fr 1fr;
 }
 
 .c-quienes-somos__banderas {
     grid-area: banderas;
 }
 
-.c-quienes-somos__contenedor-bandera {//Cambiar a banderas rectangulares
+.c-quienes-somos__contenedor-bandera {
     height: 60px;
     margin: 25px;
     padding: 5px;
@@ -43,9 +40,9 @@
                             'contenido-interno'
                             'equipo'
                             'servicios';
-    /*@media only screen and (max-width: $mobile-l) {
-        margin-top: 10%;
-    }*/
+    @media only screen and (max-width: $mobile-l) {
+        margin: 0px;
+    }
 }
 
 .c-quienes-somos__contenido-interno {
@@ -76,8 +73,9 @@
 }
 
 .c-quienes-somos__contenido-equipo-container{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial;
     font-size: 22px;
+    margin-bottom: 20px;
 }
 
 .c-quienes-somos__attCliente {
@@ -95,13 +93,12 @@
 }
 
 .c-quienes-somos__texto {
-    margin: 20px;
+    text-align: center;
     font-size: 20px;
 }
 
 .c-quienes-somos__texto-icono {
     min-height: 20px;
-    margin: 20px;
     font-size: 20px;
     display: inline;
 }
@@ -109,13 +106,12 @@
     grid-area: servicios;
     display: flex;
     justify-content: space-around;
-    margin: 20px;
+    margin-top: 20px;
 }
 .c-quienes-somos__servicios-icono{
     display: inline;
-    margin: 10px;
 }
 
 .c-quienes-somos__servicios-container{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial;
 }
