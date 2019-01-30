@@ -4,13 +4,12 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
         contenido: {
             es: `<div class='c-quienes-somos__contenido'>
             <div class='c-quienes-somos__cabecera'>
-            <p class='c-quienes-somos__titulo'>¿Quienes somos?</p>
+            <p class='c-quienes-somos__titulo'>Quienes somos</p>
             </div>
             <div class='c-quienes-somos__contenido-interno'>
             <p class='c-quienes-somos__texto'>Somos una empresa que gestiona el reparto de casas de comida.</p>
-            <p class='c-quienes-somos__texto'>Nuestra idea de negocio se basa en, satisfacer la necesidad de comer comida casera
-            sin que gasteis tiempo en cocinar y/o en planear.</p>
-            <p class='c-quienes-somos__texto'>De este modo, vosotros podeis dedicar vuestro tiempo a otras cosas.</p>
+            <p class='c-quienes-somos__texto'>Colaboramos con casas de comida locales para ofrecer el mejor servicio.</p>
+            <p class='c-quienes-somos__texto'>Come casero, come barato, come a tu hora, come WeekFood.</p>
             </div>
             <div class='c-quienes-somos__contenido-equipo'>
             <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>Yuriy</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'><div class='c-quienes-somos__texto'>Programador Jefe</div></div>
@@ -39,9 +38,8 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             </div>
             <div class='c-quienes-somos__contenido-interno'>
             <p class='c-quienes-somos__texto'>We are a company that manages the distribution of food houses.</p>
-            <p class='c-quienes-somos__texto'>Our business idea is based on, satisfying the need to eat homemade food
-            without spending time cooking or planning.</p>
-            <p class='c-quienes-somos__texto'>In this way, you can dedicate your time to other things.</p>
+            <p class='c-quienes-somos__texto'>We collaborate with local food houses to offer the best service.</p>
+            <p class='c-quienes-somos__texto'>Eat homemade, eat cheap, eat at your own time, eat Week Food.</p>
             </div>
             <div class='c-quienes-somos__contenido-equipo'>
             <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>Yuriy</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'><div class='c-quienes-somos__texto'>Chief Programmer</div></div>
