@@ -27,17 +27,17 @@ return [
             "resource" => "productos",
             "action" => "getTodos"
         ],
-        "API, productos, query todas categorias principales" =>[
+        "API, productos, query todas categorias principales" => [
             "route" => "api/productos/categorias",
             "resource" => "productos",
             "action" => "getCategoriasPrincipales"
         ],
-        "API, productos, query categorias principales" =>[
+        "API, productos, query categorias principales" => [
             "route" => "api/productos/categorias/:nombre/subcategorias",
             "resource" => "productos",
             "action" => "getCategoriaPrincipal"
         ],
-        "API, productos, query categorias" =>[
+        "API, productos, query categorias" => [
             "route" => "api/productos?categoria=:categoria",
             "resource" => "productos",
             "action" => "getCategoria"
@@ -52,6 +52,16 @@ return [
             "resource" => "productos",
             "action" => "getDestacados"
         ],
+        "API, Productos, por id" => [
+            "route" => "api/productos/:id",
+            "resource" => "productos",
+            "action" => "getProductoID"
+        ],
+        "API, carritos por id usuario" => [
+            "route" => "api/carritos?usuario=:idUsuario",
+            "resource" => "carritos",
+            "action" => "getCarrito"
+        ],
         "API, Auth, renovar login" => [
             "route" => "api/auth/renovar_login",
             "resource" => "auth",
@@ -64,6 +74,11 @@ return [
         ]
     ],
     "post" => [
+        "API, carrito" => [
+            "route" => "api/carritos",
+            "resource" => "carritos",
+            "action" => "postCarrito"
+        ],
         "API, Auth, registro" => [
             "route" => "api/auth/registro",
             "resource" => "auth",
@@ -79,5 +94,15 @@ return [
             "resource" => "auth",
             "action" => "postUsuarioYaExiste"
         ]
+    ],
+    "put" => [
+        "API, carrito" => [
+            "route" => "api/carritos/:id",
+            "resource" => "carritos",
+            "action" => "putCarrito"
+        ]
+    ],
+    "delete" => [
+
     ]
 ];

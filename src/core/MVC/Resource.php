@@ -22,17 +22,31 @@ abstract class Resource {
     protected function execSQL($params = null) {
         $ps = $this->db->prepare($this->sql);
         if (!is_null($params)) {
-            foreach ($params as $key => $value) {
+            // bindParam necesita una referencia, con "&" se evitan problemas de que a veces recibe un valor directamente y no lo acepta
+            foreach ($params as $key => &$value) {
                 $ps->bindParam($key, $value);
             }
         }
+
         $ps->execute();
-        $i = 0;
-        foreach ($ps->fetchAll(\PDO::FETCH_ASSOC) as $row) {
-            foreach ($row as $key => $value) {
-                $this->data[$i][$key] = $value;
+        switch (substr($this->sql, 0, 6)) {
+        case "SELECT":
+            $i = 0;
+            foreach ($ps->fetchAll(\PDO::FETCH_ASSOC) as $row) {
+                foreach ($row as $key => $value) {
+                    $this->data[$i][$key] = $value;
+                }
+                $i++;
             }
-            $i++;
+            if ($i == 0) {
+                $this->data = [];
+            }
+            break;
+        case "INSERT":
+            $this->data = $this->db->lastInsertId();
+            break;
+        default:
+            $this->data = [];
         }
         if ($i == 0){
             $this->data = [];

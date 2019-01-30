@@ -37,6 +37,15 @@ class Router {
         foreach ($routes["get"] as $currentRoute) {
             $this->addRoute($currentRoute, 'get');
         }
+        foreach ($routes["post"] as $currentRoute) {
+            $this->addRoute($currentRoute, 'post');
+        }
+        foreach ($routes["put"] as $currentRoute) {
+            $this->addRoute($currentRoute, 'put');
+        }
+        foreach ($routes["delete"] as $currentRoute) {
+            $this->addRoute($currentRoute, 'delete');
+        }
     }
 
     protected function parseUriRouter() {
