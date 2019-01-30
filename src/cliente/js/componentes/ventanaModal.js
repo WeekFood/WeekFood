@@ -4,8 +4,8 @@
  * @property {String} tipo : ["info", "aviso", "confirmacion", "error"] Defecto info
  * @property {String} contenido : HTML interno de la ventana modal
  * @property {String} titulo : Texto del titulo
- * @property {Bool} equis : Fuerza la aparicion de la equis superior derecha, defecto true en tipo info
- * @property {Bool} info_boton_basico : Alterna la aparicion de un boton basico con el texto de boton_Confirmar y callback_Confirmar en el tipo info, defecto false, si se asigna tirará error en caso de no tener callback
+ * @property {Boolean} equis : Fuerza la aparicion de la equis superior derecha, defecto true en tipo info
+ * @property {Boolean} info_boton_basico : Alterna la aparicion de un boton basico con el texto de boton_Confirmar y callback_Confirmar en el tipo info, defecto false, si se asigna tirará error en caso de no tener callback
  * @property {String} boton_Confirmar : Texto del boton confirmar, defecto 'Aceptar'
  * @property {String} boton_Denegar : Texto del boton denegar, defecto 'Cancelar'
  * @property {String} boton_Cerrar : Texto del boton cerrar, defecto 'Cerrar'
