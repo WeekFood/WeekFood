@@ -8,6 +8,7 @@
                         'imagen imagen'
                         'titulo titulo'
                         'precio carrito';
+    cursor: pointer;
    @media only screen and (min-width: $mobile-l) {
       max-width: 100%;
       border-radius: 10px;
