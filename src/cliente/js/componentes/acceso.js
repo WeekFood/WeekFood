@@ -10,7 +10,6 @@ function acceso_Alternar() {
             <form>
             <input class="c-acceso__campo js-acceso__nombre" type="text" placeholder="Usuario">
             <input class="c-acceso__campo js-acceso__contra" type="password" placeholder="Contraseña">
-            <input class="js-acceso__recuerda" type="checkbox"checked> Recuerdame
             </form>
             <div class="c-acceso__botones">
             <div class="c-boton c-boton--exito c-acceso__boton js-acceso__entrar">Entrar</div>
@@ -38,7 +37,7 @@ function acceso_Entrar() {
     if ($(".c-acceso").data("modo") == 1) {
         if (!acceso_ErroresAcceso()) {
             GLOBAL_USUARIO.acceder($(".js-acceso__nombre").val(), $(".js-acceso__contra").val())
-                .done(() => { reiniciarAplicacion() })
+                .done(() => { iniciarAplicacion() })
                 .fail((respuesta) => {
                     switch (respuesta.responseJSON.error) {
                         case "USUARIO_NO_ENCONTRADO":
@@ -76,7 +75,7 @@ function acceso_Registro() {
                             .done(() => {
                                 crearCookie("Redirect", "/perfil")
                                 GLOBAL_USUARIO.id = 1; /*TODO SACAR DE DONDE PROCEDA */
-                                reiniciarAplicacion();
+                                iniciarAplicacion();
                                 setTimeout(() => {
                                     generarVentanaModal({
                                         tipo: "info",
@@ -150,7 +149,6 @@ function acceso_ErroresRegistro() {
     return comprobacion.length > 0
 }
 function acceso_ReiniciarCampos() {
-    $(".js-acceso__nombre").val("")
     $(".js-acceso__contra").val("")
     $(".js-acceso__contra-repe").val("")
     $(".c-acceso__errores").remove()
@@ -183,6 +181,7 @@ function acceso_LoginInicial() {
             $(".js-perfil").on("click", perfil_Alternar)
             $(".c-acceso, .c-acceso__errores").remove()
             generarNotificacion("Hola de nuevo, " + GLOBAL_USUARIO.nick, 1)
+            carrito_Descargar()
         })
     } else {
         if ($(".js-perfil").length > 0) {
@@ -208,7 +207,6 @@ function acceso_CerrarSesion() {
         callback_Denegar: () => {
             // Todo cerrar sesion en API
             borrarCookie("token")
-            borrarCookie("recuerdame")
             GLOBAL_USUARIO = new Usuario
             iniciarAplicacion()
         },
