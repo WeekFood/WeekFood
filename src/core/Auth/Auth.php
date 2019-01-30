@@ -133,7 +133,6 @@ class Auth {
     private function setSession(string $userId): bool {
         $_SESSION['logueado'] = true;
         $_SESSION['idUsuario'] = $userId;
-        // TODO: nivel de privilegio ?
 
         return true;
     }
