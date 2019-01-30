@@ -17,7 +17,6 @@ class Auth {
 
     private const COOKIE_LIFETIME_SEC = 60 * 60 * 24 * 30; /* 30 días */
     private const COOKIE_NAME_TOKEN = 'token';
-    private const COOKIE_NAME_REMEMBER_ME = 'recuerdame';
 
     private $db = null;
 
@@ -25,7 +24,7 @@ class Auth {
         $this->db = $db;
     }
 
-    public function register(string $nick, string $password, string $name, bool $rememberMe = false) {
+    public function register(string $nick, string $password, string $name) {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
         if ($this->nickTaken($nick)) {
@@ -54,12 +53,12 @@ class Auth {
 
         $psSelect->execute();
 
-        $this->login($nick, $password, $rememberMe);
+        $this->login($nick, $password);
 
         return $psSelect->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function login(string $nick, string $password, bool $rememberMe = false): array {
+    public function login(string $nick, string $password): array {
         $sql = 'SELECT * FROM usuarios WHERE BINARY nick = :nick LIMIT 1;';
 
         $ps = $this->db->prepare($sql);
@@ -72,7 +71,7 @@ class Auth {
             $dbHashedPassword = $user['contraseña'];
 
             if (password_verify($password, $dbHashedPassword)) {
-                $this->setCookies($user['id'], $rememberMe);
+                $this->setCookies($user['id']);
                 return $user;
             } else {
                 throw new WrongPasswordException();
@@ -82,33 +81,22 @@ class Auth {
         }
     }
 
-    private function setCookies(string $userId, bool $rememberMe = false): bool {
+    private function setCookies(string $userId): bool {
         $this->setSession($userId);
 
-        if ($rememberMe) {
-            $token = $this->generateRandomToken();
+        $token = $this->generateRandomToken();
 
-            $body = $userId . '.' . $token;
-            $bodySignedHash = hash_hmac('sha256', $body, self::SECRET_KEY);
+        $body = $userId . '.' . $token;
+        $bodySignedHash = hash_hmac('sha256', $body, self::SECRET_KEY);
 
-            $cookie = $body . '.' . $bodySignedHash;
+        $cookie = $body . '.' . $bodySignedHash;
 
-            setcookie(
-                self::COOKIE_NAME_TOKEN,
-                $cookie,
-                time() + self::COOKIE_LIFETIME_SEC,
-                '/'
-            );
-
-            setcookie(
-                self::COOKIE_NAME_REMEMBER_ME,
-                '1', // al parecer es necesario algun valor, no puede estar vacio, sino es como si se borrase (segun Postman, por lo menos)
-                time() + self::COOKIE_LIFETIME_SEC,
-                '/'
-            );
-
-            $_SESSION['recuerdame'] = true;
-        }
+        setcookie(
+            self::COOKIE_NAME_TOKEN,
+            $cookie,
+            time() + self::COOKIE_LIFETIME_SEC,
+            '/'
+        );
 
         return true;
     }
@@ -122,7 +110,7 @@ class Auth {
                 return false;
             }
 
-            $this->setCookies($userId, isset($_COOKIE[self::COOKIE_NAME_REMEMBER_ME]));
+            $this->setCookies($userId);
             return true;
         } else {
             $this->sendError(self::ERR_NO_TOKEN);
@@ -135,7 +123,6 @@ class Auth {
             session_destroy();
             if (isset($_COOKIE[self::COOKIE_NAME_TOKEN])) {
                 setcookie(self::COOKIE_NAME_TOKEN, '', 0);
-                setcookie(self::COOKIE_NAME_REMEMBER_ME, '', 0);
             }
         } else {
             $this->sendError(self::ERR_LOGOUT_NO_LOGIN);
