@@ -48,7 +48,7 @@ function generarVentanaModal(opciones) {
         modal += "<div class='c-ventana-modal__titulo'>" + opciones.titulo + "</div>"
     }
 
-            //PREPARAR EL DE ERROR
+    //PREPARAR EL DE ERROR
     modal += "<div class='c-ventana-modal__contenido'>" + opciones.contenido + "</div>"
     switch (opciones.tipo) {
         case "aviso":
@@ -98,19 +98,20 @@ function generarVentanaModal(opciones) {
             if (!opciones.hasOwnProperty("equis")) {
                 opciones["equis"] = true;
             }
-            if (opciones.hasOwnProperty("info_boton_basico")){
-                if (!opciones.hasOwnProperty("callback_Confirmar")) {
-                    console.error("No se ha podido crear la ventana modal, no existe un retorno (callback_Confirmar).")
-                    alert("No se ha podido generar la ventana emergente.")
-                    return false;
-                }
-                if (!opciones.hasOwnProperty("boton_Confirmar")) {
-                    opciones.boton_Confirmar = "Aceptar";
-                }
-                modal += `<div class='c-ventana-modal__botones'>
+            if (opciones.hasOwnProperty("info_boton_basico")) {
+                if (opciones["info_boton_basico"]) {
+                    if (!opciones.hasOwnProperty("callback_Confirmar")) {
+                        console.error("No se ha podido crear la ventana modal, no existe un retorno (callback_Confirmar).")
+                        alert("No se ha podido generar la ventana emergente.")
+                        return false;
+                    }
+                    if (!opciones.hasOwnProperty("boton_Confirmar")) {
+                        opciones.boton_Confirmar = "Aceptar";
+                    }
+                    modal += `<div class='c-ventana-modal__botones'>
                 <div class='c-boton c-boton--basico js-ventana-modal__confirmar'>` + opciones.boton_Confirmar + `</div>
                 </div>`
-
+                }
             }
     }
 
