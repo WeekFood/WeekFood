@@ -14,6 +14,7 @@ function perfil_Alternar() {
         <div class="c-boton c-boton--basico c-perfil__boton js-perfil__pedidos">Mis pedidos</div>
         <div class="c-boton c-boton--peligro c-perfil__boton js-perfil__desloguear">Cerrar sesión</div>
         </div>`)
+        $(".js-perfil__desloguear").on("click", acceso_CerrarSesion)
     } else {
         $(".c-perfil").toggleClass("c-perfil--desaparecer")
     }

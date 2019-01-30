@@ -105,6 +105,12 @@
     }
 }
 
+.c-acceso__logout{
+    padding: 25px;
+    text-align: center;
+    font-size: 2rem;
+}
+
 @keyframes c-acceso__aparecer {
     0% {
         transform: translateY(-100%);

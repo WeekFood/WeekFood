@@ -1,6 +1,7 @@
 class Usuario {
     constructor() {
-        this.imagen = undefined
+        this.id = undefined
+        this.foto = undefined
         this.nick = undefined
         this.datos = undefined
         this.erroresAcceso = [
@@ -61,11 +62,6 @@ class Usuario {
             type: "POST",
             contentType: "application/x-www-form-urlencoded",
             data: "nick=" + usuario + "&contraseña=" + pass
-        })
-    }
-    getDatosUsuario() {
-        return $.when(() => {
-            console.log("Se ha simulado una peticion a la API")
         })
     }
 }

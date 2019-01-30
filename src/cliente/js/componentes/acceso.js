@@ -38,7 +38,7 @@ function acceso_Entrar() {
     if ($(".c-acceso").data("modo") == 1) {
         if (!acceso_ErroresAcceso()) {
             GLOBAL_USUARIO.acceder($(".js-acceso__nombre").val(), $(".js-acceso__contra").val())
-                .done(() => { forzarLogueo() })
+                .done(() => { document.location.replace("/") })
                 .fail((respuesta) => {
                     switch (respuesta.responseJSON.error) {
                         case "USUARIO_NO_ENCONTRADO":
@@ -71,13 +71,13 @@ function acceso_Registro() {
                     } else {
                         GLOBAL_USUARIO.registrar($(".js-acceso__nombre").val(), $(".js-acceso__contra").val())
                             .fail((respuesta) => {
-                                console.log(respuesta)
                                 acceso_MensajeError(GLOBAL_USUARIO.erroresRegistro[0], 0)
                             })
+                            .done(() => { document.location("/perfil") })
                     }
                 })
                 .fail((respuesta) => {
-                    console.log(respuesta)
+                    acceso_MensajeError(GLOBAL_USUARIO.errorGenerico, 0)
                 })
         }
     } else {
@@ -153,7 +153,7 @@ function acceso_MensajeError(mensaje, tipo = 1) {
 }
 function acceso_LoginInicial() {
     if (extraerCookie("token") != null) {
-        GLOBAL_USUARIO.getDatosUsuario().done(() => {
+        GLOBAL_CACHE_JSONS.getJSON("/api/usuarios/"+GLOBAL_USUARIO.id).then((respuesta) => {
             GLOBAL_USUARIO.imagen = "/imagenes/usuarios/perfil.png"
             $(".js-acceso").remove()
             $(".c-cabecera__botones").prepend(`<div data-modo="1" class="c-cabecera__boton js-perfil">
@@ -164,4 +164,20 @@ function acceso_LoginInicial() {
             $(".c-acceso, .c-acceso__errores").remove()
         })
     }
+}
+function acceso_CerrarSesion(){
+    generarVentanaModal({
+        tipo : "confirmacion",
+        tamaño : "pequeño",
+        contenido : '<div class="c-acceso__logout">¡Hasta pronto!</div>',
+        callback_Confirmar : () => {},
+        boton_Confirmar : "Seguir en WeekFood",
+        callback_Denegar : ()=>{
+            // Todo cerrar sesion en API
+            borrarCookie("token")
+            borrarCookie("recuerdame")
+            document.location.replace("/")
+        },
+        boton_Denegar : "Cerrar sesión"
+    })
 }

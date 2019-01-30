@@ -32,8 +32,8 @@ var GLOBAL_CACHE_JSONS = new CacheJSONs();
 var GLOBAL_CARRITO = new Carrito();
 var GLOBAL_GESTOR_PRODUCTOS = new GestorProductos();
 var GLOBAL_USUARIO = new Usuario();
-
-//acceso_LoginInicial()
+GLOBAL_USUARIO.id = 1; // TODO sacarlo de cookie / api / ???
+acceso_LoginInicial()
 
 if (!redirigir()) {
     cargarVista("portada")
