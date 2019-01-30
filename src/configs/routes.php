@@ -52,6 +52,16 @@ return [
             "resource" => "productos",
             "action" => "getDestacados"
         ],
+        "API, Productos, por id" => [
+            "route" => "api/productos/:id",
+            "resource" => "productos",
+            "action" => "getProductoID"
+        ],
+        "API, carritos por id usuario" => [
+            "route" => "api/carritos?usuario=:idUsuario",
+            "resource" => "carritos",
+            "action" => "getCarrito"
+        ],
         "API, datos de usuario" => [
             "route" => "api/usuarios/:idUsuario",
             "resource" => "usuarios",
@@ -59,6 +69,11 @@ return [
         ]
     ],
     "post" => [
+        "API, carrito" => [
+            "route" => "api/carritos",
+            "resource" => "carritos",
+            "action" => "postCarrito"
+        ],
         "API, Auth, registro" => [
             "route" => "api/auth/registro",
             "resource" => "auth",
@@ -69,5 +84,14 @@ return [
             "resource" => "auth",
             "action" => "postLogin"
         ]
+    ],
+    "put" => [
+        "API, carrito" => [
+            "route" => "api/carritos/:id",
+            "resource" => "carritos",
+            "action" => "putCarrito"
+        ]
+    ],
+    "delete" => [
     ]
 ];

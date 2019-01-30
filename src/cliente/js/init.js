@@ -34,6 +34,7 @@ var GLOBAL_GESTOR_PRODUCTOS = new GestorProductos();
 var GLOBAL_USUARIO = new Usuario();
 GLOBAL_USUARIO.id = 1; // TODO sacarlo de cookie / api / ???
 acceso_LoginInicial()
+carrito_Descargar()
 
 if (!redirigir()) {
     cargarVista("portada")
