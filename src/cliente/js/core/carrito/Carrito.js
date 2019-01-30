@@ -1,5 +1,6 @@
 class Carrito {
     constructor() {
+        this.id = undefined;
         this.articulos = [];
     }
 
@@ -9,7 +10,7 @@ class Carrito {
      * @returns {Articulo|number} instancia de Articulo convertido
      * @throws si el producto proporcionado no es instancia de Producto
      */
-    añadirProducto(producto) {
+    añadirProducto(producto,cantidad = 1) {
         if (!(producto instanceof Producto)) {
             throw new Error('Imposible añadir un producto, no es instancia de Producto');
         }
@@ -18,7 +19,6 @@ class Carrito {
 
         // comprobar si el articulo ya existe en el carrito
         let articuloYaExistente = this.getArticulo(producto.id);
-
         if (articuloYaExistente) {
             /*
             Si existe en el carrito, hay que ponerlo al final del carrito, para que se vea en el mini-carrito
@@ -27,7 +27,7 @@ class Carrito {
             this.añadirProducto(this.quitarArticulo(producto.id));
             return this.incrementarCantidad(articuloYaExistente.id);
         } else {
-            nuevoArticulo = new Articulo(producto);
+            nuevoArticulo = new Articulo(producto,cantidad);
             this.articulos.push(nuevoArticulo);
         }
 
@@ -151,6 +151,24 @@ class Carrito {
      */
     _indiceArticulo(idArticulo) {
         return this.articulos.findIndex(articulo => articulo.id === idArticulo);
+    }
+    
+    exportar() {
+        var json = {
+            id : this.id,
+            fecha: new Date().toISOString().slice(0, 19).replace('T', ' '),
+            articulos: []
+        }
+        this.articulos.forEach(articulo => {
+            json.articulos.push({
+                id: articulo.id,
+                cantidad: articulo.cantidad
+            })
+        })
+        return JSON.stringify(json)
+    }
+    setID(id){
+        this.id = id
     }
 }
 
