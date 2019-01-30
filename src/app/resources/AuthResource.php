@@ -3,7 +3,6 @@ use core\Auth\Auth;
 use core\Auth\NickTakenException;
 use core\Auth\UserNotFoundException;
 use core\Auth\WrongPasswordException;
-
 use core\Globals;
 use core\MVC\Resource;
 
@@ -16,7 +15,6 @@ class AuthResource extends Resource {
     }
 
     public function postRegistroAction() {
-
         $LONGITUD_MINIMA_NICK = 4;
         $LONGITUD_MINIMA_CONTRASEÑA = 6;
 
@@ -32,7 +30,7 @@ class AuthResource extends Resource {
 
         if (
             strlen($_POST['nick']) < $LONGITUD_MINIMA_NICK
-                || 
+            ||
             strlen($_POST['contraseña']) < $LONGITUD_MINIMA_CONTRASEÑA
         ) {
             $this->setError(400, 'CAMPOS_INVALIDOS');
