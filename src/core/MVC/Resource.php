@@ -48,9 +48,6 @@ abstract class Resource {
         default:
             $this->data = [];
         }
-        if ($i == 0){
-            $this->data = [];
-        }
     }
 
     protected function setData() {
