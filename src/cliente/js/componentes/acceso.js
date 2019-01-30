@@ -80,11 +80,11 @@ function acceso_Registro() {
                                     generarVentanaModal({
                                         tipo: "info",
                                         contenido: `
-                                        <div class="c-acceso__bienvenida">
-                                        <div class="c-acceso__bienvenida-titulo">¡Hola `+ GLOBAL_USUARIO.nick + `!</div>
-                                        <div class="c-acceso__bienvenida-contenido">Desde el equipo de WeekFood, queremos darte una calurosa bienvenida.</div>
-                                        <div class="c-acceso__bienvenida-contenido">Esperamos que quedes satisfecho, como el 98% de los usuarios.</div>
-                                        <div class="c-acceso__bienvenida-contenido--nota">Fuente: Encuesta de satisfacción</div>
+                                        <div class="c-bienvenida">
+                                        <div class="c-bienvenida__titulo">¡Hola `+ GLOBAL_USUARIO.nick + `!</div>
+                                        <div class="c-bienvenida__contenido">Desde el equipo de WeekFood, queremos darte una calurosa bienvenida.</div>
+                                        <div class="c-bienvenida__contenido">Esperamos que quedes satisfecho, como el 98% de los usuarios.</div>
+                                        <div class="c-bienvenida__nota">Fuente: Encuesta de satisfacción</div>
                                         </div>`,
                                         info_boton_basico: true,
                                         callback_Confirmar: () => { }
