@@ -76,7 +76,21 @@ function acceso_Registro() {
                             .done(() => {
                                 crearCookie("Redirect", "/perfil")
                                 GLOBAL_USUARIO.id = 1; /*TODO SACAR DE DONDE PROCEDA */
-                                iniciarAplicacion();
+                                reiniciarAplicacion();
+                                setTimeout(() => {
+                                    generarVentanaModal({
+                                        tipo: "info",
+                                        contenido: `
+                                        <div class="c-acceso__bienvenida">
+                                        <div class="c-acceso__bienvenida-titulo">¡Hola `+ GLOBAL_USUARIO.nick + `!</div>
+                                        <div class="c-acceso__bienvenida-contenido">Desde el equipo de WeekFood, queremos darte una calurosa bienvenida.</div>
+                                        <div class="c-acceso__bienvenida-contenido">Esperamos que quedes satisfecho, como el 98% de los usuarios.</div>
+                                        <div class="c-acceso__bienvenida-contenido--nota">Fuente: Encuesta de satisfacción</div>
+                                        </div>`
+                                    })
+                                }
+                                    , 500
+                                )
                             })
                     }
                 })
@@ -169,7 +183,6 @@ function acceso_LoginInicial() {
             $(".js-perfil").on("click", perfil_Alternar)
             $(".c-acceso, .c-acceso__errores").remove()
             generarNotificacion("Hola de nuevo, " + GLOBAL_USUARIO.nick, 1)
-            carrito_Descargar()
         })
     } else {
         if ($(".js-perfil").length > 0) {
