@@ -157,7 +157,15 @@ class Auth {
                 && isset($_SESSION['logueado'])
                 && $_SESSION['logueado']
                 && isset($_SESSION['idUsuario'])
-                && $_SESSION['idUsuario'];
+                && $_SESSION['idUsuario'] > -1;
+    }
+
+    public function getLoggedId(): int {
+        if (!$this->isLoggedIn()) {
+            return null;
+        } else {
+            return $_SESSION['idUsuario'];
+        }
     }
 
     public function sendError(string $errorConst) {
