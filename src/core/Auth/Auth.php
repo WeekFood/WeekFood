@@ -2,7 +2,7 @@
 namespace core\Auth;
 
 /**
- * Based on https://stackoverflow.com/a/17266448/3499595 & https://github.com/delight-im/PHP-Auth/
+ * Basado en https://stackoverflow.com/a/17266448/3499595 & https://github.com/delight-im/PHP-Auth/
  */
 class Auth {
     const ERR_NO_TOKEN = 'ERR_NO_TOKEN';
