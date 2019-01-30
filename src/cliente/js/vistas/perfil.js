@@ -2,7 +2,8 @@ function vista_Perfil(puntoMontaje) {
     montarMenu("/api/menu", "perfil")
     var usuario = {
         foto: "imagenes/usuarios/funny-pic-of-donald-trump.jpg",
-        nombre: "Baldomero Parra Padrón",
+        nombre: "Baldomero Gilberto",
+        apellidos: "Zuzunaga Cacharro",
         nick: "Adaying1986",
         ubicaciones =[
             "Avda. Los llanos, 73 26270 Ojacastro",
@@ -17,7 +18,7 @@ function vista_Perfil(puntoMontaje) {
         contraseña: "Uquuwah6ang",
         pedidos: [
             {
-                id : 1,
+                id: 1,
                 fechaCompra: "7/7/17",
                 horaCompra: "16:15",
                 fechaEntregado: "12/7/17",
@@ -28,7 +29,7 @@ function vista_Perfil(puntoMontaje) {
                 ]
             },
             {
-                id : 2,
+                id: 2,
                 fechaCompra: "9/8/17",
                 horaCompra: "17:55",
                 fechaEntregado: "19/9/17",
@@ -39,7 +40,7 @@ function vista_Perfil(puntoMontaje) {
                 ]
             },
             {
-                id : 3,
+                id: 3,
                 fechaCompra: "7/7/17",
                 horaCompra: "16:15",
                 fechaEntregado: "12/7/17",
@@ -50,7 +51,7 @@ function vista_Perfil(puntoMontaje) {
                 ]
             },
             {
-                id : 4,
+                id: 4,
                 fechaCompra: "9/8/17",
                 horaCompra: "17:55",
                 fechaEntregado: "19/9/17",
@@ -61,7 +62,7 @@ function vista_Perfil(puntoMontaje) {
                 ]
             },
             {
-                id : 5,
+                id: 5,
                 fechaCompra: "7/7/17",
                 horaCompra: "16:15",
                 fechaEntregado: "12/7/17",
@@ -72,7 +73,7 @@ function vista_Perfil(puntoMontaje) {
                 ]
             },
             {
-                id : 6,
+                id: 6,
                 fechaCompra: "9/8/17",
                 horaCompra: "17:55",
                 fechaEntregado: "19/9/17",
@@ -92,30 +93,35 @@ function vista_Perfil(puntoMontaje) {
             metodosPago += "<div><span>" + tarjeta.titulo + "</span><span>" + tarjeta.valor + "</span></div>"
         })
     }
-    if (usuario.pedidos.length == 0){
+    if (usuario.pedidos.length == 0) {
         var pedidos = "<p>No tienes pedidos</p>"
-    }else{
+    } else {
         var pedidos = ""
-        for (var x = 1; x < usuario.pedidos.length - 1&& x < 4; x++){
+        for (var x = 1; x < usuario.pedidos.length - 1 && x < 4; x++) {
             var pedido = usuario.pedidos[usuario.pedidos.length - x]
-            pedidos += "<div><span>" +pedido.id+ "</span><span>Compra:" + pedido.fechaCompra + "</span><span>" +pedido.articulos.length+ " artículos</span></div>"
+            pedidos += "<div><span>" + pedido.id + "</span><span>Compra:" + pedido.fechaCompra + "</span><span>" + pedido.articulos.length + " artículos</span></div>"
         }
-        if (usuario.pedidos.length > 3){
-            pedidos+="<p class='c-boton c-boton--basico'>"+(usuario.pedidos.length - 3)+" mas...</p>"
+        if (usuario.pedidos.length > 3) {
+            pedidos += "<p class='c-boton c-boton--basico'>" + (usuario.pedidos.length - 3) + " mas...</p>"
         }
     }
     $(puntoMontaje).html(`<div class="c-perfil">
+                            <div class="c-perfil__usuario">
                             <div class='c-perfil__foto-contenedor'>
                                 <img class='c-perfil__foto' src='`+ usuario.foto + `'>
                             </div>
                             <p class='c-perfil__nombre'>`+ usuario.nombre + `</p>
+                            <p class='c-perfil__apellidos'>`+ usuario.apellidos + `</p>
                             <p class='c-perfil__nick'>Nick: `+ usuario.nick + `</p>
                             <p class='c-perfil__contraseña'>Contraseña: `+ usuario.contraseña + `</p>
                             <p class='c-perfil__nacimiento'>Nacimiento: `+ usuario.fechaNacimiento + `</p>
                             <p class='c-perfil__telefono'>Tlf: `+ usuario.telefono + `</p>
+                            </div>
+                            <div class="c-perfil__detalles">
                             <div class='c-perfil__metodos-pago'>`+ metodosPago + `</div>
-                            <div class='c-perfil__pedidos'>`+pedidos+`</div>
+                            <div class='c-perfil__pedidos'>`+ pedidos + `</div>
                             <p class='c-boton c-boton--basico c-perfil__ubicaciones'>Mis ubicaciones</p>
+                            </div>
                             </div>`)
 
 }

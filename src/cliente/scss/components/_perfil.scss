@@ -7,15 +7,23 @@
     border-radius: 10px;
 }
 
+.c-perfil__usuario {
+    display: grid;
+    margin: 20px 0;
+    grid-template-areas:
+}
+
+.c-perfil__detalles {}
+
 .c-perfil__foto-contenedor {
     grid-area: foto;
     width: 10vw;
     height: 10vw;
-    border-radius : 150px;
+    border-radius: 150px;
     overflow: hidden;
 }
 
-.c-perfil__foto{
+.c-perfil__foto {
     width: 10vw;
     height: 10vw;
     object-fit: cover;
@@ -24,14 +32,18 @@
 .c-perfil__nombre {
     grid-area: nombre;
     line-height: 120px;
-    font-size: 3rem;
+    font-size: 1.5rem;
+}
 
+.c-perfil__apellidos {
+    grid-area: apellidos;
+    line-height: 120px;
+    font-size: 1.5rem;
 }
 
 .c-perfil__nick {
     grid-area: nick;
     line-height: 35px;
-
 }
 
 .c-perfil__contraseña {
