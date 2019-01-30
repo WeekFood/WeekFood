@@ -171,20 +171,39 @@ function acceso_MensajeError(mensaje, tipo = 1) {
 }
 function acceso_LoginInicial() {
     if (extraerCookie("token") != null) {
-        GLOBAL_CACHE_JSONS.getJSON("/api/usuarios/" + GLOBAL_USUARIO.id).then((respuesta) => {
-            GLOBAL_USUARIO.nick = respuesta[0].nick
-            GLOBAL_USUARIO.nombre = respuesta[0].nombre
-            GLOBAL_USUARIO.foto = respuesta[0].foto
-            $(".js-acceso").remove()
-            $(".c-cabecera__botones").prepend(`<div data-modo="1" class="c-cabecera__boton js-perfil">
-            <div class="c-perfil__contenedor-imagen c-perfil__contenedor-imagen--cabecera">
-            <img class='c-perfil__imagen c-perfil__imagen--cabecera' src='`+ GLOBAL_FOTOS_USUARIOS + GLOBAL_USUARIO.foto + `'>
-            </div></div>`)
-            $(".js-perfil").on("click", perfil_Alternar)
-            $(".c-acceso, .c-acceso__errores").remove()
-            generarNotificacion("Hola de nuevo, " + GLOBAL_USUARIO.nick, 1)
-            carrito_Descargar()
-        })
+        $.getJSON("/api/auth/renovar_login")
+            .done(() => {
+                GLOBAL_CACHE_JSONS.getJSON("/api/usuarios/" + GLOBAL_USUARIO.id)
+                    .then((respuesta) => {
+                        GLOBAL_USUARIO.nick = respuesta[0].nick
+                        GLOBAL_USUARIO.nombre = respuesta[0].nombre
+                        GLOBAL_USUARIO.foto = respuesta[0].foto
+                        $(".js-acceso").remove()
+                        $(".c-cabecera__botones").prepend(`<div data-modo="1" class="c-cabecera__boton js-perfil">
+                        <div class="c-perfil__contenedor-imagen c-perfil__contenedor-imagen--cabecera">
+                        <img class='c-perfil__imagen c-perfil__imagen--cabecera' src='`+ GLOBAL_FOTOS_USUARIOS + GLOBAL_USUARIO.foto + `'>
+                        </div></div>`)
+                        $(".js-perfil").on("click", perfil_Alternar)
+                        $(".c-acceso, .c-acceso__errores").remove()
+                        generarNotificacion("Hola de nuevo, " + GLOBAL_USUARIO.nick, 1)
+                        carrito_Descargar()
+                    })
+            })
+            .fail(() => {
+                if ($(".js-perfil").length > 0) {
+                    $(".js-perfil").remove()
+                    $(".c-cabecera__botones").prepend(`
+                        <div class="c-cabecera__boton js-acceso">
+                            <i class="fas fa-user"></i>
+                        </div>`)
+                    $(".js-acceso").on('click', acceso_Alternar)
+                }
+                if ($(".c-perfil").length > 0) {
+                    $(".c-perfil").remove()
+                }
+                acceso_Alternar()
+                generarNotificacion("Tu sesión ha expirado")
+            })
     } else {
         if ($(".js-perfil").length > 0) {
             $(".js-perfil").remove()
