@@ -65,34 +65,6 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             </div>
             </div>`
         },
-        /*equipo: {
-            es: `<div class='c-quienes-somos__equipo'>
-            <p class='c-quienes-somos__titulo-menor'>Plantilla de WeekFood</p>
-            <div class='c-quienes-somos__equipo-interno'>
-            <p>Jefe de operaciones, YB<img class='c-quienes-somos__equipo-imagen' src='/imagenes/yury.jpg'></p>
-            <p>Director ejecutivo, TD<img class='c-quienes-somos__equipo-imagen' src='/imagenes/toni.jpg'></p>
-            <p>Master del universo, JL<img class='c-quienes-somos__equipo-imagen' src='/imagenes/jl.jpg'></p>
-            </div>
-            </div>`
-        },*/
-        /*attCliente: {
-            es: `<div class='c-quienes-somos__attCliente'>
-            <p class='c-quienes-somos__titulo-menor'>Atención al cliente</p>
-            <p><i class="fas fa-phone"></i>902 - 123- 469</p>
-            <p><i class="far fa-envelope"></i>* info@weekfood.com</p>
-            <p><i class="fab fa-whatsapp"></i>* 603 - 123- 469</p>
-            <p>*(Atención automatizada)</p>
-            </div>`
-        },*/
-        /*redes: {
-            es: `<div class='c-quienes-somos__redes'>
-            <p class='c-quienes-somos__titulo-menor'>¡Siguenos en nuestras redes sociales!</p>
-            <p><i class="fab fa-instagram"></i> @WeekFood</p>
-            <p><i class="fab fa-twitter"></i></i> @WeekFood</p>
-            <p><i class="fab fa-facebook"></i> /WeekFood</p>
-            </div>`
-        }*/
-
     }
     if (!idioma) { idioma = 'es' }
     var html = `<div class='c-quienes-somos'>
@@ -108,11 +80,6 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
                 </div>`
     }
     html += '</div>'
-    //html += cargarEnIdioma(contenido, 'cabecera', idioma)
     html += cargarEnIdioma(contenido, 'contenido', idioma)
-    //html += cargarEnIdioma(contenido, 'equipo', idioma)
-    //html += cargarEnIdioma(contenido, 'attCliente', idioma)
-    //html += cargarEnIdioma(contenido, 'redes', idioma)
-    //html += "</div>"
     $(puntoMontaje).html(html)
 }
