@@ -1,18 +1,22 @@
+/**
+ * 
+ * @param {*} opciones Objeto con los siguientes parametros
+ * tamaño : "grande", "medio", "pequeño" [Defecto medio]
+ * tipo : "info", "aviso", "confirmacion", "error" [Defecto info]
+ * contenido : html
+ * titulo : string
+ * equis : bool [Fuerza la aparicion de la equis superior derecha, defecto true en tipo info]
+ * info_boton_basico : bool [Alterna la aparicion de un boton basico con el texto de boton_Confirmar y callback_Confirmar en el tipo info, defecto false, si se asigna tirará error en caso de no tener callback]
+ * boton_Confirmar : string [Texto del boton confirmar, defecto 'Aceptar']
+ * boton_Denegar : string [Texto del boton denegar, defecto 'Cancelar']
+ * boton_Cerrar : string [Texto del boton cerrar, defecto 'Cerrar']
+ * callback_Confirmar : function [Funcion que se ejecutará al hacer click en el boton asignado, SIN DEFECTO, tirará error si no se asigna]
+ * callback_Cerrar : function [Funcion que se ejecutará al hacer click en el boton asignado, SIN DEFECTO, tirará error si no se asigna]
+ * callback_Denegar : function [Funcion que se ejecutará al hacer click en el boton asignado, SIN DEFECTO, tirará error si no se asigna]
+ */
 function generarVentanaModal(opciones) {
     var tamaños = ["grande", "medio", "pequeño"]
     var tipos = ["info", "aviso", "confirmacion", "error"]
-    /*
-    equis = true / false
-    contenido = string
-    titulo = string
-    callback_Cerrar = function
-    boton_Cerrar = String
-    callback_Confirmar = function
-    boton_Confirmar = String
-    callback_Denegar = function
-    boton_Denegar = String
-    */
-
     if (!opciones.hasOwnProperty("contenido")) {
         opciones["contenido"] = "";
     }
@@ -44,6 +48,7 @@ function generarVentanaModal(opciones) {
         modal += "<div class='c-ventana-modal__titulo'>" + opciones.titulo + "</div>"
     }
 
+            //PREPARAR EL DE ERROR
     modal += "<div class='c-ventana-modal__contenido'>" + opciones.contenido + "</div>"
     switch (opciones.tipo) {
         case "aviso":
@@ -76,7 +81,7 @@ function generarVentanaModal(opciones) {
             if (!opciones.hasOwnProperty("boton_Denegar")) {
                 opciones.boton_Denegar = "Cancelar";
             }
-            modal += `<div class='c-ventana-modal__botones'>"
+            modal += `<div class='c-ventana-modal__botones'>
             <div class='c-boton c-boton--exito js-ventana-modal__confirmar'>` + opciones.boton_Confirmar + `</div>
             <div class='c-boton c-boton--peligro js-ventana-modal__denegar'>` + opciones.boton_Denegar + `</div>
             </div>`
@@ -88,11 +93,24 @@ function generarVentanaModal(opciones) {
             modal += `<div class='c-ventana-modal__botones'>
             <div class='c-boton c-boton--peligro js-ventana-modal__cerrar'>` + opciones.boton_Cerrar + `</div>
             </div>`
-            //PREPARAR EL DE ERROR
             break
         default: //info
             if (!opciones.hasOwnProperty("equis")) {
                 opciones["equis"] = true;
+            }
+            if (opciones.hasOwnProperty("info_boton_basico")){
+                if (!opciones.hasOwnProperty("callback_Confirmar")) {
+                    console.error("No se ha podido crear la ventana modal, no existe un retorno (callback_Confirmar).")
+                    alert("No se ha podido generar la ventana emergente.")
+                    return false;
+                }
+                if (!opciones.hasOwnProperty("boton_Confirmar")) {
+                    opciones.boton_Confirmar = "Aceptar";
+                }
+                modal += `<div class='c-ventana-modal__botones'>
+                <div class='c-boton c-boton--basico js-ventana-modal__confirmar'>` + opciones.boton_Confirmar + `</div>
+                </div>`
+
             }
     }
 
