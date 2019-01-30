@@ -13,9 +13,9 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             De este modo, vosotros podeis dedicar vuestro tiempo a otras cosas.</p>
             </div>
             <div class='c-quienes-somos__contenido-equipo'>
-            <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>Yuriy Burychka</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'><div class='c-quienes-somos__texto'>Programador Jefe</div></div>
-            <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>Juan Antonio Donet Peiró</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/toni.jpg'><div class='c-quienes-somos__texto'>Director Ejecutivo</div></div>
-            <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>José Luis Sanchez Delgado</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/jl.jpg'><div class='c-quienes-somos__texto'>Diseñador</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>Yuriy</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'><div class='c-quienes-somos__texto'>Programador Jefe</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>Toni</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/toni.jpg'><div class='c-quienes-somos__texto'>Director Ejecutivo</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>José Luis</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/jl.jpg'><div class='c-quienes-somos__texto'>Diseñador</div></div>
             </div>
             <div class='c-quienes-somos__servicios'>
             <div class='c-quienes-somos__attCliente'>
@@ -44,9 +44,9 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             In this way, you can dedicate your time to other things.</p>
             </div>
             <div class='c-quienes-somos__contenido-equipo'>
-            <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>Yuriy Burychka</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'><div class='c-quienes-somos__texto'>Boss Programmer</div></div>
-            <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>Juan Antonio Donet Peiró</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/toni.jpg'><div class='c-quienes-somos__texto'>CEO</div></div>
-            <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>José Luis Sanchez Delgado</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/jl.jpg'><div class='c-quienes-somos__texto'>Designer</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>Yuriy</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'><div class='c-quienes-somos__texto'>Chief Programmer</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>Toni</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/toni.jpg'><div class='c-quienes-somos__texto'>CEO</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>José Luis</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/jl.jpg'><div class='c-quienes-somos__texto'>Designer</div></div>
             </div>
             <div class='c-quienes-somos__servicios'>
             <div class='c-quienes-somos__attCliente'>
