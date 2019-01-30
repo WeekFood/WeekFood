@@ -76,7 +76,7 @@ function acceso_Registro() {
                             .done(() => {
                                 crearCookie("Redirect", "/perfil")
                                 GLOBAL_USUARIO.id = 1; /*TODO SACAR DE DONDE PROCEDA */
-                                reiniciarAplicacion();
+                                iniciarAplicacion();
                             })
                     }
                 })
@@ -169,6 +169,7 @@ function acceso_LoginInicial() {
             $(".js-perfil").on("click", perfil_Alternar)
             $(".c-acceso, .c-acceso__errores").remove()
             generarNotificacion("Hola de nuevo, " + GLOBAL_USUARIO.nick, 1)
+            carrito_Descargar()
         })
     } else {
         if ($(".js-perfil").length > 0) {
@@ -195,8 +196,8 @@ function acceso_CerrarSesion() {
             // Todo cerrar sesion en API
             borrarCookie("token")
             borrarCookie("recuerdame")
-            reiniciarAplicacion()
             GLOBAL_USUARIO = new Usuario
+            iniciarAplicacion()
         },
         boton_Denegar: "Cerrar sesión"
     })
