@@ -151,3 +151,17 @@ function acceso_MensajeError(mensaje, tipo = 1) {
 
     }
 }
+function acceso_LoginInicial() {
+    if (extraerCookie("token") != null) {
+        GLOBAL_USUARIO.getDatosUsuario().done(() => {
+            GLOBAL_USUARIO.imagen = "/imagenes/usuarios/perfil.png"
+            $(".js-acceso").remove()
+            $(".c-cabecera__botones").prepend(`<div data-modo="1" class="c-cabecera__boton js-perfil">
+            <div class="c-perfil__contenedor-imagen c-perfil__contenedor-imagen--cabecera">
+            <img class='c-perfil__imagen c-perfil__imagen--cabecera' src='`+ GLOBAL_USUARIO.imagen + `'>
+            </div></div>`)
+            $(".js-perfil").on("click", perfil_Alternar)
+            $(".c-acceso, .c-acceso__errores").remove()
+        })
+    }
+}

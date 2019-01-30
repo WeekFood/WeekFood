@@ -63,4 +63,9 @@ class Usuario {
             data: "nick=" + usuario + "&contraseña=" + pass
         })
     }
+    getDatosUsuario() {
+        return $.when(() => {
+            console.log("Se ha simulado una peticion a la API")
+        })
+    }
 }

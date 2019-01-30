@@ -27,17 +27,17 @@ return [
             "resource" => "productos",
             "action" => "getTodos"
         ],
-        "API, productos, query todas categorias principales" =>[
+        "API, productos, query todas categorias principales" => [
             "route" => "api/productos/categorias",
             "resource" => "productos",
             "action" => "getCategoriasPrincipales"
         ],
-        "API, productos, query categorias principales" =>[
+        "API, productos, query categorias principales" => [
             "route" => "api/productos/categorias/:nombre/subcategorias",
             "resource" => "productos",
             "action" => "getCategoriaPrincipal"
         ],
-        "API, productos, query categorias" =>[
+        "API, productos, query categorias" => [
             "route" => "api/productos?categoria=:categoria",
             "resource" => "productos",
             "action" => "getCategoria"
@@ -52,6 +52,11 @@ return [
             "resource" => "productos",
             "action" => "getDestacados"
         ],
+        "API, datos de usuario" => [
+            "route" => "api/usuarios/:idUsuario",
+            "resource" => "usuarios",
+            "action" => "getUsuario"
+        ]
     ],
     "post" => [
         "API, Auth, registro" => [

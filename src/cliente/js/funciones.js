@@ -45,12 +45,12 @@ function redirigir() {
     var url = extraerCookie("Redirect")
     borrarCookie("Redirect")
     if (url !== null) {
-        url = decodeURIComponent(url.split("=")[1])
+        url = decodeURIComponent(url)
         url = url.split("/")[1].toLowerCase()
-        if (GLOBAL_REDIRECCIONES.hasOwnProperty(url)){
+        if (GLOBAL_REDIRECCIONES.hasOwnProperty(url)) {
             cargarVista(GLOBAL_REDIRECCIONES[url])
             return true
-    }
+        }
     }
     return false
 }
@@ -59,7 +59,7 @@ function extraerCookie(nombre) {
     var encontrada = null
     document.cookie.split("; ").forEach(cookie => {
         if (cookie.split("=")[0] == nombre) {
-            encontrada = cookie;
+            encontrada = cookie.split("=")[1];
         }
     })
     return encontrada;

@@ -33,6 +33,8 @@ var GLOBAL_CARRITO = new Carrito();
 var GLOBAL_GESTOR_PRODUCTOS = new GestorProductos();
 var GLOBAL_USUARIO = new Usuario();
 
+//acceso_LoginInicial()
+
 if (!redirigir()) {
     cargarVista("portada")
 }
