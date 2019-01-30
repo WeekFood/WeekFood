@@ -71,11 +71,6 @@ return [
             "route" => "api/auth/logout",
             "resource" => "auth",
             "action" => "getLogout"
-        ],
-        "API, Auth, dump" => [
-            "route" => "api/auth/dump_session",
-            "resource" => "auth",
-            "action" => "getDumpSession"
         ]
     ],
     "post" => [
