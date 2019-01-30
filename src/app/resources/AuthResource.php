@@ -110,4 +110,8 @@ class AuthResource extends Resource {
 
         $this->setData();
     }
+
+    public function getDumpSessionAction() {
+        echo var_dump($_SESSION);
+    }
 }
