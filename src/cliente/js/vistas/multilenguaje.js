@@ -13,19 +13,19 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             De este modo, vosotros podeis dedicar vuestro tiempo a otras cosas.</p>
             </div>
             <div class='c-quienes-somos__contenido-equipo'>
-            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'><div class='c-quienes-somos__texto'>Yuriy Burychka</div></div>
-            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/toni.jpg'><div class='c-quienes-somos__texto'>Juan Antonio Donet Peiró</div></div>
-            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/jl.jpg'><div class='c-quienes-somos__texto'>José Luis Sanchez Delgado</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>Yuriy Burychka</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'><div class='c-quienes-somos__texto'>Programador Jefe</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>Juan Antonio Donet Peiró</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/toni.jpg'><div class='c-quienes-somos__texto'>Director Ejecutivo</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>José Luis Sanchez Delgado</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/jl.jpg'><div class='c-quienes-somos__texto'>Diseñador</div></div>
             </div>
             <div class='c-quienes-somos__servicios'>
             <div class='c-quienes-somos__attCliente'>
-            <p class='c-quienes-somos__texto'>Si tienes alguna duda, no dudes en contactar con nosotros.</p>
+            <p class='c-quienes-somos__titulo-menor'>Si tienes alguna duda, no dudes en contactar con nosotros.</p>
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fas fa-phone"></i></div><div class='c-quienes-somos__texto-icono'>902 - 123- 469</div></div>
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="far fa-envelope"></i></div><div class='c-quienes-somos__texto-icono'>info@weekfood.com</div></div>
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-whatsapp"></i></div><div class='c-quienes-somos__texto-icono'>603 - 123- 469</div></div>
             </div>
             <div class='c-quienes-somos__redes'>
-            <p class='c-quienes-somos__texto'>¡Siguenos en nuestras redes sociales!</p>
+            <p class='c-quienes-somos__titulo-menor'>¡Siguenos en nuestras redes sociales!</p>
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-instagram"></i></div><div class='c-quienes-somos__texto-icono'>@WeekFood</div></div>
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-twitter"></i></div></i><div class='c-quienes-somos__texto-icono'>@WeekFood</div></div>
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-facebook"></i></div><div class='c-quienes-somos__texto-icono'>/WeekFood</div></div>
@@ -44,19 +44,19 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             In this way, you can dedicate your time to other things.</p>
             </div>
             <div class='c-quienes-somos__contenido-equipo'>
-            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'><div class='c-quienes-somos__texto'>Yuriy Burychka</div></div>
-            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/toni.jpg'><div class='c-quienes-somos__texto'>Juan Antonio Donet Peiró</div></div>
-            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/jl.jpg'><div class='c-quienes-somos__texto'>José Luis Sanchez Delgado</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>Yuriy Burychka</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'><div class='c-quienes-somos__texto'>Boss Programmer</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>Juan Antonio Donet Peiró</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/toni.jpg'><div class='c-quienes-somos__texto'>CEO</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>José Luis Sanchez Delgado</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/jl.jpg'><div class='c-quienes-somos__texto'>Designer</div></div>
             </div>
             <div class='c-quienes-somos__servicios'>
             <div class='c-quienes-somos__attCliente'>
-            <p class='c-quienes-somos__texto'>If you have some doubt, contact us.</p>
+            <p class='c-quienes-somos__titulo-menor'>If you have some doubt, contact us.</p>
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fas fa-phone"></i></div><div class='c-quienes-somos__texto-icono'>902 - 123- 469</div></div>
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="far fa-envelope"></i></div><div class='c-quienes-somos__texto-icono'>info@weekfood.com</div></div>
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-whatsapp"></i></div><div class='c-quienes-somos__texto-icono'>603 - 123- 469</div></div>
             </div>
             <div class='c-quienes-somos__redes'>
-            <p class='c-quienes-somos__texto'>Follow in our social medias!</p>
+            <p class='c-quienes-somos__titulo-menor'>Follow in our social medias!</p>
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-instagram"></i></div><div class='c-quienes-somos__texto-icono'>@WeekFood</div></div>
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-twitter"></i></div></i><div class='c-quienes-somos__texto-icono'>@WeekFood</div></div>
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-facebook"></i></div><div class='c-quienes-somos__texto-icono'>/WeekFood</div></div>

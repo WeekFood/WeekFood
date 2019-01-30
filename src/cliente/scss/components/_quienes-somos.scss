@@ -10,7 +10,7 @@
 
 .c-quienes-somos__contenedor-bandera {
     height: 60px;
-    margin: 25px;
+    margin: 5px;
     padding: 5px;
     display: inline-block;
     &--seleccionada {
@@ -36,17 +36,26 @@
     padding: 15px 25px;
     border-radius: 10px;
     margin: 3%;
+    margin-top: 0px;
     grid-template-areas: 'cabecera'
                             'contenido-interno'
                             'equipo'
                             'servicios';
     @media only screen and (max-width: $mobile-l) {
         margin: 0px;
+        .c-quienes-somos__servicios{
+            flex-wrap: wrap;
+        }
+        .c-quienes-somos__servicios-container{
+            margin-bottom: 20px;
+        }
     }
 }
 
 .c-quienes-somos__contenido-interno {
     padding: 20px;
+    justify-self: center;
+    max-width: 800px;
     line-height: 35px;
     grid-area: contenido-interno;
 }
@@ -57,9 +66,6 @@
     grid-gap: 40px;
     justify-items: center;
     grid-area: equipo;
-    background-color: whitesmoke;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .c-quienes-somos__contenido-equipo-imagen{
@@ -91,16 +97,20 @@
 .c-quienes-somos__titulo {
     font-size: 40px;
 }
+.c-quienes-somos__titulo-menor {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
 
 .c-quienes-somos__texto {
     text-align: center;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .c-quienes-somos__texto-icono {
-    min-height: 20px;
     font-size: 20px;
     display: inline;
+    margin-left: 20px;
 }
 .c-quienes-somos__servicios{
     grid-area: servicios;
@@ -113,5 +123,5 @@
 }
 
 .c-quienes-somos__servicios-container{
-    font-family: Arial;
+    margin-bottom: 10px;
 }
