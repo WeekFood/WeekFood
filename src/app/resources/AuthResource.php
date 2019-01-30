@@ -51,7 +51,7 @@ class AuthResource extends Resource {
                 "nombre" => $usuario['nombre']
             ];
 
-            header('HTTP/1.1 201 Created', true, 201);
+            http_response_code(201);
             $this->setData();
         } catch (NickTakenException $e) {
             $this->setError(409, 'USUARIO_YA_EXISTE');

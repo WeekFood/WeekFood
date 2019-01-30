@@ -78,11 +78,9 @@ class Auth {
                 $this->setCookies($user['id'], $rememberMe);
                 return $user;
             } else {
-                $this->sendError(self::ERR_LOGIN_WRONG_PASSWORD);
                 throw new WrongPasswordException();
             }
         } else {
-            $this->sendError(self::ERR_LOGIN_USER_NOT_FOUND);
             throw new UserNotFoundException();
         }
     }
@@ -192,10 +190,27 @@ class Auth {
     }
 
     public function sendError(string $errorConst) {
+        $errorMessage;
+
         switch ($errorConst) {
             case (self::ERR_NO_TOKEN):
-            case (self::ERR_LOGIN_USER_NOT_FOUND):
-            case (self::ERR_LOGIN_WRONG_PASSWORD):
+                $errorMessage = 'NO_HAY_TOKEN';
+                break;
+            case (self::ERR_RENEW_LOGIN_INVALID_SIGNATURE):
+                $errorMessage = 'FIRMA_INVALIDA';
+                break;
+            case (self::ERR_LOGOUT_NO_LOGIN):
+                $errorMessage = 'NO_HAY_LOGIN';
+                break;
+            default:
+        }
+
+        if ($errorMessage) {
+            echo json_encode(['error' => $errorMessage]);
+        }
+
+        switch ($errorConst) {
+            case (self::ERR_NO_TOKEN):
             case (self::ERR_RENEW_LOGIN_INVALID_SIGNATURE):
             case (self::ERR_LOGOUT_NO_LOGIN):
                 http_response_code(401);
