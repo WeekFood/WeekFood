@@ -89,7 +89,9 @@ class AuthResource extends Resource {
     }
 
     public function getRenovarLoginAction() {
-        $this->auth->renewLogin();
+        if ($this->auth->renewLogin()) {
+            http_response_code(204);
+        };
     }
 
     public function getLogoutAction() {
