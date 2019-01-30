@@ -45,7 +45,7 @@ class Usuario {
             url: "/api/auth/login",
             type: "POST",
             contentType: "application/x-www-form-urlencoded",
-            data: "nick=" + usuario + "&contraseña=" + pass
+            data: "nick=" + usuario + "&contraseña=" + pass + "&recuerdame=1"
         })
     }
     acceso_RegistroUsuarioLibre(usuario) {

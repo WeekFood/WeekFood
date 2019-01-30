@@ -67,6 +67,9 @@ function extraerCookie(nombre) {
 function borrarCookie(nombre) {
     document.cookie = nombre + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
+function crearCookie(nombre, valor) {
+    document.cookie = nombre + '=' + valor;
+}
 function precioEnEuros(precio) {
     return (precio / 100).toString() + " €"
 }
@@ -75,4 +78,14 @@ function precioEnDollar(precio) {
 }
 function precioEnLibra(precio) {
     return (precio * 0.88).toString() + " £"
+}
+function reiniciarAplicacion() {
+    GLOBAL_CACHE_JSONS = new CacheJSONs();
+    GLOBAL_CARRITO = new Carrito();
+    acceso_LoginInicial()
+    carrito_Descargar()
+
+    if (!redirigir()) {
+        cargarVista("portada")
+    }
 }
