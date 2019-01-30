@@ -7,10 +7,10 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             <p class='c-quienes-somos__titulo'>¿Quienes somos?</p>
             </div>
             <div class='c-quienes-somos__contenido-interno'>
-            <p class='c-quienes-somos__texto'>Somos una empresa que gestiona el reparto de casas de comida.
-            Nuestra idea de negocio se basa en, satisfacer la necesidad de comer comida casera
-            sin que gasteis tiempo en cocinar y/o en planear.
-            De este modo, vosotros podeis dedicar vuestro tiempo a otras cosas.</p>
+            <p class='c-quienes-somos__texto'>Somos una empresa que gestiona el reparto de casas de comida.</p>
+            <p class='c-quienes-somos__texto'>Nuestra idea de negocio se basa en, satisfacer la necesidad de comer comida casera
+            sin que gasteis tiempo en cocinar y/o en planear.</p>
+            <p class='c-quienes-somos__texto'>De este modo, vosotros podeis dedicar vuestro tiempo a otras cosas.</p>
             </div>
             <div class='c-quienes-somos__contenido-equipo'>
             <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>Yuriy</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'><div class='c-quienes-somos__texto'>Programador Jefe</div></div>
@@ -19,7 +19,7 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             </div>
             <div class='c-quienes-somos__servicios'>
             <div class='c-quienes-somos__attCliente'>
-            <p class='c-quienes-somos__titulo-menor'>Si tienes alguna duda, no dudes en contactar con nosotros.</p>
+            <p class='c-quienes-somos__titulo-menor'>No dudes en contactar con nosotros.</p>
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fas fa-phone"></i></div><div class='c-quienes-somos__texto-icono'>902 - 123- 469</div></div>
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="far fa-envelope"></i></div><div class='c-quienes-somos__texto-icono'>info@weekfood.com</div></div>
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-whatsapp"></i></div><div class='c-quienes-somos__texto-icono'>603 - 123- 469</div></div>
@@ -38,10 +38,10 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             <p class='c-quienes-somos__titulo'>About us?</p>
             </div>
             <div class='c-quienes-somos__contenido-interno'>
-            <p class='c-quienes-somos__texto'>We are a company that manages the distribution of food houses.
-            Our business idea is based on, satisfying the need to eat homemade food
-            without spending time cooking or planning.
-            In this way, you can dedicate your time to other things.</p>
+            <p class='c-quienes-somos__texto'>We are a company that manages the distribution of food houses.</p>
+            <p class='c-quienes-somos__texto'>Our business idea is based on, satisfying the need to eat homemade food
+            without spending time cooking or planning.</p>
+            <p class='c-quienes-somos__texto'>In this way, you can dedicate your time to other things.</p>
             </div>
             <div class='c-quienes-somos__contenido-equipo'>
             <div class='c-quienes-somos__contenido-equipo-container'><div class='c-quienes-somos__texto'>Yuriy</div><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'><div class='c-quienes-somos__texto'>Chief Programmer</div></div>
