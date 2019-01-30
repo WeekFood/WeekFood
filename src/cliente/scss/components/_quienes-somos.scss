@@ -2,9 +2,9 @@
     display: grid;
     grid-template-areas: "banderas banderas"
                         "contenido contenido";
-    max-height: 100%;
+    //max-height: 100%;
     //grid-template-columns: 1fr 1fr;
-    grid-template-rows: 60px auto 1fr 1fr;
+    //grid-template-rows: 60px auto 1fr 1fr;
 }
 
 .c-quienes-somos__banderas {
@@ -13,10 +13,9 @@
 
 .c-quienes-somos__contenedor-bandera {//Cambiar a banderas rectangulares
     height: 60px;
-    margin: 5px;
+    margin: 25px;
     padding: 5px;
     display: inline-block;
-    border-radius: 30px;
     &--seleccionada {
         background: $rojo;
     }
@@ -40,29 +39,30 @@
     padding: 15px 25px;
     border-radius: 10px;
     margin: 3%;
-    grid-template-areas: 'cabecera cabecera'
-                            'contenido-interno equipo'
-                            'servicios servicios';
-    @media only screen and (max-width: $mobile-l) {
-        grid-template-areas: 'cabecera'
-        'contenido-interno'
-        'equipo'
-        'servicios';
-        }
+    grid-template-areas: 'cabecera'
+                            'contenido-interno'
+                            'equipo'
+                            'servicios';
+    /*@media only screen and (max-width: $mobile-l) {
+        margin-top: 10%;
+    }*/
 }
 
 .c-quienes-somos__contenido-interno {
+    padding: 20px;
     line-height: 35px;
-    max-width: 500px;
     grid-area: contenido-interno;
 }
 
 .c-quienes-somos__contenido-equipo{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 40px;
     justify-items: center;
     grid-area: equipo;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .c-quienes-somos__contenido-equipo-imagen{
@@ -95,7 +95,6 @@
 }
 
 .c-quienes-somos__texto {
-    min-height: 20px;
     margin: 20px;
     font-size: 20px;
 }
@@ -115,4 +114,8 @@
 .c-quienes-somos__servicios-icono{
     display: inline;
     margin: 10px;
+}
+
+.c-quienes-somos__servicios-container{
+    font-family: Arial, Helvetica, sans-serif;
 }

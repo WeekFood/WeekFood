@@ -14,29 +14,27 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             </div>
             <div class='c-quienes-somos__contenido-interno'>
             <p class='c-quienes-somos__texto'>Somos una empresa que gestiona el reparto de casas de comida.
-            Hola a todos, somos una web para gestionar encargos a casas de comidas.
             Nuestra idea de negocio se basa en, satisfacer la necesidad de comer comida casera
             sin que gasteis tiempo en cocinar y/o en planear.
             De este modo, vosotros podeis dedicar vuestro tiempo a otras cosas.</p>
             </div>
             <div class='c-quienes-somos__contenido-equipo'>
-            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'><div class='c-quienes-somos__texto'><i class="fas fa-laptop"></i>Jefe de operaciones, YB</div></div>
-            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/toni.jpg'><div class='c-quienes-somos__texto'><i class="fas fa-laptop"></i>Director ejecutivo, TD</div></div>
-            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/jl.jpg'><div class='c-quienes-somos__texto'><i class="fas fa-blind"></i>Master del universo, JL</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'><div class='c-quienes-somos__texto'>Yuriy Burychka</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/toni.jpg'><div class='c-quienes-somos__texto'>Juan Antonio Donet Peiró</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/jl.jpg'><div class='c-quienes-somos__texto'>José Luis Sanchez Delgado</div></div>
             </div>
             <div class='c-quienes-somos__servicios'>
             <div class='c-quienes-somos__attCliente'>
             <p class='c-quienes-somos__texto'>Si tienes alguna duda, no dudes en contactar con nosotros</p>
-            <p><i class="fas fa-phone"></i>902 - 123- 469</p>
-            <p><i class="far fa-envelope"></i>* info@weekfood.com</p>
-            <p><i class="fab fa-whatsapp"></i>* 603 - 123- 469</p>
-            <p>*(Atención automatizada)</p>
+            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fas fa-phone"></i></div><div class='c-quienes-somos__texto-icono'>902 - 123- 469</div></div>
+            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="far fa-envelope"></i></div><div class='c-quienes-somos__texto-icono'>* info@weekfood.com</div></div>
+            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-whatsapp"></i></div><div class='c-quienes-somos__texto-icono'>* 603 - 123- 469</div></div>
             </div>
             <div class='c-quienes-somos__redes'>
             <p class='c-quienes-somos__texto'>¡Siguenos en nuestras redes sociales!</p>
-            <div class='c-quienes-somos__servicios-icono'><i class="fab fa-instagram"></i></div><div class='c-quienes-somos__texto-icono'> @WeekFood</div>
-            <div class='c-quienes-somos__servicios-icono'><i class="fab fa-twitter"></i></div></i><div class='c-quienes-somos__texto-icono'> @WeekFood</p></div>
-            <div class='c-quienes-somos__servicios-icono'><p><i class="fab fa-facebook"></i></div><div class='c-quienes-somos__texto-icono'> /WeekFood</p></div>
+            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-instagram"></i></div><div class='c-quienes-somos__texto-icono'> @WeekFood</div></div>
+            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-twitter"></i></div></i><div class='c-quienes-somos__texto-icono'> @WeekFood</div></div>
+            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-facebook"></i></div><div class='c-quienes-somos__texto-icono'> /WeekFood</div></div>
             </div>
             </div>
             </div>
