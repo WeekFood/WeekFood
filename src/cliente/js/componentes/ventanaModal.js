@@ -1,18 +1,17 @@
 /**
- * 
  * @param {*} opciones Objeto con los siguientes parametros
- * tamaño : "grande", "medio", "pequeño" [Defecto medio]
- * tipo : "info", "aviso", "confirmacion", "error" [Defecto info]
- * contenido : html
- * titulo : string
- * equis : bool [Fuerza la aparicion de la equis superior derecha, defecto true en tipo info]
- * info_boton_basico : bool [Alterna la aparicion de un boton basico con el texto de boton_Confirmar y callback_Confirmar en el tipo info, defecto false, si se asigna tirará error en caso de no tener callback]
- * boton_Confirmar : string [Texto del boton confirmar, defecto 'Aceptar']
- * boton_Denegar : string [Texto del boton denegar, defecto 'Cancelar']
- * boton_Cerrar : string [Texto del boton cerrar, defecto 'Cerrar']
- * callback_Confirmar : function [Funcion que se ejecutará al hacer click en el boton asignado, SIN DEFECTO, tirará error si no se asigna]
- * callback_Cerrar : function [Funcion que se ejecutará al hacer click en el boton asignado, SIN DEFECTO, tirará error si no se asigna]
- * callback_Denegar : function [Funcion que se ejecutará al hacer click en el boton asignado, SIN DEFECTO, tirará error si no se asigna]
+ * @property {String} tamaño : ["grande", "medio", "pequeño"] Defecto medio
+ * @property {String} tipo : ["info", "aviso", "confirmacion", "error"] Defecto info
+ * @property {String} contenido : HTML interno de la ventana modal
+ * @property {String} titulo : Texto del titulo
+ * @property {Bool} equis : Fuerza la aparicion de la equis superior derecha, defecto true en tipo info
+ * @property {Bool} info_boton_basico : Alterna la aparicion de un boton basico con el texto de boton_Confirmar y callback_Confirmar en el tipo info, defecto false, si se asigna tirará error en caso de no tener callback
+ * @property {String} boton_Confirmar : Texto del boton confirmar, defecto 'Aceptar'
+ * @property {String} boton_Denegar : Texto del boton denegar, defecto 'Cancelar'
+ * @property {String} boton_Cerrar : Texto del boton cerrar, defecto 'Cerrar'
+ * @property {function} callback_Confirmar : Funcion que se ejecutará al hacer click en el boton asignado, SIN DEFECTO, tirará error si no se asigna
+ * @property {function} callback_Cerrar : Funcion que se ejecutará al hacer click en el boton asignado, SIN DEFECTO, tirará error si no se asigna
+ * @property {function} callback_Denegar : Funcion que se ejecutará al hacer click en el boton asignado, SIN DEFECTO, tirará error si no se asigna
  */
 function generarVentanaModal(opciones) {
     var tamaños = ["grande", "medio", "pequeño"]
@@ -41,15 +40,17 @@ function generarVentanaModal(opciones) {
     } else {
         opciones["tipo"] = "info";
     }
+    if (!opciones.hasOwnProperty("info_boton_basico")) {
+        opciones["info_boton_basico"] = false;
+    }
     var modal = "<div class='c-ventana-modal js-ventana-modal js-ventana-modal__cerrar'>"
 
     modal += "<div class='c-ventana-modal__interno c-ventana-modal__interno--" + opciones.tamaño + "'>"
     if (opciones.hasOwnProperty("titulo")) {
         modal += "<div class='c-ventana-modal__titulo'>" + opciones.titulo + "</div>"
     }
-
-    //PREPARAR EL DE ERROR
     modal += "<div class='c-ventana-modal__contenido'>" + opciones.contenido + "</div>"
+
     switch (opciones.tipo) {
         case "aviso":
             if (!opciones.hasOwnProperty("callback_Confirmar")) {
@@ -98,20 +99,18 @@ function generarVentanaModal(opciones) {
             if (!opciones.hasOwnProperty("equis")) {
                 opciones["equis"] = true;
             }
-            if (opciones.hasOwnProperty("info_boton_basico")) {
-                if (opciones["info_boton_basico"]) {
-                    if (!opciones.hasOwnProperty("callback_Confirmar")) {
-                        console.error("No se ha podido crear la ventana modal, no existe un retorno (callback_Confirmar).")
-                        alert("No se ha podido generar la ventana emergente.")
-                        return false;
-                    }
-                    if (!opciones.hasOwnProperty("boton_Confirmar")) {
-                        opciones.boton_Confirmar = "Aceptar";
-                    }
-                    modal += `<div class='c-ventana-modal__botones'>
+            if (opciones["info_boton_basico"]) {
+                if (!opciones.hasOwnProperty("callback_Confirmar")) {
+                    console.error("No se ha podido crear la ventana modal, no existe un retorno (callback_Confirmar).")
+                    alert("No se ha podido generar la ventana emergente.")
+                    return false;
+                }
+                if (!opciones.hasOwnProperty("boton_Confirmar")) {
+                    opciones.boton_Confirmar = "Aceptar";
+                }
+                modal += `<div class='c-ventana-modal__botones'>
                 <div class='c-boton c-boton--basico js-ventana-modal__confirmar'>` + opciones.boton_Confirmar + `</div>
                 </div>`
-                }
             }
     }
 
