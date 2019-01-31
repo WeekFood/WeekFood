@@ -95,7 +95,9 @@ class AuthResource extends Resource {
     }
 
     public function getLogoutAction() {
-        $this->auth->logout();
+        if ($this->auth->logout()) {
+            http_response_code(204);
+        };
     }
 
     public function postUsuarioYaExisteAction() {
