@@ -47,12 +47,19 @@
     &--limite {
         opacity: 0.2;
     }
+    &--incremento {
+        margin-right: 0;
+    }
+    &--decremento {
+        margin-left: 0;
+    }
 }
 
 .c-carrito__cantidad {
     font-size: 20px;
     width: 25px;
     text-align: center;
+    margin: 0 5px;
     &--limite {
         color: red;
     }
