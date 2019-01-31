@@ -1,0 +1,52 @@
+.c-perfil {
+    border-radius: 0px 0px 10px 10px;
+    width: 170px;
+    z-index: 2;
+    position: absolute;
+    top: 50px;
+    background: #ffffff;
+    right: 0px;
+    padding: 15px;
+    margin: 0;
+    max-height: 80vh;
+    overflow: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation: c-perfil__aparecer 0.5s;
+    &--desaparecer {
+        animation: c-perfil__desaparecer 0.5s both;
+    }
+}
+
+.c-perfil__imagen {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+}
+
+.c-perfil__contenedor-imagen {
+    border-radius: 100px;
+    overflow: hidden;
+    height: 100px;
+    width: 100px;
+    margin: 0 0 5px 20px;
+}
+
+.c-perfil__boton {
+    margin-top: 5px;
+    width: 100%
+}
+
+@keyframes c-perfil__aparecer {
+    0% {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes c-perfil__desaparecer {
+    99% {
+        transform: translateY(-110%);
+    }
+    100% {
+        transform: translateY(-200%);
+    }
+}

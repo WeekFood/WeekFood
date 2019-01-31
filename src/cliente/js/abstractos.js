@@ -6,11 +6,11 @@ var GLOBAL_VISTAS = {
     ofertas: vista_Productos_Ofertas
 }
 var GLOBAL_REDIRECCIONES = {
-    productos:'ofertas',
-    ofertas:'ofertas',
+    productos: 'ofertas',
+    ofertas: 'ofertas',
 }
 var GLOBAL_VISTA_ACTUAL = "";
 var GLOBAL_CACHE_JSONS = new CacheJSONs();
-var GLOBAL_NOTIFICACION_TOP = null;
-var GLOBAL_NOTIFICACION_FLASH = null;
+var GLOBAL_NOTIFICACION_TOP = undefined;
+var GLOBAL_NOTIFICACION_FLASH = undefined;
 var GLOBAL_CARRITO_EXISTE = undefined;

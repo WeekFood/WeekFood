@@ -45,8 +45,11 @@ class AuthResource extends Resource {
             $usuario = $this->auth->register($nick, $contraseña, $nombre, true);
 
             $this->data = [
+                "id" => $usuario['id'],
                 "nick" => $usuario['nick'],
-                "nombre" => $usuario['nombre']
+                "nombre" => $usuario['nombre'],
+                "apellidos" => $usuario['apellidos'],
+                "foto" => $usuario['foto']
             ];
 
             http_response_code(201);
@@ -76,8 +79,11 @@ class AuthResource extends Resource {
             $usuario = $this->auth->login($nick, $contraseña);
 
             $this->data = [
+                "id" => $usuario['id'],
                 "nick" => $usuario['nick'],
-                "nombre" => $usuario['nombre']
+                "nombre" => $usuario['nombre'],
+                "apellidos" => $usuario['apellidos'],
+                "foto" => $usuario['foto']
             ];
 
             $this->setData();
@@ -95,7 +101,9 @@ class AuthResource extends Resource {
     }
 
     public function getLogoutAction() {
-        $this->auth->logout();
+        if ($this->auth->logout()) {
+            http_response_code(204);
+        };
     }
 
     public function postUsuarioYaExisteAction() {
