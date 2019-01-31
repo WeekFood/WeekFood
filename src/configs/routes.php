@@ -66,6 +66,16 @@ return [
             "route" => "api/usuarios/:idUsuario",
             "resource" => "usuarios",
             "action" => "getUsuario"
+        ],
+        "API, Auth, renovar login" => [
+            "route" => "api/auth/renovar_login",
+            "resource" => "auth",
+            "action" => "getRenovarLogin"
+        ],
+        "API, Auth, logout" => [
+            "route" => "api/auth/logout",
+            "resource" => "auth",
+            "action" => "getLogout"
         ]
     ],
     "post" => [
@@ -83,6 +93,14 @@ return [
             "route" => "api/auth/login",
             "resource" => "auth",
             "action" => "postLogin"
+<<<<<<< HEAD
+=======
+        ],
+        "API, Auth, usuario ya existe" => [
+            "route" => "api/auth/usuario_ya_existe",
+            "resource" => "auth",
+            "action" => "postUsuarioYaExiste"
+>>>>>>> develop
         ]
     ],
     "put" => [
