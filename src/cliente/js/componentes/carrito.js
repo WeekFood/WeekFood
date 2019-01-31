@@ -54,7 +54,7 @@ function carrito_AñadirArticulo(id) {
 function carrito_ProcesarArticulo(articulo) {
     var html = `<p data-id='` + articulo.id + `' class='c-carrito__articulo'>
     <span class='c-carrito__nombre js-carrito-nombre'>`+ articulo.nombre + `</span>
-    <span class='c-carrito__operador js-carrito-incremento`
+    <span class='c-carrito__operador c-carrito__operador--incremento js-carrito-incremento`
     if (articulo.cantidad >= Carrito.CANTIDAD_MAXIMA) {
         html += ' c-carrito__operador--limite'
     }
@@ -64,12 +64,12 @@ function carrito_ProcesarArticulo(articulo) {
         html += ' c-carrito__cantidad--limite'
     }
     html += `'>` + articulo.cantidad + `</span>
-    <span class='c-carrito__operador js-carrito-decremento`
+    <span class='c-carrito__operador c-carrito__operador--decremento js-carrito-decremento`
     if (articulo.cantidad <= Carrito.CANTIDAD_MINIMA) {
         html += ' c-carrito__operador--limite'
     }
     html += `'><i class="fas fa-minus"></i></span>
-    <span class='c-carrito__basura js-carrito-basura'><i class="far fa-trash-alt"></i></span>
+    <span class='c-carrito__basura js-carrito-basura'><i class="fas fa-trash"></i></span>
     </p>`
     return html
 }
