@@ -49,9 +49,9 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             <div class='c-quienes-somos__servicios'>
             <div class='c-quienes-somos__attCliente'>
             <p class='c-quienes-somos__titulo-menor'>Contact us</p>
-            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fas fa-phone"></i></div><div class='c-quienes-somos__texto-icono'>(+34)902 - 123- 469</div></div>
+            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fas fa-phone"></i></div><div class='c-quienes-somos__texto-icono'>(+34) 902 - 123- 469</div></div>
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="far fa-envelope"></i></div><div class='c-quienes-somos__texto-icono'>info@weekfood.com</div></div>
-            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-whatsapp"></i></div><div class='c-quienes-somos__texto-icono'>(+34)603 - 123- 469</div></div>
+            <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-whatsapp"></i></div><div class='c-quienes-somos__texto-icono'>(+34) 603 - 123- 469</div></div>
             </div>
             <div class='c-quienes-somos__redes'>
             <p class='c-quienes-somos__titulo-menor'>Follow in our social medias!</p>
