@@ -93,14 +93,11 @@ return [
             "route" => "api/auth/login",
             "resource" => "auth",
             "action" => "postLogin"
-<<<<<<< HEAD
-=======
         ],
         "API, Auth, usuario ya existe" => [
             "route" => "api/auth/usuario_ya_existe",
             "resource" => "auth",
             "action" => "postUsuarioYaExiste"
->>>>>>> develop
         ]
     ],
     "put" => [
