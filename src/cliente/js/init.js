@@ -19,7 +19,7 @@ $('.js-boton-menu').on('click', () => {
             } else {
                 clearInterval(modificarListado);
             }
-        }, 175)
+        }, 100)
 
     } else {
         $(".js-menu").addClass("c-menu--ocultar c-menu--oculto")
@@ -30,6 +30,9 @@ $(".js-carrito").on('click', carrito_Alternar)
 var GLOBAL_CACHE_JSONS = new CacheJSONs();
 var GLOBAL_CARRITO = new Carrito();
 var GLOBAL_GESTOR_PRODUCTOS = new GestorProductos();
+var GLOBAL_USUARIO = new Usuario();
+GLOBAL_USUARIO.setId(1)
+carrito_Descargar()
 
 if (!redirigir()) {
     cargarVista("portada")

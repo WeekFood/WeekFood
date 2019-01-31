@@ -6,8 +6,8 @@ define('ROOT', $_SERVER['DOCUMENT_ROOT']);
 return [
     'db' => [
         'name' => 'weekfood',
-        'host' => '172.16.205.57',
-        'port' => '3304',
+        'host' => 'weekfood_db',
+        'port' => '3306',
         'user' => 'WeekFood',
         'password' => 'SQITBAxsMBPuQtaZ'
     ],

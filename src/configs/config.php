@@ -5,7 +5,7 @@ define('ROOT', $_SERVER['DOCUMENT_ROOT']);
 
 return [
     'db' => [
-        'name' => 'WeekFood',
+        'name' => 'weekfood',
         'host' => 'localhost',
         'port' => '3306',
         'user' => 'WeekFood',

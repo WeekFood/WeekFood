@@ -27,20 +27,82 @@ return [
             "resource" => "productos",
             "action" => "getTodos"
         ],
-        "API, Categorias (Principales)" => [
+        "API, productos, query todas categorias principales" => [
             "route" => "api/productos/categorias",
             "resource" => "productos",
-            "action" => "getCategoriasPrincipalesTodos"
+            "action" => "getCategoriasPrincipales"
         ],
-        "API, Categorias" => [
-            "route" => "api/productos/categorias/:categoriaPrincipal",
+        "API, productos, query categorias principales" => [
+            "route" => "api/productos/categorias/:nombre/subcategorias",
             "resource" => "productos",
-            "action" => "getCategoriasTodos"
+            "action" => "getCategoriaPrincipal"
         ],
-        "API, Producto por categoria" => [
-            "route" => "api/productos/categorias/:categoriaPrincipal/:categoriaEspecifica",
+        "API, productos, query categorias" => [
+            "route" => "api/productos?categoria=:categoria",
             "resource" => "productos",
             "action" => "getCategoria"
+        ],
+        "API, productos, categorias" => [
+            "route" => "api/productos/categorias/subcategorias",
+            "resource" => "productos",
+            "action" => "getCategorias"
+        ],
+        "API, Productos destacados" => [
+            "route" => "api/productos?destacado=:destacado",
+            "resource" => "productos",
+            "action" => "getDestacados"
+        ],
+        "API, Productos, por id" => [
+            "route" => "api/productos/:id",
+            "resource" => "productos",
+            "action" => "getProductoID"
+        ],
+        "API, carritos por id usuario" => [
+            "route" => "api/carritos?usuario=:idUsuario",
+            "resource" => "carritos",
+            "action" => "getCarrito"
+        ],
+        "API, Auth, renovar login" => [
+            "route" => "api/auth/renovar_login",
+            "resource" => "auth",
+            "action" => "getRenovarLogin"
+        ],
+        "API, Auth, logout" => [
+            "route" => "api/auth/logout",
+            "resource" => "auth",
+            "action" => "getLogout"
         ]
+    ],
+    "post" => [
+        "API, carrito" => [
+            "route" => "api/carritos",
+            "resource" => "carritos",
+            "action" => "postCarrito"
+        ],
+        "API, Auth, registro" => [
+            "route" => "api/auth/registro",
+            "resource" => "auth",
+            "action" => "postRegistro"
+        ],
+        "API, Auth, login" => [
+            "route" => "api/auth/login",
+            "resource" => "auth",
+            "action" => "postLogin"
+        ],
+        "API, Auth, usuario ya existe" => [
+            "route" => "api/auth/usuario_ya_existe",
+            "resource" => "auth",
+            "action" => "postUsuarioYaExiste"
+        ]
+    ],
+    "put" => [
+        "API, carrito" => [
+            "route" => "api/carritos/:id",
+            "resource" => "carritos",
+            "action" => "putCarrito"
+        ]
+    ],
+    "delete" => [
+
     ]
 ];

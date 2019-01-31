@@ -1,14 +1,19 @@
 class GestorProductos {
     constructor() {
+        this.seHaPedidoExplicitamenteDestacados = false
         this.productos = []
         this.categoriasPrincipales = []
-        GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/").then((categoriasPrincipales) => {
-            if (categoriasPrincipales !== null) {
-                categoriasPrincipales.forEach(categoria => {
-                    this.categoriasPrincipales.push(new Categoria(categoria.nombre))
-                    this.getCategoriasEnCategoriaPrincipal(categoria.nombre)
-                })
-            }
+        GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/subcategorias").then((respuesta) => {
+            respuesta.forEach(categoria => {
+                var categoriaEncontrada = this.categoriasPrincipales.find(categoriaPrincipal => this.filtrarCategoriaPrincipal(categoria["subCategoriaDe"], categoriaPrincipal))
+                if (categoriaEncontrada == undefined) {
+                    var nuevaCategoria = new Categoria(categoria.subCategoriaDe)
+                    nuevaCategoria.categorias.push(categoria["nombre"])
+                    this.categoriasPrincipales.push(nuevaCategoria)
+                } else {
+                    categoriaEncontrada.categorias.push(categoria["nombre"])
+                }
+            })
         })
     }
     /**
@@ -43,14 +48,14 @@ class GestorProductos {
         var categoriaEncontrada = this.categoriasPrincipales.find(categoria => this.filtrarCategoriaPrincipal(categoriaPrincipal, categoria))
         if (categoriaEncontrada == undefined) { return undefined }
         if (categoriaEncontrada.categorias.length > 0) {
-            return $.when(categoriaEncontrada.categorias[0])
+            return $.when(categoriaEncontrada.categorias)
         } else {
-            return GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/" + categoriaPrincipal).then((respuesta) => {
+            return GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/" + categoriaPrincipal+"/subcategorias").then((respuesta) => {
                 var categoriasDescargadas = []
                 respuesta.forEach(categoria => {
                     categoriasDescargadas.push(categoria.nombre)
+                    categoriaEncontrada.categorias.push(categoria.nombre)
                 });
-                categoriaEncontrada.categorias.push(categoriasDescargadas)
                 return categoriaEncontrada
             })
         }
@@ -64,11 +69,13 @@ class GestorProductos {
         if (productosFiltrados.length > 0) {
             return $.when(productosFiltrados)
         } else {
-            return GLOBAL_CACHE_JSONS.getJSON("/api/productos/categorias/" + categoriaPrincipal + "/" + categoria).then((respuesta) => {
+            return GLOBAL_CACHE_JSONS.getJSON("/api/productos?categoria="+ categoria).then((respuesta) => {
                 var nuevosProductos = []
                 respuesta.forEach(prod => {
                     var nuevoProducto = new Producto(prod.id, prod.nombre, prod.foto, (prod.destacado == 1), prod.categoria.split(","), prod.descripcion, prod.precio)
-                    this.productos.push(nuevoProducto)
+                    if (this.getProductoId(nuevoProducto.id) == undefined){
+                        this.productos.push(nuevoProducto)
+                    }
                     nuevosProductos.push(nuevoProducto)
                 });
                 return nuevosProductos
@@ -98,7 +105,7 @@ class GestorProductos {
         var producto = this.getProductoId(id)
         if (producto == undefined) { throw "El producto no existe." }
         generarVentanaModal({
-            tamaño: 'medio',
+            tamaño: 'pequeño',
             contenido: generarModalProducto(producto),
         })
 
@@ -106,5 +113,41 @@ class GestorProductos {
             carrito_AñadirArticulo(producto.id);
             cerrarVentanaModal();
         });
+    }
+
+    getProductosDestacados() {
+        var productosFiltrados = this.productos.filter(producto => producto.destacado)
+        if (productosFiltrados.length > 0 && this.seHaPedidoExplicitamenteDestacados) {
+            return $.when(productosFiltrados)
+        } else {
+            return GLOBAL_CACHE_JSONS.getJSON("/api/productos?destacado=1").then((respuesta) => {
+                this.seHaPedidoExplicitamenteDestacados = true
+                var nuevosProductos = []
+                respuesta.forEach(prod => {
+                    var nuevoProducto = new Producto(prod.id, prod.nombre, prod.foto, (prod.destacado == 1), prod.categoria.split(","), prod.descripcion, prod.precio)
+                    if (this.getProductoId(nuevoProducto.id) == undefined){
+                        this.productos.push(nuevoProducto)
+                    }
+                    nuevosProductos.push(nuevoProducto)
+                });
+                return nuevosProductos
+            })
+        }
+    }
+    /**
+     * 
+     * @param {int} id Id a descargar
+     */
+    descargarProductoId(id) {
+        var productoFiltrado = this.getProductoId(id)
+        if (productoFiltrado !== undefined) {
+            return $.when(productoFiltrado)
+        } else {
+            return GLOBAL_CACHE_JSONS.getJSON("/api/productos/" + id).then((respuesta) => {
+                var nuevoProducto = new Producto(respuesta[0].id, respuesta[0].nombre, respuesta[0].foto, (respuesta[0].destacado == 1), respuesta[0].categoria.split(","), respuesta[0].descripcion, respuesta[0].precio)
+                this.productos.push(nuevoProducto)
+                return true
+            })
+        }
     }
 }
