@@ -72,7 +72,11 @@ function vista_Perfil(puntoMontaje) {
                 horaEntregado: "14:16",
                 articulos: [
                     { id: 1, cantidad: 1 },
-                    { id: 2, cantidad: 3 }
+                    { id: 2, cantidad: 3 },
+                    { id: 3, cantidad: 1 },
+                    { id: 3, cantidad: 1 },
+                    { id: 3, cantidad: 1 },
+                    { id: 3, cantidad: 1 }
                 ]
             },
             {
@@ -82,6 +86,7 @@ function vista_Perfil(puntoMontaje) {
                 fechaEntregado: "19/9/17",
                 horaEntregado: "15:10",
                 articulos: [
+                    { id: 3, cantidad: 1 },
                     { id: 3, cantidad: 1 },
                     { id: 4, cantidad: 2 }
                 ]
@@ -122,7 +127,7 @@ function vista_Perfil(puntoMontaje) {
             <span>` + pedido.id + `</span>
             <span>Compra: ` + pedido.fechaCompra + ` | `+pedido.horaCompra+`</span>
             <span>Entrega: ` + pedido.fechaEntregado + ` | `+pedido.horaEntregado+`</span>
-            <span>` + pedido.articulos.length + ` artículos</span>
+            <span class="c-perfil__pedido-articulos">` + pedido.articulos.length + ` artículos</span>
             </div>`
         }
         if (usuario.pedidos.length > 3) {

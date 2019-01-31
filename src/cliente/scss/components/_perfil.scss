@@ -70,7 +70,7 @@
     grid-area: metodos-pago
 }
 .c-perfil__metodo-pago{
-    padding: 5px 0;
+    padding: 5px 5px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 
@@ -88,9 +88,12 @@
     grid-area: pedidos
 }
 .c-perfil__pedido {
-    padding: 5px 0;
+    padding: 5px 10px;
     display: grid;
     grid-template-columns: 100px 1fr 1fr 100px;
+}
+.c-perfil__pedido-articulos{
+    text-align: right;
 }
 .c-perfil__pedidos-inicio{
     border-bottom: 1px solid;
