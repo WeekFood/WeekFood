@@ -41,10 +41,10 @@
         width: 315px;
     }
     &--acceso {
-        top: 220px;
+        top: 240px;
     }
     &--registro {
-        top: 255px;
+        top: 275px;
     }
 }
 
@@ -69,13 +69,17 @@
 
 .c-acceso__botones {
     width: 100%;
-    display: flex;
     text-align: center;
 }
 
 .c-acceso__boton {
     margin: 10px auto 0 auto;
-    width: 40%;
+    width: 60%;
+}
+
+.c-acceso__cambio-modo {
+    margin-top: 10px;
+    text-decoration: underline;
 }
 
 .c-acceso__bienvenida {

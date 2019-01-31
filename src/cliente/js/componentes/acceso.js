@@ -12,11 +12,11 @@ function acceso_Alternar() {
             <input class="c-acceso__campo js-acceso__contra" type="password" placeholder="Contraseña">
             </form>
             <div class="c-acceso__botones">
-            <div class="c-boton c-boton--exito c-acceso__boton js-acceso__entrar">Entrar</div>
-            <div class="c-boton c-boton--basico c-acceso__boton js-acceso__registro">Registrarme</div>
+            <div class="c-boton c-boton--exito c-acceso__boton js-acceso__boton-superior">Entrar</div>
+            <div class="c-acceso__cambio-modo js-acceso__boton-inferior">Registrarme</div>
             </div></div>`)
-        $(".js-acceso__entrar").on('click', acceso_Entrar);
-        $(".js-acceso__registro").on('click', acceso_Registro);
+        $(".js-acceso__boton-superior").on('click', acceso_Entrar);
+        $(".js-acceso__boton-inferior").on('click', acceso_Registro);
         $(".js-acceso__nombre").on('keyup', acceso_Escribiendo);
         $(".js-acceso__contra").on('keyup', acceso_Escribiendo);
     } else {
@@ -53,11 +53,14 @@ function acceso_Entrar() {
         }
     } else {
         acceso_ReiniciarCampos()
-        $(".js-acceso__entrar").toggleClass("c-boton--basico").toggleClass("c-boton--exito")
-        $(".js-acceso__registro").toggleClass("c-boton--basico").toggleClass("c-boton--exito")
         $(".c-acceso__titulo").html("Acceso")
         $(".js-acceso__contra-repe").remove()
         $(".c-acceso").data("modo", "1")
+        $(".js-acceso__boton-superior").html("Entrar")
+        $(".js-acceso__boton-inferior").html("Registrarme")
+
+        $(".js-acceso__boton-superior").off("click").on('click', acceso_Entrar);
+        $(".js-acceso__boton-inferior").off("click").on('click', acceso_Registro);
     }
 }
 function acceso_Registro() {
@@ -84,12 +87,15 @@ function acceso_Registro() {
         }
     } else {
         acceso_ReiniciarCampos()
-        $(".js-acceso__entrar").toggleClass("c-boton--basico").toggleClass("c-boton--exito")
-        $(".js-acceso__registro").toggleClass("c-boton--basico").toggleClass("c-boton--exito")
         $(".c-acceso__titulo").html("Registro")
         $('<input class="c-acceso__campo js-acceso__contra-repe" type="password" placeholder="Contraseña">').insertAfter(".js-acceso__contra")
         $(".c-acceso").data("modo", "2")
-        $(".js-acceso__contra-repe").on('keyup', acceso_Escribiendo);
+        $(".js-acceso__contra-repe").off("click").on('keyup', acceso_Escribiendo);
+        $(".js-acceso__boton-superior").html("Registrarme")
+        $(".js-acceso__boton-inferior").html("Entrar")
+
+        $(".js-acceso__boton-superior").off("click").on('click', acceso_Registro);
+        $(".js-acceso__boton-inferior").off("click").on('click', acceso_Entrar);
     }
 }
 function acceso_Escribiendo(evento) {
