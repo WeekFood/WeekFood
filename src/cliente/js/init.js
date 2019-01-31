@@ -30,5 +30,4 @@ $(".js-acceso").on('click', acceso_Alternar)
 
 var GLOBAL_GESTOR_PRODUCTOS = new GestorProductos();
 var GLOBAL_USUARIO = new Usuario();
-GLOBAL_USUARIO.id = 1; // TODO sacarlo de cookie / api / ???
 iniciarAplicacion()

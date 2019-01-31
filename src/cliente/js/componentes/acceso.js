@@ -171,8 +171,9 @@ function acceso_MensajeError(mensaje, tipo = 1) {
 }
 function acceso_LoginInicial() {
     if (extraerCookie("token") != null) {
-        $.getJSON("/api/auth/renovar_login")
+            GLOBAL_USUARIO.renovarToken()
             .done(() => {
+                GLOBAL_USUARIO.id = getIDcookie()
                 GLOBAL_CACHE_JSONS.getJSON("/api/usuarios/" + GLOBAL_USUARIO.id)
                     .then((respuesta) => {
                         GLOBAL_USUARIO.nick = respuesta[0].nick

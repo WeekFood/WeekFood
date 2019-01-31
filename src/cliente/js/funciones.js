@@ -70,6 +70,10 @@ function borrarCookie(nombre) {
 function crearCookie(nombre, valor) {
     document.cookie = nombre + '=' + valor;
 }
+function getIDcookie(){
+    var token = extraerCookie("token")
+    return token.split(".")[0]
+}
 function precioEnEuros(precio) {
     return (precio / 100).toString() + " €"
 }

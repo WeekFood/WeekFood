@@ -65,4 +65,7 @@ class Usuario {
             data: "nick=" + usuario + "&contraseña=" + pass
         })
     }
+    renovarToken(){
+        return $.getJSON("/api/auth/renovar_login")
+    }
 }
