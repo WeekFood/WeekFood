@@ -171,18 +171,33 @@ function acceso_MensajeError(mensaje, tipo = 1) {
 }
 function acceso_LoginInicial() {
     if (extraerCookie("token") != null) {
-            GLOBAL_USUARIO.renovarToken()
+        GLOBAL_USUARIO.renovarToken()
             .done(() => {
                 GLOBAL_USUARIO.id = getIDcookie()
                 GLOBAL_CACHE_JSONS.getJSON("/api/usuarios/" + GLOBAL_USUARIO.id)
                     .then((respuesta) => {
                         GLOBAL_USUARIO.nick = respuesta[0].nick
                         GLOBAL_USUARIO.nombre = respuesta[0].nombre
-                        GLOBAL_USUARIO.foto = respuesta[0].foto
+                        GLOBAL_USUARIO.sexo = respuesta[0].sexo
+                        if (respuesta[0].foto == null) {
+                            GLOBAL_USUARIO.foto = "imagenes/placeholders/perfil_defecto_"
+                            switch (GLOBAL_USUARIO.sexo) {
+                                case "M":
+                                    GLOBAL_USUARIO.foto += "hombre.png"
+                                    break
+                                case "F":
+                                    GLOBAL_USUARIO.foto += "mujer.png"
+                                    break
+                                default:
+                                    GLOBAL_USUARIO.foto += "indefinido.png"
+                            }
+                        } else {
+                            GLOBAL_USUARIO.foto = "/imagenes/usuarios/" + respuesta[0].foto
+                        }
                         $(".js-acceso").remove()
                         $(".c-cabecera__botones").prepend(`<div data-modo="1" class="c-cabecera__boton js-perfil">
                         <div class="c-perfil__contenedor-imagen c-perfil__contenedor-imagen--cabecera">
-                        <img class='c-perfil__imagen c-perfil__imagen--cabecera' src='`+ GLOBAL_FOTOS_USUARIOS + GLOBAL_USUARIO.foto + `'>
+                        <img class='c-perfil__imagen c-perfil__imagen--cabecera' src='`+ GLOBAL_USUARIO.foto + `'>
                         </div></div>`)
                         $(".js-perfil").on("click", perfil_Alternar)
                         $(".c-acceso, .c-acceso__errores").remove()

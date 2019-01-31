@@ -157,8 +157,9 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `nombre` varchar(100) NOT NULL,
   `apellidos` varchar(100),
   `foto` varchar(100),
+  `sexo` varchar(1),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Esta tabla es dummy';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla weekfood.usuarios: ~0 rows (aproximadamente)
 DELETE FROM `usuarios`;

@@ -7,7 +7,7 @@ function perfil_Alternar() {
     if ($(".c-perfil").length == 0) {
         $(".p-principal").prepend(`<div class='c-perfil'>
         <div class="c-perfil__contenedor-imagen">
-        <img class='c-perfil__imagen' src='`+ GLOBAL_FOTOS_USUARIOS + GLOBAL_USUARIO.foto + `'>
+        <img class='c-perfil__imagen' src='`+ GLOBAL_USUARIO.foto + `'>
         </div>
         <div class="c-boton c-boton--exito c-perfil__boton js-perfil__vista">Mi perfil</div>
         <div class="c-boton c-boton--basico c-perfil__boton js-perfil__mensajes">Mis mensajes</div>
@@ -25,7 +25,7 @@ function perfil_Alternar() {
         $(".js-perfil").remove()
         $(".c-cabecera__botones").prepend(`<div data-modo="1" class="c-cabecera__boton js-perfil">
         <div class="c-perfil__contenedor-imagen c-perfil__contenedor-imagen--cabecera">
-        <img class='c-perfil__imagen c-perfil__imagen--cabecera' src='`+ GLOBAL_FOTOS_USUARIOS + GLOBAL_USUARIO.foto + `'>
+        <img class='c-perfil__imagen c-perfil__imagen--cabecera' src='`+ GLOBAL_USUARIO.foto + `'>
         </div></div>`)
         $(".js-perfil").on("click", perfil_Alternar)
     }

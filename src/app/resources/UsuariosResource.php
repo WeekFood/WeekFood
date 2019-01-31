@@ -18,12 +18,11 @@ class UsuariosResource extends Resource {
             return;
         }
         // TODO nivel privilegios
-        $this->sql = 'SELECT id, nick, nombre, apellidos, foto FROM usuarios WHERE id = :idUsuario';
+        $this->sql = 'SELECT id, nick, nombre, apellidos, foto, sexo FROM usuarios WHERE id = :idUsuario';
         $params = [
             "idUsuario" => $this->controller->getParam("idUsuario")
         ];
         $this->execSQL($params);
-        $this->data[0]["foto"] = "perfil.png";
         $this->setData();
     }
 }

@@ -13,4 +13,3 @@ var GLOBAL_CACHE_JSONS = new CacheJSONs();
 var GLOBAL_NOTIFICACION_TOP = undefined;
 var GLOBAL_NOTIFICACION_FLASH = undefined;
 var GLOBAL_CARRITO_EXISTE = undefined;
-var GLOBAL_FOTOS_USUARIOS = "/imagenes/usuarios/"
