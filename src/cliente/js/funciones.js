@@ -83,10 +83,12 @@ function precioEnDollar(precio) {
 function precioEnLibra(precio) {
     return (precio * 0.88).toString() + " £"
 }
-function iniciarAplicacion(primeraVez = false) {
-    GLOBAL_CACHE_JSONS = new CacheJSONs();
-    GLOBAL_CARRITO = new Carrito();
-    acceso_LoginInicial(primeraVez)
+function iniciarAplicacion(primeraVez = false, nuevoUsuario = false) {
+    if (!primeraVez) {
+        GLOBAL_CACHE_JSONS.vaciar()
+        GLOBAL_CARRITO.vaciar()
+    }
+    acceso_LoginInicial(nuevoUsuario)
 
     if (!redirigir()) {
         cargarVista("portada")

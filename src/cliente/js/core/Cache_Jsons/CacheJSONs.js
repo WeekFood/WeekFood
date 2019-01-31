@@ -32,4 +32,7 @@ class CacheJSONs {
             return nuevoJsonCacheado.respuesta
         })
     }
+    vaciar() {
+        this.jsonsEnCache = [];
+    }
 }

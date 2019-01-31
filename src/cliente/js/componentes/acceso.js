@@ -5,7 +5,7 @@ function acceso_Alternar() {
         }
     }
     if ($(".c-acceso").length < 1) {
-        $(".p-principal").prepend(`<div data-modo="1" class='c-acceso'>
+        $(".p-principal").prepend(`<div data-modo="Entrar" class='c-acceso'>
             <p class="c-acceso__titulo">Acceso</p>
             <form>
             <input class="c-acceso__campo js-acceso__nombre" type="text" placeholder="Usuario">
@@ -28,23 +28,23 @@ function acceso_Alternar() {
         $(".js-acceso__registro").addClass("c-boton--basico").removeClass("c-boton--exito")
         $(".c-acceso__titulo").html("Acceso")
         $(".js-acceso__contra-repe").remove()
-        $(".c-acceso").data("modo", "1")
+        $(".c-acceso").data("modo", "Entrar")
     }
     $(".js-acceso").children("i").toggleClass("fa-angle-up").toggleClass("fa-user")
     acceso_ReiniciarCampos()
 }
 function acceso_Entrar() {
-    if ($(".c-acceso").data("modo") == 1) {
+    if ($(".c-acceso").data("modo") == "Entrar") {
         if (!acceso_ErroresAcceso()) {
             GLOBAL_USUARIO.acceder($(".js-acceso__nombre").val(), $(".js-acceso__contra").val())
                 .done(() => { iniciarAplicacion() })
                 .fail((respuesta) => {
                     switch (respuesta.responseJSON.error) {
                         case "USUARIO_NO_ENCONTRADO":
-                            acceso_MensajeError(GLOBAL_USUARIO.erroresAcceso[0])
+                            acceso_MensajeError(GLOBAL_USUARIO.erroresAcceso.Usu_No_Existe)
                             break
                         case "CONTRASEÑA_INCORRECTA":
-                            acceso_MensajeError(GLOBAL_USUARIO.erroresAcceso[1])
+                            acceso_MensajeError(GLOBAL_USUARIO.erroresAcceso.Cont_No_Valido)
                             break
                         default:
                             acceso_MensajeError(GLOBAL_USUARIO.errorGenerico)
@@ -52,59 +52,65 @@ function acceso_Entrar() {
                 })
         }
     } else {
-        acceso_ReiniciarCampos()
-        $(".c-acceso__titulo").html("Acceso")
-        $(".js-acceso__contra-repe").remove()
-        $(".c-acceso").data("modo", "1")
-        $(".js-acceso__boton-superior").html("Entrar")
-        $(".js-acceso__boton-inferior").html("Registrarme")
-
-        $(".js-acceso__boton-superior").off("click").on('click', acceso_Entrar);
-        $(".js-acceso__boton-inferior").off("click").on('click', acceso_Registro);
+        activar_modoEntrar()
     }
 }
+function activar_modoEntrar() {
+    acceso_ReiniciarCampos()
+    $(".c-acceso__titulo").html("Acceso")
+    $(".js-acceso__contra-repe").remove()
+    $(".c-acceso").data("modo", "Entrar")
+    $(".js-acceso__boton-superior").html("Entrar")
+    $(".js-acceso__boton-inferior").html("Registrarme")
+
+    $(".js-acceso__boton-superior").off("click").on('click', acceso_Entrar);
+    $(".js-acceso__boton-inferior").off("click").on('click', acceso_Registro);
+}
 function acceso_Registro() {
-    if ($(".c-acceso").data("modo") == 2) {
+    if ($(".c-acceso").data("modo") == "Registro") {
         if (!acceso_ErroresRegistro()) {
             GLOBAL_USUARIO.acceso_RegistroUsuarioLibre(($(".js-acceso__nombre").val()))
                 .done((respuesta) => {
                     if (respuesta.yaExiste) {
-                        acceso_MensajeError(GLOBAL_USUARIO.erroresRegistro[0], 0)
+                        acceso_MensajeError(GLOBAL_USUARIO.erroresRegistro.Usu_Ya_Existe)
                     } else {
                         GLOBAL_USUARIO.registrar($(".js-acceso__nombre").val(), $(".js-acceso__contra").val())
                             .fail(() => {
-                                acceso_MensajeError(GLOBAL_USUARIO.erroresRegistro[0], 0)
+                                acceso_MensajeError(GLOBAL_USUARIO.erroresRegistro.Usu_Ya_Existe)
                             })
                             .done(() => {
                                 crearCookie("Redirect", "/perfil")
-                                iniciarAplicacion(true);
+                                iniciarAplicacion(false, true);
                             })
                     }
                 })
                 .fail(() => {
-                    acceso_MensajeError(GLOBAL_USUARIO.errorGenerico, 0)
+                    acceso_MensajeError(GLOBAL_USUARIO.errorGenerico)
                 })
         }
     } else {
-        acceso_ReiniciarCampos()
-        $(".c-acceso__titulo").html("Registro")
-        $('<input class="c-acceso__campo js-acceso__contra-repe" type="password" placeholder="Contraseña">').insertAfter(".js-acceso__contra")
-        $(".c-acceso").data("modo", "2")
-        $(".js-acceso__contra-repe").off("click").on('keyup', acceso_Escribiendo);
-        $(".js-acceso__boton-superior").html("Registrarme")
-        $(".js-acceso__boton-inferior").html("Entrar")
-
-        $(".js-acceso__boton-superior").off("click").on('click', acceso_Registro);
-        $(".js-acceso__boton-inferior").off("click").on('click', acceso_Entrar);
+        activar_modoRegistro()
     }
 }
+function activar_modoRegistro() {
+    acceso_ReiniciarCampos()
+    $(".c-acceso__titulo").html("Registro")
+    $('<input class="c-acceso__campo js-acceso__contra-repe" type="password" placeholder="Contraseña">').insertAfter(".js-acceso__contra")
+    $(".c-acceso").data("modo", "Registro")
+    $(".js-acceso__contra-repe").off("click").on('keyup', acceso_Escribiendo);
+    $(".js-acceso__boton-superior").html("Registrarme")
+    $(".js-acceso__boton-inferior").html("Entrar")
+
+    $(".js-acceso__boton-superior").off("click").on('click', acceso_Registro);
+    $(".js-acceso__boton-inferior").off("click").on('click', acceso_Entrar);
+}
 function acceso_Escribiendo(evento) {
-    if ($(".c-acceso").data("modo") == 1) {
-        if (evento.keyCode === 13) {
+    if ($(".c-acceso").data("modo") == "Entrar") {
+        if (evento.key == 'Enter') {
             acceso_Entrar()
         }
     } else {
-        if (!acceso_ErroresRegistro() && evento.keyCode === 13) {
+        if (!acceso_ErroresRegistro() && evento.key == 'Enter') {
             acceso_Registro()
         }
     }
@@ -144,15 +150,15 @@ function acceso_ReiniciarCampos() {
     $(".js-acceso__contra-repe").val("")
     $(".c-acceso__errores").remove()
 }
-function acceso_MensajeError(mensaje, tipo = 1) {
-    if (tipo == 0) {
+function acceso_MensajeError(mensaje) {
+    if ($(".c-acceso").data("modo") == "Entrar") {
         if ($(".c-acceso__errores").length == 0) {
-            $("<div class='c-acceso__errores c-acceso__errores--registro'></div>").insertBefore(".c-acceso")
+            $("<div class='c-acceso__errores c-acceso__errores--acceso'></div>").insertBefore(".c-acceso")
         }
         $(".c-acceso__errores").html("<p class='c-acceso__error-mensaje'>" + mensaje + "</p>")
     } else {
         if ($(".c-acceso__errores").length == 0) {
-            $("<div class='c-acceso__errores c-acceso__errores--acceso'></div>").insertBefore(".c-acceso")
+            $("<div class='c-acceso__errores c-acceso__errores--registro'></div>").insertBefore(".c-acceso")
         }
         $(".c-acceso__errores").html("<p class='c-acceso__error-mensaje'>" + mensaje + "</p>")
 
@@ -184,9 +190,9 @@ function acceso_LoginInicial(primeraVez = false) {
                             GLOBAL_USUARIO.foto = "/imagenes/usuarios/" + respuesta[0].foto
                         }
                         $(".js-acceso").remove()
-                        $(".c-cabecera__botones").prepend(`<div data-modo="1" class="c-cabecera__boton js-perfil">
-                        <div class="c-perfil__contenedor-imagen c-perfil__contenedor-imagen--cabecera">
-                        <img class='c-perfil__imagen c-perfil__imagen--cabecera' src='`+ GLOBAL_USUARIO.foto + `'>
+                        $(".c-cabecera__botones").prepend(`<div data-modo="Entrar" class="c-cabecera__boton js-perfil">
+                        <div class="c-cabecera__contenedor-imagen">
+                        <img class='c-cabecera__imagen' src='`+ GLOBAL_USUARIO.foto + `'>
                         </div></div>`)
                         $(".js-perfil").on("click", perfil_Alternar)
                         $(".c-acceso, .c-acceso__errores").remove()

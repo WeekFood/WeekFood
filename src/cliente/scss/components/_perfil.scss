@@ -21,10 +21,6 @@
     height: 100px;
     width: 100px;
     object-fit: cover;
-    &--cabecera {
-        height: 40px;
-        width: 40px;
-    }
 }
 
 .c-perfil__contenedor-imagen {
@@ -32,12 +28,7 @@
     overflow: hidden;
     height: 100px;
     width: 100px;
-    margin: 0  0 5px 20px;
-    &--cabecera {
-        height: 40px;
-        width: 40px;
-        margin: 0px;
-    }
+    margin: 0 0 5px 20px;
 }
 
 .c-perfil__boton {

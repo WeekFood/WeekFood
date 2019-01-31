@@ -1,9 +1,11 @@
 @import 'abstracts/breakpoints';
 @import 'abstracts/colores';
 @import 'abstracts/tipografia';
+
 @import 'base/normalize';
 @import 'base/reset';
 @import 'base/box-sizing';
+
 @import 'components/logo';
 @import 'components/cabecera';
 @import 'components/carrito';
@@ -23,5 +25,7 @@
 @import 'components/acceso';
 @import 'components/perfil';
 @import 'components/bienvenida';
+
 @import 'layout/distribucion';
+
 @import 'pages/principal';

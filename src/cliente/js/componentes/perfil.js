@@ -18,14 +18,14 @@ function perfil_Alternar() {
     } else {
         $(".c-perfil").toggleClass("c-perfil--desaparecer")
     }
-    if ($(".js-perfil").data("modo") == 1) {
+    if ($(".js-perfil").data("modo") == "Entrar") {
         $(".js-perfil").html("<i class='fas fa-angle-up'></i>")
-        $(".js-perfil").data("modo", "2")
+        $(".js-perfil").data("modo", "Registrar")
     } else {
         $(".js-perfil").remove()
-        $(".c-cabecera__botones").prepend(`<div data-modo="1" class="c-cabecera__boton js-perfil">
-        <div class="c-perfil__contenedor-imagen c-perfil__contenedor-imagen--cabecera">
-        <img class='c-perfil__imagen c-perfil__imagen--cabecera' src='`+ GLOBAL_USUARIO.foto + `'>
+        $(".c-cabecera__botones").prepend(`<div data-modo="Entrar" class="c-cabecera__boton js-perfil">
+        <div class="c-cabecera__contenedor-imagen">
+        <img class='c-cabecera__imagen' src='`+ GLOBAL_USUARIO.foto + `'>
         </div></div>`)
         $(".js-perfil").on("click", perfil_Alternar)
     }

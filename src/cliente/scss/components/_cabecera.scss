@@ -68,6 +68,18 @@
     font-size: 10px;
 }
 
+.c-cabecera__contenedor-imagen {
+    border-radius: 100px;
+    overflow: hidden;
+    height: 40px;
+    width: 40px;
+}
+
+.c-cabecera__imagen {
+    height: 40px;
+    width: 40px;
+}
+
 @keyframes c-cabecera__notificacion {
     0% {
         top: 8px

@@ -28,6 +28,8 @@ $('.js-boton-menu').on('click', () => {
 $(".js-carrito").on('click', carrito_Alternar)
 $(".js-acceso").on('click', acceso_Alternar)
 
+var GLOBAL_CACHE_JSONS = new CacheJSONs();
 var GLOBAL_GESTOR_PRODUCTOS = new GestorProductos();
+var GLOBAL_CARRITO = new Carrito();
 var GLOBAL_USUARIO = new Usuario();
-iniciarAplicacion()
+iniciarAplicacion(true)
