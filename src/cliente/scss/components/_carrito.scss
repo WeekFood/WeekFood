@@ -22,6 +22,7 @@
 .c-carrito__botones {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 0;
 }
 
 .c-carrito__boton {
@@ -31,7 +32,7 @@
     display: flex;
     margin: 5px 0;
     height: 35px;
-    font-weight: 900;
+    font-size: 18px;
     line-height: 35px;
     overflow: hidden;
 }
@@ -43,8 +44,15 @@
 .c-carrito__operador {
     margin: 0 10px;
     padding: 0 5px;
+    font-size: 14px;
     &--limite {
         opacity: 0.2;
+    }
+    &--incremento {
+        margin-right: 0;
+    }
+    &--decremento {
+        margin-left: 0;
     }
 }
 
@@ -52,6 +60,7 @@
     font-size: 20px;
     width: 25px;
     text-align: center;
+    margin: 0 5px;
     &--limite {
         color: red;
     }

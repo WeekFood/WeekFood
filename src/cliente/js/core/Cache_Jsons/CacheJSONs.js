@@ -24,7 +24,7 @@ class CacheJSONs {
     filtrarJson(actual, buscando) {
         return actual == buscando["url"]
     }
-    nuevoJson(url, diferido) {
+    nuevoJson(url) {
         var nuevoJsonCacheado = new JSONCacheado(url)
         return $.getJSON(url).then((datos) => {
             nuevoJsonCacheado.respuesta = datos
