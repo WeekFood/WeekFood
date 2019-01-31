@@ -7,38 +7,48 @@
     border-radius: 10px;
 }
 
-.c-perfil__usuario {
+.c-perfil__usuario {   
     display: grid;
     margin: 20px 0;
-    grid-template-columns: 1fr;
-    grid-template-areas: ". foto nombre ." ". foto apellidos ." ". nick fechaNacimiento ." ". contraseña telefono ."
+    grid-column-gap: 20px;
+    grid-template-columns: 1fr 300px 1fr 1fr;
+    grid-template-rows: 20px;
+    grid-template-areas: ". foto nombre ." ". foto apellidos ." ". nick fechaNacimiento ." ". contraseña telefono .";
 }
 
-.c-perfil__detalles {}
+.c-perfil__detalles {
+    display: grid;
+    margin: 20px 0;
+    grid-column-gap: 20px;
+    grid-template-columns: repeat(6,1fr);
+    grid-template-rows: auto;
+    grid-template-areas: "metodos-pago metodos-pago . pedidos pedidos pedidos" " . . ubicaciones ubicaciones . .";
+}
 
 .c-perfil__foto-contenedor {
     grid-area: foto;
-    width: 10vw;
-    height: 10vw;
+    width: 150px;
+    height: 150px;
     border-radius: 150px;
+    margin-left: 100px;
     overflow: hidden;
 }
 
 .c-perfil__foto {
-    width: 10vw;
-    height: 10vw;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
 .c-perfil__nombre {
     grid-area: nombre;
-    line-height: 120px;
+    line-height: 100px;
     font-size: 1.5rem;
 }
 
 .c-perfil__apellidos {
     grid-area: apellidos;
-    line-height: 120px;
+    line-height: 150px;
     font-size: 1.5rem;
 }
 
@@ -53,7 +63,7 @@
 }
 
 .c-perfil__nacimiento {
-    grid-area: nacimiento;
+    grid-area: fechaNacimiento;
     line-height: 35px;
 }
 
@@ -65,11 +75,46 @@
 .c-perfil__metodos-pago {
     grid-area: metodos-pago
 }
+.c-perfil__metodo-pago{
+    padding: 5px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 
+}
+.c-perfil__metodos-pago-inicio{
+    border-bottom: 1px solid;
+    padding-bottom: 10px;
+}
+.c-perfil__metodos-pago-final{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+}
 .c-perfil__pedidos {
     grid-area: pedidos
+}
+.c-perfil__pedido {
+    padding: 5px 0;
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr 100px;
+}
+.c-perfil__pedidos-inicio{
+    border-bottom: 1px solid;
+    padding-bottom: 10px;
+}
+.c-perfil__pedidos-final{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+}
+.c-perfil__boton{
+    margin: auto;
 }
 
 .c-perfil__ubicaciones {
     grid-area: ubicaciones;
+}
+.c-perfil__titulo{
+    text-align: center;
+    font-size: 1.3rem;
 }

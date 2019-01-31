@@ -12,10 +12,14 @@ function vista_Perfil(puntoMontaje) {
         ],
         fechaNacimiento: "4/1/86",
         metodosPago: [
-            { titulo: "MasterCard", valor: "**** **** **** 4742, 9/2024" }
+            { titulo: "MasterCard", valor: "**** **** **** 4742, 9/2024" },
+            { titulo: "Visa", valor: "**** **** **** 4772, 8/2030" },
+            { titulo: "Paypal", valor: "**** **** **** 4572, 1/2028" },
+            { titulo: "Visa", valor: "**** **** **** 9782, 9/2022" },
+            { titulo: "MasterCard", valor: "**** **** **** 1457, 10/2024" }
         ],
         telefono: "+34 761 260 263",
-        contraseña: "Uquuwah6ang",
+        contraseña: 10, //longitud
         pedidos: [
             {
                 id: 1,
@@ -85,24 +89,46 @@ function vista_Perfil(puntoMontaje) {
             }
         ]
     }
+    var contraseña = ""
+    for (var x = 0; x < usuario.contraseña; x++) {
+        contraseña += "&#9899"
+    }
     if (usuario.metodosPago.length == 0) {
         var metodosPago = "<p>No tienes métodos de pago</p>"
     } else {
-        var metodosPago = ""
-        usuario.metodosPago.forEach(tarjeta => {
-            metodosPago += "<div><span>" + tarjeta.titulo + "</span><span>" + tarjeta.valor + "</span></div>"
-        })
+        var metodosPago =`<div class='c-perfil__metodos-pago-inicio'>
+        <p class='c-perfil__titulo'>Métodos de pago</p></div>`
+
+        for (var x = 1; x < usuario.metodosPago.length - 1 && x < 4; x++) {
+            var metodoPago = usuario.metodosPago[usuario.metodosPago.length - x]
+            metodosPago += `<div class='c-perfil__metodo-pago'>
+            <span>` + metodoPago.titulo + `</span>
+            <span'>` + metodoPago.valor + `</span>
+            </div>`
+        }
+        if (usuario.metodosPago.length > 3) {
+            metodosPago += `<div class='c-perfil__metodos-pago-final'>
+                        <p class='c-boton c-boton--basico c-perfil__boton'>` + (usuario.metodosPago.length - 3) + " mas...</p></div>"
+        }
     }
     if (usuario.pedidos.length == 0) {
         var pedidos = "<p>No tienes pedidos</p>"
     } else {
-        var pedidos = ""
+        var pedidos =`<div class='c-perfil__pedidos-inicio'>
+        <p class='c-perfil__titulo'>Pedidos</p></div>`
         for (var x = 1; x < usuario.pedidos.length - 1 && x < 4; x++) {
             var pedido = usuario.pedidos[usuario.pedidos.length - x]
-            pedidos += "<div><span>" + pedido.id + "</span><span>Compra:" + pedido.fechaCompra + "</span><span>" + pedido.articulos.length + " artículos</span></div>"
+            pedidos += `
+            <div class='c-perfil__pedido'>
+            <span>` + pedido.id + `</span>
+            <span>Compra: ` + pedido.fechaCompra + ` | `+pedido.horaCompra+`</span>
+            <span>Entrega: ` + pedido.fechaEntregado + ` | `+pedido.horaEntregado+`</span>
+            <span>` + pedido.articulos.length + ` artículos</span>
+            </div>`
         }
         if (usuario.pedidos.length > 3) {
-            pedidos += "<p class='c-boton c-boton--basico'>" + (usuario.pedidos.length - 3) + " mas...</p>"
+            pedidos += `<div class='c-perfil__pedidos-final'>
+                        <p class='c-boton c-boton--basico c-perfil__boton'>` + (usuario.pedidos.length - 3) + " mas...</p></div>"
         }
     }
     $(puntoMontaje).html(`<div class="c-perfil">
@@ -113,14 +139,14 @@ function vista_Perfil(puntoMontaje) {
                             <p class='c-perfil__nombre'>`+ usuario.nombre + `</p>
                             <p class='c-perfil__apellidos'>`+ usuario.apellidos + `</p>
                             <p class='c-perfil__nick'>Nick: `+ usuario.nick + `</p>
-                            <p class='c-perfil__contraseña'>Contraseña: `+ usuario.contraseña + `</p>
+                            <p class='c-perfil__contraseña'>Contraseña: `+ contraseña + `</p>
                             <p class='c-perfil__nacimiento'>Nacimiento: `+ usuario.fechaNacimiento + `</p>
                             <p class='c-perfil__telefono'>Tlf: `+ usuario.telefono + `</p>
                             </div>
                             <div class="c-perfil__detalles">
                             <div class='c-perfil__metodos-pago'>`+ metodosPago + `</div>
                             <div class='c-perfil__pedidos'>`+ pedidos + `</div>
-                            <p class='c-boton c-boton--basico c-perfil__ubicaciones'>Mis ubicaciones</p>
+                            <p class='c-boton c-boton--basico c-perfil__ubicaciones c-perfil__boton'>Mis ubicaciones</p>
                             </div>
                             </div>`)
 
