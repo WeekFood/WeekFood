@@ -14,7 +14,7 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             <div class='c-quienes-somos__contenido-equipo'>
             <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yuriy.jpg'><div class='c-quienes-somos__nombre'>Yuriy</div><div class='c-quienes-somos__texto'>Director de operaciones</div></div>
             <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/toni.jpg'><div class='c-quienes-somos__nombre'>Toni</div><div class='c-quienes-somos__texto'>Director Ejecutivo</div></div>
-            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/jl.jpg'><div class='c-quienes-somos__nombre'>José Luis</div><div class='c-quienes-somos__texto'>Director de diseño</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/joseluis.jpg'><div class='c-quienes-somos__nombre'>José Luis</div><div class='c-quienes-somos__texto'>Director de diseño</div></div>
             </div>
             <div class='c-quienes-somos__servicios'>
             <div class='c-quienes-somos__attCliente'>
@@ -44,7 +44,7 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             <div class='c-quienes-somos__contenido-equipo'>
             <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yuriy.jpg'><div class='c-quienes-somos__nombre'>Yuriy</div><div class='c-quienes-somos__texto'>Chief Operating Officer</div></div>
             <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/toni.jpg'><div class='c-quienes-somos__nombre'>Toni</div><div class='c-quienes-somos__texto'>Chief Executive Officer</div></div>
-            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/jl.jpg'><div class='c-quienes-somos__nombre'>José Luis</div><div class='c-quienes-somos__texto'>Chief Design Officer</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/joseluis.jpg'><div class='c-quienes-somos__nombre'>José Luis</div><div class='c-quienes-somos__texto'>Chief Design Officer</div></div>
             </div>
             <div class='c-quienes-somos__servicios'>
             <div class='c-quienes-somos__attCliente'>
