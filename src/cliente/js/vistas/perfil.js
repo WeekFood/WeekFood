@@ -1,10 +1,6 @@
 function vista_Perfil(puntoMontaje) {
     montarMenu("/api/menu", "perfil")
     var usuario = {
-        foto: "imagenes/usuarios/funny-pic-of-donald-trump.jpg",
-        nombre: "Baldomero Gilberto",
-        apellidos: "Zuzunaga Cacharro",
-        nick: "Adaying1986",
         ubicaciones =[
             "Avda. Los llanos, 73 26270 Ojacastro",
             "Avda. Los llanos, 23 26270 Ojacastro",
@@ -100,26 +96,26 @@ function vista_Perfil(puntoMontaje) {
     if (usuario.metodosPago.length == 0) {
         var metodosPago = "<p>No tienes métodos de pago</p>"
     } else {
-        var metodosPago =`<div class='c-perfil__metodos-pago-inicio'>
-        <p class='c-perfil__titulo'>Métodos de pago</p></div>`
+        var metodosPago = `<div class='c-vista-perfil__metodos-pago-inicio'>
+        <p class='c-vista-perfil__titulo'>Métodos de pago</p></div>`
 
         for (var x = 1; x < usuario.metodosPago.length - 1 && x < 4; x++) {
             var metodoPago = usuario.metodosPago[usuario.metodosPago.length - x]
-            metodosPago += `<div class='c-perfil__metodo-pago'>
+            metodosPago += `<div class='c-vista-perfil__metodo-pago'>
             <span>` + metodoPago.titulo + `</span>
             <span'>` + metodoPago.valor + `</span>
             </div>`
         }
         if (usuario.metodosPago.length > 3) {
-            metodosPago += `<div class='c-perfil__metodos-pago-final'>
-                        <p class='c-boton c-boton--basico c-perfil__boton'>` + (usuario.metodosPago.length - 3) + " mas...</p></div>"
+            metodosPago += `<div class='c-vista-perfil__metodos-pago-final'>
+                        <p class='c-boton c-boton--basico c-vista-perfil__boton'>` + (usuario.metodosPago.length - 3) + " mas...</p></div>"
         }
     }
     if (usuario.pedidos.length == 0) {
         var pedidos = "<p>No tienes pedidos</p>"
     } else {
-        var pedidos =`<div class='c-perfil__pedidos-inicio'>
-        <p class='c-perfil__titulo'>Pedidos</p></div>`
+        var pedidos = `<div class='c-vista-perfil__pedidos-inicio'>
+        <p class='c-vista-perfil__titulo'>Pedidos</p></div>`
         for (var x = 1; x < usuario.pedidos.length - 1 && x < 4; x++) {
             var pedido = usuario.pedidos[usuario.pedidos.length - x]
             pedidos += `
@@ -127,51 +123,131 @@ function vista_Perfil(puntoMontaje) {
             <span class="c-pedido__id">` + pedido.id + `</span>
             <span class="c-pedido__compra">Compra</span>
             <span class="c-pedido__compra-fecha">` + pedido.fechaCompra + `</span>
-            <span class="c-pedido__compra-hora">`+pedido.horaCompra+`</span>
+            <span class="c-pedido__compra-hora">`+ pedido.horaCompra + `</span>
             <span class="c-pedido__entrega">Entrega</span>
             <span class="c-pedido__entrega-fecha"> ` + pedido.fechaEntregado + `</span>
-            <span class="c-pedido__entrega-hora">`+pedido.horaEntregado+`</span>
+            <span class="c-pedido__entrega-hora">`+ pedido.horaEntregado + `</span>
             <span class="c-pedido__articulos">` + pedido.articulos.length + ` artículos</span>
             </div>`
         }
         if (usuario.pedidos.length > 3) {
-            pedidos += `<div class='c-perfil__pedidos-final'>
-                        <p class='c-boton c-boton--basico c-perfil__boton'>` + (usuario.pedidos.length - 3) + " mas...</p></div>"
+            pedidos += `<div class='c-vista-perfil__pedidos-final'>
+                        <p class='c-boton c-boton--basico c-vista-perfil__boton'>` + (usuario.pedidos.length - 3) + " mas...</p></div>"
         }
     }
-    $(puntoMontaje).html(`<div class="c-perfil">
-                            <div class="c-perfil__usuario">
-                            <div class='c-perfil__foto-contenedor'>
-                                <img class='c-perfil__foto' src='`+ usuario.foto + `'>
-                            </div>
-                            <p class='c-perfil__nombre'>`+ usuario.nombre + `</p>
-                            <p class='c-perfil__apellidos'>`+ usuario.apellidos + `</p>
-                            <div class='c-perfil__nick-pass'>
-                                <p class='c-perfil__dato'>
-                                    <span>Nick</span>
-                                    <span>`+usuario.nick+`</span>
-                                </p>
-                                <p class='c-perfil__dato'>
-                                    <span>Contraseña</span>
-                                    <span>`+contraseña+`</span>
-                                </p>
-                            </div>
-                            <div class='c-perfil__otros-datos'>
-                                <p class='c-perfil__dato'>
-                                    <span>Nacimiento</span>
-                                    <span>`+usuario.fechaNacimiento+`</span>
-                                </p>
-                                <p class='c-perfil__dato'>
-                                    <span>Teléfono</span>
-                                    <span>`+usuario.telefono+`</span>
-                                </p>
-                            </div>
-                            </div>
-                                <div class="c-perfil__detalles">
-                                    <div class='c-perfil__metodos-pago'>`+ metodosPago + `</div>
-                                    <div class='c-perfil__pedidos'>`+ pedidos + `</div>
-                                    <p class='c-boton c-boton--basico c-perfil__ubicaciones c-perfil__boton'>Mis ubicaciones</p>
-                                </div>
-                            </div>`)
+    var html =
+        `<div class="c-vista-perfil">
+            <div class="c-vista-perfil__usuario">
+                <div class='c-vista-perfil__foto-contenedor'>
+                    <img class='c-vista-perfil__foto' src='`+ GLOBAL_USUARIO.foto + `'>
+                </div>
+                <p class='c-vista-perfil__nombre'>`+ GLOBAL_USUARIO.nombre + `</p>`
+    if (GLOBAL_USUARIO.apellidos != undefined) {
+        html += `<p class='c-vista-perfil__apellidos'>` + GLOBAL_USUARIO.apellidos + `</p>`
+    }
+    html += `<div class='c-vista-perfil__nick-pass' >
+                <p class='c-vista-perfil__dato'>
+                    <span>Nick</span>
+                    <span>`+ GLOBAL_USUARIO.nick + `</span>
+                </p>
+                <p class='c-vista-perfil__dato'>
+                    <span>Contraseña</span>
+                    <span>`+ contraseña + `</span>
+                </p>
+                    </div >
+            <div class='c-vista-perfil__otros-datos'>
+                <p class='c-vista-perfil__dato'>
+                    <span>Nacimiento</span>
+                    <span>`+ usuario.fechaNacimiento + `</span>
+                </p>
+                <p class='c-vista-perfil__dato'>
+                    <span>Teléfono</span>
+                    <span>` + usuario.telefono + `</span>
+                </p>`
+    if (GLOBAL_USUARIO.sexo == "H" || GLOBAL_USUARIO.sexo == "M") {
+        html += `   <p class='c-vista-perfil__dato'>
+                        <span>Sexo</span>
+                        <span>`
+        switch (GLOBAL_USUARIO.sexo) {
+            case "H":
+                html += "Hombre"
+                break
+            case "M":
+                html += "Mujer"
+                break
+            default:
+                html += "Indefinido"
+        }
+    }
+    html += `           </span>
+                    </p >
+                </div >
+            </div >
+        <div class="c-vista-perfil__detalles">
+            <div class='c-vista-perfil__metodos-pago'>`+ metodosPago + `</div>
+            <div class='c-vista-perfil__pedidos'>`+ pedidos + `</div>
+            <p class='c-boton c-boton--basico c-vista-perfil__ubicaciones c-vista-perfil__boton'>Mis ubicaciones</p>
+        </div>
+    </div > `
 
+    $(puntoMontaje).html(html)
+    $(".c-vista-perfil__foto").on(
+        {
+            mouseover: () => {
+                $(".c-vista-perfil__foto-contenedor").prepend(`
+            <div class='c-vista-perfil__foto-edit'>
+            <i class='fas fa-edit fa-4x'></i>
+            </div>`)
+                $(".c-vista-perfil__foto-edit").on("click", () => {
+                    generarVentanaModal({
+                        titulo: "Subir archivo",
+                        contenido: `
+                                    <div class="c-selector-archivo js-selector-archivo">
+                                        <div class="c-selector-archivo__interno">
+                                            <i class="fas fa-file-upload fa-4x c-selector-archivo__subida"></i>
+                                            <p class="c-selector-archivo__texto-movil">Toca para subir un archivo</p>
+                                            <p class="c-selector-archivo__texto-no-movil">Arrastra un archivo</p>
+                                        </div>
+                                    </div>`
+                    })
+                    $('.js-selector-archivo').on({
+                        'dragover dragenter': (evento) => {
+                            evento.preventDefault();
+                            evento.stopPropagation();
+                        },
+                        'drop': (evento) => {
+                            var datos = evento.originalEvent.dataTransfer;
+                            if (datos && datos.files.length) {
+                                evento.preventDefault();
+                                evento.stopPropagation();
+                                if (datos.files.length == 1) {
+                                    var lector = new FileReader();
+                                    lector.onload = $.proxy((archi, event) => {
+                                        if (archi.type.match('image.*')) {
+                                            GLOBAL_USUARIO.foto = event.target.result
+                                            $(".js-ventana-modal").remove()
+                                            cargarVista("perfil")
+                                            $(".c-cabecera__imagen").attr("src", GLOBAL_USUARIO.foto)
+                                            $(".c-perfil__imagen").attr("src", GLOBAL_USUARIO.foto)
+                                        } else {
+                                            generarNotificacion("Por favor sube sólo una imagen png, jpg o gif")
+                                        }
+                                    }, this, datos.files[0])
+                                    lector.readAsDataURL(datos.files[0])
+                                } else {
+                                    generarNotificacion("Por favor sube sólo una imagen png, jpg o gif")
+                                    $(".js-ventana-modal").remove()
+                                }
+                            } else {
+                                generarNotificacion("Por favor sube sólo una imagen png, jpg o gif")
+                                $(".js-ventana-modal").remove()
+                            }
+                        }
+                    });
+                })
+            },
+            mouseleave: () => {
+                $(".c-vista-perfil__foto-edit").remove()
+            }
+        });
 }
