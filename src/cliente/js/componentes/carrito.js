@@ -69,7 +69,7 @@ function carrito_ProcesarArticulo(articulo) {
         html += ' c-carrito__operador--limite'
     }
     html += `'><i class="fas fa-minus"></i></span>
-    <span class='c-carrito__basura js-carrito-basura'><i class="far fa-trash-alt"></i></span>
+    <span class='c-carrito__basura js-carrito-basura'><i class="fas fa-trash"></i></span>
     </p>`
     return html
 }
