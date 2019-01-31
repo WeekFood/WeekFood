@@ -9,10 +9,6 @@
                         'titulo titulo'
                         'precio carrito';
     cursor: pointer;
-   @media only screen and (min-width: $mobile-l) {
-      max-width: 100%;
-      border-radius: 10px;
-   }
 }
 
 .c-producto__imagen {
@@ -41,8 +37,9 @@
     align-self: center;
     margin-right: 5px;
     padding: 14px;
+    align-self: flex-end;
     &--en-carrito {
-        color: green;
+        color: $acento-exito;
     }
 }
 
@@ -51,6 +48,7 @@
     font-size: 30px;
     font-family: $fuente-principal;
     grid-area: precio;
+    align-self: flex-end;
 }
 
 .c-producto__titulo {
@@ -60,4 +58,5 @@
     padding: 10px;
     overflow: hidden;
     text-overflow: ellipsis;
+    align-self: center;
 }
