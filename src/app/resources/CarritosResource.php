@@ -3,6 +3,7 @@
 use core\MVC\Resource as Resource;
 
 class CarritosResource extends Resource {
+
     public function getCarritoAction() {
         $this->sql = "SELECT
                         carritos.id,
@@ -40,9 +41,9 @@ class CarritosResource extends Resource {
     }
 
     public function postCarritoAction() {
+
         $json = file_get_contents('php://input');
         $carrito = json_decode($json, true);
-        $idUsuario = 1; // TODO, usar id usuario de la sesion
         if (!array_key_exists("fecha", $carrito)) {
             $this->setError(400, 'Petición incorrecta');
             die();
@@ -90,7 +91,6 @@ class CarritosResource extends Resource {
     public function putCarritoAction() {
         $json = file_get_contents('php://input');
         $carrito = json_decode($json, true);
-        $idUsuario = 1; // TODO, usar id usuario de la sesion
         if (!array_key_exists("id", $carrito)) {
             $this->setError(400, 'Petición incorrecta');
             die();

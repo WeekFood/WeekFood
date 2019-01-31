@@ -62,6 +62,11 @@ return [
             "resource" => "carritos",
             "action" => "getCarrito"
         ],
+        "API, datos de usuario" => [
+            "route" => "api/usuarios/:idUsuario",
+            "resource" => "usuarios",
+            "action" => "getUsuario"
+        ],
         "API, Auth, renovar login" => [
             "route" => "api/auth/renovar_login",
             "resource" => "auth",
@@ -103,6 +108,5 @@ return [
         ]
     ],
     "delete" => [
-
     ]
 ];

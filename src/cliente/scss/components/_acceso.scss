@@ -1,0 +1,131 @@
+.c-acceso {
+    border-radius: 0px 0px 10px 10px;
+    width: 425px;
+    z-index: 2;
+    position: absolute;
+    top: 50px;
+    background: #ffffff;
+    right: 0px;
+    padding: 15px;
+    margin: 0;
+    max-height: 80vh;
+    overflow: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation: c-acceso__aparecer 0.5s;
+    &--desaparecer {
+        animation: c-acceso__desaparecer 0.5s both;
+    }
+    @media only screen and (min-width: $mobile-l) {
+        width: 315px;
+    }
+}
+
+.c-acceso__errores {
+    border-radius: 0px 0px 10px 10px;
+    width: 425px;
+    z-index: 2;
+    position: absolute;
+    background: red;
+    right: 0px;
+    padding: 15px;
+    margin: 0;
+    max-height: 80vh;
+    color: white;
+    overflow: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation: c-acceso__aparecer 0.5s;
+    &--desaparecer {
+        animation: c-acceso__desaparecer 0.5s both;
+    }
+    @media only screen and (min-width: $mobile-l) {
+        width: 315px;
+    }
+    &--acceso {
+        top: 240px;
+    }
+    &--registro {
+        top: 275px;
+    }
+}
+
+.c-acceso__error-mensaje {
+    padding: 5px 0;
+}
+
+.c-acceso__titulo {
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 30px;
+    @media only screen and (min-width: $mobile-l) {
+        font-size: 25px;
+    }
+}
+
+.c-acceso__campo {
+    margin: 5px 0;
+    width: 100%;
+    display: inline-block;
+}
+
+.c-acceso__botones {
+    width: 100%;
+    text-align: center;
+}
+
+.c-acceso__boton {
+    margin: 10px auto 0 auto;
+    width: 60%;
+}
+
+.c-acceso__cambio-modo {
+    margin-top: 10px;
+    text-decoration: underline;
+}
+
+.c-acceso__bienvenida {
+    padding: 30px 15px;
+}
+
+.c-acceso__bienvenida-titulo {
+    font-size: 1.7rem;
+    text-align: center;
+    @media only screen and (min-width: $mobile-l) {
+        font-size: 2rem;
+    }
+}
+
+.c-acceso__bienvenida-contenido {
+    font-size: 1.2rem;
+    line-height: 1.3rem;
+    margin-top: 25px;
+    @media only screen and (min-width: $mobile-l) {
+        margin-top: 30px;
+    }
+    &--nota {
+        font-size: 1rem;
+        line-height: 1rem;
+        margin-top: 0px;
+        font-style: italic;
+    }
+}
+
+.c-acceso__logout {
+    padding: 25px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+@keyframes c-acceso__aparecer {
+    0% {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes c-acceso__desaparecer {
+    99% {
+        transform: translateY(-110%);
+    }
+    100% {
+        transform: translateY(-200%);
+    }
+}
