@@ -56,7 +56,7 @@ class Auth {
         return $psSelect->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function login(string $nick, string $password): array {
+    public function login(string $nick, string $password): array{
         $sql = 'SELECT * FROM usuarios WHERE BINARY nick = :nick LIMIT 1;';
 
         $ps = $this->db->prepare($sql);
@@ -154,10 +154,10 @@ class Auth {
 
     public function isLoggedIn(): bool {
         return session_status() !== PHP_SESSION_NONE
-                && isset($_SESSION['logueado'])
-                && $_SESSION['logueado']
-                && isset($_SESSION['idUsuario'])
-                && $_SESSION['idUsuario'] > -1;
+        && isset($_SESSION['logueado'])
+        && $_SESSION['logueado']
+        && isset($_SESSION['idUsuario'])
+        && $_SESSION['idUsuario'] > -1;
     }
 
     public function getLoggedId(): int {
@@ -172,16 +172,16 @@ class Auth {
         $errorMessage;
 
         switch ($errorConst) {
-            case (self::ERR_NO_TOKEN):
-                $errorMessage = 'NO_HAY_TOKEN';
-                break;
-            case (self::ERR_RENEW_LOGIN_INVALID_SIGNATURE):
-                $errorMessage = 'FIRMA_INVALIDA';
-                break;
-            case (self::ERR_LOGOUT_NO_LOGIN):
-                $errorMessage = 'NO_HAY_LOGIN';
-                break;
-            default:
+        case (self::ERR_NO_TOKEN):
+            $errorMessage = 'NO_HAY_TOKEN';
+            break;
+        case (self::ERR_RENEW_LOGIN_INVALID_SIGNATURE):
+            $errorMessage = 'FIRMA_INVALIDA';
+            break;
+        case (self::ERR_LOGOUT_NO_LOGIN):
+            $errorMessage = 'NO_HAY_LOGIN';
+            break;
+        default:
         }
 
         if ($errorMessage) {
@@ -189,13 +189,13 @@ class Auth {
         }
 
         switch ($errorConst) {
-            case (self::ERR_NO_TOKEN):
-            case (self::ERR_RENEW_LOGIN_INVALID_SIGNATURE):
-            case (self::ERR_LOGOUT_NO_LOGIN):
-                http_response_code(401);
-                break;
-            default:
-                http_response_code(500);
+        case (self::ERR_NO_TOKEN):
+        case (self::ERR_RENEW_LOGIN_INVALID_SIGNATURE):
+        case (self::ERR_LOGOUT_NO_LOGIN):
+            http_response_code(401);
+            break;
+        default:
+            http_response_code(500);
         }
     }
 }
