@@ -54,7 +54,7 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-whatsapp"></i></div><div class='c-quienes-somos__texto-icono'>(+34) 603 - 123- 469</div></div>
             </div>
             <div class='c-quienes-somos__redes'>
-            <p class='c-quienes-somos__titulo-menor'>Follow in our social medias!</p>
+            <p class='c-quienes-somos__titulo-menor'>Follow us in social media!</p>
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-instagram"></i></div><div class='c-quienes-somos__texto-icono'>@WeekFood</div></div>
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-twitter"></i></div></i><div class='c-quienes-somos__texto-icono'>@WeekFood</div></div>
             <div class='c-quienes-somos__servicios-container'><div class='c-quienes-somos__servicios-icono'><i class="fab fa-facebook"></i></div><div class='c-quienes-somos__texto-icono'>/WeekFood</div></div>
