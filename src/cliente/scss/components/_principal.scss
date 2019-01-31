@@ -11,15 +11,19 @@
     }
 }
 
-.c-principal__texto {
+.c-principal__contenido {
     margin: 0 auto;
-    padding: 25px 15px;
+    padding: 25px;
     line-height: 1.5;
     font-size: 17px;
     max-width: 900px;
     @media only screen and (min-width: $mobile-l) {
         font-size: 20px;
     }
+}
+
+.c-principal__parrafo {
+    margin-bottom: 10px;
 }
 
 .c-principal__cabecera {
