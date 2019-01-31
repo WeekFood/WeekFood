@@ -61,6 +61,16 @@ return [
             "route" => "api/carritos?usuario=:idUsuario",
             "resource" => "carritos",
             "action" => "getCarrito"
+        ],
+        "API, Auth, renovar login" => [
+            "route" => "api/auth/renovar_login",
+            "resource" => "auth",
+            "action" => "getRenovarLogin"
+        ],
+        "API, Auth, logout" => [
+            "route" => "api/auth/logout",
+            "resource" => "auth",
+            "action" => "getLogout"
         ]
     ],
     "post" => [
@@ -68,6 +78,21 @@ return [
             "route" => "api/carritos",
             "resource" => "carritos",
             "action" => "postCarrito"
+        ],
+        "API, Auth, registro" => [
+            "route" => "api/auth/registro",
+            "resource" => "auth",
+            "action" => "postRegistro"
+        ],
+        "API, Auth, login" => [
+            "route" => "api/auth/login",
+            "resource" => "auth",
+            "action" => "postLogin"
+        ],
+        "API, Auth, usuario ya existe" => [
+            "route" => "api/auth/usuario_ya_existe",
+            "resource" => "auth",
+            "action" => "postUsuarioYaExiste"
         ]
     ],
     "put" => [
