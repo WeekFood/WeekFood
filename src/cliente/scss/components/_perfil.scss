@@ -1,135 +1,52 @@
 .c-perfil {
+    border-radius: 0px 0px 10px 10px;
+    width: 170px;
+    z-index: 2;
+    position: absolute;
+    top: 50px;
+    background: #ffffff;
+    right: 0px;
     padding: 15px;
+    margin: 0;
+    max-height: 80vh;
+    overflow: auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background: $blanco;
-    width: 90%;
-    margin: 1% 5%;
-    border-radius: 10px;
-}
-
-.c-perfil__usuario {
-    display: grid;
-    margin: 20px 0;
-    grid-template-areas: "foto" "nombre" "apellidos" "." "nick-pass""otros-datos";
-    grid-row-gap: 15px;
-    @media only screen and (min-width: $mobile-l) {
-        grid-column-gap: 20px;
-        grid-template-columns: 1fr 300px 1fr 1fr;
-        grid-template-rows: 20px auto;
-        grid-template-areas: ". foto nombre ." ". foto apellidos ." ". nick-pass otros-datos .";
+    animation: c-perfil__aparecer 0.5s;
+    &--desaparecer {
+        animation: c-perfil__desaparecer 0.5s both;
     }
 }
 
-.c-perfil__detalles {
-    display: grid;
-    margin: 20px 0;
-    grid-template-areas: "pedidos" "metodos-pago" "ubicaciones";
-    grid-row-gap: 40px;
-    @media only screen and (min-width: $mobile-l) {
-        grid-column-gap: 80px;
-        grid-template-columns: 20px 1fr 1fr 20px;
-        grid-template-rows: auto;
-        grid-template-areas: ". metodos-pago pedidos ." " . ubicaciones ubicaciones .";
-    }
-}
-
-.c-perfil__foto-contenedor {
-    grid-area: foto;
-    width: 150px;
-    height: 150px;
-    border-radius: 150px;
-    margin-left: 100px;
-    overflow: hidden;
-}
-
-.c-perfil__foto {
-    width: 100%;
-    height: 100%;
+.c-perfil__imagen {
+    height: 100px;
+    width: 100px;
     object-fit: cover;
 }
 
-.c-perfil__nombre {
-    text-align: center;
-    grid-area: nombre;
-    font-size: 1.5rem;
-    @media only screen and (min-width: $mobile-l) {
-        line-height: 100px;
-        text-align: left;
-    }
-}
-
-.c-perfil__apellidos {
-    text-align: center;
-    grid-area: apellidos;
-    font-size: 1.5rem;
-    @media only screen and (min-width: $mobile-l) {
-        line-height: 150px;
-        text-align: left;
-    }
-}
-
-.c-perfil__nick-pass {
-    grid-area: nick-pass
-}
-
-.c-perfil__otros-datos {
-    grid-area: otros-datos
-}
-
-.c-perfil__dato {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: 5px;
-}
-
-.c-perfil__metodos-pago {
-    grid-area: metodos-pago
-}
-
-.c-perfil__metodo-pago {
-    padding: 5px 5px;
-    display: grid;
-    grid-template-columns: 0.7fr 1.3fr;
-    @media only screen and (min-width: $mobile-l) {
-    grid-template-columns: 1fr 1fr;
-    }
-}
-
-.c-perfil__metodos-pago-inicio {
-    border-bottom: 1px solid;
-    padding-bottom: 10px;
-}
-
-.c-perfil__metodos-pago-final {
-    margin-top: 10px;
-    width: 100%;
-    display: flex;
-}
-
-.c-perfil__pedidos {
-    grid-area: pedidos;
-}
-
-.c-perfil__pedidos-inicio {
-    border-bottom: 1px solid;
-    padding-bottom: 10px;
-}
-
-.c-perfil__pedidos-final {
-    margin-top: 10px;
-    width: 100%;
-    display: flex;
+.c-perfil__contenedor-imagen {
+    border-radius: 100px;
+    overflow: hidden;
+    height: 100px;
+    width: 100px;
+    margin: 0 0 5px 20px;
 }
 
 .c-perfil__boton {
-    margin: auto;
+    margin-top: 5px;
+    width: 100%
 }
 
-.c-perfil__ubicaciones {
-    grid-area: ubicaciones;
+@keyframes c-perfil__aparecer {
+    0% {
+        transform: translateY(-100%);
+    }
 }
 
-.c-perfil__titulo {
-    text-align: center;
-    font-size: 1.3rem;
+@keyframes c-perfil__desaparecer {
+    99% {
+        transform: translateY(-110%);
+    }
+    100% {
+        transform: translateY(-200%);
+    }
 }

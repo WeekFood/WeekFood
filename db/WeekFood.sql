@@ -152,11 +152,12 @@ INSERT INTO `productos` (`id`, `categoria`, `nombre`, `descripcion`, `foto`, `de
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nick` varchar(20) NOT NULL,
+  `nick` varchar(100) NOT NULL UNIQUE,
   `contraseña` varchar(100) NOT NULL,
   `nombre` varchar(100) NOT NULL,
-  `apellidos` varchar(100) NOT NULL,
-  `foto` varchar(100) NOT NULL,
+  `apellidos` varchar(100),
+  `foto` varchar(100),
+  `sexo` varchar(1),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

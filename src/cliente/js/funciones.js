@@ -45,12 +45,12 @@ function redirigir() {
     var url = extraerCookie("Redirect")
     borrarCookie("Redirect")
     if (url !== null) {
-        url = decodeURIComponent(url.split("=")[1])
+        url = decodeURIComponent(url)
         url = url.split("/")[1].toLowerCase()
-        if (GLOBAL_REDIRECCIONES.hasOwnProperty(url)){
+        if (GLOBAL_REDIRECCIONES.hasOwnProperty(url)) {
             cargarVista(GLOBAL_REDIRECCIONES[url])
             return true
-    }
+        }
     }
     return false
 }
@@ -59,13 +59,20 @@ function extraerCookie(nombre) {
     var encontrada = null
     document.cookie.split("; ").forEach(cookie => {
         if (cookie.split("=")[0] == nombre) {
-            encontrada = cookie;
+            encontrada = cookie.split("=")[1];
         }
     })
     return encontrada;
 }
 function borrarCookie(nombre) {
     document.cookie = nombre + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+function crearCookie(nombre, valor) {
+    document.cookie = nombre + '=' + valor;
+}
+function getIDcookie() {
+    var token = extraerCookie("token")
+    return token.split(".")[0]
 }
 function precioEnEuros(precio) {
     return (precio / 100).toString() + " €"
@@ -75,4 +82,15 @@ function precioEnDollar(precio) {
 }
 function precioEnLibra(precio) {
     return (precio * 0.88).toString() + " £"
+}
+function iniciarAplicacion(primeraVez = false, nuevoUsuario = false) {
+    if (!primeraVez) {
+        GLOBAL_CACHE_JSONS.vaciar()
+        GLOBAL_CARRITO.vaciar()
+    }
+    acceso_LoginInicial(nuevoUsuario)
+
+    if (!redirigir()) {
+        cargarVista("portada")
+    }
 }

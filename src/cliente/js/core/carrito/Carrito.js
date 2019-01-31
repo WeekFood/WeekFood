@@ -10,7 +10,7 @@ class Carrito {
      * @returns {Articulo|number} instancia de Articulo convertido
      * @throws si el producto proporcionado no es instancia de Producto
      */
-    añadirProducto(producto,cantidad = 1) {
+    añadirProducto(producto, cantidad = 1) {
         if (!(producto instanceof Producto)) {
             throw new Error('Imposible añadir un producto, no es instancia de Producto');
         }
@@ -27,7 +27,7 @@ class Carrito {
             this.añadirProducto(this.quitarArticulo(producto.id));
             return this.incrementarCantidad(articuloYaExistente.id);
         } else {
-            nuevoArticulo = new Articulo(producto,cantidad);
+            nuevoArticulo = new Articulo(producto, cantidad);
             this.articulos.push(nuevoArticulo);
         }
 
@@ -152,10 +152,10 @@ class Carrito {
     _indiceArticulo(idArticulo) {
         return this.articulos.findIndex(articulo => articulo.id === idArticulo);
     }
-    
+
     exportar() {
         var json = {
-            id : this.id,
+            id: this.id,
             fecha: new Date().toISOString().slice(0, 19).replace('T', ' '),
             articulos: []
         }
@@ -167,8 +167,11 @@ class Carrito {
         })
         return JSON.stringify(json)
     }
-    setID(id){
+    setID(id) {
         this.id = id
+    }
+    vaciar() {
+        this.articulos = [];
     }
 }
 
