@@ -177,10 +177,10 @@ function acceso_LoginInicial(primeraVez = false) {
                         if (respuesta[0].foto == null) {
                             GLOBAL_USUARIO.foto = "imagenes/placeholders/perfil_defecto_"
                             switch (GLOBAL_USUARIO.sexo) {
-                                case "M":
+                                case "H":
                                     GLOBAL_USUARIO.foto += "hombre.png"
                                     break
-                                case "F":
+                                case "M":
                                     GLOBAL_USUARIO.foto += "mujer.png"
                                     break
                                 default:
