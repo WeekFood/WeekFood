@@ -1,0 +1,41 @@
+.c-pedido {
+    padding: 5px 10px;
+    display: grid;
+    margin-bottom: 5px;
+    grid-row-gap: 5px;
+    grid-template-areas:
+     "id compra compra-fecha compra-hora articulos" 
+     "id entrega entrega-fecha entrega-hora articulos";
+     grid-template-columns: 60px 1fr 1fr 1fr 85px;
+     @media only screen and (min-width: $mobile-l) {
+     grid-template-columns: 100px 1fr 1fr 1fr 100px;
+     }
+}
+.c-pedido__id{
+    grid-area: id;
+    margin: auto;
+}
+.c-pedido__compra{
+    grid-area: compra
+}
+.c-pedido__compra-fecha{
+    grid-area: compra-fecha
+}
+.c-pedido__compra-hora{
+    grid-area: compra-hora
+}
+.c-pedido__entrega{
+    grid-area: entrega
+}
+.c-pedido__entrega-fecha{
+    grid-area: entrega-fecha
+}
+.c-pedido__entrega-hora{
+    grid-area: entrega-hora
+}
+
+.c-pedido__articulos {
+    grid-area: articulos;
+    text-align: right;
+    margin: auto;
+}

@@ -80,7 +80,7 @@ function vista_Perfil(puntoMontaje) {
                 ]
             },
             {
-                id: 6,
+                id: 9999,
                 fechaCompra: "9/8/17",
                 horaCompra: "17:55",
                 fechaEntregado: "19/9/17",
@@ -123,11 +123,15 @@ function vista_Perfil(puntoMontaje) {
         for (var x = 1; x < usuario.pedidos.length - 1 && x < 4; x++) {
             var pedido = usuario.pedidos[usuario.pedidos.length - x]
             pedidos += `
-            <div class='c-perfil__pedido'>
-            <span>` + pedido.id + `</span>
-            <span>Compra: ` + pedido.fechaCompra + ` | `+pedido.horaCompra+`</span>
-            <span>Entrega: ` + pedido.fechaEntregado + ` | `+pedido.horaEntregado+`</span>
-            <span class="c-perfil__pedido-articulos">` + pedido.articulos.length + ` artículos</span>
+            <div class='c-pedido'>
+            <span class="c-pedido__id">` + pedido.id + `</span>
+            <span class="c-pedido__compra">Compra</span>
+            <span class="c-pedido__compra-fecha">` + pedido.fechaCompra + `</span>
+            <span class="c-pedido__compra-hora">`+pedido.horaCompra+`</span>
+            <span class="c-pedido__entrega">Entrega</span>
+            <span class="c-pedido__entrega-fecha"> ` + pedido.fechaEntregado + `</span>
+            <span class="c-pedido__entrega-hora">`+pedido.horaEntregado+`</span>
+            <span class="c-pedido__articulos">` + pedido.articulos.length + ` artículos</span>
             </div>`
         }
         if (usuario.pedidos.length > 3) {
