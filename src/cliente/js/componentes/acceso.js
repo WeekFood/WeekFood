@@ -245,6 +245,7 @@ function acceso_CerrarSesion() {
             GLOBAL_USUARIO.cerrarSesion()
                 .done(() => {
                     GLOBAL_USUARIO = new Usuario
+                    borrarCookie("token")
                     iniciarAplicacion()
                 })
                 .fail(() => {
