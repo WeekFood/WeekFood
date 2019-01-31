@@ -3,7 +3,8 @@ class Usuario {
         this.id = undefined
         this.foto = undefined
         this.nick = undefined
-        this.datos = undefined
+        this.nombre = undefined
+        this.apellidos = undefined
         this.erroresAcceso = [
             "Usuario no existe",
             "Contraseña no es valida",

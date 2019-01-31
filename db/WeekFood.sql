@@ -155,6 +155,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `nick` varchar(100) NOT NULL UNIQUE,
   `contraseña` varchar(100) NOT NULL,
   `nombre` varchar(100) NOT NULL,
+  `apellidos` varchar(100),
+  `foto` varchar(100),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Esta tabla es dummy';
 

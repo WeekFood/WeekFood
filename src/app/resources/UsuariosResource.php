@@ -1,6 +1,6 @@
 <?php
 
-use core\Auth\Auth as Auth;
+use core\Globals as Globals;
 use core\MVC\Resource as Resource;
 
 class UsuariosResource extends Resource {
@@ -8,14 +8,17 @@ class UsuariosResource extends Resource {
     private $auth;
 
     public function __construct() {
+        parent::__construct();
         $this->auth = Globals::getInstance()->get('auth');
     }
     public function getUsuarioAction() {
         $idUsuario = $this->auth->getLoggedId();
         if ($idUsuario == null) {
-            $this->setError(403, 'ACCESO PROHIBIDO');
+            $this->setError(401, 'NO_HAY_LOGIN');
+            return;
         }
-        $this->sql = 'SELECT nick, nombre FROM usuarios WHERE id = :idUsuario';
+        // TODO nivel privilegios
+        $this->sql = 'SELECT id, nick, nombre, apellidos, foto FROM usuarios WHERE id = :idUsuario';
         $params = [
             "idUsuario" => $this->controller->getParam("idUsuario")
         ];
