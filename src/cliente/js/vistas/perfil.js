@@ -141,50 +141,113 @@ function vista_Perfil(puntoMontaje) {
                 <div class='c-vista-perfil__foto-contenedor'>
                     <img class='c-vista-perfil__foto' src='`+ GLOBAL_USUARIO.foto + `'>
                 </div>
-                <p class='c-vista-perfil__nombre'>`+ GLOBAL_USUARIO.nombre + `</p>
-                <p class='c-vista-perfil__apellidos'>`+ GLOBAL_USUARIO.apellidos + `</p>
-                <div class='c-vista-perfil__nick-pass'>
-                    <p class='c-vista-perfil__dato'>
-                        <span>Nick</span>
-                        <span>`+ GLOBAL_USUARIO.nick + `</span>
-                    </p>
-                    <p class='c-vista-perfil__dato'>
-                        <span>Contraseña</span>
-                        <span>`+ contraseña + `</span>
-                    </p>
-                </div>
-                <div class='c-vista-perfil__otros-datos'>
-                    <p class='c-vista-perfil__dato'>
-                        <span>Nacimiento</span>
-                        <span>`+ usuario.fechaNacimiento + `</span>
-                    </p>
-                    <p class='c-vista-perfil__dato'>
-                        <span>Teléfono</span>
-                        <span>` + usuario.telefono + `</span>
-                    </p>
-                    <p class='c-vista-perfil__dato'>
+                <p class='c-vista-perfil__nombre'>`+ GLOBAL_USUARIO.nombre + `</p>`
+    if (GLOBAL_USUARIO.apellidos != undefined) {
+        html += `<p class='c-vista-perfil__apellidos'>` + GLOBAL_USUARIO.apellidos + `</p>`
+    }
+    html += `<div class='c-vista-perfil__nick-pass' >
+                <p class='c-vista-perfil__dato'>
+                    <span>Nick</span>
+                    <span>`+ GLOBAL_USUARIO.nick + `</span>
+                </p>
+                <p class='c-vista-perfil__dato'>
+                    <span>Contraseña</span>
+                    <span>`+ contraseña + `</span>
+                </p>
+                    </div >
+            <div class='c-vista-perfil__otros-datos'>
+                <p class='c-vista-perfil__dato'>
+                    <span>Nacimiento</span>
+                    <span>`+ usuario.fechaNacimiento + `</span>
+                </p>
+                <p class='c-vista-perfil__dato'>
+                    <span>Teléfono</span>
+                    <span>` + usuario.telefono + `</span>
+                </p>`
+    if (GLOBAL_USUARIO.sexo == "H" || GLOBAL_USUARIO.sexo == "M") {
+        html += `   <p class='c-vista-perfil__dato'>
                         <span>Sexo</span>
                         <span>`
-    switch (GLOBAL_USUARIO.sexo) {
-        case "H":
-            html += "Hombre"
-            break
-        case "M":
-            html += "Mujer"
-            break
-        default:
-            html += "Indefinido"
+        switch (GLOBAL_USUARIO.sexo) {
+            case "H":
+                html += "Hombre"
+                break
+            case "M":
+                html += "Mujer"
+                break
+            default:
+                html += "Indefinido"
+        }
     }
     html += `           </span>
-                    </p>
-                </div>
-            </div>
-            <div class="c-vista-perfil__detalles">
+                    </p >
+                </div >
+            </div >
+        <div class="c-vista-perfil__detalles">
             <div class='c-vista-perfil__metodos-pago'>`+ metodosPago + `</div>
             <div class='c-vista-perfil__pedidos'>`+ pedidos + `</div>
             <p class='c-boton c-boton--basico c-vista-perfil__ubicaciones c-vista-perfil__boton'>Mis ubicaciones</p>
         </div>
-    </div>`
+    </div > `
 
     $(puntoMontaje).html(html)
+    $(".c-vista-perfil__foto").on(
+        {
+            mouseover: () => {
+                $(".c-vista-perfil__foto-contenedor").prepend(`
+            <div class='c-vista-perfil__foto-edit'>
+            <i class='fas fa-edit fa-4x'></i>
+            </div>`)
+                $(".c-vista-perfil__foto-edit").on("click", () => {
+                    generarVentanaModal({
+                        titulo: "Subir archivo",
+                        contenido: `
+                                    <div class="c-selector-archivo js-selector-archivo">
+                                        <div class="c-selector-archivo__interno">
+                                            <i class="fas fa-file-upload fa-4x c-selector-archivo__subida"></i>
+                                            <p class="c-selector-archivo__texto-movil">Toca para subir un archivo</p>
+                                            <p class="c-selector-archivo__texto-no-movil">Arrastra un archivo</p>
+                                        </div>
+                                    </div>`
+                    })
+                    $('.js-selector-archivo').on({
+                        'dragover dragenter': (evento) => {
+                            evento.preventDefault();
+                            evento.stopPropagation();
+                        },
+                        'drop': (evento) => {
+                            var datos = evento.originalEvent.dataTransfer;
+                            if (datos && datos.files.length) {
+                                evento.preventDefault();
+                                evento.stopPropagation();
+                                if (datos.files.length == 1) {
+                                    var lector = new FileReader();
+                                    lector.onload = $.proxy((archi, event) => {
+                                        if (archi.type.match('image.*')) {
+                                            GLOBAL_USUARIO.foto = event.target.result
+                                            $(".js-ventana-modal").remove()
+                                            cargarVista("perfil")
+                                            $(".c-cabecera__imagen").attr("src", GLOBAL_USUARIO.foto)
+                                            $(".c-perfil__imagen").attr("src", GLOBAL_USUARIO.foto)
+                                        } else {
+                                            generarNotificacion("Por favor sube sólo una imagen png, jpg o gif")
+                                        }
+                                    }, this, datos.files[0])
+                                    lector.readAsDataURL(datos.files[0])
+                                } else {
+                                    generarNotificacion("Por favor sube sólo una imagen png, jpg o gif")
+                                    $(".js-ventana-modal").remove()
+                                }
+                            } else {
+                                generarNotificacion("Por favor sube sólo una imagen png, jpg o gif")
+                                $(".js-ventana-modal").remove()
+                            }
+                        }
+                    });
+                })
+            },
+            mouseleave: () => {
+                $(".c-vista-perfil__foto-edit").remove()
+            }
+        });
 }

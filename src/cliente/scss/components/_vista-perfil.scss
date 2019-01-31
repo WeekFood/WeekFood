@@ -29,9 +29,10 @@
     grid-row-gap: 40px;
     @media only screen and (min-width: $mobile-l) {
         grid-column-gap: 80px;
-        grid-template-columns: 20px 1fr 1fr 20px;
+        grid-template-columns: 1fr 1fr;
         grid-template-rows: auto;
-        grid-template-areas: ". metodos-pago pedidos ." " . ubicaciones ubicaciones .";
+        grid-template-areas: "metodos-pago pedidos" "ubicaciones ubicaciones";
+        margin: 20px 10px;
     }
 }
 
@@ -42,6 +43,12 @@
     border-radius: 150px;
     margin-left: 100px;
     overflow: hidden;
+}
+
+.c-vista-perfil__foto-edit {
+    position: absolute;
+    margin: 40px 50px;
+    color: $rojo;
 }
 
 .c-vista-perfil__foto {
