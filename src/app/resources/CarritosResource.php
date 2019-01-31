@@ -91,7 +91,6 @@ class CarritosResource extends Resource {
     public function putCarritoAction() {
         $json = file_get_contents('php://input');
         $carrito = json_decode($json, true);
-        $idUsuario = 1; // TODO, usar id usuario de la sesion
         if (!array_key_exists("id", $carrito)) {
             $this->setError(400, 'Petición incorrecta');
             die();
