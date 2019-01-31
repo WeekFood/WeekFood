@@ -36,7 +36,7 @@ class Router {
     protected function addRoutesFromFile(array $routes) {
         foreach ($routes["get"] as $currentRoute) {
             $this->addRoute($currentRoute, 'get');
-        };
+        }
         foreach ($routes["post"] as $currentRoute) {
             $this->addRoute($currentRoute, 'post');
         }
