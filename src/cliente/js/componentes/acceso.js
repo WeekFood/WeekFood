@@ -23,7 +23,7 @@ function acceso_Alternar() {
         $(".c-acceso").toggleClass("c-acceso--desaparecer")
     }
 
-    if ($(".js-acceso").children("i").hasClass("fa-user") && $(".c-acceso").data("modo") == 2) {
+    if ($(".js-acceso").children("i").hasClass("fa-user") && $(".c-acceso").data("modo") == "Registro") {
         $(".js-acceso__entrar").removeClass("c-boton--basico").addClass("c-boton--exito")
         $(".js-acceso__registro").addClass("c-boton--basico").removeClass("c-boton--exito")
         $(".c-acceso__titulo").html("Acceso")
