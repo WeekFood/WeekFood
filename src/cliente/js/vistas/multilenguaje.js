@@ -39,7 +39,7 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             <div class='c-quienes-somos__contenido-interno'>
             <p class='c-quienes-somos__texto'>We are a fictional company that manages the distribution of food houses.</p>
             <p class='c-quienes-somos__texto'>We collaborate with local food houses to offer the best service.</p>
-            <p class='c-quienes-somos__texto'>Eat homemade, eat cheap, eat at your own time, eat Week Food.</p>
+            <p class='c-quienes-somos__texto'>Eat homemade, eat cheap, eat at your own time, eat WeekFood.</p>
             </div>
             <div class='c-quienes-somos__contenido-equipo'>
             <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yury.jpg'><div class='c-quienes-somos__nombre'>Yuriy</div><div class='c-quienes-somos__texto'>Chief Operating Officer</div></div>
