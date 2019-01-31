@@ -70,7 +70,7 @@ function borrarCookie(nombre) {
 function crearCookie(nombre, valor) {
     document.cookie = nombre + '=' + valor;
 }
-function getIDcookie(){
+function getIDcookie() {
     var token = extraerCookie("token")
     return token.split(".")[0]
 }
@@ -83,10 +83,10 @@ function precioEnDollar(precio) {
 function precioEnLibra(precio) {
     return (precio * 0.88).toString() + " £"
 }
-function iniciarAplicacion() {
+function iniciarAplicacion(primeraVez = false) {
     GLOBAL_CACHE_JSONS = new CacheJSONs();
     GLOBAL_CARRITO = new Carrito();
-    acceso_LoginInicial()
+    acceso_LoginInicial(primeraVez)
 
     if (!redirigir()) {
         cargarVista("portada")

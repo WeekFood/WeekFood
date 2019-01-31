@@ -74,23 +74,7 @@ function acceso_Registro() {
                             })
                             .done(() => {
                                 crearCookie("Redirect", "/perfil")
-                                iniciarAplicacion();
-                                setTimeout(() => {
-                                    generarVentanaModal({
-                                        tipo: "info",
-                                        contenido: `
-                                        <div class="c-bienvenida">
-                                        <div class="c-bienvenida__titulo">¡Hola `+ GLOBAL_USUARIO.nick + `!</div>
-                                        <div class="c-bienvenida__contenido">Desde el equipo de WeekFood, queremos darte una calurosa bienvenida.</div>
-                                        <div class="c-bienvenida__contenido">Esperamos que quedes satisfecho, como el 98% de los usuarios.</div>
-                                        <div class="c-bienvenida__nota">Fuente: Encuesta de satisfacción</div>
-                                        </div>`,
-                                        info_boton_basico: true,
-                                        callback_Confirmar: () => { }
-                                    })
-                                }
-                                    , 500
-                                )
+                                iniciarAplicacion(true);
                             })
                     }
                 })
@@ -168,7 +152,7 @@ function acceso_MensajeError(mensaje, tipo = 1) {
 
     }
 }
-function acceso_LoginInicial() {
+function acceso_LoginInicial(primeraVez = false) {
     if (extraerCookie("token") != null) {
         GLOBAL_USUARIO.renovarToken()
             .done(() => {
@@ -200,7 +184,22 @@ function acceso_LoginInicial() {
                         </div></div>`)
                         $(".js-perfil").on("click", perfil_Alternar)
                         $(".c-acceso, .c-acceso__errores").remove()
-                        generarNotificacion("Hola de nuevo, " + GLOBAL_USUARIO.nick, 1)
+                        if (primeraVez) {
+                            generarVentanaModal({
+                                tipo: "info",
+                                contenido: `
+                                <div class="c-bienvenida">
+                                <div class="c-bienvenida__titulo">¡Hola `+ GLOBAL_USUARIO.nick + `!</div>
+                                <div class="c-bienvenida__contenido">Desde el equipo de WeekFood, queremos darte una calurosa bienvenida.</div>
+                                <div class="c-bienvenida__contenido">Esperamos que quedes satisfecho, como el 98% de los usuarios.</div>
+                                <div class="c-bienvenida__nota">Fuente: Encuesta de satisfacción</div>
+                                </div>`,
+                                info_boton_basico: true,
+                                callback_Confirmar: () => { }
+                            })
+                        } else {
+                            generarNotificacion("Hola de nuevo, " + GLOBAL_USUARIO.nick, 1)
+                        }
                         carrito_Descargar()
                     })
             })
