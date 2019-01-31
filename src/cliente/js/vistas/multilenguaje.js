@@ -12,9 +12,9 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             <p class='c-quienes-somos__texto'>Come casero, come barato, come a tu hora, come WeekFood.</p>
             </div>
             <div class='c-quienes-somos__contenido-equipo'>
-            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yuriy.jpg'><div class='c-quienes-somos__nombre'>Yuriy</div><div class='c-quienes-somos__texto'>Director de operaciones</div></div>
-            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/toni.jpg'><div class='c-quienes-somos__nombre'>Toni</div><div class='c-quienes-somos__texto'>Director Ejecutivo</div></div>
-            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/joseluis.jpg'><div class='c-quienes-somos__nombre'>José Luis</div><div class='c-quienes-somos__texto'>Director de diseño</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/equipo/yuriy.jpg'><div class='c-quienes-somos__nombre'>Yuriy</div><div class='c-quienes-somos__texto'>Director de operaciones</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/equipo/toni.jpeg'><div class='c-quienes-somos__nombre'>Toni</div><div class='c-quienes-somos__texto'>Director Ejecutivo</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/equipo/joseluis.jpg'><div class='c-quienes-somos__nombre'>José Luis</div><div class='c-quienes-somos__texto'>Director de diseño</div></div>
             </div>
             <div class='c-quienes-somos__servicios'>
             <div class='c-quienes-somos__attCliente'>
@@ -42,9 +42,9 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             <p class='c-quienes-somos__texto'>Eat homemade, eat cheap, eat at your own time, eat WeekFood.</p>
             </div>
             <div class='c-quienes-somos__contenido-equipo'>
-            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/yuriy.jpg'><div class='c-quienes-somos__nombre'>Yuriy</div><div class='c-quienes-somos__texto'>Chief Operating Officer</div></div>
-            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/toni.jpg'><div class='c-quienes-somos__nombre'>Toni</div><div class='c-quienes-somos__texto'>Chief Executive Officer</div></div>
-            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/joseluis.jpg'><div class='c-quienes-somos__nombre'>José Luis</div><div class='c-quienes-somos__texto'>Chief Design Officer</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/equipo/yuriy.jpg'><div class='c-quienes-somos__nombre'>Yuriy</div><div class='c-quienes-somos__texto'>Chief Operating Officer</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/equipo/toni.jpeg'><div class='c-quienes-somos__nombre'>Toni</div><div class='c-quienes-somos__texto'>Chief Executive Officer</div></div>
+            <div class='c-quienes-somos__contenido-equipo-container'><img class='c-quienes-somos__contenido-equipo-imagen' src='/imagenes/equipo/joseluis.jpg'><div class='c-quienes-somos__nombre'>José Luis</div><div class='c-quienes-somos__texto'>Chief Design Officer</div></div>
             </div>
             <div class='c-quienes-somos__servicios'>
             <div class='c-quienes-somos__attCliente'>
@@ -73,7 +73,7 @@ function vista_QuienesSomos(puntoMontaje, idioma) {
             html += " c-quienes-somos__contenedor-bandera--seleccionada"
         }
         html += `'>
-                <img class='c-quienes-somos__bandera' src='/imagenes/bandera_` + contenido.bandera[idiomaAdmitido]
+                <img class='c-quienes-somos__bandera' src='/imagenes/banderas/bandera_` + contenido.bandera[idiomaAdmitido]
         html += `.png' onclick="cargarVista('quienesSomos','` + idiomaAdmitido + `')">
                 </div>`
     }
