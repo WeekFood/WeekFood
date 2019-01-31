@@ -80,7 +80,7 @@ function vista_Perfil(puntoMontaje) {
                 ]
             },
             {
-                id: 9999,
+                id: 6,
                 fechaCompra: "9/8/17",
                 horaCompra: "17:55",
                 fechaEntregado: "19/9/17",
