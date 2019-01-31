@@ -242,10 +242,14 @@ function acceso_CerrarSesion() {
         callback_Confirmar: () => { },
         boton_Confirmar: "Seguir en WeekFood",
         callback_Denegar: () => {
-            // Todo cerrar sesion en API
-            borrarCookie("token")
-            GLOBAL_USUARIO = new Usuario
-            iniciarAplicacion()
+            GLOBAL_USUARIO.cerrarSesion()
+                .done(() => {
+                    GLOBAL_USUARIO = new Usuario
+                    iniciarAplicacion()
+                })
+                .fail(() => {
+                    generarNotificacion("No se ha podido cerrar tu sesión")
+                })
         },
         boton_Denegar: "Cerrar sesión"
     })

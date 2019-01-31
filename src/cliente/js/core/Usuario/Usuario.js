@@ -65,7 +65,10 @@ class Usuario {
             data: "nick=" + usuario + "&contraseña=" + pass
         })
     }
-    renovarToken(){
+    renovarToken() {
         return $.getJSON("/api/auth/renovar_login")
+    }
+    cerrarSesion() {
+        return $.getJSON("/api/auth/logout")
     }
 }
