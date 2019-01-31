@@ -69,12 +69,11 @@ function acceso_Registro() {
                         acceso_MensajeError(GLOBAL_USUARIO.erroresRegistro[0], 0)
                     } else {
                         GLOBAL_USUARIO.registrar($(".js-acceso__nombre").val(), $(".js-acceso__contra").val())
-                            .fail((respuesta) => {
+                            .fail(() => {
                                 acceso_MensajeError(GLOBAL_USUARIO.erroresRegistro[0], 0)
                             })
                             .done(() => {
                                 crearCookie("Redirect", "/perfil")
-                                GLOBAL_USUARIO.id = 1; /*TODO SACAR DE DONDE PROCEDA */
                                 iniciarAplicacion();
                                 setTimeout(() => {
                                     generarVentanaModal({
@@ -95,7 +94,7 @@ function acceso_Registro() {
                             })
                     }
                 })
-                .fail((respuesta) => {
+                .fail(() => {
                     acceso_MensajeError(GLOBAL_USUARIO.errorGenerico, 0)
                 })
         }
