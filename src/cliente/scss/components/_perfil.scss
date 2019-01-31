@@ -10,7 +10,8 @@
 .c-perfil__usuario {
     display: grid;
     margin: 20px 0;
-    grid-template-areas:
+    grid-template-columns: 1fr;
+    grid-template-areas: ". foto nombre ." ". foto apellidos ." ". nick fechaNacimiento ." ". contraseña telefono ."
 }
 
 .c-perfil__detalles {}
