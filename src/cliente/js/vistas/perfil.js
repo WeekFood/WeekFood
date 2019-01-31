@@ -19,7 +19,6 @@ function vista_Perfil(puntoMontaje) {
             { titulo: "MasterCard", valor: "**** **** **** 1457, 10/2024" }
         ],
         telefono: "+34 761 260 263",
-        contraseña: 10, //longitud
         pedidos: [
             {
                 id: 1,
@@ -90,7 +89,7 @@ function vista_Perfil(puntoMontaje) {
         ]
     }
     var contraseña = ""
-    for (var x = 0; x < usuario.contraseña; x++) {
+    for (var x = 0; x < 10; x++) {
         contraseña += "&#9899"
     }
     if (usuario.metodosPago.length == 0) {
@@ -138,16 +137,32 @@ function vista_Perfil(puntoMontaje) {
                             </div>
                             <p class='c-perfil__nombre'>`+ usuario.nombre + `</p>
                             <p class='c-perfil__apellidos'>`+ usuario.apellidos + `</p>
-                            <p class='c-perfil__nick'>Nick: `+ usuario.nick + `</p>
-                            <p class='c-perfil__contraseña'>Contraseña: `+ contraseña + `</p>
-                            <p class='c-perfil__nacimiento'>Nacimiento: `+ usuario.fechaNacimiento + `</p>
-                            <p class='c-perfil__telefono'>Tlf: `+ usuario.telefono + `</p>
+                            <div class='c-perfil__nick-pass'>
+                                <p class='c-perfil__dato'>
+                                    <span>Nick</span>
+                                    <span>`+usuario.nick+`</span>
+                                </p>
+                                <p class='c-perfil__dato'>
+                                    <span>Contraseña</span>
+                                    <span>`+contraseña+`</span>
+                                </p>
                             </div>
-                            <div class="c-perfil__detalles">
-                            <div class='c-perfil__metodos-pago'>`+ metodosPago + `</div>
-                            <div class='c-perfil__pedidos'>`+ pedidos + `</div>
-                            <p class='c-boton c-boton--basico c-perfil__ubicaciones c-perfil__boton'>Mis ubicaciones</p>
+                            <div class='c-perfil__otros-datos'>
+                                <p class='c-perfil__dato'>
+                                    <span>Nacimiento</span>
+                                    <span>`+usuario.fechaNacimiento+`</span>
+                                </p>
+                                <p class='c-perfil__dato'>
+                                    <span>Teléfono</span>
+                                    <span>`+usuario.telefono+`</span>
+                                </p>
                             </div>
+                            </div>
+                                <div class="c-perfil__detalles">
+                                    <div class='c-perfil__metodos-pago'>`+ metodosPago + `</div>
+                                    <div class='c-perfil__pedidos'>`+ pedidos + `</div>
+                                    <p class='c-boton c-boton--basico c-perfil__ubicaciones c-perfil__boton'>Mis ubicaciones</p>
+                                </div>
                             </div>`)
 
 }

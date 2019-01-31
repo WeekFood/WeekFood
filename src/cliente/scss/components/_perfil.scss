@@ -11,9 +11,10 @@
     display: grid;
     margin: 20px 0;
     grid-column-gap: 20px;
+    grid-row-gap: 15px;
     grid-template-columns: 1fr 300px 1fr 1fr;
-    grid-template-rows: 20px;
-    grid-template-areas: ". foto nombre ." ". foto apellidos ." ". nick fechaNacimiento ." ". contraseña telefono .";
+    grid-template-rows: 20px auto;
+    grid-template-areas: ". foto nombre ." ". foto apellidos ." ". nick-pass otros-datos .";
 }
 
 .c-perfil__detalles {
@@ -52,24 +53,17 @@
     font-size: 1.5rem;
 }
 
-.c-perfil__nick {
-    grid-area: nick;
-    line-height: 35px;
-}
+.c-perfil__nick-pass{
+    grid-area: nick-pass
 
-.c-perfil__contraseña {
-    grid-area: contraseña;
-    line-height: 35px;
 }
+.c-perfil__otros-datos{
+    grid-area: otros-datos
 
-.c-perfil__nacimiento {
-    grid-area: fechaNacimiento;
-    line-height: 35px;
 }
-
-.c-perfil__telefono {
-    grid-area: telefono;
-    line-height: 35px;
+.c-perfil__dato{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .c-perfil__metodos-pago {
