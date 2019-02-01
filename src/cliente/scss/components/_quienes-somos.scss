@@ -36,12 +36,13 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 15px 25px;
     border-radius: 10px;
-    margin: 0;
+    margin: 3%;
+    margin-top: 10px;
     grid-template-areas: 'cabecera'
                             'contenido-interno'
                             'equipo'
                             'servicios';
-    @media only screen and (min-width: $mobile-l) {
+    @media only screen and (max-width: $mobile-l) {
         margin: 3%;
     }
 }
