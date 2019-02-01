@@ -83,6 +83,17 @@ function precioEnDollar(precio) {
 function precioEnLibra(precio) {
     return (precio * 0.88).toString() + " £"
 }
+function cargarEnIdioma(contenido, apartado, idioma = 'es') {
+    if (contenido.hasOwnProperty(apartado)) {
+        if (contenido[apartado].hasOwnProperty(idioma)) {
+            return contenido[apartado][idioma]
+        } else {
+            console.warn(apartado, "no tiene el idioma", idioma)
+            return contenido[apartado].es
+        }
+    }
+    throw 'El contenido de la página no tiene el apartado seleccionado.'
+}
 function iniciarAplicacion(primeraVez = false, nuevoUsuario = false) {
     if (!primeraVez) {
         GLOBAL_CACHE_JSONS.vaciar()

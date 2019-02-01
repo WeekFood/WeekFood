@@ -2,6 +2,7 @@ var GLOBAL_VISTAS = {
     error: vista_Error,
     portada: vista_Portada,
     productos: vista_Productos,
+    quienesSomos: vista_QuienesSomos,
     ofertas: vista_Productos_Ofertas
 }
 var GLOBAL_REDIRECCIONES = {
