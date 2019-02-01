@@ -3,7 +3,7 @@ var GLOBAL_VISTAS = {
     portada: vista_Portada,
     productos: vista_Productos,
     ofertas: vista_Productos_Ofertas,
-    perfil: vista_Perfil
+    perfil: vista_Perfil,
     quienesSomos: vista_QuienesSomos,
 }
 var GLOBAL_REDIRECCIONES = {
