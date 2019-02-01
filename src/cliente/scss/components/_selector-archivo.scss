@@ -1,0 +1,30 @@
+.c-selector-archivo{
+    height: 55vh;
+    display: flex;
+}
+.c-selector-archivo__interno{
+    margin: auto;
+    display: grid;
+    grid-template-areas: "icono" "texto";
+    grid-row-gap: 10px;
+}
+.c-selector-archivo__subida{
+    grid-area: icono;
+    text-align: center;
+    color : $rojo;
+}
+.c-selector-archivo__texto-movil{
+    grid-area: texto;
+    text-align: center;
+    @media only screen and (min-width: $mobile-l) {
+        display: none;
+    }
+}
+.c-selector-archivo__texto-no-movil{
+    grid-area: texto;
+    text-align: center;
+    display: none;
+    @media only screen and (min-width: $mobile-l) {
+        display: block;
+    }
+}

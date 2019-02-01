@@ -1,0 +1,153 @@
+.c-vista-perfil {
+    padding: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: $blanco;
+    width: 90%;
+    margin: 1% 5%;
+    border-radius: 10px;
+}
+
+.c-vista-perfil__usuario {
+    display: grid;
+    margin: 20px 0;
+    grid-template-areas: "foto" "nombre" "apellidos" "." "nick-pass""otros-datos";
+    grid-row-gap: 15px;
+    @media only screen and (min-width: $mobile-l) {
+        width: 80%;
+        margin-left: 10%;
+        grid-column-gap: 20px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 20px auto;
+        grid-template-areas: "foto nombre" "foto apellidos" "nick-pass otros-datos";
+    }
+}
+
+.c-vista-perfil__detalles {
+    display: grid;
+    margin: 20px 0;
+    grid-template-areas: "pedidos" "metodos-pago" "ubicaciones";
+    grid-row-gap: 40px;
+    @media only screen and (min-width: $mobile-l) {
+        grid-column-gap: 80px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: "metodos-pago pedidos" "ubicaciones ubicaciones";
+        margin: 20px 10px;
+    }
+}
+
+.c-vista-perfil__foto-contenedor {
+    grid-area: foto;
+    width: 150px;
+    height: 150px;
+    border-radius: 150px;
+    margin-left: 100px;
+    overflow: hidden;
+}
+
+.c-vista-perfil__foto-edit {
+    position: absolute;
+    margin: 40px 50px;
+    color: $rojo;
+    pointer-events: none;
+}
+
+.c-vista-perfil__foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.c-vista-perfil__nombre {
+    text-align: center;
+    grid-area: nombre;
+    font-size: 1.5rem;
+    @media only screen and (min-width: $mobile-l) {
+        line-height: 100px;
+        text-align: left;
+    }
+}
+
+.c-vista-perfil__apellidos {
+    text-align: center;
+    grid-area: apellidos;
+    font-size: 1.5rem;
+    @media only screen and (min-width: $mobile-l) {
+        line-height: 150px;
+        text-align: left;
+    }
+}
+
+.c-vista-perfil__nick-pass {
+    grid-area: nick-pass
+}
+
+.c-vista-perfil__otros-datos {
+    grid-area: otros-datos
+}
+
+.c-vista-perfil__dato {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 5px;
+}
+
+.c-vista-perfil__metodos-pago {
+    grid-area: metodos-pago
+}
+
+.c-vista-perfil__metodo-pago {
+    padding: 5px 5px;
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    @media only screen and (min-width: $mobile-l) {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.c-vista-perfil__metodos-pago-inicio {
+    border-bottom: 1px solid;
+    padding-bottom: 10px;
+}
+
+.c-vista-perfil__metodos-pago-final {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+}
+
+.c-vista-perfil__pedidos {
+    grid-area: pedidos;
+}
+
+.c-vista-perfil__pedidos-inicio {
+    border-bottom: 1px solid;
+    padding-bottom: 10px;
+}
+
+.c-vista-perfil__pedidos-final {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+}
+
+.c-vista-perfil__boton {
+    margin: auto;
+}
+
+.c-vista-perfil__ubicaciones {
+    grid-area: ubicaciones;
+}
+
+.c-vista-perfil__titulo {
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.c-selector-archivo__error {
+    color: $rojo;
+    opacity: 0;
+    &--visible {
+        opacity: 1;
+    }
+}
