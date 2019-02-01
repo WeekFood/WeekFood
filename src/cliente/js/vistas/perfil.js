@@ -208,6 +208,7 @@ function vista_Perfil(puntoMontaje) {
                                             <i class="fas fa-file-upload fa-4x c-selector-archivo__subida"></i>
                                             <p class="c-selector-archivo__texto-movil">Toca para subir un archivo</p>
                                             <p class="c-selector-archivo__texto-no-movil">Arrastra un archivo</p>
+                                            <p class="c-selector-archivo__error">Por favor sube sólo una imagen png, jpg o gif</p>
                                         </div>
                                     </div>`
                 })
@@ -231,7 +232,8 @@ function vista_Perfil(puntoMontaje) {
                                         $(".c-cabecera__imagen").attr("src", GLOBAL_USUARIO.foto)
                                         $(".c-perfil__imagen").attr("src", GLOBAL_USUARIO.foto)
                                     } else {
-                                        generarNotificacion("Por favor sube sólo una imagen png, jpg o gif")
+                                        if (!$(".c-selector-archivo__error").hasClass("c-selector-archivo__error--visible"))
+                                        $(".c-selector-archivo__error").addClass("c-selector-archivo__error--visible")
                                     }
                                 }, this, datos.files[0])
                                 lector.readAsDataURL(datos.files[0])

@@ -143,3 +143,11 @@
     text-align: center;
     font-size: 1.3rem;
 }
+
+.c-selector-archivo__error {
+    color: $rojo;
+    opacity: 0;
+    &--visible {
+        opacity: 1;
+    }
+}
