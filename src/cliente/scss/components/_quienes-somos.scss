@@ -37,13 +37,12 @@
     padding: 15px 25px;
     border-radius: 10px;
     margin: 3%;
-    margin-top: 10px;
     grid-template-areas: 'cabecera'
                             'contenido-interno'
                             'equipo'
                             'servicios';
-    @media only screen and (max-width: $mobile-l) {
-        margin: 3%;
+    @media only screen and (min-width: $mobile-l) {
+        margin-top: 10px;
     }
 }
 
