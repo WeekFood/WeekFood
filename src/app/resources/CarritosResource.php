@@ -12,8 +12,8 @@ class CarritosResource extends Resource {
         $this->auth = Globals::getInstance()->get('auth');
     }
     public function getCarritoAction() {
-        $idUsuario = $this->auth->getLoggedId();
-        if ($idUsuario == null) {
+        $idUsuarioToken = $this->auth->getLoggedId();
+        if ($idUsuarioToken == null) {
             $this->setError(401, 'NO_HAY_LOGIN');
             return;
         }
@@ -29,7 +29,7 @@ class CarritosResource extends Resource {
         $params = [
             "idUsuario" => $this->controller->getParam("idUsuario")
         ];
-        if ($idUsuario != $params["idUsuario"]){
+        if ($idUsuarioToken != $params["idUsuario"]) {
             $this->setError(403, 'ACCESO_DENEGADO');
         }
         try {
@@ -150,7 +150,7 @@ class CarritosResource extends Resource {
                         WHERE carritos.id = :idCarrito AND carritos.idUsuario = :idUsuario";
 
         $params = [
-            "idUsuario" =>  $this->auth->getLoggedId(),
+            "idUsuario" => $this->auth->getLoggedId(),
             "idCarrito" => $carrito["id"]
         ];
         try {
