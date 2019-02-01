@@ -1,9 +1,9 @@
-function carrito_Alternar() { 
+function carrito_Alternar() {
     if ($(".c-perfil").length == 1) {
-    if (!$(".c-perfil").hasClass("c-perfil--desaparecer")) {
-        perfil_Alternar()
+        if (!$(".c-perfil").hasClass("c-perfil--desaparecer")) {
+            perfil_Alternar()
+        }
     }
-}
     if ($(".c-acceso").length == 1) {
         if (!$(".c-acceso").hasClass("c-acceso--desaparecer")) {
             acceso_Alternar()
@@ -115,22 +115,24 @@ function carrito_ActualizarTriggers() {
     //$(".js-carrito-pagar").on('click', aqui ira vista pagar);
 }
 function carrito_Guardar() {
-    if (!GLOBAL_CARRITO_EXISTE) {
-        $.post({
-            url: '/api/carritos',
-            contentType: 'application/json',
-            data: GLOBAL_CARRITO.exportar()
-        }).catch(() => generarNotificacion('<i class="far fa-frown"></i> No se ha podido guardar tu carrito')).done((respuesta) => {
-            GLOBAL_CARRITO.setID(respuesta.id)
-            GLOBAL_CARRITO_EXISTE = true
-        })
-    } else {
-        $.ajax({
-            url: '/api/carritos/' + GLOBAL_CARRITO.id,
-            type: 'PUT',
-            contentType: "application/json",
-            data: GLOBAL_CARRITO.exportar()
-        }).fail(() => generarNotificacion('<i class="far fa-frown"></i> No se ha podido guardar tu carrito'));
+    if (GLOBAL_USUARIO.id != undefined) {
+        if (!GLOBAL_CARRITO_EXISTE) {
+            $.post({
+                url: '/api/carritos',
+                contentType: 'application/json',
+                data: GLOBAL_CARRITO.exportar()
+            }).catch(() => generarNotificacion('<i class="far fa-frown"></i> No se ha podido guardar tu carrito')).done((respuesta) => {
+                GLOBAL_CARRITO.setID(respuesta.id)
+                GLOBAL_CARRITO_EXISTE = true
+            })
+        } else {
+            $.ajax({
+                url: '/api/carritos/' + GLOBAL_CARRITO.id,
+                type: 'PUT',
+                contentType: "application/json",
+                data: GLOBAL_CARRITO.exportar()
+            }).fail(() => generarNotificacion('<i class="far fa-frown"></i> No se ha podido guardar tu carrito'));
+        }
     }
 }
 function carrito_Descargar() {
