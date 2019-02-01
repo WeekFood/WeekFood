@@ -254,6 +254,7 @@ function acceso_CerrarSesion() {
         callback_Denegar: () => {
             GLOBAL_USUARIO.cerrarSesion()
                 .done(() => {
+                    GLOBAL_CARRITO_EXISTE = undefined;
                     GLOBAL_USUARIO = new Usuario
                     borrarCookie("token")
                     iniciarAplicacion()
