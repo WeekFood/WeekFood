@@ -198,10 +198,11 @@ function vista_Perfil(puntoMontaje) {
             <div class='c-vista-perfil__foto-edit'>
             <i class='fas fa-edit fa-4x'></i>
             </div>`)
-                $(".c-vista-perfil__foto-edit").on("click", () => {
-                    generarVentanaModal({
-                        titulo: "Subir archivo",
-                        contenido: `
+            },
+            click: () => {
+                generarVentanaModal({
+                    titulo: "Subir archivo",
+                    contenido: `
                                     <div class="c-selector-archivo js-selector-archivo">
                                         <div class="c-selector-archivo__interno">
                                             <i class="fas fa-file-upload fa-4x c-selector-archivo__subida"></i>
@@ -209,43 +210,43 @@ function vista_Perfil(puntoMontaje) {
                                             <p class="c-selector-archivo__texto-no-movil">Arrastra un archivo</p>
                                         </div>
                                     </div>`
-                    })
-                    $('.js-selector-archivo').on({
-                        'dragover dragenter': (evento) => {
+                })
+                $('.js-selector-archivo').on({
+                    'dragover dragenter': (evento) => {
+                        evento.preventDefault();
+                        evento.stopPropagation();
+                    },
+                    'drop': (evento) => {
+                        var datos = evento.originalEvent.dataTransfer;
+                        if (datos && datos.files.length) {
                             evento.preventDefault();
                             evento.stopPropagation();
-                        },
-                        'drop': (evento) => {
-                            var datos = evento.originalEvent.dataTransfer;
-                            if (datos && datos.files.length) {
-                                evento.preventDefault();
-                                evento.stopPropagation();
-                                if (datos.files.length == 1) {
-                                    var lector = new FileReader();
-                                    lector.onload = $.proxy((archi, event) => {
-                                        if (archi.type.match('image.*')) {
-                                            GLOBAL_USUARIO.foto = event.target.result
-                                            $(".js-ventana-modal").remove()
-                                            cargarVista("perfil")
-                                            $(".c-cabecera__imagen").attr("src", GLOBAL_USUARIO.foto)
-                                            $(".c-perfil__imagen").attr("src", GLOBAL_USUARIO.foto)
-                                        } else {
-                                            generarNotificacion("Por favor sube sólo una imagen png, jpg o gif")
-                                        }
-                                    }, this, datos.files[0])
-                                    lector.readAsDataURL(datos.files[0])
-                                } else {
-                                    generarNotificacion("Por favor sube sólo una imagen png, jpg o gif")
-                                    $(".js-ventana-modal").remove()
-                                }
+                            if (datos.files.length == 1) {
+                                var lector = new FileReader();
+                                lector.onload = $.proxy((archi, event) => {
+                                    if (archi.type.match('image.*')) {
+                                        GLOBAL_USUARIO.foto = event.target.result
+                                        $(".js-ventana-modal").remove()
+                                        cargarVista("perfil")
+                                        $(".c-cabecera__imagen").attr("src", GLOBAL_USUARIO.foto)
+                                        $(".c-perfil__imagen").attr("src", GLOBAL_USUARIO.foto)
+                                    } else {
+                                        generarNotificacion("Por favor sube sólo una imagen png, jpg o gif")
+                                    }
+                                }, this, datos.files[0])
+                                lector.readAsDataURL(datos.files[0])
                             } else {
                                 generarNotificacion("Por favor sube sólo una imagen png, jpg o gif")
                                 $(".js-ventana-modal").remove()
                             }
+                        } else {
+                            generarNotificacion("Por favor sube sólo una imagen png, jpg o gif")
+                            $(".js-ventana-modal").remove()
                         }
-                    });
-                })
+                    }
+                });
             },
+
             mouseleave: () => {
                 $(".c-vista-perfil__foto-edit").remove()
             }
