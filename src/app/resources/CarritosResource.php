@@ -1,10 +1,22 @@
 <?php
 
+use core\Globals as Globals;
 use core\MVC\Resource as Resource;
 
 class CarritosResource extends Resource {
+    /** @var Auth  */
+    private $auth;
 
+    public function __construct() {
+        parent::__construct();
+        $this->auth = Globals::getInstance()->get('auth');
+    }
     public function getCarritoAction() {
+        $idUsuarioToken = $this->auth->getLoggedId();
+        if ($idUsuarioToken == null) {
+            $this->setError(401, 'NO_HAY_LOGIN');
+            return;
+        }
         $this->sql = "SELECT
                         carritos.id,
                         carritos.fecha,
@@ -17,10 +29,13 @@ class CarritosResource extends Resource {
         $params = [
             "idUsuario" => $this->controller->getParam("idUsuario")
         ];
+        if ($idUsuarioToken != $params["idUsuario"]) {
+            $this->setError(403, 'ACCESO_DENEGADO');
+        }
         try {
             $this->execSQL($params);
         } catch (Exception $e) {
-            $this->setError(409, 'Usuario inexistente');
+            $this->setError(409, 'USUARIO_INEXISTENTE');
             die();
         }
         $carrito = [];
@@ -45,28 +60,28 @@ class CarritosResource extends Resource {
         $json = file_get_contents('php://input');
         $carrito = json_decode($json, true);
         if (!array_key_exists("fecha", $carrito)) {
-            $this->setError(400, 'Petición incorrecta');
+            $this->setError(400, 'PETICION_INCORRECTA');
             die();
         } else if (strlen($carrito["fecha"]) != 19) {
-            $this->setError(400, 'Petición incorrecta');
+            $this->setError(400, 'PETICION_INCORRECTA');
             die();
 
         }
         foreach ($carrito["articulos"] as $articulo) {
             if ((!array_key_exists("id", $articulo)) || (!array_key_exists("cantidad", $articulo))) {
-                $this->setError(400, 'Petición incorrecta');
+                $this->setError(400, 'PETICION_INCORRECTA');
                 die();
             }
         }
         $params = [
-            "idUsuario" => $idUsuario,
+            "idUsuario" => $this->auth->getLoggedId(),
             "fecha" => $carrito["fecha"]
         ];
         $this->sql = "INSERT INTO carritos (idUsuario, fecha) VALUES (:idUsuario, :fecha)";
         try {
             $this->execSQL($params);
         } catch (Exception $e) {
-            $this->setError(409, 'Usuario inexistente');
+            $this->setError(409, 'USUARIO_INEXISTENTE');
             die();
         }
         $carrito["id"] = $this->data;
@@ -80,7 +95,7 @@ class CarritosResource extends Resource {
             try {
                 $this->execSQL($params);
             } catch (Exception $e) {
-                $this->setError(409, 'Carrito y/o articulo inexistente');
+                $this->setError(409, 'CARRITO_Y_O_ARTICULO_INEXISTENTE');
                 die();
             }
         }
@@ -92,24 +107,24 @@ class CarritosResource extends Resource {
         $json = file_get_contents('php://input');
         $carrito = json_decode($json, true);
         if (!array_key_exists("id", $carrito)) {
-            $this->setError(400, 'Petición incorrecta');
+            $this->setError(400, 'PETICION_INCORRECTA');
             die();
         }
         if ($this->controller->getParam("id") != $carrito["id"]) {
-            $this->setError(400, 'Petición incorrecta');
+            $this->setError(400, 'PETICION_INCORRECTA');
             die();
         }
         if (!array_key_exists("fecha", $carrito)) {
-            $this->setError(400, 'Petición incorrecta');
+            $this->setError(400, 'PETICION_INCORRECTA');
             die();
         } else if (strlen($carrito["fecha"]) != 19) {
-            $this->setError(400, 'Petición incorrecta');
+            $this->setError(400, 'PETICION_INCORRECTA');
             die();
 
         }
         foreach ($carrito["articulos"] as $articulo) {
             if ((!array_key_exists("id", $articulo)) || (!array_key_exists("cantidad", $articulo))) {
-                $this->setError(400, 'Petición incorrecta');
+                $this->setError(400, 'PETICION_INCORRECTA');
                 die();
             }
         }
@@ -121,7 +136,7 @@ class CarritosResource extends Resource {
         try {
             $this->execSQL($params);
         } catch (Exception $e) {
-            $this->setError(409, 'Carrito inexistente');
+            $this->setError(409, 'CARRITO_INEXISTENTE');
             die();
         }
         $this->sql = "SELECT
@@ -135,13 +150,13 @@ class CarritosResource extends Resource {
                         WHERE carritos.id = :idCarrito AND carritos.idUsuario = :idUsuario";
 
         $params = [
-            "idUsuario" => $idUsuario,
+            "idUsuario" => $this->auth->getLoggedId(),
             "idCarrito" => $carrito["id"]
         ];
         try {
             $this->execSQL($params);
         } catch (Exception $e) {
-            $this->setError(409, 'Usuario y/o carrito inexistente');
+            $this->setError(409, 'USUARIO_Y_O_CARRITO_INEXISTENTE');
             die();
         }
         $datosEnDB = $this->data;
@@ -163,7 +178,7 @@ class CarritosResource extends Resource {
                 try {
                     $this->execSQL($params);
                 } catch (Exception $e) {
-                    $this->setError(409, 'Carrito y/o articulo inexistente');
+                    $this->setError(409, 'CARRITO_Y_O_ARTICULO_INEXISTENTE');
                     die();
                 }
             }
@@ -184,7 +199,7 @@ class CarritosResource extends Resource {
                         try {
                             $this->execSQL($params);
                         } catch (Exception $e) {
-                            $this->setError(409, 'Carrito y/o articulo inexistente');
+                            $this->setError(409, 'CARRITO_Y_O_ARTICULO_INEXISTENTE');
                             die();
                         }
                     }
@@ -201,7 +216,7 @@ class CarritosResource extends Resource {
                 try {
                     $this->execSQL($params);
                 } catch (Exception $e) {
-                    $this->setError(409, 'Carrito y/o articulo inexistente');
+                    $this->setError(409, 'CARRITO_Y_O_ARTICULO_INEXISTENTE');
                     die();
                 }
             }
