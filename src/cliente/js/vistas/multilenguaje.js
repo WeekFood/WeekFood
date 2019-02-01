@@ -1,4 +1,5 @@
 function vista_QuienesSomos(puntoMontaje, idioma) {
+    montarMenu("/api/menu", "quienesSomos")
     var contenido = {
         bandera: { es: "ES", en: "EN" }, // http://www.countryflags.com iconos
         contenido: {
