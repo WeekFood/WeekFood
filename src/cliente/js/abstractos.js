@@ -4,6 +4,7 @@ var GLOBAL_VISTAS = {
     productos: vista_Productos,
     ofertas: vista_Productos_Ofertas,
     perfil: vista_Perfil
+    quienesSomos: vista_QuienesSomos,
 }
 var GLOBAL_REDIRECCIONES = {
     productos: 'ofertas',

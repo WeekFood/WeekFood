@@ -160,7 +160,7 @@ class Auth {
                 && $_SESSION['idUsuario'] > -1;
     }
 
-    public function getLoggedId(): int {
+    public function getLoggedId() {
         if (!$this->isLoggedIn()) {
             return null;
         } else {
