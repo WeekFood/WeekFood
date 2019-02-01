@@ -79,7 +79,6 @@ function acceso_Registro() {
                                 acceso_MensajeError(GLOBAL_USUARIO.erroresRegistro.Usu_Ya_Existe)
                             })
                             .done(() => {
-                                crearCookie("Redirect", "/perfil")
                                 iniciarAplicacion(false, true);
                             })
                     }
@@ -164,7 +163,7 @@ function acceso_MensajeError(mensaje) {
 
     }
 }
-function acceso_LoginInicial(primeraVez = false) {
+function acceso_LoginInicial(nuevoUsuario = false) {
     if (extraerCookie("token") != null) {
         GLOBAL_USUARIO.renovarToken()
             .done(() => {
@@ -196,7 +195,7 @@ function acceso_LoginInicial(primeraVez = false) {
                         </div></div>`)
                         $(".js-perfil").on("click", perfil_Alternar)
                         $(".c-acceso, .c-acceso__errores").remove()
-                        if (primeraVez) {
+                        if (nuevoUsuario) {
                             generarVentanaModal({
                                 tipo: "info",
                                 contenido: `
@@ -209,6 +208,7 @@ function acceso_LoginInicial(primeraVez = false) {
                                 info_boton_basico: true,
                                 callback_Confirmar: () => { }
                             })
+                            cargarVista("perfil")
                         } else {
                             generarNotificacion("Hola de nuevo, " + GLOBAL_USUARIO.nick, 1)
                         }

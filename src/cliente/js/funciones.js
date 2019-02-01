@@ -101,7 +101,7 @@ function iniciarAplicacion(primeraVez = false, nuevoUsuario = false) {
     }
     acceso_LoginInicial(nuevoUsuario)
 
-    if (!redirigir()) {
+    if (!redirigir() && !nuevoUsuario) {
         cargarVista("portada")
     }
 }
