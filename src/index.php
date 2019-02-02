@@ -3,6 +3,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 $config = require_once "./configs/config.php";
 
+header('Access-Control-Allow-Origin: *');
+
 try {
     $mysql = new PDO(
         "mysql:dbname=" . $config['db']['name'] . ";host=" . $config['db']['host'] . ";port=" . $config['db']['port'],
