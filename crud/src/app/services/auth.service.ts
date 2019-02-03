@@ -27,4 +27,17 @@ export class AuthService {
       withCredentials: true // necesario para enviar Y RECIBIR cookies
     });
   }
+
+  postRegistro(nick: string, contraseña: string) {
+    let cuerpo = new URLSearchParams();
+    cuerpo.set('nick', nick);
+    cuerpo.set('contraseña', contraseña);
+
+    return this.http.post(`${AuthService.API_AUTH}/registro`, cuerpo.toString(), {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }),
+      withCredentials: true // necesario para enviar Y RECIBIR cookies
+    });
+  }
 }

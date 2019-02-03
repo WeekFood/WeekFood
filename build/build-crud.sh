@@ -13,7 +13,7 @@ mkdir ./dist/crud
 
 printf "> Cambiando a ./crud\n"
 cd ./crud
-printf "\t> Ejecutando ng build\n"
+printf "\t> Ejecutando ng build (local) \n"
 ./node_modules/.bin/ng build --configuration=local # --prod
 printf "\t> Copiando todos los recursos generados, menos index.html\n a ../dist\n"
 cp -r ./dist/WeekFood/!(index.html) ../dist/

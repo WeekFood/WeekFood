@@ -21,9 +21,16 @@ export class AppComponent {
         console.log('DELETE test', res);
       });
 
-    this.authService.postLogin('juan', 'juan123')
+    this.authService.postRegistro('juan', 'juan123')
       .subscribe((res) => {
-        console.log('POST login', res);
+        console.log('POST registro', res);
       });
+
+    window.setTimeout(() => {
+      this.authService.postLogin('juan', 'juan123')
+        .subscribe((res) => {
+          console.log('POST login', res);
+        });
+    }, 1000);
   }
 }
