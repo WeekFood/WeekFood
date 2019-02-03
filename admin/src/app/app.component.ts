@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'WeekFood';
 
   constructor(private authService: AuthService) {
-    this.authService.postLogin('juan', 'juan123')
+    this.authService.login('juan', 'juan123')
       .subscribe((res) => {
         console.log('POST login', res);
       }, (res) => {

@@ -12,7 +12,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  postLogin(nick: string, contraseña: string) {
+  login(nick: string, contraseña: string) {
     let cuerpo = new HttpParams()
                   .set('nick', nick)
                   .set('contraseña', contraseña);
