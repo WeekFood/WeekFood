@@ -7,6 +7,11 @@ return [
             "resource" => "cliente",
             "action" => "index"
         ],
+        "/crud" => [
+            "route" => "/crud",
+            "resource" => "crud",
+            "action" => "index"
+        ],
         "API" => [
             "route" => "api",
             "resource" => "api",

@@ -4,10 +4,10 @@ shopt -s globstar # activar el glob ** para poder recorrer directorios recursiva
 date +"%T"
 
 printf "Construyendo\n"
-printf "\t> Eliminando dist/\n"
-    rm -rf dist
-printf "\t> Creando directorio dist/\n"
-    mkdir dist
+# printf "\t> Eliminando dist/\n"
+#     rm -rf dist
+# printf "\t> Creando directorio dist/\n"
+#     mkdir dist
 printf "\t> Copiando archivos\n"
     cp -r src/* dist/
     mkdir dist/js
