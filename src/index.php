@@ -11,7 +11,7 @@ header('Access-Control-Allow-Methods: *');
 // CORS: permitir cookies
 header('Access-Control-Allow-Credentials: true');
 // CORS: permitir headers aparte de las permitidas de normal
-header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Headers: *');
 
 // CORS: devolver 200 (y no seguir con el enrutamiento) para peticiones OPTIONS
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
