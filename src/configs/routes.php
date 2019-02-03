@@ -113,10 +113,6 @@ return [
         ]
     ],
     "delete" => [
-        "API, test" => [
-            "route" => "api/test",
-            "resource" => "api",
-            "action" => "test"
-        ]
+
     ]
 ];
