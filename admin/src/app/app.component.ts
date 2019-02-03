@@ -24,6 +24,8 @@ export class AppComponent {
     this.authService.postRegistro('juan', 'juan123')
       .subscribe((res) => {
         console.log('POST registro', res);
+      }, (res) => {
+        console.error('ERR', res.error);
       });
 
     window.setTimeout(() => {
