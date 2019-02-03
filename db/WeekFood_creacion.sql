@@ -171,11 +171,11 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `sexo` varchar(1) DEFAULT NULL,
   `telefono` varchar(13) DEFAULT NULL,
   `nacimiento` date DEFAULT NULL,
-  `nivelPrivilegio` int(1) NOT NULL,
+  `nivelprivilegio` int(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nick` (`nick`),
-  KEY `nivelPrivilegio` (`nivelPrivilegio`),
-  CONSTRAINT `nivelPrivilegio` FOREIGN KEY (`nivelPrivilegio`) REFERENCES `nivelesprivilegio` (`id`)
+  KEY `nivelprivilegio` (`nivelprivilegio`),
+  CONSTRAINT `nivelprivilegio` FOREIGN KEY (`nivelprivilegio`) REFERENCES `nivelesprivilegio` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- La exportación de datos fue deseleccionada.
