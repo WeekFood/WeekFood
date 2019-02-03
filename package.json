@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "build": "bash ./build/build.sh",
-    "buildAdmin": "bash ./build/build-admin.sh",
     "deployLocal": "sudo bash ./build/despl-local.sh",
     "buildDeployLocal": "npm run build && npm run deployLocal",
     "deployPreprod": "bash ./build/despl-preprod.sh",
