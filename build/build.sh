@@ -17,7 +17,7 @@ printf "\t> Copiando archivos\n"
     # borrar directorios copiados que se tienen que construir en vez de copiar/mover
     rm -r dist/cliente/{scss,js}
     # borrar directorios copiados que fueron generados por el entorno de desarrollo
-    rm -r dist/cliente/css
+    rm -rf dist/cliente/css
 printf "\t> Compilando Sass\n"
     node-sass --quiet --output-style compressed --source-map true src/cliente/scss/estilo.scss --output dist/css
     printf "\t\t> Sass compilado.\n"
