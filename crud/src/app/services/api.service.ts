@@ -6,11 +6,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
 
+  private static API = 'http://localhost:7272/api';
+
   constructor(private http: HttpClient) { }
   
   getCarrusel() {
-    const API = 'http://localhost:7272/api';
+    return this.http.get(`${ApiService.API}/carrusel`);
+  }
 
-    return this.http.get(`${API}/carrusel`);
+  deleteTest() {
+    return this.http.delete(`${ApiService.API}/test`);
   }
 }

@@ -4,11 +4,14 @@ ini_set('display_errors', 1);
 $config = require_once "./configs/config.php";
 
 // CORS: permitir acceso desde otros dominios
-header('Access-Control-Allow-Origin: *');
+// no sirve la wildcard si se manejan cookies, tiene que ser explicito
+header('Access-Control-Allow-Origin: http://localhost:4200');
 // CORS: permitir más métodos aparte de los permitidos en "simple request"
 header('Access-Control-Allow-Methods: *');
 // CORS: permitir cookies
 header('Access-Control-Allow-Credentials: true');
+// CORS: permitir headers aparte de las permitidas de normal
+header('Access-Control-Allow-Headers: Content-Type');
 
 // CORS: devolver 200 (y no seguir con el enrutamiento) para peticiones OPTIONS
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
