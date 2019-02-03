@@ -3,7 +3,18 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 $config = require_once "./configs/config.php";
 
+// CORS: permitir acceso desde otros dominios
 header('Access-Control-Allow-Origin: *');
+// CORS: permitir más métodos aparte de los permitidos en "simple request"
+header('Access-Control-Allow-Methods: *');
+// CORS: permitir cookies
+header('Access-Control-Allow-Credentials: true');
+
+// CORS: devolver 200 (y no seguir con el enrutamiento) para peticiones OPTIONS
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
 
 try {
     $mysql = new PDO(
