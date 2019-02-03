@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -10,29 +9,12 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   title = 'WeekFood';
 
-  constructor(private apiService: ApiService, private authService: AuthService) {
-    this.apiService.getCarrusel()
-      .subscribe((carrusel) => {
-        console.log('GET carrusel', carrusel);
-      });
-
-    this.apiService.deleteTest()
+  constructor(private authService: AuthService) {
+    this.authService.postLogin('juan', 'juan123')
       .subscribe((res) => {
-        console.log('DELETE test', res);
-      });
-
-    this.authService.postRegistro('juan', 'juan123')
-      .subscribe((res) => {
-        console.log('POST registro', res);
+        console.log('POST login', res);
       }, (res) => {
-        console.error('ERR', res.error);
+        console.error('ERROR login', res);
       });
-
-    window.setTimeout(() => {
-      this.authService.postLogin('juan', 'juan123')
-        .subscribe((res) => {
-          console.log('POST login', res);
-        });
-    }, 1000);
   }
 }

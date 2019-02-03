@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  PUERTO_API: '80'
+  API_PUERTO: '80'
 };
 
 /*

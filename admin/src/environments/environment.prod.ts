@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  PUERTO_API: '80'
+  API_PUERTO: '80'
 };

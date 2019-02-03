@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  PUERTO_API: '7272'
+  API_PUERTO: '7272'
 };
 
 /*
