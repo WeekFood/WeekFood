@@ -5,6 +5,11 @@ class Usuario {
         this.nick = undefined
         this.nombre = undefined
         this.apellidos = undefined
+        this.telefono = undefined
+        this.fechaNacimiento = undefined
+        this.ubicaciones = []
+        this.metodosPago = []
+        this.pedidos = []
         this.erroresAcceso = {
             Usu_No_Existe: "Usuario no existe",
             Cont_No_Valido: "Contraseña no es valida",
