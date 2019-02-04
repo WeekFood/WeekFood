@@ -1,0 +1,37 @@
+$rojo: #e41e08;
+
+.navbar {
+    background: darken($rojo, 3%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.navbar-brand {
+    font-family: 'Happy Monkey';
+    font-style: italic;
+    font-size: 1.5rem;
+}
+
+.list-group {
+    padding: 0.5rem;
+}
+
+.list-group-item {
+    border: none;
+    border-left: 2px solid transparent;
+    padding: 0 0.75rem;
+    margin: 0.05rem 0;
+}
+
+.list-group-item.active {
+    background-color: transparent;
+    border-color: darken($rojo, 3%);
+    color: darken($rojo, 3%);
+    font-weight: 700;
+}
+
+.list-group-item:first-child {
+    border-radius: 0;
+}
