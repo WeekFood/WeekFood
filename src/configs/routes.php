@@ -7,6 +7,11 @@ return [
             "resource" => "cliente",
             "action" => "index"
         ],
+        "Admin" => [
+            "route" => "/admin",
+            "resource" => "admin",
+            "action" => "index"
+        ],
         "API" => [
             "route" => "api",
             "resource" => "api",
