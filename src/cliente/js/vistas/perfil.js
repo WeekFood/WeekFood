@@ -1,5 +1,6 @@
 function vista_Perfil(puntoMontaje) {
     montarMenu("/api/menu", "perfil")
+    /*
     var usuario = {
         ubicaciones =[
             "Avda. Los llanos, 73 26270 Ojacastro",
@@ -89,35 +90,39 @@ function vista_Perfil(puntoMontaje) {
             }
         ]
     }
+    */
     var contraseña = ""
     for (var x = 0; x < 10; x++) {
         contraseña += "&#9899"
     }
-    if (usuario.metodosPago.length == 0) {
-        var metodosPago = "<p>No tienes métodos de pago</p>"
+    var metodosPago = `<div class='c-vista-perfil__metodos-pago-inicio'>
+    <p class='c-vista-perfil__titulo'>Métodos de pago</p></div>`
+    if (GLOBAL_USUARIO.metodosPago.length == 0) {
+        metodosPago += `<div class='c-vista-perfil__metodos-pago-final'>
+                            <p>No tienes métodos de pago</p></div>
+                        <div class='c-vista-perfil__metodos-pago-final'>
+                            <p class='c-boton c-boton--basico c-vista-perfil__boton'> Añadir Nuevo </p></div>`
     } else {
-        var metodosPago = `<div class='c-vista-perfil__metodos-pago-inicio'>
-        <p class='c-vista-perfil__titulo'>Métodos de pago</p></div>`
 
-        for (var x = 1; x < usuario.metodosPago.length - 1 && x < 4; x++) {
-            var metodoPago = usuario.metodosPago[usuario.metodosPago.length - x]
+        for (var x = 1; x < GLOBAL_USUARIO.metodosPago.length - 1 && x < 4; x++) {
+            var metodoPago = GLOBAL_USUARIO.metodosPago[GLOBAL_USUARIO.metodosPago.length - x]
             metodosPago += `<div class='c-vista-perfil__metodo-pago'>
             <span>` + metodoPago.titulo + `</span>
             <span'>` + metodoPago.valor + `</span>
             </div>`
         }
-        if (usuario.metodosPago.length > 3) {
+        if (GLOBAL_USUARIO.metodosPago.length > 3) {
             metodosPago += `<div class='c-vista-perfil__metodos-pago-final'>
-                        <p class='c-boton c-boton--basico c-vista-perfil__boton'>` + (usuario.metodosPago.length - 3) + " mas...</p></div>"
+                        <p class='c-boton c-boton--basico c-vista-perfil__boton'>` + (GLOBAL_USUARIO.metodosPago.length - 3) + " mas...</p></div>"
         }
     }
-    if (usuario.pedidos.length == 0) {
-        var pedidos = "<p>No tienes pedidos</p>"
+    var pedidos = `<div class='c-vista-perfil__pedidos-inicio'>
+    <p class='c-vista-perfil__titulo'>Pedidos</p></div>`
+    if (GLOBAL_USUARIO.pedidos.length == 0) {
+        pedidos += "<div class='c-vista-perfil__pedidos-final'><p>No tienes pedidos</p></div>"
     } else {
-        var pedidos = `<div class='c-vista-perfil__pedidos-inicio'>
-        <p class='c-vista-perfil__titulo'>Pedidos</p></div>`
-        for (var x = 1; x < usuario.pedidos.length - 1 && x < 4; x++) {
-            var pedido = usuario.pedidos[usuario.pedidos.length - x]
+        for (var x = 1; x < GLOBAL_USUARIO.pedidos.length - 1 && x < 4; x++) {
+            var pedido = GLOBAL_USUARIO.pedidos[GLOBAL_USUARIO.pedidos.length - x]
             pedidos += `
             <div class='c-pedido'>
             <span class="c-pedido__id">` + pedido.id + `</span>
@@ -130,13 +135,17 @@ function vista_Perfil(puntoMontaje) {
             <span class="c-pedido__articulos">` + pedido.articulos.length + ` artículos</span>
             </div>`
         }
-        if (usuario.pedidos.length > 3) {
+        if (GLOBAL_USUARIO.pedidos.length > 3) {
             pedidos += `<div class='c-vista-perfil__pedidos-final'>
-                        <p class='c-boton c-boton--basico c-vista-perfil__boton'>` + (usuario.pedidos.length - 3) + " mas...</p></div>"
+                        <p class='c-boton c-boton--basico c-vista-perfil__boton'>` + (GLOBAL_USUARIO.pedidos.length - 3) + " mas...</p></div>"
         }
     }
     var html =
         `<div class="c-vista-perfil">
+            <div class="c-vista-perfil__edicion c-boton c-boton--basico js-edicion-general">
+                <i class='fas fa-edit js-edicion-general-icono'></i> 
+                <span class="js-edicion-texto">Editar</span>
+            </div>
             <div class="c-vista-perfil__usuario">
                 <div class='c-vista-perfil__foto-contenedor'>
                     <img class='c-vista-perfil__foto' src='`+ GLOBAL_USUARIO.foto + `'>
@@ -155,15 +164,20 @@ function vista_Perfil(puntoMontaje) {
                     <span>`+ contraseña + `</span>
                 </p>
                     </div >
-            <div class='c-vista-perfil__otros-datos'>
-                <p class='c-vista-perfil__dato'>
+            <div class='c-vista-perfil__otros-datos'>`
+    if (GLOBAL_USUARIO.fechaNacimiento != undefined) {
+        html += `<p class='c-vista-perfil__dato'>
                     <span>Nacimiento</span>
-                    <span>`+ usuario.fechaNacimiento + `</span>
-                </p>
-                <p class='c-vista-perfil__dato'>
-                    <span>Teléfono</span>
-                    <span>` + usuario.telefono + `</span>
+                    <span>`+ GLOBAL_USUARIO.fechaNacimiento + `</span>
                 </p>`
+
+    }
+    if (GLOBAL_USUARIO.telefono != undefined) {
+        html += `<p class='c-vista-perfil__dato'>
+                    <span>Teléfono</span>
+                    <span>` + GLOBAL_USUARIO.telefono + `</span>
+                </p>`
+    }
     if (GLOBAL_USUARIO.sexo == "H" || GLOBAL_USUARIO.sexo == "M") {
         html += `   <p class='c-vista-perfil__dato'>
                         <span>Sexo</span>
@@ -191,6 +205,14 @@ function vista_Perfil(puntoMontaje) {
     </div > `
 
     $(puntoMontaje).html(html)
+    $(".js-edicion-general").on("click",vista_Perfil_activarEdicion)
+}
+
+function vista_Perfil_activarEdicion() {
+    $(".js-edicion-general-icono").removeClass("fa-edit").addClass("fa-save")
+    $(".c-vista-perfil").addClass("c-vista-perfil--edicion")
+    $(".js-edicion-general").off("click").on("click",vista_Perfil_guardarEdicion)
+    $(".js-edicion-texto").html("Guardar")
     $(".c-vista-perfil__foto").on(
         {
             mouseover: () => {
@@ -217,35 +239,7 @@ function vista_Perfil(puntoMontaje) {
                         evento.preventDefault();
                         evento.stopPropagation();
                     },
-                    'drop': (evento) => {
-                        var datos = evento.originalEvent.dataTransfer;
-                        if (datos && datos.files.length) {
-                            evento.preventDefault();
-                            evento.stopPropagation();
-                            if (datos.files.length == 1) {
-                                var lector = new FileReader();
-                                lector.onload = $.proxy((archi, event) => {
-                                    if (archi.type.match('image.*')) {
-                                        GLOBAL_USUARIO.foto = event.target.result
-                                        $(".js-ventana-modal").remove()
-                                        cargarVista("perfil")
-                                        $(".c-cabecera__imagen").attr("src", GLOBAL_USUARIO.foto)
-                                        $(".c-perfil__imagen").attr("src", GLOBAL_USUARIO.foto)
-                                    } else {
-                                        if (!$(".c-selector-archivo__error").hasClass("c-selector-archivo__error--visible"))
-                                        $(".c-selector-archivo__error").addClass("c-selector-archivo__error--visible")
-                                    }
-                                }, this, datos.files[0])
-                                lector.readAsDataURL(datos.files[0])
-                            } else {
-                                generarNotificacion("Por favor sube sólo una imagen png, jpg o gif")
-                                $(".js-ventana-modal").remove()
-                            }
-                        } else {
-                            generarNotificacion("Por favor sube sólo una imagen png, jpg o gif")
-                            $(".js-ventana-modal").remove()
-                        }
-                    }
+                    'drop': vista_Perfil_cambiarFoto
                 });
             },
 
@@ -253,4 +247,41 @@ function vista_Perfil(puntoMontaje) {
                 $(".c-vista-perfil__foto-edit").remove()
             }
         });
+}
+
+function vista_Perfil_guardarEdicion(){
+    $(".js-edicion-general").off("click").on("click",vista_Perfil_activarEdicion)
+    $(".js-edicion-general-icono").removeClass("fa-save").addClass("fa-edit")
+    $(".c-vista-perfil").removeClass("c-vista-perfil--edicion")
+    $(".js-edicion-texto").html("Editar")
+}
+
+function vista_Perfil_cambiarFoto(evento) {
+    var datos = evento.originalEvent.dataTransfer;
+    if (datos && datos.files.length) {
+        evento.preventDefault();
+        evento.stopPropagation();
+        if (datos.files.length == 1) {
+            var lector = new FileReader();
+            lector.onload = $.proxy((archi, event) => {
+                if (archi.type.match('image.*')) {
+                    GLOBAL_USUARIO.foto = event.target.result
+                    $(".js-ventana-modal").remove()
+                    cargarVista("perfil")
+                    $(".c-cabecera__imagen").attr("src", GLOBAL_USUARIO.foto)
+                    $(".c-perfil__imagen").attr("src", GLOBAL_USUARIO.foto)
+                } else {
+                    if (!$(".c-selector-archivo__error").hasClass("c-selector-archivo__error--visible"))
+                        $(".c-selector-archivo__error").addClass("c-selector-archivo__error--visible")
+                }
+            }, this, datos.files[0])
+            lector.readAsDataURL(datos.files[0])
+        } else {
+            generarNotificacion("Por favor sube sólo una imagen png, jpg o gif")
+            $(".js-ventana-modal").remove()
+        }
+    } else {
+        generarNotificacion("Por favor sube sólo una imagen png, jpg o gif")
+        $(".js-ventana-modal").remove()
+    }
 }

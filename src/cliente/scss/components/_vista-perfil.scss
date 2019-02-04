@@ -5,6 +5,9 @@
     width: 90%;
     margin: 1% 5%;
     border-radius: 10px;
+    &--edicion {
+        animation: c-vista-perfil__edicion-general infinite 2s
+    }
 }
 
 .c-vista-perfil__usuario {
@@ -149,5 +152,15 @@
     opacity: 0;
     &--visible {
         opacity: 1;
+    }
+}
+
+.c-vista-perfil__edicion {
+    position: absolute;
+}
+
+@keyframes c-vista-perfil__edicion-general {
+    50% {
+        box-shadow: 0 4px 8px 0 $rojo, 0 6px 20px 0 $rojo;
     }
 }
