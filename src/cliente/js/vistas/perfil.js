@@ -1,7 +1,10 @@
 function vista_Perfil(puntoMontaje) {
     montarMenu("/api/menu", "perfil")
-    /*
+    vista_Perfil_generarHTML(puntoMontaje)
+}
+function vista_Perfil_generarHTML(puntoMontaje) {
     var usuario = {
+        /*
         ubicaciones =[
             "Avda. Los llanos, 73 26270 Ojacastro",
             "Avda. Los llanos, 23 26270 Ojacastro",
@@ -89,10 +92,10 @@ function vista_Perfil(puntoMontaje) {
                 ]
             }
         ]
+        */
     }
-    */
     var contraseña = ""
-    for (var x = 0; x < 10; x++) {
+    for (var x = 0; x < 5; x++) {
         contraseña += "&#9899"
     }
     var metodosPago = `<div class='c-vista-perfil__metodos-pago-inicio'>
@@ -149,8 +152,10 @@ function vista_Perfil(puntoMontaje) {
             <div class="c-vista-perfil__usuario">
                 <div class='c-vista-perfil__foto-contenedor'>
                     <img class='c-vista-perfil__foto' src='`+ GLOBAL_USUARIO.foto + `'>
-                </div>
-                <p class='c-vista-perfil__nombre'>`+ GLOBAL_USUARIO.nombre + `</p>`
+                </div>`
+    if (GLOBAL_USUARIO.nombre != undefined) {
+        html += `<p class='c-vista-perfil__nombre'>` + GLOBAL_USUARIO.nombre + `</p>`
+    }
     if (GLOBAL_USUARIO.apellidos != undefined) {
         html += `<p class='c-vista-perfil__apellidos'>` + GLOBAL_USUARIO.apellidos + `</p>`
     }
@@ -161,7 +166,7 @@ function vista_Perfil(puntoMontaje) {
                 </p>
                 <p class='c-vista-perfil__dato'>
                     <span>Contraseña</span>
-                    <span>`+ contraseña + `</span>
+                    <span class="js-vista-perfil__contra">`+ contraseña + `</span>
                 </p>
                     </div >
             <div class='c-vista-perfil__otros-datos'>`
@@ -189,12 +194,11 @@ function vista_Perfil(puntoMontaje) {
             case "M":
                 html += "Mujer"
                 break
-            default:
-                html += "Indefinido"
         }
+        html += `</span>
+                    </p>`
     }
-    html += `           </span>
-                    </p >
+    html += `
                 </div >
             </div >
         <div class="c-vista-perfil__detalles">
@@ -205,20 +209,93 @@ function vista_Perfil(puntoMontaje) {
     </div > `
 
     $(puntoMontaje).html(html)
-    $(".js-edicion-general").on("click",vista_Perfil_activarEdicion)
+    $(".js-edicion-general").off("click")
+    $(".js-edicion-general").click(puntoMontaje, vista_Perfil_activarEdicion)
 }
 
-function vista_Perfil_activarEdicion() {
+function vista_Perfil_activarEdicion(evento) {
+    /*
+    Lo de evento.data es porque al usar .click el parametro se añade al evento
+    https://stackoverflow.com/questions/3273350/jquerys-click-pass-parameters-to-user-function
+    */
     $(".js-edicion-general-icono").removeClass("fa-edit").addClass("fa-save")
     $(".c-vista-perfil").addClass("c-vista-perfil--edicion")
-    $(".js-edicion-general").off("click").on("click",vista_Perfil_guardarEdicion)
+    $(".js-edicion-general").off("click")
+    $(".js-edicion-general").click(evento.data, vista_Perfil_guardarEdicion)
     $(".js-edicion-texto").html("Guardar")
+
+    var html =
+        `<div class="c-vista-perfil">
+        <div class="c-vista-perfil__edicion c-boton c-boton--basico js-edicion-general">
+            <i class='fas fa-edit js-edicion-general-icono'></i> 
+            <span class="js-edicion-texto">Editar</span>
+        </div>
+        <div class="c-vista-perfil__usuario">
+            <div class='c-vista-perfil__foto-contenedor'>
+                <img class='c-vista-perfil__foto' src='`+ GLOBAL_USUARIO.foto + `'>
+            </div>`
+    if (GLOBAL_USUARIO.nombre != undefined) {
+        html += `<p class='c-vista-perfil__nombre'>` + GLOBAL_USUARIO.nombre + `</p>`
+    }
+    if (GLOBAL_USUARIO.apellidos != undefined) {
+        html += `<p class='c-vista-perfil__apellidos'>` + GLOBAL_USUARIO.apellidos + `</p>`
+    }
+    html += `<div class='c-vista-perfil__nick-pass' >
+            <p class='c-vista-perfil__dato'>
+                <span>Nick</span>
+                <span>`+ GLOBAL_USUARIO.nick + `</span>
+            </p>
+            <p class='c-vista-perfil__dato'>
+                <span>Contraseña</span>
+                <span class="js-vista-perfil__contra">`+ contraseña + `</span>
+            </p>
+                </div >
+        <div class='c-vista-perfil__otros-datos'>`
+    if (GLOBAL_USUARIO.fechaNacimiento != undefined) {
+        html += `<p class='c-vista-perfil__dato'>
+                <span>Nacimiento</span>
+                <span>`+ GLOBAL_USUARIO.fechaNacimiento + `</span>
+            </p>`
+
+    }
+    if (GLOBAL_USUARIO.telefono != undefined) {
+        html += `<p class='c-vista-perfil__dato'>
+                <span>Teléfono</span>
+                <span>` + GLOBAL_USUARIO.telefono + `</span>
+            </p>`
+    }
+    if (GLOBAL_USUARIO.sexo == "H" || GLOBAL_USUARIO.sexo == "M") {
+        html += `   <p class='c-vista-perfil__dato'>
+                    <span>Sexo</span>
+                    <span>`
+        switch (GLOBAL_USUARIO.sexo) {
+            case "H":
+                html += "Hombre"
+                break
+            case "M":
+                html += "Mujer"
+                break
+        }
+        html += `</span>
+                </p>`
+    }
+    html += `
+            </div >
+        </div >
+    <div class="c-vista-perfil__detalles">
+        <div class='c-vista-perfil__metodos-pago'>`+ metodosPago + `</div>
+        <div class='c-vista-perfil__pedidos'>`+ pedidos + `</div>
+        <p class='c-boton c-boton--basico c-vista-perfil__ubicaciones c-vista-perfil__boton'>Mis ubicaciones</p>
+    </div>
+</div > `
+
+    $(evento.data).html(html)
     $(".c-vista-perfil__foto").on(
         {
             mouseover: () => {
                 $(".c-vista-perfil__foto-contenedor").prepend(`
             <div class='c-vista-perfil__foto-edit'>
-            <i class='fas fa-edit fa-4x'></i>
+            <i class='fas fa-edit fa-4x c-vista-perfil__edit-icono'></i>
             </div>`)
             },
             click: () => {
@@ -248,12 +325,19 @@ function vista_Perfil_activarEdicion() {
             }
         });
 }
-
-function vista_Perfil_guardarEdicion(){
-    $(".js-edicion-general").off("click").on("click",vista_Perfil_activarEdicion)
+function vista_Perfil_guardarEdicion(evento) {
+    /*
+    Lo de evento.data es porque al usar .click el parametro se añade al evento
+    https://stackoverflow.com/questions/3273350/jquerys-click-pass-parameters-to-user-function
+    */
+    /*
+    $(".js-edicion-general").off("click").on("click", vista_Perfil_activarEdicion)
     $(".js-edicion-general-icono").removeClass("fa-save").addClass("fa-edit")
     $(".c-vista-perfil").removeClass("c-vista-perfil--edicion")
     $(".js-edicion-texto").html("Editar")
+    $(".c-vista-perfil__foto").off()
+    */
+    vista_Perfil_generarHTML(evento.data)
 }
 
 function vista_Perfil_cambiarFoto(evento) {
