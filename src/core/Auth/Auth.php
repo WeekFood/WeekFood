@@ -156,10 +156,10 @@ class Auth {
 
     public function isLoggedIn(): bool {
         return session_status() !== PHP_SESSION_NONE
-            && isset($_SESSION['logueado'])
-            && $_SESSION['logueado']
-            && isset($_SESSION['idUsuario'])
-            && $_SESSION['idUsuario'] > -1;
+                && isset($_SESSION['logueado'])
+                && $_SESSION['logueado']
+                && isset($_SESSION['idUsuario'])
+                && $_SESSION['idUsuario'] > -1;
     }
 
     public function getLoggedId() {
