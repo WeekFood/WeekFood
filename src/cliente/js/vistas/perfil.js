@@ -94,6 +94,7 @@ function vista_Perfil_generarHTML(puntoMontaje) {
         ]
         */
     }
+    */
     var contraseña = ""
     for (var x = 0; x < 5; x++) {
         contraseña += "&#9899"
