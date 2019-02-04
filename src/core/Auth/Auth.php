@@ -24,7 +24,8 @@ class Auth {
 
     public function register(string $nick, string $password, string $name) {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-
+        $nick = htmlspecialchars($nick, ENT_QUOTES, 'UTF-8');
+        $name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
         if ($this->nickTaken($nick)) {
             throw new NickTakenException();
         }
@@ -56,7 +57,7 @@ class Auth {
         return $psSelect->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function login(string $nick, string $password): array {
+    public function login(string $nick, string $password): array{
         $sql = 'SELECT * FROM usuarios WHERE BINARY nick = :nick LIMIT 1;';
 
         $ps = $this->db->prepare($sql);
@@ -138,6 +139,7 @@ class Auth {
     }
 
     public function nickTaken(string $nick): bool {
+        $nick = htmlspecialchars($nick, ENT_QUOTES, 'UTF-8');
         $sql = 'SELECT nick FROM usuarios WHERE nick = :nick';
         $ps = $this->db->prepare($sql);
         $ps->bindParam(':nick', $nick);
