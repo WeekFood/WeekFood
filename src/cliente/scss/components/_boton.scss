@@ -38,4 +38,10 @@
             background: darken($acento-advertencia, 4%);
         }
     }
+    &--deshabilitado {
+        background: $acento-deshabilitado;
+        &:hover {
+            background: darken($acento-deshabilitado, 4%);
+        }
+    }
 }
