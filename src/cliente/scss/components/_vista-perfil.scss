@@ -13,8 +13,9 @@
 .c-vista-perfil__usuario {
     display: grid;
     margin: 20px 0;
-    grid-template-areas: "foto" "nombre" "apellidos" "." "nick-pass""";
+    grid-template-areas: "foto" "nombre" "apellidos" "." "nick-pass" "." "otros-datos";
     grid-row-gap: 15px;
+    grid-template-columns: 1fr;
     @media only screen and (min-width: $mobile-l) {
         width: 80%;
         margin-left: 10%;
@@ -39,13 +40,23 @@
     }
 }
 
-.c-vista-perfil__foto-contenedor {
+.c-vista-perfil__foto-relativo {
+    position: relative;
     grid-area: foto;
+    height: 150px;
+}
+
+.c-vista-perfil__foto-contenedor {
     width: 150px;
     height: 150px;
     border-radius: 150px;
-    margin-left: 100px;
     overflow: hidden;
+    margin: 0 auto;
+    @media only screen and (min-width: $mobile-l) {
+        right: 50px;
+        position: absolute;
+        margin: 0;
+    }
 }
 
 .c-vista-perfil__foto-edit {
@@ -64,9 +75,14 @@
     text-align: center;
     grid-area: nombre;
     font-size: 1.5rem;
+    &--edit{
+        display: grid;
+        grid-template-columns: 30px 1fr 30px;
+    }
     @media only screen and (min-width: $mobile-l) {
         line-height: 65px;
         text-align: left;
+        display: block;
     }
 }
 
@@ -74,9 +90,14 @@
     text-align: center;
     grid-area: apellidos;
     font-size: 1.5rem;
+    &--edit{
+        display: grid;
+        grid-template-columns: 30px 1fr 30px;
+    }
     @media only screen and (min-width: $mobile-l) {
         line-height: 65px;
         text-align: left;
+        display: block;
     }
 }
 
@@ -85,7 +106,7 @@
 }
 
 .c-vista-perfil__otros-datos {
-    grid-area: otros-datos 
+    grid-area: otros-datos
 }
 
 .c-vista-perfil__dato {
