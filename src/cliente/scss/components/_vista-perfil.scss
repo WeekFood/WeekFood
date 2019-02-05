@@ -5,9 +5,6 @@
     max-width: 100%;
     margin: 15px;
     border-radius: 10px;
-    &--edicion {
-        animation: c-vista-perfil__edicion-general infinite 2s
-    }
 }
 
 .c-vista-perfil__usuario {
@@ -75,9 +72,9 @@
     text-align: center;
     grid-area: nombre;
     font-size: 1.5rem;
-    &--edit{
+    &-editable{
         display: grid;
-        grid-template-columns: 30px 1fr 30px;
+        grid-template-columns: 50px 1fr 50px;
     }
     @media only screen and (min-width: $mobile-l) {
         line-height: 65px;
@@ -90,9 +87,9 @@
     text-align: center;
     grid-area: apellidos;
     font-size: 1.5rem;
-    &--edit{
+    &-editable{
         display: grid;
-        grid-template-columns: 30px 1fr 30px;
+        grid-template-columns: 50px 1fr 50px;
     }
     @media only screen and (min-width: $mobile-l) {
         line-height: 65px;
@@ -202,8 +199,8 @@
     color: $rojo;
 }
 
-@keyframes c-vista-perfil__edicion-general {
-    50% {
-        box-shadow: 0 4px 8px 0 $rojo, 0 6px 20px 0 $rojo;
-    }
+.c-vista-perfil__input{
+    border: 1px solid;
+    width: 80%;
+    height: 100%;
 }

@@ -155,36 +155,22 @@ function vista_Perfil_generarHTML(puntoMontaje) {
                         <img class='c-vista-perfil__foto' src='`+ GLOBAL_USUARIO.foto + `'>
                     </div>
                 </div>`
-    if (GLOBAL_USUARIO.nombre != undefined) {
-        html += `<p class='c-vista-perfil__nombre'>` + GLOBAL_USUARIO.nombre + `</p>`
-    }
-    if (GLOBAL_USUARIO.apellidos != undefined) {
-        html += `<p class='c-vista-perfil__apellidos'>` + GLOBAL_USUARIO.apellidos + `</p>`
-    }
-    html += `<div class='c-vista-perfil__nick-pass' >
-                <p class='c-vista-perfil__dato'>
-                    <span>Nick</span>
-                    <span>`+ GLOBAL_USUARIO.nick + `</span>
-                </p>
-                <p class='c-vista-perfil__dato'>
-                    <span>Contraseña</span>
-                    <span class="js-vista-perfil__contra">`+ contraseña + `</span>
-                </p>
-                    </div >
+        + (GLOBAL_USUARIO.nombre != undefined ? (`<p class='c-vista-perfil__nombre'>` + GLOBAL_USUARIO.nombre + `</p>`) : "")
+        + (GLOBAL_USUARIO.apellidos != undefined ? (`<p class='c-vista-perfil__apellidos'>` + GLOBAL_USUARIO.apellidos + `</p>`) : "")
+        + `     <div class='c-vista-perfil__nick-pass' >
+                    <p class='c-vista-perfil__dato'>
+                        <span>Nick</span>
+                        <span>`+ GLOBAL_USUARIO.nick + `</span>
+                    </p>
+                    <p class='c-vista-perfil__dato'>
+                        <span>Contraseña</span>
+                        <span class="js-vista-perfil__contra">`+ contraseña + `</span>
+                    </p>
+                        </div>
             <div class='c-vista-perfil__otros-datos'>`
-    if (GLOBAL_USUARIO.fechaNacimiento != undefined) {
-        html += `<p class='c-vista-perfil__dato'>
-                    <span>Nacimiento</span>
-                    <span>`+ GLOBAL_USUARIO.fechaNacimiento + `</span>
-                </p>`
+        + (GLOBAL_USUARIO.fechaNacimiento != undefined ? (`<p class='c-vista-perfil__dato'><span>Nacimiento</span><span>` + GLOBAL_USUARIO.fechaNacimiento + `</span></p>`) : "")
+        + (GLOBAL_USUARIO.telefono != undefined ? (`<p class='c-vista-perfil__dato'><span>Teléfono</span><span>` + GLOBAL_USUARIO.telefono + `</span></p>`) : "")
 
-    }
-    if (GLOBAL_USUARIO.telefono != undefined) {
-        html += `<p class='c-vista-perfil__dato'>
-                    <span>Teléfono</span>
-                    <span>` + GLOBAL_USUARIO.telefono + `</span>
-                </p>`
-    }
     if (GLOBAL_USUARIO.sexo == "H" || GLOBAL_USUARIO.sexo == "M") {
         html += `   <p class='c-vista-perfil__dato'>
                         <span>Género</span>
@@ -197,11 +183,10 @@ function vista_Perfil_generarHTML(puntoMontaje) {
                 html += "Mujer"
                 break
         }
-        html += `</span>
+        html += `       </span>
                     </p>`
     }
-    html += `
-                </div >
+    html += `   </div >
             </div >
         <div class="c-vista-perfil__detalles">
             <div class='c-vista-perfil__metodos-pago'>`+ metodosPago + `</div>
@@ -228,7 +213,7 @@ function vista_Perfil_activarEdicion(evento) {
         contraseña += "&#9899"
     }
     var html =
-        `<div class="c-vista-perfil c-vista-perfil--edicion">
+        `<div class="c-vista-perfil">
         <div class="c-vista-perfil__edicion c-boton c-boton--basico js-edicion-general">
             <i class='fas fa-edit js-edicion-general-icono'></i> 
             <span class="js-edicion-texto">Guardar</span>
@@ -239,66 +224,56 @@ function vista_Perfil_activarEdicion(evento) {
                     <img class='c-vista-perfil__foto' src='`+ GLOBAL_USUARIO.foto + `'>
                 </div>
             </div>
-            <p class='c-vista-perfil__nombre c-vista-perfil__nombre--edit js-nombre'>
-                <i class='fas fa-edit c-vista-perfil__edit-icono'></i>`
-    if (GLOBAL_USUARIO.nombre != undefined) {
-        html += GLOBAL_USUARIO.nombre
-    } else {
-        html += "Nombre"
-    }
-    html += `</p>
-            <p class='c-vista-perfil__apellidos c-vista-perfil__apellidos--edit js-apellidos'>
-                <i class='fas fa-edit c-vista-perfil__edit-icono'></i>`
-    if (GLOBAL_USUARIO.apellidos != undefined) {
-        html += GLOBAL_USUARIO.apellidos
-    }
-    else {
-        html += "Apellidos"
-    }
-    html += `</p>
+            <p class='c-vista-perfil__nombre c-vista-perfil__nombre-editable'>
+                <span class="js-nombre-boton">
+                    <i class='fas fa-edit c-vista-perfil__edit-icono js-nombre-boton-contenido'></i>
+                </span>
+                <span class="js-nombre-contenido">`
+        + (GLOBAL_USUARIO.nombre != undefined ? GLOBAL_USUARIO.nombre : "Nombre")
+        + `     </span>
+            </p>
+            <p class='c-vista-perfil__apellidos c-vista-perfil__apellidos-editable'>
+                <span class="js-apellidos-boton">
+                    <i class='fas fa-edit c-vista-perfil__edit-icono'></i>
+                </span>
+                <span class="js-apellidos-contenido">`
+        + (GLOBAL_USUARIO.apellidos != undefined ? GLOBAL_USUARIO.apellidos : "Apellidos")
+        + `     </span>
+            </p>
             <div class='c-vista-perfil__nick-pass' >
                 <p class='c-vista-perfil__dato'>
                     <span>Nick</span>
-                    <span>
-                        `+ GLOBAL_USUARIO.nick + `
-                    </span>
+                    <span>`
+        + GLOBAL_USUARIO.nick
+        + `         </span>
                 </p>
                 <p class='c-vista-perfil__dato'>
                     <span>Contraseña</span>
                     <span class="js-contra">
-                        <i class='fas fa-edit c-vista-perfil__edit-icono'></i>
-                        `+ contraseña + `
-                    </span>
+                        <i class='fas fa-edit c-vista-perfil__edit-icono'></i>`
+        + contraseña
+        + `         </span>
                 </p>
             </div >
             <div class='c-vista-perfil__otros-datos'>
                 <p class='c-vista-perfil__dato js-fechaNacimiento'>
                     <span>Nacimiento</span>
                     <span>
-                    <i class='fas fa-edit c-vista-perfil__edit-icono'></i>`
-    if (GLOBAL_USUARIO.fechaNacimiento != undefined) {
-        html += GLOBAL_USUARIO.fechaNacimiento
-    } else {
-        html += "Añadir"
-    }
-    html += `</span>
-            </p>
-            <p class='c-vista-perfil__dato js-telefono'>
-                <span>Teléfono</span>
-                <span>
-                <i class='fas fa-edit c-vista-perfil__edit-icono'></i>`
-
-    if (GLOBAL_USUARIO.telefono != undefined) {
-        html += GLOBAL_USUARIO.telefono
-    } else {
-        html += "Añadir"
-    }
-    html += `</span>
-            </p>
-            <p class='c-vista-perfil__dato js-sexo'>
+                        <i class='fas fa-edit c-vista-perfil__edit-icono'></i>`
+        + (GLOBAL_USUARIO.fechaNacimiento != undefined ? GLOBAL_USUARIO.fechaNacimiento : "Añadir")
+        + `         </span>
+                </p>
+                <p class='c-vista-perfil__dato js-telefono'>
+                    <span>Teléfono</span>
+                    <span>
+                        <i class='fas fa-edit c-vista-perfil__edit-icono'></i>`
+        + (GLOBAL_USUARIO.telefono != undefined ? GLOBAL_USUARIO.telefono : "Añadir")
+        + `         </span>
+                </p>
+                <p class='c-vista-perfil__dato js-sexo'>
                     <span>Género</span>
                     <span>
-                    <i class='fas fa-edit c-vista-perfil__edit-icono'></i>`
+                        <i class='fas fa-edit c-vista-perfil__edit-icono'></i>`
 
     switch (GLOBAL_USUARIO.sexo) {
         case "H":
@@ -311,9 +286,11 @@ function vista_Perfil_activarEdicion(evento) {
             html += "Añadir"
     }
 
-    html += `</span>
+    html += `       </span>
                 </p>
-                </div></div></div>`
+            </div>
+        </div>
+    </div>`
     $(evento.data).html(html)
     $(".js-edicion-general").click(evento.data, vista_Perfil_guardarEdicion)
     $(".c-vista-perfil__foto").on(
@@ -350,8 +327,10 @@ function vista_Perfil_activarEdicion(evento) {
                 $(".c-vista-perfil__foto-edit").remove()
             }
         });
-    $(".js-nombre").click(() => { vista_Perfil_ventanaModalSimple("nombre", "nombre", evento) })
-    $(".js-apellidos").click(() => { vista_Perfil_ventanaModalSimple("apellidos", "apellidos", evento) })
+    $(".js-nombre-boton").click(() => {
+        vista_Perfil_activarEdicionCampo("nombre")
+    })
+    $(".js-apellidos").click(() => { })
 }
 function vista_Perfil_guardarEdicion(evento) {
     /*
@@ -397,28 +376,41 @@ function vista_Perfil_cambiarFoto(evento) {
         $(".js-ventana-modal").remove()
     }
 }
-
-function vista_Perfil_ventanaModalSimple(titulo, campo, evento) {
-    generarVentanaModal({
-        titulo: "Cambio de " + titulo,
-        tipo: "info",
-        contenido: `<div class="c-ventana-modal__contenido">
-                        <div class="c-cambio-campo">
-                            <div class="c-cambio-campo__nombre-actual">Actual</div>
-                            <div class="c-cambio-campo__contenido-actual">`+ (GLOBAL_USUARIO[campo] != undefined ? GLOBAL_USUARIO[campo] : "-----") + `</div>
-                            <div class="c-cambio-campo__nombre-nuevo">Nuevo</div>
-                            <div class="c-cambio-campo__contenido-nuevo"><input class="c-cambio-campo__texto js-nuevo-valor"></input></div>
-                            <div class="c-boton c-boton--basico c-cambio-campo__guardar js-campo-guardar">Guardar</div>
-                        </div>
-                    </div>`
-    })
-    $(".js-campo-guardar").click(() => {
-        if (/^[a-z][a-z\s]*$/i.test($(".js-nuevo-valor").val())){
-            GLOBAL_USUARIO[[campo]] = $(".js-nuevo-valor").val()
-        } else {
-            generarNotificacion("Porfavor introduce sólo letras")
+function vista_Perfil_comprobarValidezCampo(campo, botonAsociado) {
+    if (/^[a-z][a-z\s]*$/i.test($(campo).val()) && $(campo).val().length > 2) {
+        if (!$(campo).hasClass("c-boton--exito")) {
+            $(botonAsociado).addClass("c-boton--exito").removeClass("c-boton--deshabilitado")
         }
-        $(".js-ventana-modal").remove()
-        vista_Perfil_activarEdicion(evento)
+        return true
+    } else {
+        if (!$(campo).hasClass("c-boton--deshabilitado")) {
+            $(botonAsociado).addClass("c-boton--deshabilitado").removeClass("c-boton--exito")
+        }
+        return false
+    }
+}
+function vista_Perfil_activarEdicionCampo(campo) {
+    $(".js-" + campo + "-boton").off("click").click(() => {
+        vista_Perfil_guardarCampo(campo)
     })
+    $(".js-" + campo + "-boton-contenido").removeClass("fa-edit c-vista-perfil__edit-icono").addClass("fa-save c-boton c-boton--deshabilitado")
+    $(".js-" + campo + "-contenido").html("<input class='c-vista-perfil__input js-" + campo + "-input' placeholder='" + (GLOBAL_USUARIO[campo] != undefined ? GLOBAL_USUARIO[campo] : campo) + "'>")
+    $(".js-" + campo + "-input").keyup((evento) => {
+        if (vista_Perfil_comprobarValidezCampo(".js-" + campo + "-input", ".js-" + campo + "-boton-contenido") && evento.key == "Enter") {
+            vista_Perfil_guardarCampo(campo)
+        }
+    })
+}
+function vista_Perfil_desactivarEdicionCampo(campo) {
+    $(".js-" + campo + "-boton").off("click").click(() => {
+        vista_Perfil_activarEdicionCampo(campo)
+    })
+    $(".js-" + campo + "-boton-contenido").addClass("fa-edit c-vista-perfil__edit-icono").removeClass("fa-save c-boton c-boton--deshabilitado c-boton--exito")
+    $(".js-" + campo + "-contenido").html((GLOBAL_USUARIO[campo] != undefined ? GLOBAL_USUARIO[campo] : campo))
+}
+function vista_Perfil_guardarCampo(campo) {
+    if (vista_Perfil_comprobarValidezCampo(".js-" + campo + "-input", ".js-" + campo + "-boton-contenido")) {
+        GLOBAL_USUARIO[campo] = $(".js-" + campo + "-input").val()
+        vista_Perfil_desactivarEdicionCampo(campo)
+    }
 }
