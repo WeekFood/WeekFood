@@ -13,7 +13,7 @@
 .c-vista-perfil__usuario {
     display: grid;
     margin: 20px 0;
-    grid-template-areas: "foto" "nombre" "apellidos" "." "nick-pass" "." "otros-datos";
+    grid-template-areas: "foto" "nombre" "apellidos" "." "datos";
     grid-row-gap: 15px;
     grid-template-columns: 1fr;
     @media only screen and (min-width: $mobile-l) {
@@ -22,7 +22,7 @@
         grid-column-gap: 20px;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 65px 65px auto;
-        grid-template-areas: "foto nombre" "foto apellidos" "nick-pass otros-datos";
+        grid-template-areas: "foto nombre" "foto apellidos" "datos datos";
     }
 }
 
@@ -75,7 +75,7 @@
     text-align: center;
     grid-area: nombre;
     font-size: 1.5rem;
-    &-editable{
+    &-editable {
         display: grid;
         grid-template-columns: 50px 1fr 50px;
     }
@@ -90,7 +90,7 @@
     text-align: center;
     grid-area: apellidos;
     font-size: 1.5rem;
-    &-editable{
+    &-editable {
         display: grid;
         grid-template-columns: 50px 1fr 50px;
     }
@@ -101,20 +101,21 @@
     }
 }
 
-.c-vista-perfil__nick-pass {
-    grid-area: nick-pass
-}
-
-.c-vista-perfil__otros-datos {
-    grid-area: otros-datos 
+.c-vista-perfil__datos {
+    grid-area: datos
 }
 
 .c-vista-perfil__dato {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.5fr 1.5fr;
+    grid-column-gap: 10px;
     margin: 5px;
 }
-
+.c-vista-perfil__dato-titulo{
+    text-align: right;
+    border-right: 1px solid;
+    padding-right: 5px;
+}
 .c-vista-perfil__contra {
     grid-template-rows: 1fr 1fr;
     grid-template-areas: "nombre contra-princi" "nombre contra-repe";
@@ -196,14 +197,21 @@
 
 .c-vista-perfil__edicion {
     position: absolute;
+    z-index: 2;
 }
 
 .c-vista-perfil__edit-icono {
     color: $rojo;
 }
 
-.c-vista-perfil__input{
+.c-vista-perfil__input {
     border: 1px solid;
     width: 80%;
     height: 100%;
+}
+
+.c-vista-perfil__letra-pequeña{
+    font-size: 0.9rem;
+    color: gray;
+    font-style: italic;
 }
