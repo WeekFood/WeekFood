@@ -1,4 +1,4 @@
-<div class="modal fade js-modal-producto" tabindex="-1" data-backdrop="static" (click)="cerrarseOverlay($event)">
+<div class="modal fade js-modal-producto" tabindex="-1" data-backdrop="static" data-keyboard="false" (click)="cerrarseOverlay($event)" (keydown)="cerrarseEsc($event)">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

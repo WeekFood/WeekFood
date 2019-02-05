@@ -32,8 +32,14 @@ export class ModalProductoComponent implements OnInit {
   }
 
   cerrarseOverlay(evento) {
+    // solo cerrar si se ha hecho click en el overlay, no el el modal como tal
     if (evento.target === document.querySelector('.modal')) {
-      // solo cerrar si se ha hecho click en el overlay
+      this.cerrarse();
+    }
+  }
+
+  cerrarseEsc(evento) {
+    if (evento.key === 'Escape') {
       this.cerrarse();
     }
   }
