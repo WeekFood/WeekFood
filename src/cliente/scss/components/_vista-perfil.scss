@@ -5,6 +5,9 @@
     max-width: 100%;
     margin: 15px;
     border-radius: 10px;
+    &--edicion {
+        animation: c-vista-perfil__edicion-general infinite 2s
+    }
 }
 
 .c-vista-perfil__usuario {
@@ -103,7 +106,7 @@
 }
 
 .c-vista-perfil__otros-datos {
-    grid-area: otros-datos
+    grid-area: otros-datos 
 }
 
 .c-vista-perfil__dato {
