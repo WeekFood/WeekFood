@@ -110,6 +110,9 @@
     grid-template-columns: 0.5fr 1.5fr;
     grid-column-gap: 10px;
     margin: 5px;
+    @media only screen and (min-width: $mobile-l) {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 .c-vista-perfil__dato-titulo{
     text-align: right;

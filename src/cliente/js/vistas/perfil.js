@@ -236,9 +236,13 @@ function vista_Perfil_activarEdicion(evento) {
                 <p class='c-vista-perfil__dato js-fechaNacimiento'>
                     <span class='c-vista-perfil__dato-titulo'>Nacimiento</span>
                     <span>
-                        <i class='fas fa-edit c-vista-perfil__edit-icono '></i>`
+                        <span class="js-fechaNacimiento-boton">
+                            <i class='fas fa-edit c-vista-perfil__edit-icono js-fechaNacimiento-boton-contenido'></i>
+                        </span>
+                        <span class="js-fechaNacimiento-contenido">`
         + (GLOBAL_USUARIO.fechaNacimiento != undefined ? GLOBAL_USUARIO.fechaNacimiento : "Añadir")
-        + `         </span>
+        + `             </span>
+                    </span>
                 </p>
                 <p class='c-vista-perfil__dato js-telefono'>
                     <span class='c-vista-perfil__dato-titulo'>Teléfono</span>
@@ -318,6 +322,9 @@ function vista_Perfil_activarEdicion(evento) {
     $(".js-apellidos-boton").click(() => {
         vista_Perfil_activarEdicionCampo("apellidos")
     })
+    $(".js-fechaNacimiento-boton").click(() => {
+        vista_Perfil_activarEdicionCampo("fechaNacimiento")
+    })
     $(".js-telefono-boton").click(() => {
         vista_Perfil_activarEdicionCampo("telefono")
     })
@@ -367,66 +374,103 @@ function vista_Perfil_cambiarFoto(evento) {
     }
 }
 function vista_Perfil_comprobarValidezCampo(campo, botonAsociado) {
-    if (campo === ".js-telefono-input") {
-        if (($(campo).val().length == 9 || $(campo).val().length == 10) && /^\d+$/.test($(campo).val())) {
-            if (!$(campo).hasClass("c-boton--exito")) {
-                $(botonAsociado).addClass("c-boton--exito").removeClass("c-boton--deshabilitado")
+    if (campo.startsWith(".js-fechaNacimiento")) {
+        var año = parseInt($(".js-fechaNacimiento-año-input").val())
+        if (año > 1900 && año < 2020) {
+            var mes = parseInt($(".js-fechaNacimiento-mes-input").val())
+            if (mes > 0 && mes < 13) {
+                var dia = parseInt($(".js-fechaNacimiento-dia-input").val())
+                if (dia > 0 && dia <= new Date(año, mes, 0)) {
+                    $(botonAsociado).addClass("c-boton--exito").removeClass("c-boton--deshabilitado")
+                    return true
+                }
             }
+        }
+        $(botonAsociado).removeClass("c-boton--exito").addClass("c-boton--deshabilitado")
+        return false
+    }
+    if (campo === ".js-telefono-input") {
+        if (
+            /^\d+$/.test($(campo).val())
+            && (
+                ($(campo).val().length == 9 && ($(campo).val().startsWith("6") || $(campo).val().startsWith("9")))
+                || ($(campo).val().length == 10 && $(campo).val().startsWith("7"))
+            )
+        ) {
+            $(botonAsociado).addClass("c-boton--exito").removeClass("c-boton--deshabilitado")
             return true
         } else {
-
-            if (!$(campo).hasClass("c-boton--deshabilitado")) {
-                $(botonAsociado).addClass("c-boton--deshabilitado").removeClass("c-boton--exito")
-            }
+            $(botonAsociado).addClass("c-boton--deshabilitado").removeClass("c-boton--exito")
             return false
         }
     }
     if (/^[a-z][a-z\s]*$/i.test($(campo).val()) && $(campo).val().length > 2) {
-        if (!$(campo).hasClass("c-boton--exito")) {
-            $(botonAsociado).addClass("c-boton--exito").removeClass("c-boton--deshabilitado")
-        }
+        $(botonAsociado).addClass("c-boton--exito").removeClass("c-boton--deshabilitado")
         return true
     } else {
-        if (!$(campo).hasClass("c-boton--deshabilitado")) {
-            $(botonAsociado).addClass("c-boton--deshabilitado").removeClass("c-boton--exito")
-        }
+        $(botonAsociado).addClass("c-boton--deshabilitado").removeClass("c-boton--exito")
         return false
     }
 }
 function vista_Perfil_activarEdicionCampo(campo) {
-    console.log(campo)
-    var html = `
-    <input class='c-vista-perfil__input js-" + campo + "-input' `
-
     switch (campo) {
-        case "telefono":
-            html += 'type="tel" placeholder="Teléfono"'
+        case "fechaNacimiento":
+            $(".js-" + campo + "-contenido").html(`
+            <input maxlength="2" size="2" placeholder="31" class="js-fechaNacimiento-dia-input">
+            <input maxlength="2" size="2" placeholder="12" class="js-fechaNacimiento-mes-input">
+            <input maxlength="4" size="4" placeholder="1969" class="js-fechaNacimiento-año-input">
+            `)
+            $(".js-fechaNacimiento-dia-input").keyup((evento) => {
+                vista_Perfil_comprobarValidezCampo(".js-fechaNacimiento-dia-input", ".js-fechaNacimiento-boton-contenido")
+                if (evento.key == "Enter") {
+                    vista_Perfil_guardarCampo(campo)
+                }
+            })
+            $(".js-fechaNacimiento-mes-input").keyup((evento) => {
+                vista_Perfil_comprobarValidezCampo(".js-fechaNacimiento-mes-input", ".js-fechaNacimiento-boton-contenido")
+                if (evento.key == "Enter") {
+                    vista_Perfil_guardarCampo(campo)
+                }
+            })
+            $(".js-fechaNacimiento-año-input").keyup((evento) => {
+                vista_Perfil_comprobarValidezCampo(".js-fechaNacimiento-año-input", ".js-fechaNacimiento-boton-contenido")
+                if (evento.key == "Enter") {
+                    vista_Perfil_guardarCampo(campo)
+                }
+            })
             break
         default:
-            html += 'placeholder="' + (GLOBAL_USUARIO[campo] != undefined ? GLOBAL_USUARIO[campo] : campo) + '"'
+            $(".js-" + campo + "-contenido").html(`
+                <input class='c-vista-perfil__input js-` + campo + `-input' 
+                    placeholder="` + (GLOBAL_USUARIO[campo] != undefined ? GLOBAL_USUARIO[campo] : (campo === "telefono" ? "6123456789" : campo)) + `">`)
+            $(".js-" + campo + "-input").keyup((evento) => {
+                vista_Perfil_comprobarValidezCampo(".js-" + campo + "-input", ".js-" + campo + "-boton-contenido")
+                if (evento.key == "Enter") {
+                    vista_Perfil_guardarCampo(campo)
+                }
+            })
     }
-    html += '>'
     $(".js-" + campo + "-boton").off("click").click(() => {
         vista_Perfil_guardarCampo(campo)
     })
     $(".js-" + campo + "-boton-contenido").removeClass("fa-edit c-vista-perfil__edit-icono").addClass("fa-save c-boton c-boton--deshabilitado")
-    $(".js-" + campo + "-contenido").html(html)
-    $(".js-" + campo + "-input").keyup((evento) => {
-        if (vista_Perfil_comprobarValidezCampo(".js-" + campo + "-input", ".js-" + campo + "-boton-contenido") && evento.key == "Enter") {
-            vista_Perfil_guardarCampo(campo)
-        }
-    })
+
 }
 function vista_Perfil_desactivarEdicionCampo(campo) {
     $(".js-" + campo + "-boton").off("click").click(() => {
         vista_Perfil_activarEdicionCampo(campo)
     })
     $(".js-" + campo + "-boton-contenido").addClass("fa-edit c-vista-perfil__edit-icono").removeClass("fa-save c-boton c-boton--deshabilitado c-boton--exito")
-    $(".js-" + campo + "-contenido").html((GLOBAL_USUARIO[campo] != undefined ? GLOBAL_USUARIO[campo] : campo))
+    $(".js-" + campo + "-contenido").html((GLOBAL_USUARIO[campo] != undefined ? GLOBAL_USUARIO[campo] : "Añadir"))
 }
 function vista_Perfil_guardarCampo(campo) {
     if (vista_Perfil_comprobarValidezCampo(".js-" + campo + "-input", ".js-" + campo + "-boton-contenido")) {
-        GLOBAL_USUARIO[campo] = $(".js-" + campo + "-input").val()
-        vista_Perfil_desactivarEdicionCampo(campo)
+        if (campo === "fechaNacimiento") {
+            GLOBAL_USUARIO.fechaNacimiento = $(".js-fechaNacimiento-dia-input").val() + "/" + $(".js-fechaNacimiento-mes-input").val() + "/" + $(".js-fechaNacimiento-año-input").val()
+        }
+        else {
+            GLOBAL_USUARIO[campo] = $(".js-" + campo + "-input").val()
+        }
     }
+    vista_Perfil_desactivarEdicionCampo(campo)
 }
