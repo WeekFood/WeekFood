@@ -25,15 +25,22 @@ export class ModalProductoComponent implements OnInit {
   }
 
   cerrarse() {
-    $('.js-modal-producto').modal('hide').on('hidden.bs.modal', () => {
+    $('.js-modal-producto').modal('hide').one('hidden.bs.modal', () => {
       // destuir modal solo cuando se haya ocultado visualmente
       this.cerrado.emit();
     });
   }
 
+  cerrarseOverlay(evento) {
+    if (evento.target === document.querySelector('.modal')) {
+      // solo cerrar si se ha hecho click en el overlay
+      this.cerrarse();
+    }
+  }
+
   guardar() {
     // TODO: validacion
-    $('.js-modal-producto').modal('hide').on('hidden.bs.modal', () => {
+    $('.js-modal-producto').modal('hide').one('hidden.bs.modal', () => {
       // destuir modal solo cuando se haya ocultado visualmente
       this.guardado.emit(this.productoEditado);
     });
