@@ -3,7 +3,7 @@ export class Producto {
     constructor(
         public id: number,
         public nombre: string,
-        public categoria: string, /* pendiente pasar a Categoria[] o algo asi */
+        public categoria: string[], /* pendiente pasar a Categoria[] o algo asi */
         public descripcion: string,
         public foto: string,
         public destacado: boolean,

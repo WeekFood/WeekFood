@@ -18,8 +18,11 @@ export class ProductosComponent implements OnInit {
 
   constructor(private productosService: ProductosService) {}
   
-  async ngOnInit() {
-    this.productos = await this.productosService.getProductos();
+  ngOnInit() {
+    this.productosService.getProductos()
+      .subscribe((productos: Producto[]) => {
+        this.productos = productos;
+      })
   }
 
   abrirModalVer(producto: Producto) {
