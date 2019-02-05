@@ -7,7 +7,7 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'WeekFood';
+  sidebarVisible: boolean = false;
 
   constructor(private authService: AuthService) {
     this.authService.login('juan', 'juan123')

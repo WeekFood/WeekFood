@@ -1,4 +1,5 @@
 @import '../../styles/abstracts/colores';
+@import '../../styles/abstracts/breakpoints';
 
 .navbar {
     background: $rojo;
@@ -12,4 +13,19 @@
     font-family: 'Happy Monkey';
     font-style: italic;
     font-size: 1.5rem;
+}
+
+.c-cabecera {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+}
+
+.c-cabecera__toggle-sidebar {
+    font-size: 1.25rem;
+    color: white;
+    justify-self: flex-start;
+    @media only screen and (min-width: $mobile-l) {
+        visibility: hidden;
+    }
 }

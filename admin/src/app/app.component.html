@@ -1,9 +1,9 @@
 <div class="l-distribucion">
   <div class="l-distribucion__cabecera">
-    <app-cabecera></app-cabecera>
+    <app-cabecera (toggleSidebar)="sidebarVisible = !sidebarVisible"></app-cabecera>
   </div>
   <div class="l-distribucion__sidebar">
-    <app-sidebar></app-sidebar>
+    <app-sidebar [estaVisible]="sidebarVisible"></app-sidebar>
   </div>
   <div class="l-distribucion__contenido">
     <router-outlet></router-outlet>

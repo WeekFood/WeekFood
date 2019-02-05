@@ -1,7 +1,7 @@
 .l-distribucion {
     display: grid;
     grid-template-rows: auto 1fr;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: auto 1fr;
     grid-template-areas: 'cabecera cabecera'
                          'sidebar contenido';
     height: 100%;
