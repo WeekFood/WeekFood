@@ -1,0 +1,15 @@
+@import '../../styles/abstracts/colores';
+
+.navbar {
+    background: $rojo;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.navbar-brand {
+    font-family: 'Happy Monkey';
+    font-style: italic;
+    font-size: 1.5rem;
+}

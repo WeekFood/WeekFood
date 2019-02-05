@@ -1,0 +1,41 @@
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Producto } from '../models/Producto';
+
+@Component({
+  selector: 'app-modal-producto',
+  templateUrl: './modal-producto.component.html',
+  styleUrls: ['./modal-producto.component.scss']
+})
+export class ModalProductoComponent implements OnInit {
+
+  @Input('producto') producto: Producto;
+  @Input('modoEditar') modoEditar: boolean;
+
+  @Output() cerrado = new EventEmitter();
+  @Output() guardado = new EventEmitter();
+
+  productoEditado: Producto;
+
+  constructor() { }
+
+  ngOnInit() {
+    $('.js-modal-producto').modal('show');
+    // clonar producto para no tocar el verdadero producto
+    this.productoEditado = Object.assign({}, this.producto);
+  }
+
+  cerrarse() {
+    $('.js-modal-producto').modal('hide').on('hidden.bs.modal', () => {
+      // destuir modal solo cuando se haya ocultado visualmente
+      this.cerrado.emit();
+    });
+  }
+
+  guardar() {
+    // TODO: validacion
+    $('.js-modal-producto').modal('hide').on('hidden.bs.modal', () => {
+      // destuir modal solo cuando se haya ocultado visualmente
+      this.guardado.emit(this.productoEditado);
+    });
+  }
+}

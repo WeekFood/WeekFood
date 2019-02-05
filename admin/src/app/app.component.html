@@ -1,13 +1,12 @@
-<nav class="c-cabecera navbar navbar-dark text-center">
-  <a href="#" class="navbar-brand">WeekFood</a>
-</nav>
+<div class="l-distribucion">
+  <div class="l-distribucion__cabecera">
+    <app-cabecera></app-cabecera>
+  </div>
+  <div class="l-distribucion__sidebar">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="l-distribucion__contenido">
+    <router-outlet></router-outlet>
+  </div>
+</div>
 
-<ul class="list-group">
-  <li class="list-group-item active">Productos</li>
-  <li class="list-group-item">Categorías</li>
-  <li class="list-group-item">Subcategorías</li>
-  <li class="list-group-item">Carritos</li>
-  <li class="list-group-item">Usuarios</li>
-</ul>
-
-<router-outlet></router-outlet>

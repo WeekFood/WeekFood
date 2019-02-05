@@ -1,0 +1,28 @@
+@import '../../styles/abstracts/colores';
+
+.c-sidebar {
+    min-height: 100%;
+    border-right: solid 1px rgba(0,0,0,.12);
+}
+
+.list-group {
+    padding: 0.5rem;
+}
+
+.list-group-item {
+    border: none;
+    border-left: 2px solid transparent;
+    padding: 0 0.75rem;
+    margin: 0.05rem 0;
+}
+
+.list-group-item.active {
+    background-color: transparent;
+    border-color: $rojo;
+    color: $rojo;
+    font-weight: 700;
+}
+
+.list-group-item:first-child {
+    border-radius: 0;
+}

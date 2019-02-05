@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class AuthService {
 
-  private static API_AUTH = `http://${window.location.hostname}:${environment.API_PUERTO}/api/auth`;;
+  private static API_AUTH = `http://${window.location.hostname}:${environment.API_PUERTO}/api/auth`;
 
   constructor(private http: HttpClient) {}
 
