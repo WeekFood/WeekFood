@@ -6,13 +6,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 1rem;
+    padding: 0;
 }
 
 .navbar-brand {
     font-family: 'Happy Monkey';
     font-style: italic;
     font-size: 1.5rem;
+    margin: 0;
 }
 
 .c-cabecera {
@@ -25,6 +26,7 @@
     font-size: 1.25rem;
     color: white;
     justify-self: flex-start;
+    padding: 0 1rem;
     @media only screen and (min-width: $mobile-l) {
         visibility: hidden;
     }
