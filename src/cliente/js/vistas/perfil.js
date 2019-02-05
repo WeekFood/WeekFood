@@ -234,7 +234,7 @@ function vista_Perfil_activarEdicion(evento) {
             </p>
             <p class='c-vista-perfil__apellidos c-vista-perfil__apellidos-editable'>
                 <span class="js-apellidos-boton">
-                    <i class='fas fa-edit c-vista-perfil__edit-icono'></i>
+                    <i class='fas fa-edit c-vista-perfil__edit-icono js-apellidos-boton-contenido'></i>
                 </span>
                 <span class="js-apellidos-contenido">`
         + (GLOBAL_USUARIO.apellidos != undefined ? GLOBAL_USUARIO.apellidos : "Apellidos")
@@ -330,7 +330,12 @@ function vista_Perfil_activarEdicion(evento) {
     $(".js-nombre-boton").click(() => {
         vista_Perfil_activarEdicionCampo("nombre")
     })
-    $(".js-apellidos").click(() => { })
+    $(".js-apellidos-boton").click(() => {
+        vista_Perfil_activarEdicionCampo("apellidos")
+    })
+    $(".js-contraseña-boton").click(() => {
+        vista_Perfil_activarEdicionCampo("contraseña")
+    })
 }
 function vista_Perfil_guardarEdicion(evento) {
     /*
