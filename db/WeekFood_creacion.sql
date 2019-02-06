@@ -171,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `sexo` varchar(1) DEFAULT NULL,
   `telefono` varchar(13) DEFAULT NULL,
   `nacimiento` date DEFAULT NULL,
-  `nivelprivilegio` int(1) NOT NULL,
+  `nivelprivilegio` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `nick` (`nick`),
   KEY `nivelprivilegio` (`nivelprivilegio`),
