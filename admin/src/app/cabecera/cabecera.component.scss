@@ -1,5 +1,6 @@
 @import '../../styles/abstracts/colores';
 @import '../../styles/abstracts/breakpoints';
+@import '../../styles/abstracts/tipografia';
 
 .navbar {
     background: $rojo;
@@ -10,7 +11,7 @@
 }
 
 .navbar-brand {
-    font-family: 'Happy Monkey';
+    font-family: $fuente-logo;
     font-style: italic;
     font-size: 1.5rem;
     margin: 0;
