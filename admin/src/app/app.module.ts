@@ -9,6 +9,8 @@ import { CabeceraComponent } from './cabecera/cabecera.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProductosComponent } from './views/productos/productos.component';
 import { ModalProductoComponent } from './modal-producto/modal-producto.component';
+import { InicioComponent } from './views/inicio/inicio.component';
+import { NoEncontradoComponent } from './views/no-encontrado/no-encontrado.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ModalProductoComponent } from './modal-producto/modal-producto.componen
     CabeceraComponent,
     SidebarComponent,
     ProductosComponent,
-    ModalProductoComponent
+    ModalProductoComponent,
+    InicioComponent,
+    NoEncontradoComponent
   ],
   imports: [
     BrowserModule,

@@ -30,11 +30,13 @@
     padding: 0 0.5rem;
     margin: 0.05rem 0;
     cursor: pointer;
-}
-
-.list-group-item:hover {
-    font-weight: 700;
-    color: $rojo;
+    &:hover {
+        font-weight: 700;
+        color: $rojo;
+    }
+    &:focus {
+        outline: none;
+    }
 }
 
 .list-group-item.active {
