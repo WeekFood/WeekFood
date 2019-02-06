@@ -215,6 +215,8 @@ function vista_Perfil_activarEdicion(evento) {
                 <span class="js-nombre-contenido">`
         + (GLOBAL_USUARIO.nombre != undefined ? GLOBAL_USUARIO.nombre : "Nombre")
         + `     </span>
+                <span class="js-nombre-boton-cerrar">
+                </span>
             </p>
             <p class='c-vista-perfil__apellidos c-vista-perfil__apellidos-editable'>
                 <span class="js-apellidos-boton">
@@ -223,6 +225,8 @@ function vista_Perfil_activarEdicion(evento) {
                 <span class="js-apellidos-contenido">`
         + (GLOBAL_USUARIO.apellidos != undefined ? GLOBAL_USUARIO.apellidos : "Apellidos")
         + `     </span>
+                <span class="js-apellidos-boton-cerrar">
+                </span>
             </p>
             <div class='c-vista-perfil__datos' >
                 <p class='c-vista-perfil__dato'>
@@ -233,34 +237,37 @@ function vista_Perfil_activarEdicion(evento) {
                 </p>
                 <p class='c-vista-perfil__dato js-fechaNacimiento'>
                     <span class='c-vista-perfil__dato-titulo'>Nacimiento</span>
-                    <span>
+                    <span class="c-vista-perfil__dato-contenido">
                         <span class="js-fechaNacimiento-boton">
                             <i class='fas fa-edit c-vista-perfil__edit-icono js-fechaNacimiento-boton-contenido'></i>
                         </span>
                         <span class="js-fechaNacimiento-contenido">`
         + (GLOBAL_USUARIO.fechaNacimiento != undefined ? GLOBAL_USUARIO.fechaNacimiento : "Añadir")
         + `             </span>
+                        <span class="js-fechaNacimiento-boton-cerrar">
+                        </span>
                     </span>
                 </p>
                 <p class='c-vista-perfil__dato js-telefono'>
                     <span class='c-vista-perfil__dato-titulo'>Teléfono</span>
-                    <span>
+                    <span class="c-vista-perfil__dato-contenido">
                         <span class="js-telefono-boton">
                             <i class='fas fa-edit c-vista-perfil__edit-icono js-telefono-boton-contenido'></i>
                         </span>
                         <span class="js-telefono-contenido">`
         + (GLOBAL_USUARIO.telefono != undefined ? GLOBAL_USUARIO.telefono : "Añadir")
         + `             </span>
+                        <span class="js-telefono-boton-cerrar">
+                        </span>
                     </span>
                 </p>
                 <p class='c-vista-perfil__dato js-sexo'>
                     <span class='c-vista-perfil__dato-titulo'>Género</span>
-                    <span>
+                    <span class="c-vista-perfil__dato-contenido">
                         <span class="js-sexo-boton">
                             <i class='fas fa-edit c-vista-perfil__edit-icono js-sexo-boton-contenido'></i>
                         </span>
                         <span class="js-sexo-contenido">`
-
     switch (GLOBAL_USUARIO.sexo) {
         case "H":
             html += "Hombre"
@@ -273,6 +280,8 @@ function vista_Perfil_activarEdicion(evento) {
     }
 
     html += `           </span>
+                        <span class="js-sexo-boton-cerrar">
+                        </span>
                     </span>
                 </p>
             </div>
@@ -352,16 +361,13 @@ function vista_Perfil_cambiarFoto(evento) {
 }
 function vista_Perfil_comprobarValidezCampo(campo, botonAsociado) {
     if (campo.startsWith(".js-fechaNacimiento")) {
-        var añoActual =  new Date().getFullYear()
+        var añoActual = new Date().getFullYear()
         var año = parseInt($(".js-fechaNacimiento-año-input").val())
         if (año >= añoActual - 120 && año <= añoActual) {
-            console.log("Año ok")
             var mes = parseInt($(".js-fechaNacimiento-mes-input").val())
             if (mes > 0 && mes < 13) {
-                console.log("mes ok")
                 var dia = parseInt($(".js-fechaNacimiento-dia-input").val())
-                if (dia > 0 && dia <= new Date(año, mes, 0)) {
-                    console.log("dia ok")
+                if (dia > 0 && dia <= new Date(año, mes, 0).getDate()) {
                     $(botonAsociado).addClass("c-boton--exito").removeClass("c-boton--deshabilitado")
                     return true
                 }
@@ -427,7 +433,7 @@ function vista_Perfil_activarEdicionCampo(campo) {
             break
         case "sexo":
             $(".js-sexo-contenido").html(`
-                <select class="js-sexo-input">
+                <select class="c-vista-perfil__input js-sexo-input">
                     <option value="H">Hombre</option>
                     <option value="M">Mujer</option>
                     <option value="S">Indefinido</option>
@@ -468,6 +474,7 @@ function vista_Perfil_activarEdicionCampo(campo) {
     $(".js-" + campo + "-boton").off("click").click(() => {
         vista_Perfil_guardarCampo(campo)
     })
+    $(".js-" + campo + "-boton-cerrar").html("<i class='fas fa-times c-vista-perfil__edit-icono js-" + campo + "-boton-cancelar'></i>")
     $(".js-" + campo + "-boton-contenido").removeClass("fa-edit c-vista-perfil__edit-icono").addClass("fa-save c-boton c-boton--deshabilitado")
     if (campo === "sexo") {
         $(".js-sexo-boton-contenido").addClass("c-boton--exito").removeClass("c-boton--deshabilitado")
@@ -516,6 +523,9 @@ function vista_Perfil_guardarCampo(campo) {
             default:
                 GLOBAL_USUARIO[campo] = $(".js-" + campo + "-input").val()
         }
+        vista_Perfil_desactivarEdicionCampo(campo)
+        $(".js-" + campo + "-boton-cerrar").html("")
+    }else{
+        generarNotificacion("El campo es incorrecto",1)
     }
-    vista_Perfil_desactivarEdicionCampo(campo)
 }
