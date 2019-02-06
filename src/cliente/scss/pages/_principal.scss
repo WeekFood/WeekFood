@@ -8,7 +8,7 @@ body {
     background: whitesmoke;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Lato|Open+Sans|Roboto|Source+Sans+Pro|Noto+Sans|Ubuntu');
+@import url('https://fonts.googleapis.com/css?family=Lato|Open+Sans|Roboto|Source+Sans+Pro|Noto+Sans|Ubuntu|Montserrat');
 
 .p-principal--Lato {
     font-family: 'Lato';
@@ -28,4 +28,7 @@ body {
 
 .p-principal--NotoSans {
     font-family: 'Noto Sans';
+}
+.p-principal--Montserrat {
+    font-family: 'Montserrat';
 }
