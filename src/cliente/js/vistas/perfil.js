@@ -207,7 +207,7 @@ function vista_Perfil_activarEdicion(evento) {
         <div class="c-vista-perfil__usuario">
             <div class='c-vista-perfil__foto-relativo'>
                 <div class='c-vista-perfil__foto-contenedor'>
-                    <img class='c-vista-perfil__foto' src='`+ GLOBAL_USUARIO.foto + `'>
+                    <img class='c-vista-perfil__foto js-foto' src='`+ GLOBAL_USUARIO.foto + `'>
                 </div>
             </div>
             <p class='c-vista-perfil__nombre c-vista-perfil__nombre-editable'>
@@ -320,13 +320,7 @@ function vista_Perfil_guardarEdicion(evento) {
     Lo de evento.data es porque al usar .click el parametro se añade al evento
     https://stackoverflow.com/questions/3273350/jquerys-click-pass-parameters-to-user-function
     */
-    /*
-    $(".js-edicion-general").off("click").on("click", vista_Perfil_activarEdicion)
-    $(".js-edicion-general-icono").removeClass("fa-save").addClass("fa-edit")
-    $(".c-vista-perfil").removeClass("c-vista-perfil--edicion")
-    $(".js-edicion-texto").html("Editar")
-    $(".c-vista-perfil__foto").off()
-    */
+    // TODO SUBIR AL SERVIDOR, SE HARÁ EN 
     vista_Perfil_generarHTML(evento.data)
 }
 function vista_Perfil_cambiarFoto(evento) {
@@ -340,7 +334,7 @@ function vista_Perfil_cambiarFoto(evento) {
                 if (archi.type.match('image.*')) {
                     GLOBAL_USUARIO.foto = event.target.result
                     $(".js-ventana-modal").remove()
-                    cargarVista("perfil")
+                    $(".js-foto").attr("src", GLOBAL_USUARIO.foto)
                     $(".c-cabecera__imagen").attr("src", GLOBAL_USUARIO.foto)
                     $(".c-perfil__imagen").attr("src", GLOBAL_USUARIO.foto)
                 } else {
@@ -495,7 +489,7 @@ function vista_Perfil_desactivarEdicionCampo(campo) {
                 default:
                     $(".js-" + campo + "-contenido").html("Añadir")
             }
-        }else{
+        } else {
             $(".js-" + campo + "-contenido").html(GLOBAL_USUARIO[campo])
         }
     } else {
