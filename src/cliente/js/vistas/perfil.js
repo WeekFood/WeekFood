@@ -352,12 +352,16 @@ function vista_Perfil_cambiarFoto(evento) {
 }
 function vista_Perfil_comprobarValidezCampo(campo, botonAsociado) {
     if (campo.startsWith(".js-fechaNacimiento")) {
+        var añoActual =  new Date().getFullYear()
         var año = parseInt($(".js-fechaNacimiento-año-input").val())
-        if (año > 1900 && año < 2020) {
+        if (año >= añoActual - 120 && año <= añoActual) {
+            console.log("Año ok")
             var mes = parseInt($(".js-fechaNacimiento-mes-input").val())
             if (mes > 0 && mes < 13) {
+                console.log("mes ok")
                 var dia = parseInt($(".js-fechaNacimiento-dia-input").val())
                 if (dia > 0 && dia <= new Date(año, mes, 0)) {
+                    console.log("dia ok")
                     $(botonAsociado).addClass("c-boton--exito").removeClass("c-boton--deshabilitado")
                     return true
                 }
