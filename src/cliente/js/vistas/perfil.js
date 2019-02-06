@@ -448,15 +448,14 @@ function vista_Perfil_activarEdicionCampo(campo) {
         case "foto":
             generarVentanaModal({
                 titulo: "Subir archivo",
-                contenido: `
-                            <div class="c-selector-archivo js-selector-archivo">
-                                    <div class="c-selector-archivo__interno">
-                                        <i class="fas fa-file-upload fa-4x c-selector-archivo__subida"></i>
-                                        <p class="c-selector-archivo__texto-movil">Toca para subir un archivo</p>
-                                        <p class="c-selector-archivo__texto-no-movil">Arrastra un archivo</p>
-                                        <p class="c-selector-archivo__error">Por favor sube sólo una imagen png, jpg o gif</p>
-                                    </div>
-                                </div>`
+                contenido: `<div class="c-selector-archivo js-selector-archivo">
+                                <div class="c-selector-archivo__interno">
+                                    <i class="fas fa-file-upload fa-4x c-selector-archivo__subida"></i>
+                                    <p class="c-selector-archivo__texto-movil">Toca para subir un archivo</p>
+                                    <p class="c-selector-archivo__texto-no-movil">Arrastra un archivo</p>
+                                    <p class="c-selector-archivo__error">Por favor sube sólo una imagen png, jpg o gif</p>
+                                </div>
+                            </div>`
             })
             $('.js-selector-archivo').on({
                 'dragover dragenter': (evento) => {
@@ -491,7 +490,7 @@ function vista_Perfil_activarEdicionCampo(campo) {
     $(".js-" + campo + "-boton").off("click").click(() => {
         vista_Perfil_guardarCampo(campo)
     })
-    if (GLOBAL_USUARIO[campo] != undefined) {
+    if (GLOBAL_USUARIO[campo] != undefined && campo != "foto") {
         $(".js-" + campo + "-input").val(GLOBAL_USUARIO[campo])
         vista_Perfil_comprobarValidezCampo(".js-" + campo + "-input", ".js-" + campo + "-boton-contenido")
     }
