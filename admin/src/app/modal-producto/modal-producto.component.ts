@@ -8,11 +8,13 @@ import { Producto } from '../models/Producto';
 })
 export class ModalProductoComponent implements OnInit {
 
-  @Input('producto') producto: Producto;
-  @Input('modoEditar') modoEditar: boolean;
+  @Input() producto: Producto;
+  @Input() modo: string;
 
   @Output() cerrado = new EventEmitter();
   @Output() guardado = new EventEmitter();
+  @Output() creado = new EventEmitter();
+  @Output() borrado = new EventEmitter();
 
   productoEditado: Producto;
 
@@ -49,6 +51,22 @@ export class ModalProductoComponent implements OnInit {
     $('.js-modal-producto').modal('hide').one('hidden.bs.modal', () => {
       // destuir modal solo cuando se haya ocultado visualmente
       this.guardado.emit(this.productoEditado);
+    });
+  }
+
+  crear() {
+    // TODO: validacion
+    $('.js-modal-producto').modal('hide').one('hidden.bs.modal', () => {
+      // destuir modal solo cuando se haya ocultado visualmente
+      this.guardado.emit(this.productoEditado);
+    });
+  }
+
+  borrar() {
+    // TODO: validacion
+    $('.js-modal-producto').modal('hide').one('hidden.bs.modal', () => {
+      // destuir modal solo cuando se haya ocultado visualmente
+      this.borrado.emit(this.productoEditado);
     });
   }
 }

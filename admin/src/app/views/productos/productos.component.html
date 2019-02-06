@@ -1,5 +1,5 @@
 <div class="c-productos">
-  <button type="button" class="c-productos__boton-nuevo btn btn-success">Nuevo</button>
+  <button type="button" class="c-productos__boton-nuevo btn btn-success" (click)="abrirModalNuevo()">Nuevo</button>
   <div class="table-responsive">
     <table class="table table-hover">
       <thead>
@@ -18,14 +18,16 @@
         <tr *ngFor="let producto of productos">
           <td>{{ producto.id }}</td>
           <td>{{ producto.nombre }}</td>
-          <td>{{ producto.categoria }}</td>
+          <td>
+            <span *ngFor="let categoria of producto.categoria" class="badge badge-secondary">{{ categoria }}</span>
+          </td>
           <td>{{ producto.descripcion }}</td>
           <td><img [src]="producto.foto"></td>
           <td class="c-productos__columna-checkbox"><input type="checkbox" [checked]="producto.destacado" disabled></td>
           <td>{{ producto.precio }}</td>
           <td><button type="button" class="btn btn-secondary" (click)="abrirModalVer(producto)">Ver</button></td>
           <td><button type="button" class="btn btn-primary" (click)="abrirModalEditar(producto)">Editar</button></td>
-          <td><button type="button" class="btn btn-danger">Borrar</button></td>
+          <td><button type="button" class="btn btn-danger" (click)="abrirModalBorrar(producto)">Borrar</button></td>
         </tr>
       </tbody>
     </table>
@@ -35,7 +37,9 @@
 <app-modal-producto
   *ngIf="modalAbierto"
   [producto]="productoActual"
-  [modoEditar]="modoEditar"
+  [modo]="modoModal"
   (cerrado)="destruirModal()"
   (guardado)="editarProducto($event)"
+  (creado)="crearProducto($event)"
+  (borrado)="borrarProducto($event)"
 ></app-modal-producto>
