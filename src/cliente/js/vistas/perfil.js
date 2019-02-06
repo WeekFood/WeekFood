@@ -420,7 +420,7 @@ function vista_Perfil_activarEdicionCampo(campo) {
             }
             $(".js-fechaNacimiento-dia-input").keyup((evento) => {
                 vista_Perfil_comprobarValidezCampo(".js-fechaNacimiento-dia-input", ".js-fechaNacimiento-boton-contenido")
-                if ($(".js-fechaNacimiento-dia-input").val().length == 2){
+                if ($(".js-fechaNacimiento-dia-input").val().length == 2) {
                     $(".js-fechaNacimiento-mes-input").focus()
                 }
                 if (evento.key == "Enter") {
@@ -429,7 +429,7 @@ function vista_Perfil_activarEdicionCampo(campo) {
             })
             $(".js-fechaNacimiento-mes-input").keyup((evento) => {
                 vista_Perfil_comprobarValidezCampo(".js-fechaNacimiento-mes-input", ".js-fechaNacimiento-boton-contenido")
-                if ($(".js-fechaNacimiento-mes-input").val().length == 2){
+                if ($(".js-fechaNacimiento-mes-input").val().length == 2) {
                     $(".js-fechaNacimiento-año-input").focus()
                 }
                 if (evento.key == "Enter") {
