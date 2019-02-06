@@ -408,10 +408,16 @@ function vista_Perfil_activarEdicionCampo(campo) {
     switch (campo) {
         case "fechaNacimiento":
             $(".js-" + campo + "-contenido").html(`
-            <input maxlength="2" size="2" placeholder="31" class="js-fechaNacimiento-dia-input">
-            <input maxlength="2" size="2" placeholder="12" class="js-fechaNacimiento-mes-input">
-            <input maxlength="4" size="4" placeholder="1969" class="js-fechaNacimiento-año-input">
+            <input maxlength="2" size="2" placeholder="31" class="c-vista-perfil__input-nacimiento js-fechaNacimiento-dia-input"> /
+            <input maxlength="2" size="2" placeholder="12" class="c-vista-perfil__input-nacimiento js-fechaNacimiento-mes-input"> /
+            <input maxlength="4" size="4" placeholder="1969" class="c-vista-perfil__input-nacimiento js-fechaNacimiento-año-input">
             `)
+            if (GLOBAL_USUARIO.fechaNacimiento != undefined) {
+                var fechaNacimiento = GLOBAL_USUARIO.fechaNacimiento.split("/")
+                $(".js-fechaNacimiento-dia-input").val(fechaNacimiento[0])
+                $(".js-fechaNacimiento-mes-input").val(fechaNacimiento[1])
+                $(".js-fechaNacimiento-año-input").val(fechaNacimiento[2])
+            }
             $(".js-fechaNacimiento-dia-input").keyup((evento) => {
                 vista_Perfil_comprobarValidezCampo(".js-fechaNacimiento-dia-input", ".js-fechaNacimiento-boton-contenido")
                 if (evento.key == "Enter") {
@@ -434,23 +440,23 @@ function vista_Perfil_activarEdicionCampo(campo) {
         case "sexo":
             $(".js-sexo-contenido").html(`
                 <select class="c-vista-perfil__input js-sexo-input">
-                    <option value="H">Hombre</option>
-                    <option value="M">Mujer</option>
-                    <option value="S">Indefinido</option>
-                </select>`)
+                                    <option value="H">Hombre</option>
+                                    <option value="M">Mujer</option>
+                                    <option value="S">Indefinido</option>
+                                </select>`)
             break
         case "foto":
             generarVentanaModal({
                 titulo: "Subir archivo",
                 contenido: `
                             <div class="c-selector-archivo js-selector-archivo">
-                                <div class="c-selector-archivo__interno">
-                                    <i class="fas fa-file-upload fa-4x c-selector-archivo__subida"></i>
-                                    <p class="c-selector-archivo__texto-movil">Toca para subir un archivo</p>
-                                    <p class="c-selector-archivo__texto-no-movil">Arrastra un archivo</p>
-                                    <p class="c-selector-archivo__error">Por favor sube sólo una imagen png, jpg o gif</p>
-                                </div>
-                            </div>`
+                                    <div class="c-selector-archivo__interno">
+                                        <i class="fas fa-file-upload fa-4x c-selector-archivo__subida"></i>
+                                        <p class="c-selector-archivo__texto-movil">Toca para subir un archivo</p>
+                                        <p class="c-selector-archivo__texto-no-movil">Arrastra un archivo</p>
+                                        <p class="c-selector-archivo__error">Por favor sube sólo una imagen png, jpg o gif</p>
+                                    </div>
+                                </div>`
             })
             $('.js-selector-archivo').on({
                 'dragover dragenter': (evento) => {
@@ -461,9 +467,12 @@ function vista_Perfil_activarEdicionCampo(campo) {
             });
             break
         default:
-            $(".js-" + campo + "-contenido").html(`
-                <input class='c-vista-perfil__input js-` + campo + `-input' 
-                    placeholder="` + (GLOBAL_USUARIO[campo] != undefined ? GLOBAL_USUARIO[campo] : (campo === "telefono" ? "6123456789" : campo)) + `">`)
+            var html = `<input class='c-vista-perfil__input js-` + campo + `-input'`
+            if (GLOBAL_USUARIO[campo] == undefined) {
+                html += 'placeholder="' + (campo === "telefono" ? "6123456789" : campo) + '"'
+            }
+            html += ">"
+            $(".js-" + campo + "-contenido").html(html)
             $(".js-" + campo + "-input").keyup((evento) => {
                 vista_Perfil_comprobarValidezCampo(".js-" + campo + "-input", ".js-" + campo + "-boton-contenido")
                 if (evento.key == "Enter") {
@@ -471,13 +480,20 @@ function vista_Perfil_activarEdicionCampo(campo) {
                 }
             })
     }
-    $(".js-" + campo + "-boton").off("click").click(() => {
-        vista_Perfil_guardarCampo(campo)
-    })
-    $(".js-" + campo + "-boton-cerrar").html("<i class='fas fa-times c-vista-perfil__edit-icono js-" + campo + "-boton-cancelar'></i>")
     $(".js-" + campo + "-boton-contenido").removeClass("fa-edit c-vista-perfil__edit-icono").addClass("fa-save c-boton c-boton--deshabilitado")
     if (campo === "sexo") {
         $(".js-sexo-boton-contenido").addClass("c-boton--exito").removeClass("c-boton--deshabilitado")
+    }
+    $(".js-" + campo + "-boton-cerrar").html("<i class='fas fa-times c-vista-perfil__edit-icono'></i>")
+    $(".js-" + campo + "-boton-cerrar").click(() => {
+        vista_Perfil_desactivarEdicionCampo(campo)
+    })
+    $(".js-" + campo + "-boton").off("click").click(() => {
+        vista_Perfil_guardarCampo(campo)
+    })
+    if (GLOBAL_USUARIO[campo] != undefined) {
+        $(".js-" + campo + "-input").val(GLOBAL_USUARIO[campo])
+        vista_Perfil_comprobarValidezCampo(".js-" + campo + "-input", ".js-" + campo + "-boton-contenido")
     }
 
 }
@@ -504,6 +520,7 @@ function vista_Perfil_desactivarEdicionCampo(campo) {
     } else {
         $(".js-" + campo + "-contenido").html("Añadir")
     }
+    $(".js-" + campo + "-boton-cerrar").html("")
 }
 function vista_Perfil_guardarCampo(campo) {
     if (vista_Perfil_comprobarValidezCampo(".js-" + campo + "-input", ".js-" + campo + "-boton-contenido")) {
@@ -524,8 +541,5 @@ function vista_Perfil_guardarCampo(campo) {
                 GLOBAL_USUARIO[campo] = $(".js-" + campo + "-input").val()
         }
         vista_Perfil_desactivarEdicionCampo(campo)
-        $(".js-" + campo + "-boton-cerrar").html("")
-    }else{
-        generarNotificacion("El campo es incorrecto",1)
     }
 }
