@@ -25,7 +25,7 @@ export class ProductosService {
           producto.descripcion,
           producto.foto,
           Boolean(producto.destacado),
-          producto.precio
+          parseInt(producto.precio)
         );
       })
     }

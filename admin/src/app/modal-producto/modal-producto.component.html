@@ -10,7 +10,7 @@
       <div class="modal-body">
         <div class="c-modal-producto">
           <label>ID</label>
-          <input type="text" [(ngModel)]="productoEditado.id" class="form-control" [readonly]="!modoEditar">
+          <input type="number" [(ngModel)]="productoEditado.id" class="form-control" readonly>
           <label>Nombre</label>
           <input type="text" [(ngModel)]="productoEditado.nombre" class="form-control" [readonly]="!modoEditar">
           <label>Categoría</label>
@@ -19,6 +19,8 @@
           <input type="text" [(ngModel)]="productoEditado.descripcion" class="form-control" [readonly]="!modoEditar">
           <label>Foto</label>
           <img [src]="productoEditado.foto">
+          <label>Destacado</label>
+          <input type="checkbox" [(ngModel)]="productoEditado.destacado" [disabled]="!modoEditar">
           <label>Precio</label>
           <input type="number" [(ngModel)]="productoEditado.precio" class="form-control" [readonly]="!modoEditar">
         </div>

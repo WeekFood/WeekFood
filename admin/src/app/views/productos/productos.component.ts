@@ -48,5 +48,6 @@ export class ProductosComponent implements OnInit {
   editarProducto(productoEditado) {
     console.log('recibido producto editado', productoEditado);
     // TODO: mandar a ProductosService
+    this.destruirModal();
   }
 }
