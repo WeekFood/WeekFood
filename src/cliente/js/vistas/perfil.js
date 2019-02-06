@@ -388,7 +388,7 @@ function vista_Perfil_comprobarValidezCampo(campo, botonAsociado) {
                 return false
             }
         default:
-            if (/^[a-z][a-z\s]*(?<!\ )$/i.test($(campo).val()) && $(campo).val().length > 2 && $(campo).val().match(/\S+/g).length < 5) {
+            if (/^[a-z][a-z\s]*$/i.test($(campo).val()) && !$(campo).val().endsWith(" ") && $(campo).val().length > 2 && $(campo).val().match(/\S+/g).length < 5) {
                 $(botonAsociado).addClass("c-boton--exito").removeClass("c-boton--deshabilitado")
                 return true
             } else {
