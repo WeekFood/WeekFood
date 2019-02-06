@@ -10,7 +10,6 @@ function vista_Perfil_generarHTML(puntoMontaje) {
             "Avda. Los llanos, 23 26270 Ojacastro",
             "Avda. Los llanos, 523 26270 Ojacastro",
         ],
-        fechaNacimiento: "4/1/86",
         metodosPago: [
             { titulo: "MasterCard", valor: "**** **** **** 4742, 9/2024" },
             { titulo: "Visa", valor: "**** **** **** 4772, 8/2030" },
@@ -18,7 +17,6 @@ function vista_Perfil_generarHTML(puntoMontaje) {
             { titulo: "Visa", valor: "**** **** **** 9782, 9/2022" },
             { titulo: "MasterCard", valor: "**** **** **** 1457, 10/2024" }
         ],
-        telefono: "+34 761 260 263",
         pedidos: [
             {
                 id: 1,
