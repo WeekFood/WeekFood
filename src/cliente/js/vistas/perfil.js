@@ -523,7 +523,7 @@ function vista_Perfil_desactivarEdicionCampo(campo) {
             $(".js-" + campo + "-contenido").html(GLOBAL_USUARIO[campo])
         }
     } else {
-        $(".js-" + campo + "-contenido").html("Añadir")
+        $(".js-" + campo + "-contenido").html( (campo === "apellidos" ? "Apellidos" : "Añadir"))
     }
     $(".js-" + campo + "-boton-cerrar").html("")
 }
