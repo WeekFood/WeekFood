@@ -258,7 +258,10 @@ function vista_Perfil_activarEdicion(evento) {
                 <p class='c-vista-perfil__dato js-sexo'>
                     <span class='c-vista-perfil__dato-titulo'>Género</span>
                     <span>
-                        <i class='fas fa-edit c-vista-perfil__edit-icono'></i>`
+                        <span class="js-sexo-boton">
+                            <i class='fas fa-edit c-vista-perfil__edit-icono js-sexo-boton-contenido'></i>
+                        </span>
+                        <span class="js-sexo-contenido">`
 
     switch (GLOBAL_USUARIO.sexo) {
         case "H":
@@ -271,7 +274,8 @@ function vista_Perfil_activarEdicion(evento) {
             html += "Añadir"
     }
 
-    html += `       </span>
+    html += `           </span>
+                    </span>
                 </p>
             </div>
         </div>
@@ -290,28 +294,7 @@ function vista_Perfil_activarEdicion(evento) {
             <i class='fas fa-edit fa-4x c-vista-perfil__edit-icono'></i>
             </div>`)
             },
-            click: () => {
-                generarVentanaModal({
-                    titulo: "Subir archivo",
-                    contenido: `
-                                    <div class="c-selector-archivo js-selector-archivo">
-                                        <div class="c-selector-archivo__interno">
-                                            <i class="fas fa-file-upload fa-4x c-selector-archivo__subida"></i>
-                                            <p class="c-selector-archivo__texto-movil">Toca para subir un archivo</p>
-                                            <p class="c-selector-archivo__texto-no-movil">Arrastra un archivo</p>
-                                            <p class="c-selector-archivo__error">Por favor sube sólo una imagen png, jpg o gif</p>
-                                        </div>
-                                    </div>`
-                })
-                $('.js-selector-archivo').on({
-                    'dragover dragenter': (evento) => {
-                        evento.preventDefault();
-                        evento.stopPropagation();
-                    },
-                    'drop': vista_Perfil_cambiarFoto
-                });
-            },
-
+            click: () => { vista_Perfil_activarEdicionCampo("foto") },
             mouseleave: () => {
                 $(".c-vista-perfil__foto-edit").remove()
             }
@@ -328,6 +311,9 @@ function vista_Perfil_activarEdicion(evento) {
     $(".js-telefono-boton").click(() => {
         vista_Perfil_activarEdicionCampo("telefono")
     })
+    $(".js-sexo-boton").click(() => {
+        vista_Perfil_activarEdicionCampo("sexo")
+    })
 }
 function vista_Perfil_guardarEdicion(evento) {
     /*
@@ -343,7 +329,6 @@ function vista_Perfil_guardarEdicion(evento) {
     */
     vista_Perfil_generarHTML(evento.data)
 }
-
 function vista_Perfil_cambiarFoto(evento) {
     var datos = evento.originalEvent.dataTransfer;
     if (datos && datos.files.length) {
@@ -389,27 +374,32 @@ function vista_Perfil_comprobarValidezCampo(campo, botonAsociado) {
         $(botonAsociado).removeClass("c-boton--exito").addClass("c-boton--deshabilitado")
         return false
     }
-    if (campo === ".js-telefono-input") {
-        if (
-            /^\d+$/.test($(campo).val())
-            && (
-                ($(campo).val().length == 9 && ($(campo).val().startsWith("6") || $(campo).val().startsWith("9")))
-                || ($(campo).val().length == 10 && $(campo).val().startsWith("7"))
-            )
-        ) {
-            $(botonAsociado).addClass("c-boton--exito").removeClass("c-boton--deshabilitado")
+    switch (campo) {
+        case ".js-sexo-input":
             return true
-        } else {
-            $(botonAsociado).addClass("c-boton--deshabilitado").removeClass("c-boton--exito")
-            return false
-        }
-    }
-    if (/^[a-z][a-z\s]*$/i.test($(campo).val()) && $(campo).val().length > 2) {
-        $(botonAsociado).addClass("c-boton--exito").removeClass("c-boton--deshabilitado")
-        return true
-    } else {
-        $(botonAsociado).addClass("c-boton--deshabilitado").removeClass("c-boton--exito")
-        return false
+        case ".js-telefono-input":
+            if (
+                /^\d+$/.test($(campo).val())
+                && (
+                    ($(campo).val().length == 9 && ($(campo).val().startsWith("6") || $(campo).val().startsWith("9")))
+                    || ($(campo).val().length == 10 && $(campo).val().startsWith("7"))
+                )
+            ) {
+                $(botonAsociado).addClass("c-boton--exito").removeClass("c-boton--deshabilitado")
+                return true
+            } else {
+                $(botonAsociado).addClass("c-boton--deshabilitado").removeClass("c-boton--exito")
+                return false
+            }
+        default:
+            if (/^[a-z][a-z\s]*$/i.test($(campo).val()) && $(campo).val().length > 2) {
+                $(botonAsociado).addClass("c-boton--exito").removeClass("c-boton--deshabilitado")
+                return true
+            } else {
+                $(botonAsociado).addClass("c-boton--deshabilitado").removeClass("c-boton--exito")
+                return false
+            }
+
     }
 }
 function vista_Perfil_activarEdicionCampo(campo) {
@@ -439,6 +429,35 @@ function vista_Perfil_activarEdicionCampo(campo) {
                 }
             })
             break
+        case "sexo":
+            $(".js-sexo-contenido").html(`
+                <select class="js-sexo-input">
+                    <option value="H">Hombre</option>
+                    <option value="M">Mujer</option>
+                    <option value="S">Indefinido</option>
+                </select>`)
+            break
+        case "foto":
+            generarVentanaModal({
+                titulo: "Subir archivo",
+                contenido: `
+                            <div class="c-selector-archivo js-selector-archivo">
+                                <div class="c-selector-archivo__interno">
+                                    <i class="fas fa-file-upload fa-4x c-selector-archivo__subida"></i>
+                                    <p class="c-selector-archivo__texto-movil">Toca para subir un archivo</p>
+                                    <p class="c-selector-archivo__texto-no-movil">Arrastra un archivo</p>
+                                    <p class="c-selector-archivo__error">Por favor sube sólo una imagen png, jpg o gif</p>
+                                </div>
+                            </div>`
+            })
+            $('.js-selector-archivo').on({
+                'dragover dragenter': (evento) => {
+                    evento.preventDefault();
+                    evento.stopPropagation();
+                },
+                'drop': vista_Perfil_cambiarFoto
+            });
+            break
         default:
             $(".js-" + campo + "-contenido").html(`
                 <input class='c-vista-perfil__input js-` + campo + `-input' 
@@ -454,6 +473,9 @@ function vista_Perfil_activarEdicionCampo(campo) {
         vista_Perfil_guardarCampo(campo)
     })
     $(".js-" + campo + "-boton-contenido").removeClass("fa-edit c-vista-perfil__edit-icono").addClass("fa-save c-boton c-boton--deshabilitado")
+    if (campo === "sexo") {
+        $(".js-sexo-boton-contenido").addClass("c-boton--exito").removeClass("c-boton--deshabilitado")
+    }
 
 }
 function vista_Perfil_desactivarEdicionCampo(campo) {
@@ -461,15 +483,42 @@ function vista_Perfil_desactivarEdicionCampo(campo) {
         vista_Perfil_activarEdicionCampo(campo)
     })
     $(".js-" + campo + "-boton-contenido").addClass("fa-edit c-vista-perfil__edit-icono").removeClass("fa-save c-boton c-boton--deshabilitado c-boton--exito")
-    $(".js-" + campo + "-contenido").html((GLOBAL_USUARIO[campo] != undefined ? GLOBAL_USUARIO[campo] : "Añadir"))
+    if (GLOBAL_USUARIO[campo] != undefined) {
+        if (campo === "sexo") {
+            switch (GLOBAL_USUARIO.sexo) {
+                case "H":
+                    $(".js-" + campo + "-contenido").html("Hombre")
+                    break
+                case "M":
+                    $(".js-" + campo + "-contenido").html("Mujer")
+                    break
+                default:
+                    $(".js-" + campo + "-contenido").html("Añadir")
+            }
+        }else{
+            $(".js-" + campo + "-contenido").html(GLOBAL_USUARIO[campo])
+        }
+    } else {
+        $(".js-" + campo + "-contenido").html("Añadir")
+    }
 }
 function vista_Perfil_guardarCampo(campo) {
     if (vista_Perfil_comprobarValidezCampo(".js-" + campo + "-input", ".js-" + campo + "-boton-contenido")) {
-        if (campo === "fechaNacimiento") {
-            GLOBAL_USUARIO.fechaNacimiento = $(".js-fechaNacimiento-dia-input").val() + "/" + $(".js-fechaNacimiento-mes-input").val() + "/" + $(".js-fechaNacimiento-año-input").val()
-        }
-        else {
-            GLOBAL_USUARIO[campo] = $(".js-" + campo + "-input").val()
+        switch (campo) {
+            case "fechaNacimiento":
+                GLOBAL_USUARIO.fechaNacimiento = $(".js-fechaNacimiento-dia-input").val() + "/" + $(".js-fechaNacimiento-mes-input").val() + "/" + $(".js-fechaNacimiento-año-input").val()
+                break
+            case "sexo":
+                var valor = $(".js-sexo-input").val()
+                if (valor == "H" || valor == "M") {
+                    GLOBAL_USUARIO.sexo = valor
+                }
+                else {
+                    GLOBAL_USUARIO.sexo = undefined
+                }
+                break
+            default:
+                GLOBAL_USUARIO[campo] = $(".js-" + campo + "-input").val()
         }
     }
     vista_Perfil_desactivarEdicionCampo(campo)
