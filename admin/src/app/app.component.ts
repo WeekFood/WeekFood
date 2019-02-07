@@ -11,10 +11,11 @@ export class AppComponent {
 
   constructor(private authService: AuthService) {
     this.authService.login('juan', 'juan123')
-      .subscribe((res) => {
+      .then((res) => {
         console.log('POST login', res);
-      }, (res) => {
-        console.error('ERROR login', res);
+      })
+      .catch((err) => {
+        console.error('ERR login', err);
       });
   }
 }
