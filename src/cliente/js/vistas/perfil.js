@@ -408,9 +408,9 @@ function vista_Perfil_activarEdicionCampo(campo) {
     switch (campo) {
         case "fechaNacimiento":
             $(".js-" + campo + "-contenido").html(`
-            <input maxlength="2" size="2" placeholder="31" class="c-vista-perfil__input-nacimiento js-fechaNacimiento-dia-input"> /
-            <input maxlength="2" size="2" placeholder="12" class="c-vista-perfil__input-nacimiento js-fechaNacimiento-mes-input"> /
-            <input maxlength="4" size="4" placeholder="1969" class="c-vista-perfil__input-nacimiento js-fechaNacimiento-año-input">
+            <input type="number" maxlength="2" size="2" placeholder="31" class="c-vista-perfil__input-nacimiento c-vista-perfil__input-numerico js-fechaNacimiento-dia-input"> /
+            <input type="number" maxlength="2" size="2" placeholder="12" class="c-vista-perfil__input-nacimiento c-vista-perfil__input-numerico js-fechaNacimiento-mes-input"> /
+            <input type="number" maxlength="4" size="4" placeholder="1969" class="c-vista-perfil__input-nacimiento c-vista-perfil__input-numerico js-fechaNacimiento-año-input">
             `)
             if (GLOBAL_USUARIO.fechaNacimiento != undefined) {
                 var fechaNacimiento = GLOBAL_USUARIO.fechaNacimiento.split("/")
@@ -472,9 +472,12 @@ function vista_Perfil_activarEdicionCampo(campo) {
             });
             break
         default:
-            var html = `<input class='c-vista-perfil__input js-` + campo + `-input'`
+            var html = `<input class='c-vista-perfil__input ` + (campo == "telefono" ? "c-vista-perfil__input-numerico" : "") + ` js-` + campo + `-input'`
             if (GLOBAL_USUARIO[campo] == undefined) {
                 html += 'placeholder="' + (campo === "telefono" ? "6123456789" : campo) + '"'
+            }
+            if (campo == "telefono") {
+                html += 'type="number"'
             }
             html += ">"
             $(".js-" + campo + "-contenido").html(html)
@@ -523,7 +526,7 @@ function vista_Perfil_desactivarEdicionCampo(campo) {
             $(".js-" + campo + "-contenido").html(GLOBAL_USUARIO[campo])
         }
     } else {
-        $(".js-" + campo + "-contenido").html( (campo === "apellidos" ? "Apellidos" : "Añadir"))
+        $(".js-" + campo + "-contenido").html((campo === "apellidos" ? "Apellidos" : "Añadir"))
     }
     $(".js-" + campo + "-boton-cerrar").html("")
 }
