@@ -2,23 +2,29 @@
     padding: 15px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background: $blanco;
-    width: 90%;
-    margin: 1% 5%;
+    max-width: 100%;
+    margin: 15px;
     border-radius: 10px;
+    overflow: hidden;
+    &--edicion {
+        animation: c-vista-perfil__edicion-general infinite 2s
+    }
 }
 
 .c-vista-perfil__usuario {
     display: grid;
     margin: 20px 0;
-    grid-template-areas: "foto" "nombre" "apellidos" "." "nick-pass""otros-datos";
+    grid-template-areas: "foto" "nombre" "apellidos" "." "datos";
     grid-row-gap: 15px;
+    grid-template-columns: 1fr;
     @media only screen and (min-width: $mobile-l) {
         width: 80%;
         margin-left: 10%;
         grid-column-gap: 20px;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 20px auto;
-        grid-template-areas: "foto nombre" "foto apellidos" "nick-pass otros-datos";
+        grid-template-rows: 45px 45px auto;
+        grid-template-areas: "foto nombre" "foto apellidos" "datos datos";
+        grid-row-gap: 55px;
     }
 }
 
@@ -36,19 +42,28 @@
     }
 }
 
-.c-vista-perfil__foto-contenedor {
+.c-vista-perfil__foto-relativo {
+    position: relative;
     grid-area: foto;
+    height: 150px;
+}
+
+.c-vista-perfil__foto-contenedor {
     width: 150px;
     height: 150px;
     border-radius: 150px;
-    margin-left: 100px;
     overflow: hidden;
+    margin: 0 auto;
+    @media only screen and (min-width: $mobile-l) {
+        right: 50px;
+        position: absolute;
+        margin: 0;
+    }
 }
 
 .c-vista-perfil__foto-edit {
     position: absolute;
     margin: 40px 50px;
-    color: $rojo;
     pointer-events: none;
 }
 
@@ -62,8 +77,14 @@
     text-align: center;
     grid-area: nombre;
     font-size: 1.5rem;
+    line-height: 45px;
+    &-editable {
+        display: grid;
+        grid-template-columns: auto 1fr 40px;
+        grid-column-gap: 5px;
+    }
     @media only screen and (min-width: $mobile-l) {
-        line-height: 100px;
+        line-height: 45px;
         text-align: left;
     }
 }
@@ -72,24 +93,70 @@
     text-align: center;
     grid-area: apellidos;
     font-size: 1.5rem;
+    line-height: 45px;
+    &-editable {
+        display: grid;
+        grid-template-columns: auto 1fr 40px;
+        grid-column-gap: 5px;
+    }
     @media only screen and (min-width: $mobile-l) {
-        line-height: 150px;
+        line-height: 45px;
         text-align: left;
     }
 }
 
-.c-vista-perfil__nick-pass {
-    grid-area: nick-pass
-}
-
-.c-vista-perfil__otros-datos {
-    grid-area: otros-datos
+.c-vista-perfil__datos {
+    grid-area: datos
 }
 
 .c-vista-perfil__dato {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-column-gap: 10px;
     margin: 5px;
+    line-height: 30px;
+    margin-bottom: 20px;
+    @media only screen and (min-width: $mobile-l) {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.c-vista-perfil__dato-titulo {
+    font-weight: bold;
+    @media only screen and (min-width: $mobile-l) {
+        text-align: right;
+        border-right: 1px solid;
+        padding-right: 5px;
+    }
+}
+
+.c-vista-perfil__dato-contenido {
+    display: grid;
+    grid-template-columns: auto 1fr 40px;
+    grid-column-gap: 5px;
+    text-align: center;
+    @media only screen and (min-width: $mobile-l) {
+        text-align: left;
+    }
+}
+
+.c-vista-perfil__contra {
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "nombre contra-princi" "nombre contra-repe";
+    grid-row-gap: 5px;
+}
+
+.c-vista-perfil__contra-nombre {
+    grid-area: nombre;
+    margin: auto 0;
+}
+
+.c-vista-perfil__contra-princi {
+    grid-area: contra-princi
+}
+
+.c-vista-perfil__contra-repe {
+    grid-area: contra-repe
 }
 
 .c-vista-perfil__metodos-pago {
@@ -150,4 +217,34 @@
     &--visible {
         opacity: 1;
     }
+}
+
+.c-vista-perfil__edicion {
+    position: absolute;
+    z-index: 2;
+}
+
+.c-vista-perfil__edit-icono {
+    color: $rojo;
+}
+
+.c-vista-perfil__input {
+    width: 100%;
+}
+
+.c-vista-perfil__input-numerico::-webkit-inner-spin-button,
+.c-vista-perfil__input-numerico::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.c-vista-perfil__input-nacimiento {
+    height: 33px;
+    width: 4rem;
+}
+
+.c-vista-perfil__letra-pequeña {
+    font-size: 0.9rem;
+    color: gray;
+    font-style: italic;
 }

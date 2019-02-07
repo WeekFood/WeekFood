@@ -9,11 +9,15 @@ function perfil_Alternar() {
         <div class="c-perfil__contenedor-imagen">
         <img class='c-perfil__imagen' src='`+ GLOBAL_USUARIO.foto + `'>
         </div>
-        <div class="c-boton c-boton--exito c-perfil__boton js-perfil__vista" onclick='cargarVista("perfil")'>Mi perfil</div>
+        <div class="c-boton c-boton--exito c-perfil__boton js-perfil__vista">Mi perfil</div>
         <div class="c-boton c-boton--basico c-perfil__boton js-perfil__mensajes">Mis mensajes</div>
         <div class="c-boton c-boton--basico c-perfil__boton js-perfil__pedidos">Mis pedidos</div>
         <div class="c-boton c-boton--peligro c-perfil__boton js-perfil__desloguear">Cerrar sesión</div>
         </div>`)
+        $(".js-perfil__vista").click(()=>{
+            perfil_Alternar()
+            cargarVista("perfil")
+        }        )
         $(".js-perfil__desloguear").on("click", acceso_CerrarSesion)
     } else {
         $(".c-perfil").toggleClass("c-perfil--desaparecer")
