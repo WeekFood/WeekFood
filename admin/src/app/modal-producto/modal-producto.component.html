@@ -12,17 +12,17 @@
           <label>ID</label>
           <input type="number" [(ngModel)]="productoEditado.id" class="form-control" readonly>
           <label>Nombre</label>
-          <input type="text" [(ngModel)]="productoEditado.nombre" class="form-control" [readonly]="modo !== 'editar'">
+          <input type="text" [(ngModel)]="productoEditado.nombre" class="form-control" [readonly]="modo === 'ver' || modo === 'borrar'">
           <label>Categoría</label>
-          <input type="text" [(ngModel)]="productoEditado.categoria" class="form-control" [readonly]="modo !== 'editar'">
+          <input type="text" [(ngModel)]="productoEditado.categoria" class="form-control" [readonly]="modo === 'ver' || modo === 'borrar'">
           <label>Descripción</label>
-          <input type="text" [(ngModel)]="productoEditado.descripcion" class="form-control" [readonly]="modo !== 'editar'">
+          <input type="text" [(ngModel)]="productoEditado.descripcion" class="form-control" [readonly]="modo === 'ver' || modo === 'borrar'">
           <label>Foto</label>
           <img [src]="productoEditado.foto">
           <label>Destacado</label>
-          <input type="checkbox" [(ngModel)]="productoEditado.destacado" [disabled]="modo !== 'editar'">
+          <input type="checkbox" [(ngModel)]="productoEditado.destacado" [disabled]="modo === 'ver' || modo === 'borrar'">
           <label>Precio</label>
-          <input type="number" [(ngModel)]="productoEditado.precio" class="form-control" [readonly]="modo !== 'editar'">
+          <input type="number" [(ngModel)]="productoEditado.precio" class="form-control" [readonly]="modo === 'ver' || modo === 'borrar'">
         </div>
       </div>
       <div class="modal-footer">
