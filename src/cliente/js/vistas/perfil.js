@@ -287,7 +287,7 @@ function vista_Perfil_activarEdicion(evento) {
             </div>
         </div>
         <span class="c-vista-perfil__letra-pequeña">
-            Estos datos son meramente informativos, para el equipo de asistencia al cliente y con propòsitos estadisticos.
+            Estos datos son meramente informativos, para el equipo de asistencia al cliente y con propósitos estadísticos.
             <br>Al rellenar los campos aceptas ambas cláusulas.
         </span>
     </div>`
