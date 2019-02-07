@@ -20,7 +20,7 @@ export class ProductosComponent implements OnInit {
   
   ngOnInit() {
     this.productosService.getProductos()
-      .subscribe((productos: Producto[]) => {
+      .then((productos: Producto[]) => {
         this.productos = productos;
       })
   }
