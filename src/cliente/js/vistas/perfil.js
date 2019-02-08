@@ -383,8 +383,7 @@ function vista_Perfil_guardarEdicion(evento) {
                             break
                         default:
                             html += `<i class="fas fa-trash confirmacion-cambio__papelera"></i>
-                                     <span>Eliminado</span>
-                            </div>`
+                                    </div>`
                     }
                 } else {
                     html += `<i class="fas fa-arrow-right confirmacion-cambio__flecha"></i>
@@ -399,14 +398,16 @@ function vista_Perfil_guardarEdicion(evento) {
             titulo: "Confirmar cambios",
             tipo: "confirmacion",
             tamaño: "pequeño",
-            callback_Confirmar: vista_Perfil_guardarNuevosDatos,
-            callback_Denegar: () => { vista_Perfil_cambiarAFoto(GLOBAL_USUARIO.datos.foto) },
+            callback_Confirmar:() => { vista_Perfil_guardarNuevosDatos(evento.data)},
+            callback_Denegar: () => {
+                vista_Perfil_cambiarAFoto(GLOBAL_USUARIO.datos.foto)
+                delete GLOBAL_USUARIO.nuevosDatos
+                vista_Perfil_generarHTML(evento.data)
+            },
             callback_Cerrar: () => { vista_Perfil_cambiarAFoto(GLOBAL_USUARIO.datos.foto) },
             contenido: html
         })
     }
-    delete GLOBAL_USUARIO.nuevosDatos
-    vista_Perfil_generarHTML(evento.data)
 }
 function vista_Perfil_cambiarFoto(evento) {
     var datos = evento.originalEvent.dataTransfer;
@@ -627,9 +628,24 @@ function vista_Perfil_guardarCampo(campo) {
         vista_Perfil_desactivarEdicionCampo(campo)
     }
 }
-function vista_Perfil_guardarNuevosDatos() {
-    // Todo
+function vista_Perfil_guardarNuevosDatos(puntoMontaje) {
+    // Todo JL Subir a API y verificar
+
+    // PASA R JSON Y SUBIR GLOBAL_USUARIO.nuevosDatos
+    // Mira como funciona codigo existente (carrito, registro, login, etc)
+
+    // Si se han guardado los datos correctamente
+    GLOBAL_USUARIO.datos = GLOBAL_USUARIO.nuevosDatos
+    delete GLOBAL_USUARIO.nuevosDatos
+    vista_Perfil_cambiarAFoto(GLOBAL_USUARIO.datos.foto)
+    vista_Perfil_generarHTML(puntoMontaje)
     generarNotificacion("Se ha actualizado tu perfil", true)
+    
+    // Si no
+    /*
+    generarNotificacion("No se ha podido actualizar tu perfil", true)
+    */
+
 }
 function vista_Perfil_cambiarAFoto(foto) {
     $(".js-foto").attr("src", foto)
