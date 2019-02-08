@@ -10,6 +10,14 @@ class Usuario {
             telefono : undefined,
             sexo : undefined
         }
+        this.diccionarioDatos = {
+            foto : "Foto",
+            nombre : "Nombre",
+            apellidos : "Apellidos",
+            fechaNacimiento : "Nacimiento",
+            telefono : "Teléfono",
+            sexo : "Género"
+        }
         this.ubicaciones = []
         this.metodosPago = []
         this.pedidos = []
