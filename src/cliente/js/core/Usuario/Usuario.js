@@ -1,12 +1,15 @@
 class Usuario {
     constructor() {
         this.id = undefined
-        this.foto = undefined
         this.nick = undefined
-        this.nombre = undefined
-        this.apellidos = undefined
-        this.telefono = undefined
-        this.fechaNacimiento = undefined
+        this.datos = {
+            foto : undefined,
+            nombre : undefined,
+            apellidos : undefined,
+            fechaNacimiento : undefined,
+            telefono : undefined,
+            sexo : undefined
+        }
         this.ubicaciones = []
         this.metodosPago = []
         this.pedidos = []

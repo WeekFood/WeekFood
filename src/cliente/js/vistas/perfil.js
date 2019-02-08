@@ -1,5 +1,6 @@
 function vista_Perfil(puntoMontaje) {
     montarMenu("/api/menu", "perfil")
+    GLOBAL_USUARIO.nuevosDatos = GLOBAL_USUARIO.datos
     vista_Perfil_generarHTML(puntoMontaje)
 }
 function vista_Perfil_generarHTML(puntoMontaje) {
@@ -146,24 +147,24 @@ function vista_Perfil_generarHTML(puntoMontaje) {
             <div class="c-vista-perfil__usuario">
                 <div class='c-vista-perfil__foto-relativo'>
                     <div class='c-vista-perfil__foto-contenedor'>
-                        <img class='c-vista-perfil__foto' src='`+ GLOBAL_USUARIO.foto + `'>
+                        <img class='c-vista-perfil__foto' src='`+ GLOBAL_USUARIO.datos.foto + `'>
                     </div>
                 </div>`
-        + (GLOBAL_USUARIO.nombre != undefined ? (`<p class='c-vista-perfil__nombre'>` + GLOBAL_USUARIO.nombre + `</p>`) : "")
-        + (GLOBAL_USUARIO.apellidos != undefined ? (`<p class='c-vista-perfil__apellidos'>` + GLOBAL_USUARIO.apellidos + `</p>`) : "")
+        + (GLOBAL_USUARIO.datos.nombre != undefined ? (`<p class='c-vista-perfil__nombre'>` + GLOBAL_USUARIO.datos.nombre + `</p>`) : "")
+        + (GLOBAL_USUARIO.datos.apellidos != undefined ? (`<p class='c-vista-perfil__apellidos'>` + GLOBAL_USUARIO.datos.apellidos + `</p>`) : "")
         + `     <div class='c-vista-perfil__datos' >
                     <p class='c-vista-perfil__dato'>
                         <span class='c-vista-perfil__dato-titulo'>Nick</span>
                         <span>`+ GLOBAL_USUARIO.nick + `</span>
                     </p>`
-        + (GLOBAL_USUARIO.fechaNacimiento != undefined ? (`<p class='c-vista-perfil__dato'><span class='c-vista-perfil__dato-titulo'>Nacimiento</span><span>` + GLOBAL_USUARIO.fechaNacimiento + `</span></p>`) : "")
-        + (GLOBAL_USUARIO.telefono != undefined ? (`<p class='c-vista-perfil__dato'><span class='c-vista-perfil__dato-titulo'>Teléfono</span><span>` + GLOBAL_USUARIO.telefono + `</span></p>`) : "")
+        + (GLOBAL_USUARIO.datos.fechaNacimiento != undefined ? (`<p class='c-vista-perfil__dato'><span class='c-vista-perfil__dato-titulo'>Nacimiento</span><span>` + GLOBAL_USUARIO.datos.fechaNacimiento + `</span></p>`) : "")
+        + (GLOBAL_USUARIO.datos.telefono != undefined ? (`<p class='c-vista-perfil__dato'><span class='c-vista-perfil__dato-titulo'>Teléfono</span><span>` + GLOBAL_USUARIO.datos.telefono + `</span></p>`) : "")
 
-    if (GLOBAL_USUARIO.sexo == "H" || GLOBAL_USUARIO.sexo == "M") {
+    if (GLOBAL_USUARIO.datos.sexo == "H" || GLOBAL_USUARIO.datos.sexo == "M") {
         html += `   <p class='c-vista-perfil__dato'>
                         <span class='c-vista-perfil__dato-titulo'>Género</span>
                         <span>`
-        switch (GLOBAL_USUARIO.sexo) {
+        switch (GLOBAL_USUARIO.datos.sexo) {
             case "H":
                 html += "Hombre"
                 break
@@ -187,7 +188,6 @@ function vista_Perfil_generarHTML(puntoMontaje) {
     $(".js-edicion-general").off("click")
     $(".js-edicion-general").click(puntoMontaje, vista_Perfil_activarEdicion)
 }
-
 function vista_Perfil_activarEdicion(evento) {
     /*
     Lo de evento.data es porque al usar .click el parametro se añade al evento
@@ -205,7 +205,7 @@ function vista_Perfil_activarEdicion(evento) {
         <div class="c-vista-perfil__usuario">
             <div class='c-vista-perfil__foto-relativo'>
                 <div class='c-vista-perfil__foto-contenedor'>
-                    <img class='c-vista-perfil__foto js-foto' src='`+ GLOBAL_USUARIO.foto + `'>
+                    <img class='c-vista-perfil__foto js-foto' src='`+ GLOBAL_USUARIO.nuevosDatos.foto + `'>
                 </div>
             </div>
             <p class='c-vista-perfil__nombre c-vista-perfil__nombre-editable'>
@@ -213,7 +213,7 @@ function vista_Perfil_activarEdicion(evento) {
                     <i class='fas fa-edit c-vista-perfil__edit-icono js-nombre-boton-contenido'></i>
                 </span>
                 <span class="js-nombre-contenido">`
-        + (GLOBAL_USUARIO.nombre != undefined ? GLOBAL_USUARIO.nombre : "Nombre")
+        + (GLOBAL_USUARIO.nuevosDatos.nombre != undefined ? GLOBAL_USUARIO.nuevosDatos.nombre : "Nombre")
         + `     </span>
                 <span class="js-nombre-boton-cerrar">
                 </span>
@@ -223,7 +223,7 @@ function vista_Perfil_activarEdicion(evento) {
                     <i class='fas fa-edit c-vista-perfil__edit-icono js-apellidos-boton-contenido'></i>
                 </span>
                 <span class="js-apellidos-contenido">`
-        + (GLOBAL_USUARIO.apellidos != undefined ? GLOBAL_USUARIO.apellidos : "Apellidos")
+        + (GLOBAL_USUARIO.nuevosDatos.apellidos != undefined ? GLOBAL_USUARIO.nuevosDatos.apellidos : "Apellidos")
         + `     </span>
                 <span class="js-apellidos-boton-cerrar">
                 </span>
@@ -242,7 +242,7 @@ function vista_Perfil_activarEdicion(evento) {
                             <i class='fas fa-edit c-vista-perfil__edit-icono js-fechaNacimiento-boton-contenido'></i>
                         </span>
                         <span class="js-fechaNacimiento-contenido">`
-        + (GLOBAL_USUARIO.fechaNacimiento != undefined ? GLOBAL_USUARIO.fechaNacimiento : "Añadir")
+        + (GLOBAL_USUARIO.nuevosDatos.fechaNacimiento != undefined ? GLOBAL_USUARIO.nuevosDatos.fechaNacimiento : "Añadir")
         + `             </span>
                         <span class="js-fechaNacimiento-boton-cerrar">
                         </span>
@@ -255,7 +255,7 @@ function vista_Perfil_activarEdicion(evento) {
                             <i class='fas fa-edit c-vista-perfil__edit-icono js-telefono-boton-contenido'></i>
                         </span>
                         <span class="js-telefono-contenido">`
-        + (GLOBAL_USUARIO.telefono != undefined ? GLOBAL_USUARIO.telefono : "Añadir")
+        + (GLOBAL_USUARIO.nuevosDatos.telefono != undefined ? GLOBAL_USUARIO.nuevosDatos.telefono : "Añadir")
         + `             </span>
                         <span class="js-telefono-boton-cerrar">
                         </span>
@@ -268,7 +268,7 @@ function vista_Perfil_activarEdicion(evento) {
                             <i class='fas fa-edit c-vista-perfil__edit-icono js-sexo-boton-contenido'></i>
                         </span>
                         <span class="js-sexo-contenido">`
-    switch (GLOBAL_USUARIO.sexo) {
+    switch (GLOBAL_USUARIO.nuevosDatos.sexo) {
         case "H":
             html += "Hombre"
             break
@@ -327,7 +327,11 @@ function vista_Perfil_guardarEdicion(evento) {
     Lo de evento.data es porque al usar .click el parametro se añade al evento
     https://stackoverflow.com/questions/3273350/jquerys-click-pass-parameters-to-user-function
     */
-    // TODO SUBIR AL SERVIDOR, SE HARÁ EN 
+        console.log(GLOBAL_USUARIO.nuevosDatos)
+        for(campo in GLOBAL_USUARIO.nuevosDatos){
+            if (GLOBAL_USUARIO[campo] != GLOBAL_USUARIO.nuevosDatos[campo])
+            console.log(GLOBAL_USUARIO[campo], GLOBAL_USUARIO.nuevosDatos[campo])
+        }
     vista_Perfil_generarHTML(evento.data)
 }
 function vista_Perfil_cambiarFoto(evento) {
@@ -339,11 +343,11 @@ function vista_Perfil_cambiarFoto(evento) {
             var lector = new FileReader();
             lector.onload = $.proxy((archi, event) => {
                 if (archi.type.match('image.*')) {
-                    GLOBAL_USUARIO.foto = event.target.result
+                    GLOBAL_USUARIO.datos.foto = event.target.result
                     $(".js-ventana-modal").remove()
-                    $(".js-foto").attr("src", GLOBAL_USUARIO.foto)
-                    $(".c-cabecera__imagen").attr("src", GLOBAL_USUARIO.foto)
-                    $(".c-perfil__imagen").attr("src", GLOBAL_USUARIO.foto)
+                    $(".js-foto").attr("src", GLOBAL_USUARIO.datos.foto)
+                    $(".c-cabecera__imagen").attr("src", GLOBAL_USUARIO.datos.foto)
+                    $(".c-perfil__imagen").attr("src", GLOBAL_USUARIO.datos.foto)
                 } else {
                     if (!$(".c-selector-archivo__error").hasClass("c-selector-archivo__error--visible"))
                         $(".c-selector-archivo__error").addClass("c-selector-archivo__error--visible")
@@ -412,8 +416,8 @@ function vista_Perfil_activarEdicionCampo(campo) {
             <input type="number" maxlength="2" size="2" placeholder="12" class="c-vista-perfil__input-nacimiento c-vista-perfil__input-numerico js-fechaNacimiento-mes-input"> /
             <input type="number" maxlength="4" size="4" placeholder="1969" class="c-vista-perfil__input-nacimiento c-vista-perfil__input-numerico js-fechaNacimiento-año-input">
             `)
-            if (GLOBAL_USUARIO.fechaNacimiento != undefined) {
-                var fechaNacimiento = GLOBAL_USUARIO.fechaNacimiento.split("/")
+            if (GLOBAL_USUARIO.datos.fechaNacimiento != undefined) {
+                var fechaNacimiento = GLOBAL_USUARIO.datos.fechaNacimiento.split("/")
                 $(".js-fechaNacimiento-dia-input").val(fechaNacimiento[0])
                 $(".js-fechaNacimiento-mes-input").val(fechaNacimiento[1])
                 $(".js-fechaNacimiento-año-input").val(fechaNacimiento[2])
