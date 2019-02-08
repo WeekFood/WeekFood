@@ -15,6 +15,25 @@ class ProductosResource extends Resource {
         $this->setData();
     }
 
+    public function postProductoAction() {
+        $json = file_get_contents('php://input');
+        $producto = json_decode($json, true);
+
+        // preparar categoria para la BD
+        $producto['categoria'] = implode(',', $producto['categoria']);
+
+        // el id es null ya que el CRUD no se lo asigna, sino que es asignado al hacer INSERT
+        unset($producto['id']);
+
+        $this->sql = 'INSERT INTO productos 
+                        (nombre, categoria, descripcion, foto, destacado, precio) 
+                     VALUES
+                        (:nombre, :categoria, :descripcion, :foto, :destacado, :precio)';
+        
+        $this->execSQL($producto);
+        $this->setData();
+    }
+
     public function getCategoriasPrincipalesAction() {
         $this->sql = 'SELECT nombre FROM categoriasprincipales';
         $this->execSQL();

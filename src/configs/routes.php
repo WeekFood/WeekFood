@@ -103,6 +103,11 @@ return [
             "route" => "api/auth/usuario_ya_existe",
             "resource" => "auth",
             "action" => "postUsuarioYaExiste"
+        ],
+        "CRUD, Productos, nuevo" => [
+            "route" => "api/productos",
+            "resource" => "productos",
+            "action" => "postProducto"
         ]
     ],
     "put" => [
