@@ -186,7 +186,7 @@ function acceso_LoginInicial(nuevoUsuario = false) {
                                     GLOBAL_USUARIO.datos.foto += "indefinido.png"
                             }
                         } else {
-                            GLOBAL_USUARIO.datos.foto = "/imagenes/usuarios/" + respuesta[0].foto
+                            GLOBAL_USUARIO.datos.foto = "/imagenes/usuarios/" + respuesta[0].nick + "/" + respuesta[0].foto
                         }
                         $(".js-acceso").remove()
                         $(".c-cabecera__botones").prepend(`<div data-modo="Entrar" class="c-cabecera__boton js-perfil">

@@ -164,15 +164,8 @@ function vista_Perfil_generarHTML(puntoMontaje) {
         html += `   <p class='c-vista-perfil__dato'>
                         <span class='c-vista-perfil__dato-titulo'>`+ GLOBAL_USUARIO.diccionarioDatos.sexo + `</span>
                         <span>`
-        switch (GLOBAL_USUARIO.datos.sexo) {
-            case "H":
-                html += "Hombre"
-                break
-            case "M":
-                html += "Mujer"
-                break
-        }
-        html += `       </span>
+            + vista_Perfil_traducirSexoAGenero(GLOBAL_USUARIO.datos.sexo)
+            + `         </span>
                     </p>`
     }
     html += `   </div >
@@ -268,17 +261,11 @@ function vista_Perfil_activarEdicion(evento) {
                             <i class='fas fa-edit c-vista-perfil__edit-icono js-sexo-boton-contenido'></i>
                         </span>
                         <span class="js-sexo-contenido">`
-    switch (GLOBAL_USUARIO.nuevosDatos.sexo) {
-        case "H":
-            html += "Hombre"
-            break
-        case "M":
-            html += "Mujer"
-            break
-        default:
-            html += "Añadir"
+    if (vista_Perfil_traducirSexoAGenero(GLOBAL_USUARIO.nuevosDatos.sexo) != undefined) {
+        html += vista_Perfil_traducirSexoAGenero(GLOBAL_USUARIO.nuevosDatos.sexo)
+    } else {
+        html += "Añadir"
     }
-
     html += `           </span>
                         <span class="js-sexo-boton-cerrar">
                         </span>
@@ -336,69 +323,71 @@ function vista_Perfil_guardarEdicion(evento) {
     if (cambiosDetectados.length > 0) {
         var html = ""
         cambiosDetectados.forEach(campo => {
-            if (GLOBAL_USUARIO.datos[campo] == undefined) {
-                html += `<div class="confirmacion-cambio">
+            switch (campo) {
+                case "foto":
+                    if (GLOBAL_USUARIO.datos.foto.startsWith("imagenes/placeholders/")) {
+                        html += `<div class="confirmacion-cambio">
+                                <i class="fas fa-pencil-alt confirmacion-cambio__lapiz"></i>
+                                <span class="confirmacion-cambio__nuevo">Nueva `+ GLOBAL_USUARIO.diccionarioDatos.foto + `</span>
+                            </div>`
+                    } else {
+                        html += `<div class="confirmacion-cambio">
+                                <i class="fas fa-arrow-right confirmacion-cambio__flecha"></i>
+                                <span class="confirmacion-cambio__modificado">Editada `+ GLOBAL_USUARIO.diccionarioDatos.foto + `</span>
+                            </div>`
+                    }
+                    break
+                case "sexo":
+                    if (GLOBAL_USUARIO.datos.sexo == undefined) {
+                        html += `<div class="confirmacion-cambio">
+                                    <span class="confirmacion-cambio__titulo">Añadido ` + GLOBAL_USUARIO.diccionarioDatos.sexo + `</span>
+                                    <i class="fas fa-pencil-alt confirmacion-cambio__lapiz"></i>
+                                    <span class="confirmacion-cambio__nuevo">`
+                        if (vista_Perfil_traducirSexoAGenero(GLOBAL_USUARIO.nuevosDatos.sexo) != undefined) {
+                            html += vista_Perfil_traducirSexoAGenero(GLOBAL_USUARIO.nuevosDatos.sexo)
+                        }
+                        html += "</span></div>"
+                    } else {
+                        html += `<div class="confirmacion-cambio">
+                                    <span class="confirmacion-cambio__antiguo">`
+                            + vista_Perfil_traducirSexoAGenero(GLOBAL_USUARIO.datos.sexo)
+                            + '</span>'
+                        if (vista_Perfil_traducirSexoAGenero(GLOBAL_USUARIO.nuevosDatos.sexo) != undefined) {
+                            html += `<i class="fas fa-arrow-right confirmacion-cambio__flecha"></i>
+                                        <span class="confirmacion-cambio__modificado">`+ vista_Perfil_traducirSexoAGenero(GLOBAL_USUARIO.nuevosDatos.sexo)
+                        } else {
+                            html += '<i class="fas fa-trash confirmacion-cambio__papelera"></i>'
+                        }
+                        html += "</span></div>"
+                    }
+                    break
+                default:
+                    if (GLOBAL_USUARIO.datos[campo] == undefined) {
+                        html += `<div class="confirmacion-cambio">
                             <span class="confirmacion-cambio__titulo">Añadido ` + GLOBAL_USUARIO.diccionarioDatos[campo] + `</span>
                             <i class="fas fa-pencil-alt confirmacion-cambio__lapiz"></i>
                             <span class="confirmacion-cambio__nuevo">`
-                if (campo === "sexo") {
-                    switch (GLOBAL_USUARIO.nuevosDatos[campo]) {
-                        case "H":
-                            html += 'Hombre'
-                            break
-                        case "M":
-                            html += 'Mujer'
-                            break
-                    }
-                } else {
-                    html += GLOBAL_USUARIO.nuevosDatos[campo]
-                }
-                html += `</span>
+                            + GLOBAL_USUARIO.nuevosDatos[campo]
+                            + `</span>
                         </div>`
-            } else {
-                html += `<div class="confirmacion-cambio">
+                    } else {
+                        html += `<div class="confirmacion-cambio">
                             <span class="confirmacion-cambio__antiguo">`
-                if (campo === "sexo") {
-                    switch (GLOBAL_USUARIO.datos[campo]) {
-                        case "H":
-                            html += 'Hombre'
-                            break
-                        case "M":
-                            html += 'Mujer'
-                            break
-                    }
-                } else {
-                    html += GLOBAL_USUARIO.datos[campo]
-                }
-                html += `</span>`
-                if (campo === "sexo") {
-                    switch (GLOBAL_USUARIO.nuevosDatos[campo]) {
-                        case "H": html += `<i class="fas fa-arrow-right confirmacion-cambio__flecha"></i>
-                                            <span class="confirmacion-cambio__modificado">Hombre</span>
-                                            </div>`
-                            break
-                        case "M": html += `<i class="fas fa-arrow-right confirmacion-cambio__flecha"></i>
-                                            <span class="confirmacion-cambio__modificado">Mujer</span>
-                                            </div>`
-                            break
-                        default:
-                            html += `<i class="fas fa-trash confirmacion-cambio__papelera"></i>
-                                    </div>`
-                    }
-                } else {
-                    html += `<i class="fas fa-arrow-right confirmacion-cambio__flecha"></i>
-                            <span class="confirmacion-cambio__modificado">`
-                        + GLOBAL_USUARIO.nuevosDatos[campo]
-                        + `</span>
+                            + GLOBAL_USUARIO.datos[campo]
+                            + `</span>
+                                <i class="fas fa-arrow-right confirmacion-cambio__flecha"></i>
+                                 <span class="confirmacion-cambio__modificado">`
+                            + GLOBAL_USUARIO.nuevosDatos[campo]
+                            + `</span>
                         </div>`
-                }
+                    }
             }
         })
         generarVentanaModal({
             titulo: "Confirmar cambios",
             tipo: "confirmacion",
             tamaño: "pequeño",
-            callback_Confirmar:() => { vista_Perfil_guardarNuevosDatos(evento.data)},
+            callback_Confirmar: () => { vista_Perfil_guardarNuevosDatos(evento.data) },
             callback_Denegar: () => {
                 vista_Perfil_cambiarAFoto(GLOBAL_USUARIO.datos.foto)
                 delete GLOBAL_USUARIO.nuevosDatos
@@ -407,6 +396,9 @@ function vista_Perfil_guardarEdicion(evento) {
             callback_Cerrar: () => { vista_Perfil_cambiarAFoto(GLOBAL_USUARIO.datos.foto) },
             contenido: html
         })
+    } else {
+        delete GLOBAL_USUARIO.nuevosDatos
+        vista_Perfil_generarHTML(evento.data)
     }
 }
 function vista_Perfil_cambiarFoto(evento) {
@@ -589,15 +581,10 @@ function vista_Perfil_desactivarEdicionCampo(campo) {
     $(".js-" + campo + "-boton-contenido").addClass("fa-edit c-vista-perfil__edit-icono").removeClass("fa-save c-boton c-boton--deshabilitado c-boton--exito")
     if (GLOBAL_USUARIO.nuevosDatos[campo] != undefined) {
         if (campo === "sexo") {
-            switch (GLOBAL_USUARIO.nuevosDatos.sexo) {
-                case "H":
-                    $(".js-" + campo + "-contenido").html("Hombre")
-                    break
-                case "M":
-                    $(".js-" + campo + "-contenido").html("Mujer")
-                    break
-                default:
-                    $(".js-" + campo + "-contenido").html("Añadir")
+            if (vista_Perfil_traducirSexoAGenero(GLOBAL_USUARIO.nuevosDatos.sexo) != undefined) {
+                $(".js-" + campo + "-contenido").html(vista_Perfil_traducirSexoAGenero(GLOBAL_USUARIO.nuevosDatos.sexo))
+            } else {
+                $(".js-" + campo + "-contenido").html("Añadir")
             }
         } else {
             $(".js-" + campo + "-contenido").html(GLOBAL_USUARIO.nuevosDatos[campo])
@@ -628,27 +615,42 @@ function vista_Perfil_guardarCampo(campo) {
         vista_Perfil_desactivarEdicionCampo(campo)
     }
 }
-function vista_Perfil_guardarNuevosDatos(puntoMontaje) {
-    // Todo JL Subir a API y verificar
-
-    // PASA R JSON Y SUBIR GLOBAL_USUARIO.nuevosDatos
-    // Mira como funciona codigo existente (carrito, registro, login, etc)
-
-    // Si se han guardado los datos correctamente
-    GLOBAL_USUARIO.datos = GLOBAL_USUARIO.nuevosDatos
-    delete GLOBAL_USUARIO.nuevosDatos
-    vista_Perfil_cambiarAFoto(GLOBAL_USUARIO.datos.foto)
-    vista_Perfil_generarHTML(puntoMontaje)
-    generarNotificacion("Se ha actualizado tu perfil", true)
-    
-    // Si no
-    /*
-    generarNotificacion("No se ha podido actualizar tu perfil", true)
-    */
-
-}
 function vista_Perfil_cambiarAFoto(foto) {
     $(".js-foto").attr("src", foto)
     $(".c-cabecera__imagen").attr("src", foto)
     $(".c-perfil__imagen").attr("src", foto)
+}
+function vista_Perfil_traducirSexoAGenero(sexo) {
+    switch (sexo) {
+        case "H": return "Hombre"
+        case "M": return "Mujer"
+        default: return undefined
+    }
+}
+function vista_Perfil_guardarNuevosDatos(puntoMontaje) {
+    // Todo JL Subir a API y verificar
+
+    // PASAR A JSON Y SUBIR GLOBAL_USUARIO.nuevosDatos
+    // Mira como funciona codigo existente (carrito, registro, login, etc)
+
+    /* 
+    AVISO MUY MUY MUY IMPORTANTE
+    LA FOTO ESTA CODIFICADA, ES UNA String MUY LARGA, TIENES QUE PARSEARLA
+    Y DEVOLVER LA EXTENSION DE LA IMAGEN (PNG, GIF, JPG, JPEG)
+    TAMBIEN ES ESTO LO QUE TIENES QUE GUARDAR EN LA BASE DE DATOS,
+    GUARDANDO LA IMAGEN EN IMAGENES/USUARIOS/(NICK)(EXTENSION)
+    */
+
+    // Si se han guardado los datos correctamente
+    GLOBAL_USUARIO.datos = GLOBAL_USUARIO.nuevosDatos // Esla linea la sustituyes por lo que devuelva la API
+    // es porque en el cliente estará la imagen codificada y habra que pedirla al server (pq devuelves la extension)
+    delete GLOBAL_USUARIO.nuevosDatos
+    vista_Perfil_cambiarAFoto(GLOBAL_USUARIO.datos.foto)
+    vista_Perfil_generarHTML(puntoMontaje)
+    generarNotificacion("Se ha actualizado tu perfil", true)
+
+    // Si no
+    /*
+    generarNotificacion("No se ha podido actualizar tu perfil", true)
+    */
 }
