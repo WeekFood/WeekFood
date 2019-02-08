@@ -58,7 +58,7 @@ export class ModalProductoComponent implements OnInit {
     // TODO: validacion
     $('.js-modal-producto').modal('hide').one('hidden.bs.modal', () => {
       // destuir modal solo cuando se haya ocultado visualmente
-      this.guardado.emit(this.productoEditado);
+      this.creado.emit(this.productoEditado);
     });
   }
 
