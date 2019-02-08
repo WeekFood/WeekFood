@@ -92,7 +92,7 @@ function vista_Perfil_generarHTML(puntoMontaje) {
         ]
         */
     }
-    GLOBAL_USUARIO.nuevosDatos = GLOBAL_USUARIO.datos
+    GLOBAL_USUARIO.nuevosDatos = Object.assign({}, GLOBAL_USUARIO.datos)
     var metodosPago = `<div class='c-vista-perfil__metodos-pago-inicio'>
     <p class='c-vista-perfil__titulo'>Métodos de pago</p></div>`
     if (GLOBAL_USUARIO.metodosPago.length == 0) {
@@ -147,20 +147,20 @@ function vista_Perfil_generarHTML(puntoMontaje) {
             <div class="c-vista-perfil__usuario">
                 <div class='c-vista-perfil__foto-relativo'>
                     <div class='c-vista-perfil__foto-contenedor'>
-                        <img class='c-vista-perfil__foto' src='`+ GLOBAL_USUARIO.datos.foto + `'>
+                        <img class='c-vista-perfil__foto' src='`+ GLOBAL_USUARIO.nuevosDatos.foto + `'>
                     </div>
                 </div>`
-        + (GLOBAL_USUARIO.datos.nombre != undefined ? (`<p class='c-vista-perfil__nombre'>` + GLOBAL_USUARIO.datos.nombre + `</p>`) : "")
-        + (GLOBAL_USUARIO.datos.apellidos != undefined ? (`<p class='c-vista-perfil__apellidos'>` + GLOBAL_USUARIO.datos.apellidos + `</p>`) : "")
+        + (GLOBAL_USUARIO.nuevosDatos.nombre != undefined ? (`<p class='c-vista-perfil__nombre'>` + GLOBAL_USUARIO.nuevosDatos.nombre + `</p>`) : "")
+        + (GLOBAL_USUARIO.nuevosDatos.apellidos != undefined ? (`<p class='c-vista-perfil__apellidos'>` + GLOBAL_USUARIO.nuevosDatos.apellidos + `</p>`) : "")
         + `     <div class='c-vista-perfil__datos' >
                     <p class='c-vista-perfil__dato'>
                         <span class='c-vista-perfil__dato-titulo'>Nick</span>
                         <span>`+ GLOBAL_USUARIO.nick + `</span>
                     </p>`
-        + (GLOBAL_USUARIO.datos.fechaNacimiento != undefined ? (`<p class='c-vista-perfil__dato'><span class='c-vista-perfil__dato-titulo'>` + GLOBAL_USUARIO.diccionarioDatos.fechaNacimiento + `</span><span>` + GLOBAL_USUARIO.datos.fechaNacimiento + `</span></p>`) : "")
-        + (GLOBAL_USUARIO.datos.telefono != undefined ? (`<p class='c-vista-perfil__dato'><span class='c-vista-perfil__dato-titulo'>` + GLOBAL_USUARIO.diccionarioDatos.telefono + `</span><span>` + GLOBAL_USUARIO.datos.telefono + `</span></p>`) : "")
+        + (GLOBAL_USUARIO.nuevosDatos.fechaNacimiento != undefined ? (`<p class='c-vista-perfil__dato'><span class='c-vista-perfil__dato-titulo'>` + GLOBAL_USUARIO.diccionarioDatos.fechaNacimiento + `</span><span>` + GLOBAL_USUARIO.nuevosDatos.fechaNacimiento + `</span></p>`) : "")
+        + (GLOBAL_USUARIO.nuevosDatos.telefono != undefined ? (`<p class='c-vista-perfil__dato'><span class='c-vista-perfil__dato-titulo'>` + GLOBAL_USUARIO.diccionarioDatos.telefono + `</span><span>` + GLOBAL_USUARIO.nuevosDatos.telefono + `</span></p>`) : "")
 
-    if (GLOBAL_USUARIO.datos.sexo == "H" || GLOBAL_USUARIO.datos.sexo == "M") {
+    if (GLOBAL_USUARIO.nuevosDatos.sexo == "H" || GLOBAL_USUARIO.nuevosDatos.sexo == "M") {
         html += `   <p class='c-vista-perfil__dato'>
                         <span class='c-vista-perfil__dato-titulo'>`+ GLOBAL_USUARIO.diccionarioDatos.sexo + `</span>
                         <span>`
@@ -189,7 +189,7 @@ function vista_Perfil_generarHTML(puntoMontaje) {
     $(".js-edicion-general").click(puntoMontaje, vista_Perfil_activarEdicion)
 }
 function vista_Perfil_activarEdicion(evento) {
-    /*
+    /*k
     Lo de evento.data es porque al usar .click el parametro se añade al evento
     https://stackoverflow.com/questions/3273350/jquerys-click-pass-parameters-to-user-function
     */
@@ -329,20 +329,79 @@ function vista_Perfil_guardarEdicion(evento) {
     */
     var cambiosDetectados = []
     for (campo in GLOBAL_USUARIO.nuevosDatos) {
-        if (GLOBAL_USUARIO[campo] != GLOBAL_USUARIO.nuevosDatos[campo]) {
+        if (GLOBAL_USUARIO.nuevosDatos.hasOwnProperty(campo) && GLOBAL_USUARIO.datos[campo] != GLOBAL_USUARIO.nuevosDatos[campo]) {
             cambiosDetectados.push(campo)
         }
     }
     if (cambiosDetectados.length > 0) {
         var html = ""
-        for (campo in cambiosDetectados) {
+        cambiosDetectados.forEach(campo => {
             if (GLOBAL_USUARIO.datos[campo] == undefined) {
-                html += `<div><p></p></div>`
+                html += `<div class="confirmacion-cambio">
+                            <span class="confirmacion-cambio__titulo">Añadido ` + GLOBAL_USUARIO.diccionarioDatos[campo] + `</span>
+                            <i class="fas fa-pencil-alt confirmacion-cambio__lapiz"></i>
+                            <span class="confirmacion-cambio__nuevo">`
+                if (campo === "sexo") {
+                    switch (GLOBAL_USUARIO.nuevosDatos[campo]) {
+                        case "H":
+                            html += 'Hombre'
+                            break
+                        case "M":
+                            html += 'Mujer'
+                            break
+                    }
+                } else {
+                    html += GLOBAL_USUARIO.nuevosDatos[campo]
+                }
+                html += `</span>
+                        </div>`
+            } else {
+                html += `<div class="confirmacion-cambio">
+                            <span class="confirmacion-cambio__antiguo">`
+                if (campo === "sexo") {
+                    switch (GLOBAL_USUARIO.datos[campo]) {
+                        case "H":
+                            html += 'Hombre'
+                            break
+                        case "M":
+                            html += 'Mujer'
+                            break
+                    }
+                } else {
+                    html += GLOBAL_USUARIO.datos[campo]
+                }
+                html += `</span>`
+                if (campo === "sexo") {
+                    switch (GLOBAL_USUARIO.nuevosDatos[campo]) {
+                        case "H": html += `<i class="fas fa-arrow-right confirmacion-cambio__flecha"></i>
+                                            <span class="confirmacion-cambio__modificado">Hombre</span>
+                                            </div>`
+                            break
+                        case "M": html += `<i class="fas fa-arrow-right confirmacion-cambio__flecha"></i>
+                                            <span class="confirmacion-cambio__modificado">Mujer</span>
+                                            </div>`
+                            break
+                        default:
+                            html += `<i class="fas fa-trash confirmacion-cambio__papelera"></i>
+                                     <span>Eliminado</span>
+                            </div>`
+                    }
+                } else {
+                    html += `<i class="fas fa-arrow-right confirmacion-cambio__flecha"></i>
+                            <span class="confirmacion-cambio__modificado">`
+                        + GLOBAL_USUARIO.nuevosDatos[campo]
+                        + `</span>
+                        </div>`
+                }
             }
-        }
+        })
         generarVentanaModal({
             titulo: "Confirmar cambios",
             tipo: "confirmacion",
+            tamaño: "pequeño",
+            callback_Confirmar: vista_Perfil_guardarNuevosDatos,
+            callback_Denegar: () => { vista_Perfil_cambiarAFoto(GLOBAL_USUARIO.datos.foto) },
+            callback_Cerrar: () => { vista_Perfil_cambiarAFoto(GLOBAL_USUARIO.datos.foto) },
             contenido: html
         })
     }
@@ -358,11 +417,9 @@ function vista_Perfil_cambiarFoto(evento) {
             var lector = new FileReader();
             lector.onload = $.proxy((archi, event) => {
                 if (archi.type.match('image.*')) {
-                    GLOBAL_USUARIO.datos.foto = event.target.result
+                    GLOBAL_USUARIO.nuevosDatos.foto = event.target.result
                     $(".js-ventana-modal").remove()
-                    $(".js-foto").attr("src", GLOBAL_USUARIO.datos.foto)
-                    $(".c-cabecera__imagen").attr("src", GLOBAL_USUARIO.datos.foto)
-                    $(".c-perfil__imagen").attr("src", GLOBAL_USUARIO.datos.foto)
+                    vista_Perfil_cambiarAFoto(GLOBAL_USUARIO.nuevosDatos.foto)
                 } else {
                     if (!$(".c-selector-archivo__error").hasClass("c-selector-archivo__error--visible"))
                         $(".c-selector-archivo__error").addClass("c-selector-archivo__error--visible")
@@ -492,8 +549,8 @@ function vista_Perfil_activarEdicionCampo(campo) {
             break
         default:
             var html = `<input class='c-vista-perfil__input ` + (campo == "telefono" ? "c-vista-perfil__input-numerico" : "") + ` js-` + campo + `-input'`
-            if (GLOBAL_USUARIO[campo] == undefined) {
-                html += 'placeholder="' + (campo === "telefono" ? "6123456789" : campo) + '"'
+            if (GLOBAL_USUARIO.nuevosDatos[campo] == undefined) {
+                html += 'placeholder="' + (campo === "telefono" ? "6123456789" : GLOBAL_USUARIO.diccionarioDatos[campo]) + '"'
             }
             if (campo == "telefono") {
                 html += 'type="number"'
@@ -518,8 +575,8 @@ function vista_Perfil_activarEdicionCampo(campo) {
     $(".js-" + campo + "-boton").off("click").click(() => {
         vista_Perfil_guardarCampo(campo)
     })
-    if (GLOBAL_USUARIO[campo] != undefined && campo != "foto") {
-        $(".js-" + campo + "-input").val(GLOBAL_USUARIO[campo])
+    if (GLOBAL_USUARIO.nuevosDatos[campo] != undefined && campo != "foto") {
+        $(".js-" + campo + "-input").val(GLOBAL_USUARIO.nuevosDatos[campo])
         vista_Perfil_comprobarValidezCampo(".js-" + campo + "-input", ".js-" + campo + "-boton-contenido")
     }
 
@@ -551,9 +608,6 @@ function vista_Perfil_desactivarEdicionCampo(campo) {
 }
 function vista_Perfil_guardarCampo(campo) {
     if (vista_Perfil_comprobarValidezCampo(".js-" + campo + "-input", ".js-" + campo + "-boton-contenido")) {
-        if (GLOBAL_USUARIO.nuevosDatos == undefined) {
-            GLOBAL_USUARIO.nuevosDatos = {}
-        }
         switch (campo) {
             case "fechaNacimiento":
                 GLOBAL_USUARIO.nuevosDatos.fechaNacimiento = $(".js-fechaNacimiento-dia-input").val() + "/" + $(".js-fechaNacimiento-mes-input").val() + "/" + $(".js-fechaNacimiento-año-input").val()
@@ -572,4 +626,13 @@ function vista_Perfil_guardarCampo(campo) {
         }
         vista_Perfil_desactivarEdicionCampo(campo)
     }
+}
+function vista_Perfil_guardarNuevosDatos() {
+    // Todo
+    generarNotificacion("Se ha actualizado tu perfil", true)
+}
+function vista_Perfil_cambiarAFoto(foto) {
+    $(".js-foto").attr("src", foto)
+    $(".c-cabecera__imagen").attr("src", foto)
+    $(".c-perfil__imagen").attr("src", foto)
 }

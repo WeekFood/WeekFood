@@ -1,0 +1,36 @@
+.confirmacion-cambio {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-column-gap: 10px;
+    padding: 5px;
+    font-size: 1.3rem;
+    align-items: center;
+}
+
+.confirmacion-cambio__titulo {
+    font-size: 1rem;
+}
+
+.confirmacion-cambio__nuevo {
+    color: green;
+}
+
+.confirmacion-cambio__antiguo {
+    text-decoration: line-through;
+    font-style: italic;
+}
+
+.confirmacion-cambio__modificado {
+}
+
+.confirmacion-cambio__lapiz {
+    color: green;
+}
+
+.confirmacion-cambio__flecha {
+    color: $rojo;
+}
+
+.confirmacion-cambio__papelera {
+    color: $rojo;
+}
