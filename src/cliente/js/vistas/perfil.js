@@ -510,9 +510,9 @@ function vista_Perfil_desactivarEdicionCampo(campo) {
         vista_Perfil_activarEdicionCampo(campo)
     })
     $(".js-" + campo + "-boton-contenido").addClass("fa-edit c-vista-perfil__edit-icono").removeClass("fa-save c-boton c-boton--deshabilitado c-boton--exito")
-    if (GLOBAL_USUARIO[campo] != undefined) {
+    if (GLOBAL_USUARIO.nuevosDatos[campo] != undefined) {
         if (campo === "sexo") {
-            switch (GLOBAL_USUARIO.sexo) {
+            switch (GLOBAL_USUARIO.nuevosDatos.sexo) {
                 case "H":
                     $(".js-" + campo + "-contenido").html("Hombre")
                     break
@@ -523,7 +523,7 @@ function vista_Perfil_desactivarEdicionCampo(campo) {
                     $(".js-" + campo + "-contenido").html("Añadir")
             }
         } else {
-            $(".js-" + campo + "-contenido").html(GLOBAL_USUARIO[campo])
+            $(".js-" + campo + "-contenido").html(GLOBAL_USUARIO.nuevosDatos[campo])
         }
     } else {
         $(".js-" + campo + "-contenido").html((campo === "apellidos" ? "Apellidos" : "Añadir"))
@@ -532,21 +532,24 @@ function vista_Perfil_desactivarEdicionCampo(campo) {
 }
 function vista_Perfil_guardarCampo(campo) {
     if (vista_Perfil_comprobarValidezCampo(".js-" + campo + "-input", ".js-" + campo + "-boton-contenido")) {
+        if (GLOBAL_USUARIO.nuevosDatos == undefined){
+            GLOBAL_USUARIO.nuevosDatos = {}
+        }
         switch (campo) {
             case "fechaNacimiento":
-                GLOBAL_USUARIO.fechaNacimiento = $(".js-fechaNacimiento-dia-input").val() + "/" + $(".js-fechaNacimiento-mes-input").val() + "/" + $(".js-fechaNacimiento-año-input").val()
+                GLOBAL_USUARIO.nuevosDatos.fechaNacimiento = $(".js-fechaNacimiento-dia-input").val() + "/" + $(".js-fechaNacimiento-mes-input").val() + "/" + $(".js-fechaNacimiento-año-input").val()
                 break
             case "sexo":
                 var valor = $(".js-sexo-input").val()
                 if (valor == "H" || valor == "M") {
-                    GLOBAL_USUARIO.sexo = valor
+                    GLOBAL_USUARIO.nuevosDatos.sexo = valor
                 }
                 else {
-                    GLOBAL_USUARIO.sexo = undefined
+                    GLOBAL_USUARIO.nuevosDatos.sexo = undefined
                 }
                 break
             default:
-                GLOBAL_USUARIO[campo] = $(".js-" + campo + "-input").val()
+                GLOBAL_USUARIO.nuevosDatos[campo] = $(".js-" + campo + "-input").val()
         }
         vista_Perfil_desactivarEdicionCampo(campo)
     }
