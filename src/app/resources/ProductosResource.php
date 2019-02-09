@@ -21,7 +21,9 @@ class ProductosResource extends Resource {
 
         // preparar categoria para la BD
         $producto['categoria'] = implode(',', $producto['categoria']);
-        
+
+        var_dump($producto);
+
         $this->sql = 'INSERT INTO productos 
                         (nombre, categoria, descripcion, foto, destacado, precio) 
                      VALUES

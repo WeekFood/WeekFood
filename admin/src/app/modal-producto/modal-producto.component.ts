@@ -46,25 +46,21 @@ export class ModalProductoComponent implements OnInit {
 
   guardar() {
     // TODO: enlazar con service
-    $('.js-modal-producto').modal('hide').one('hidden.bs.modal', () => {
-      // destuir modal solo cuando se haya ocultado visualmente
-      this.cerrado.emit();
-    });
+    this.cerrarse();
   }
 
   crear() {
-    // TODO: enlazar con service
-    $('.js-modal-producto').modal('hide').one('hidden.bs.modal', () => {
-      // destuir modal solo cuando se haya ocultado visualmente
-      this.cerrado.emit();
-    });
+    this.productosService.crearProducto(this.productoEditado)
+    .then(res => {
+      this.cerrarse();
+    })
+    .catch((xhr:any, status, err) => {
+			console.error('TCL: ModalProductoComponent -> crear -> xhr', xhr.responseJSON);
+    })
   }
 
   borrar() {
     // TODO: enlazar con service
-    $('.js-modal-producto').modal('hide').one('hidden.bs.modal', () => {
-      // destuir modal solo cuando se haya ocultado visualmente
-      this.cerrado.emit();
-    });
+    this.cerrarse();
   }
 }

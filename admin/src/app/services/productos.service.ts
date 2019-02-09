@@ -35,7 +35,7 @@ export class ProductosService {
       type: 'POST',
       url: ProductosService.API_PRODUCTOS,
       contentType: 'application/json',
-      data: producto,
+      data: JSON.stringify(producto),
       xhrFields: {
         withCredentials: true
       }
