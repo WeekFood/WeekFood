@@ -21,10 +21,7 @@ class ProductosResource extends Resource {
 
         // preparar categoria para la BD
         $producto['categoria'] = implode(',', $producto['categoria']);
-
-        // el id es null ya que el CRUD no se lo asigna, sino que es asignado al hacer INSERT
-        unset($producto['id']);
-
+        
         $this->sql = 'INSERT INTO productos 
                         (nombre, categoria, descripcion, foto, destacado, precio) 
                      VALUES

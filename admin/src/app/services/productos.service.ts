@@ -27,4 +27,18 @@ export class ProductosService {
       });
     });
   }
+
+  crearProducto(producto: Producto) {
+    delete producto.id;
+
+    return $.ajax({
+      type: 'POST',
+      url: ProductosService.API_PRODUCTOS,
+      contentType: 'application/json',
+      data: producto,
+      xhrFields: {
+        withCredentials: true
+      }
+    });
+  }
 }

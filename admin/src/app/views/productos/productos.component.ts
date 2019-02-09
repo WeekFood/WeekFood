@@ -69,7 +69,10 @@ export class ProductosComponent implements OnInit {
   crearProducto(productoCreado) {
     console.log('recibido producto creado', productoCreado);
     // TODO: mandar a ProductosService
-    this.destruirModal();
+    this.productosService.crearProducto(productoCreado).then((productoCreado) => {
+			console.log('TCL: ProductosComponent -> crearProducto -> productoCreado', productoCreado);
+      this.destruirModal();
+    });
   }
 
   borrarProducto(productoBorrado) {
