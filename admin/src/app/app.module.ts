@@ -10,6 +10,7 @@ import { ProductosComponent } from './views/productos/productos.component';
 import { ModalProductoComponent } from './modal-producto/modal-producto.component';
 import { InicioComponent } from './views/inicio/inicio.component';
 import { NoEncontradoComponent } from './views/no-encontrado/no-encontrado.component';
+import { ModalAccesoComponent } from './modal-acceso/modal-acceso.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NoEncontradoComponent } from './views/no-encontrado/no-encontrado.compo
     ProductosComponent,
     ModalProductoComponent,
     InicioComponent,
-    NoEncontradoComponent
+    NoEncontradoComponent,
+    ModalAccesoComponent
   ],
   imports: [
     BrowserModule,

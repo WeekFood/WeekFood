@@ -1,3 +1,8 @@
+<app-modal-acceso
+*ngIf="authService.permiso"
+(cerrado)="destruirModal()"
+(acceso)="acceder()"
+></app-modal-acceso>
 <div class="l-distribucion">
   <div class="l-distribucion__cabecera">
     <app-cabecera (toggleSidebar)="sidebarVisible = !sidebarVisible"></app-cabecera>
