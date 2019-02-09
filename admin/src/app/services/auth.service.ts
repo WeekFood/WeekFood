@@ -36,7 +36,7 @@ export class AuthService {
   }
   esAdmin(token){
     // Todo: comprobar si es admin
-    this.permiso = true
+    this.permiso = false
     console.log("Validado por la magia de nuestro señor jesucristo")
   }
 }
