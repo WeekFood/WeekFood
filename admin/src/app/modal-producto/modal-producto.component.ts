@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Producto } from '../models/Producto';
+import { ProductosService } from '../services/productos.service';
 
 @Component({
   selector: 'app-modal-producto',
@@ -12,13 +13,10 @@ export class ModalProductoComponent implements OnInit {
   @Input() modo: string;
 
   @Output() cerrado = new EventEmitter();
-  @Output() guardado = new EventEmitter();
-  @Output() creado = new EventEmitter();
-  @Output() borrado = new EventEmitter();
 
   productoEditado: Producto;
 
-  constructor() { }
+  constructor(private productosService: ProductosService) {}
 
   ngOnInit() {
     $('.js-modal-producto').modal('show');
@@ -47,26 +45,26 @@ export class ModalProductoComponent implements OnInit {
   }
 
   guardar() {
-    // TODO: validacion
+    // TODO: enlazar con service
     $('.js-modal-producto').modal('hide').one('hidden.bs.modal', () => {
       // destuir modal solo cuando se haya ocultado visualmente
-      this.guardado.emit(this.productoEditado);
+      this.cerrado.emit();
     });
   }
 
   crear() {
-    // TODO: validacion
+    // TODO: enlazar con service
     $('.js-modal-producto').modal('hide').one('hidden.bs.modal', () => {
       // destuir modal solo cuando se haya ocultado visualmente
-      this.creado.emit(this.productoEditado);
+      this.cerrado.emit();
     });
   }
 
   borrar() {
-    // TODO: validacion
+    // TODO: enlazar con service
     $('.js-modal-producto').modal('hide').one('hidden.bs.modal', () => {
       // destuir modal solo cuando se haya ocultado visualmente
-      this.borrado.emit(this.productoEditado);
+      this.cerrado.emit();
     });
   }
 }
