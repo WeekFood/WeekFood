@@ -10,11 +10,12 @@ header('Access-Control-Allow-Origin: http://localhost:4200');
 header('Access-Control-Allow-Methods: *');
 // CORS: permitir cookies
 header('Access-Control-Allow-Credentials: true');
-// CORS: permitir headers aparte de las permitidas de normal
-header('Access-Control-Allow-Headers: *');
 
 // CORS: devolver 200 (y no seguir con el enrutamiento) para peticiones OPTIONS
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    // CORS: permitir cualquier header solicitado por OPTIONS -- https://stackoverflow.com/questions/13146892/cors-access-control-allow-headers-wildcard-being-ignored#comment21412367_13147554
+    header('Access-Control-Allow-Headers: ' . getallheaders()['Access-Control-Request-Headers']);
+
     http_response_code(200);
     exit();
 }
