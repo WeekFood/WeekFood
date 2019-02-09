@@ -14,7 +14,7 @@
           <label>Nombre</label>
           <input type="text" [(ngModel)]="productoEditado.nombre" class="form-control" [readonly]="modo === 'ver' || modo === 'borrar'">
           <label>Categoría</label>
-          <input type="text" [(ngModel)]="productoEditado.categoria" class="form-control" [readonly]="modo === 'ver' || modo === 'borrar'">
+          <input type="text" [value]="productoEditado.categoria.join(',')" (input)="productoEditado.categoria = $event.target.value.split(',')" class="form-control" [readonly]="modo === 'ver' || modo === 'borrar'">
           <label>Descripción</label>
           <input type="text" [(ngModel)]="productoEditado.descripcion" class="form-control" [readonly]="modo === 'ver' || modo === 'borrar'">
           <label>Foto</label>

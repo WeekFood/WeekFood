@@ -21,8 +21,8 @@ class ProductosResource extends Resource {
 
         // preparar categoria para la BD
         $producto['categoria'] = implode(',', $producto['categoria']);
-
-        var_dump($producto);
+        // hay que castear el boolean manualmente
+        $producto['destacado'] = (int) $producto['destacado'];
 
         $this->sql = 'INSERT INTO productos 
                         (nombre, categoria, descripcion, foto, destacado, precio) 
@@ -30,6 +30,13 @@ class ProductosResource extends Resource {
                         (:nombre, :categoria, :descripcion, :foto, :destacado, :precio)';
         
         $this->execSQL($producto);
+        $idNuevoProducto = $this->data;
+
+        $this->sql = 'SELECT * FROM productos WHERE id = :id';
+        $this->execSQL([
+            "id" => $idNuevoProducto
+        ]);
+
         $this->setData();
     }
 
