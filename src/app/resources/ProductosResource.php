@@ -37,12 +37,15 @@ class ProductosResource extends Resource {
             "id" => $idNuevoProducto
         ]);
 
+        http_response_code(201);
         $this->setData();
     }
 
     public function putProductoAction() {
         $json = file_get_contents('php://input');
         $producto = json_decode($json, true);
+
+        $id = $this->controller->getParam('id');
 
         // preparar categoria para la BD
         $producto['categoria'] = implode(',', $producto['categoria']);
@@ -58,11 +61,20 @@ class ProductosResource extends Resource {
                         destacado = :destacado,
                         precio = :precio
                       WHERE id = :id';
-        $this->execSQL($producto);
+                      
+        $this->execSQL([
+            "nombre" => $producto['nombre'],
+            "categoria" => $producto['categoria'],
+            "descripcion" => $producto['descripcion'],
+            "foto" => $producto['foto'],
+            "destacado" => $producto['destacado'],
+            "precio" => $producto['precio'],
+            "id" => $id
+        ]);
 
         $this->sql = 'SELECT * FROM productos WHERE id = :id';
         $this->execSQL([
-            "id" => $producto['id']
+            "id" => $id
         ]);
 
         $this->setData();
