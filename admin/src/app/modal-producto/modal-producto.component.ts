@@ -44,13 +44,13 @@ export class ModalProductoComponent implements OnInit {
     }
   }
 
-  guardar() {
+  editar() {
     this.productosService.editarProducto(this.productoEditado)
       .then(res => {
         this.cerrarse(true);
       })
       .catch((xhr: any, status, err) => {
-        console.error('TCL: ModalProductoComponent -> crear -> xhr', xhr.responseJSON);
+        console.error('TCL: ModalProductoComponent -> editar -> xhr', xhr.responseJSON);
       })
   }
 
@@ -70,7 +70,7 @@ export class ModalProductoComponent implements OnInit {
         this.cerrarse(true);
       })
       .catch((xhr: any, status, err) => {
-        console.error('TCL: ModalProductoComponent -> crear -> xhr', xhr.responseJSON);
+        console.error('TCL: ModalProductoComponent -> borrar -> xhr', xhr.responseJSON);
       })
   }
 }

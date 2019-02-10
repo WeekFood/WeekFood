@@ -26,7 +26,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button *ngIf="modo === 'editar'" type="button" class="btn btn-success" (click)="guardar()">Guardar</button>
+        <button *ngIf="modo === 'editar'" type="button" class="btn btn-success" (click)="editar()">Guardar</button>
         <button *ngIf="modo === 'crear'" type="button" class="btn btn-success" (click)="crear()">Crear</button>
         <button *ngIf="modo === 'borrar'" type="button" class="btn btn-danger" (click)="borrar()">Borrar</button>
         <button *ngIf="modo === 'ver'" type="button" class="btn btn-secondary" (click)="cerrarse()">Cerrar</button>
