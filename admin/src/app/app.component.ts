@@ -8,6 +8,7 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   sidebarVisible: boolean = false;
   constructor(private authService: AuthService) {
+    /*
     this.authService.login('juan', 'juan123')
       .then((res) => {
         console.log('POST login', res);
@@ -15,5 +16,6 @@ export class AppComponent {
       .catch((err) => {
         console.error('ERR login', err);
       });
+      */
   }
 }

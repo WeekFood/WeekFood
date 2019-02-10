@@ -10,10 +10,8 @@ export class AuthService {
   private logueado: boolean = undefined
   private static API_AUTH = `http://${window.location.hostname}:${environment.API_PUERTO}/api/auth`;
 
-  constructor() {
-    var token = this.leerToken()
-    this.comprobarLogin(token)
-  }
+  constructor() { }
+
   esAdmin() {
     return this.permiso
   }
@@ -29,6 +27,11 @@ export class AuthService {
   estaLogueado() {
     return this.logueado
   }
+
+  validacionInicial() {
+    return $.when(this.comprobarToken())
+  }
+
   leerToken() {
     var cookies = document.cookie.split("; ")
     var token = undefined
@@ -40,20 +43,27 @@ export class AuthService {
     return token
   }
 
-  comprobarLogin(token) {
-    this.logueado = false
-    this.permiso = false
+  comprobarToken() {
+    var token = this.leerToken()
+    this.logueado = true
+    this.permiso = true
     if (token != undefined) {
-      if (!this.renovadoToken()) {
-        return false;
-      }
+      $.ajax({
+        type: 'GET',
+        url: `${AuthService.API_AUTH}/renovar_login`,
+        contentType: 'application/x-www-form-urlencoded',
+        xhrFields: {
+          withCredentials: true
+        }
+      }).done(() => {
+        // Todo comprobar si permiso
+      }).fail(() => {
+        document.cookie = "token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/"
+      })
     }
-  }
-  renovadoToken() {
-    console.log("Mandando peticion")
-    $.getJSON(AuthService.API_AUTH+"/renovar_login")
     return true
   }
+
   login(nick: string, contraseña: string) {
     return $.ajax({
       type: 'POST',

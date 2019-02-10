@@ -71,8 +71,8 @@ DELETE FROM `metodospago`;
 DELETE FROM `nivelesprivilegio`;
 /*!40000 ALTER TABLE `nivelesprivilegio` DISABLE KEYS */;
 INSERT INTO `nivelesprivilegio` (`id`, `nombre`) VALUES
-	(0, 'Administrador General'),
-	(9, 'Usuario Basico');
+	(0, 'Usuario Basico'),
+	(9, 'Administrador General');
 /*!40000 ALTER TABLE `nivelesprivilegio` ENABLE KEYS */;
 
 -- Volcando datos para la tabla weekfood.pedidos: ~0 rows (aproximadamente)

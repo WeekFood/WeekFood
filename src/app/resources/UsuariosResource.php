@@ -25,4 +25,26 @@ class UsuariosResource extends Resource {
         $this->execSQL($params);
         $this->setData();
     }
+    public function getNivelPrivilegioAction(){
+        $idUsuarioCookie = $this->auth->getLoggedId();
+        if ($idUsuarioCookie == null) {
+            $this->setError(401, 'NO_HAY_LOGIN');
+            return;
+        }
+        $this->nivelPrivilegioDelUsuario($idUsuarioCookie);
+        if ($this->data[0]['nivelprivilegio'] < 9){
+            $this->nivelPrivilegioDelUsuario($this->controller->getParam("idUsuario"));
+        }else{
+            $this->setError(401, 'NO_HAY_PERMISO');
+            return;
+        }
+        $this->setData();
+    }
+    private function nivelPrivilegioDelUsuario($id){
+        $this->sql = 'SELECT nivelprivilegio FROM usuarios WHERE id = :idUsuario';
+        $params = [
+            "idUsuario" => $id
+        ];
+        $this->execSQL($params);
+    }
 }

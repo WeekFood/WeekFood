@@ -81,6 +81,11 @@ return [
             "route" => "api/auth/logout",
             "resource" => "auth",
             "action" => "getLogout"
+        ],
+        "API, usuario nivel privilegio" => [
+            "route" => "api/usuarios/:idUsuario/nivelPrivilegio",
+            "resource" => "usuarios",
+            "action" => "getNivelPrivilegio"
         ]
     ],
     "post" => [
