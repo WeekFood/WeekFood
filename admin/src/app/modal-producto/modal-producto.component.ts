@@ -65,7 +65,12 @@ export class ModalProductoComponent implements OnInit {
   }
 
   borrar() {
-    // TODO: enlazar con service
-    this.cerrarse(true);
+    this.productosService.borrarProducto(this.productoEditado)
+      .then(res => {
+        this.cerrarse(true);
+      })
+      .catch((xhr: any, status, err) => {
+        console.error('TCL: ModalProductoComponent -> crear -> xhr', xhr.responseJSON);
+      })
   }
 }

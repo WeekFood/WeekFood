@@ -61,7 +61,7 @@ class ProductosResource extends Resource {
                         destacado = :destacado,
                         precio = :precio
                       WHERE id = :id';
-                      
+
         $this->execSQL([
             "nombre" => $producto['nombre'],
             "categoria" => $producto['categoria'],
@@ -78,6 +78,17 @@ class ProductosResource extends Resource {
         ]);
 
         $this->setData();
+    }
+
+    public function deleteProductoAction() {
+        $id = $this->controller->getParam('id');
+
+        $this->sql = 'DELETE FROM productos WHERE id = :id';
+        $this->execSQL([
+            'id' => $id
+        ]);
+
+        http_response_code(204);
     }
 
     public function getCategoriasPrincipalesAction() {

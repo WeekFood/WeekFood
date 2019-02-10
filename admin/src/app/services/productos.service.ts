@@ -53,4 +53,16 @@ export class ProductosService {
       }
     });
   }
+
+  borrarProducto(producto: Producto) {    
+    return $.ajax({
+      type: 'DELETE',
+      url: `${ProductosService.API_PRODUCTOS}/${producto.id}`,
+      contentType: 'application/json',
+      data: JSON.stringify(producto),
+      xhrFields: {
+        withCredentials: true
+      }
+    });
+  }
 }

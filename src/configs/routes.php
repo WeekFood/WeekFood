@@ -123,5 +123,10 @@ return [
         ]
     ],
     "delete" => [
+        "CRUD, Productos, borrar" => [
+            "route" => "api/productos/:id",
+            "resource" => "productos",
+            "action" => "deleteProducto"
+        ]
     ]
 ];
