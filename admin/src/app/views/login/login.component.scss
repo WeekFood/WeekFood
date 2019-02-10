@@ -1,6 +1,9 @@
 .c-login{
-    width: 50%;
     margin: auto;
+    width: 90%;
+    @media (min-width: 426px) {
+        width: 50%;
+    }
 }
 .c-login__contenedor-boton{
     text-align: center
