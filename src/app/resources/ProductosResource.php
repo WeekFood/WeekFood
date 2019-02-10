@@ -40,6 +40,34 @@ class ProductosResource extends Resource {
         $this->setData();
     }
 
+    public function putProductoAction() {
+        $json = file_get_contents('php://input');
+        $producto = json_decode($json, true);
+
+        // preparar categoria para la BD
+        $producto['categoria'] = implode(',', $producto['categoria']);
+        // hay que castear el boolean manualmente
+        $producto['destacado'] = (int) $producto['destacado'];
+
+        $this->sql = 'UPDATE productos
+                      SET
+                        nombre = :nombre,
+                        categoria = :categoria,
+                        descripcion = :descripcion,
+                        foto = :foto,
+                        destacado = :destacado,
+                        precio = :precio
+                      WHERE id = :id';
+        $this->execSQL($producto);
+
+        $this->sql = 'SELECT * FROM productos WHERE id = :id';
+        $this->execSQL([
+            "id" => $producto['id']
+        ]);
+
+        $this->setData();
+    }
+
     public function getCategoriasPrincipalesAction() {
         $this->sql = 'SELECT nombre FROM categoriasprincipales';
         $this->execSQL();

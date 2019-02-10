@@ -45,8 +45,13 @@ export class ModalProductoComponent implements OnInit {
   }
 
   guardar() {
-    // TODO: enlazar con service
-    this.cerrarse();
+    this.productosService.editarProducto(this.productoEditado)
+      .then(res => {
+        this.cerrarse();
+      })
+      .catch((xhr: any, status, err) => {
+        console.error('TCL: ModalProductoComponent -> crear -> xhr', xhr.responseJSON);
+      })
   }
 
   crear() {

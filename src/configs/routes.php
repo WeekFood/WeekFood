@@ -115,6 +115,11 @@ return [
             "route" => "api/carritos/:id",
             "resource" => "carritos",
             "action" => "putCarrito"
+        ],
+        "CRUD, Productos, editar" => [
+            "route" => "api/productos/:id",
+            "resource" => "productos",
+            "action" => "putProducto"
         ]
     ],
     "delete" => [

@@ -41,4 +41,16 @@ export class ProductosService {
       }
     });
   }
+
+  editarProducto(producto: Producto) {
+    return $.ajax({
+      type: 'PUT',
+      url: `${ProductosService.API_PRODUCTOS}/${producto.id}`,
+      contentType: 'application/json',
+      data: JSON.stringify(producto),
+      xhrFields: {
+        withCredentials: true
+      }
+    });
+  }
 }
