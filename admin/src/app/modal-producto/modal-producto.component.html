@@ -14,11 +14,18 @@
           <label>Nombre</label>
           <input type="text" [(ngModel)]="productoEditado.nombre" class="form-control" [readonly]="modo === 'ver' || modo === 'borrar'">
           <label>Categoría</label>
-          <input type="text" [value]="productoEditado.categoria.join(',')" (input)="productoEditado.categoria = $event.target.value.split(',')" class="form-control" [readonly]="modo === 'ver' || modo === 'borrar'">
+          <input 
+            type="text" 
+            [value]="productoEditado.categoria.join(',')" 
+            (input)="productoEditado.categoria = $event.target.value.split(',')" 
+            class="form-control" 
+            [readonly]="modo === 'ver' || modo === 'borrar'"
+            >
           <label>Descripción</label>
           <input type="text" [(ngModel)]="productoEditado.descripcion" class="form-control" [readonly]="modo === 'ver' || modo === 'borrar'">
           <label>Foto</label>
-          <img [src]="productoEditado.foto">
+          <img *ngIf="modo === 'ver' || modo === 'borrar'" [src]="productoEditado.foto">
+          <input *ngIf="modo !== 'ver' && modo !== 'borrar'" [(ngModel)]="productoEditado.foto" class="form-control">
           <label>Destacado</label>
           <input type="checkbox" [(ngModel)]="productoEditado.destacado" [disabled]="modo === 'ver' || modo === 'borrar'">
           <label>Precio</label>
