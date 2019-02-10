@@ -16,7 +16,7 @@ export class ModalProductoComponent implements OnInit {
 
   productoEditado: Producto;
 
-  constructor(private productosService: ProductosService) {}
+  constructor(private productosService: ProductosService) { }
 
   ngOnInit() {
     $('.js-modal-producto').modal('show');
@@ -49,19 +49,23 @@ export class ModalProductoComponent implements OnInit {
       .then(res => {
         this.cerrarse(true);
       })
-      .catch((xhr: any, status, err) => {
-        console.error('TCL: ModalProductoComponent -> editar -> xhr', xhr.responseJSON);
+      .catch((xhr: any) => {
+        console.error('Error AJAX al editar Producto');
+        console.log('Producto:', this.productoEditado);
+        console.log('XHR:', xhr);
       })
   }
 
   crear() {
     this.productosService.crearProducto(this.productoEditado)
-    .then(res => {
-      this.cerrarse(true);
-    })
-    .catch((xhr:any, status, err) => {
-			console.error('TCL: ModalProductoComponent -> crear -> xhr', xhr.responseJSON);
-    })
+      .then(res => {
+        this.cerrarse(true);
+      })
+      .catch((xhr: any) => {
+        console.error('Error AJAX al crear Producto');
+        console.log('Producto:', this.productoEditado);
+        console.log('XHR:', xhr);
+      })
   }
 
   borrar() {
@@ -69,8 +73,10 @@ export class ModalProductoComponent implements OnInit {
       .then(res => {
         this.cerrarse(true);
       })
-      .catch((xhr: any, status, err) => {
-        console.error('TCL: ModalProductoComponent -> borrar -> xhr', xhr.responseJSON);
+      .catch((xhr: any) => {
+        console.error('Error AJAX al borrar Producto');
+        console.log('Producto:', this.productoEditado);
+        console.log('XHR:', xhr);
       })
   }
 }
