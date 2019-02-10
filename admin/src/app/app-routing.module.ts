@@ -4,7 +4,10 @@ import { ProductosComponent } from './views/productos/productos.component';
 import { InicioComponent } from './views/inicio/inicio.component';
 import { NoEncontradoComponent } from './views/no-encontrado/no-encontrado.component';
 import { LoginComponent } from './views/login/login.component';
+import { DesautorizadoComponent } from './views/desautorizado/desautorizado.component';
 import { AuthGuard } from './guards/auth.guard';
+import { DesAuthGuard } from './guards/desauth.guard';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   {
@@ -19,7 +22,13 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate :[LoginGuard]
+  },
+  {
+    path: 'desautorizado',
+    component: DesautorizadoComponent,
+    canActivate :[DesAuthGuard]
   },
   {
     path: '**',

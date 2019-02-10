@@ -11,6 +11,7 @@ import { ModalProductoComponent } from './modal-producto/modal-producto.componen
 import { InicioComponent } from './views/inicio/inicio.component';
 import { NoEncontradoComponent } from './views/no-encontrado/no-encontrado.component';
 import { LoginComponent } from './views/login/login.component';
+import { DesautorizadoComponent } from './views/desautorizado/desautorizado.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LoginComponent } from './views/login/login.component';
     ModalProductoComponent,
     InicioComponent,
     NoEncontradoComponent,
-    LoginComponent
+    LoginComponent,
+    DesautorizadoComponent
   ],
   imports: [
     BrowserModule,

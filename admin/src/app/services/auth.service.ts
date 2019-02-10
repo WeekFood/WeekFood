@@ -7,6 +7,7 @@ import { environment } from '../../environments/environment';
 })
 export class AuthService {
   private permiso: boolean = undefined
+  private logueado: boolean = undefined
   private static API_AUTH = `http://${window.location.hostname}:${environment.API_PUERTO}/api/auth`;
 
   constructor() {
@@ -17,7 +18,7 @@ export class AuthService {
         token = cookie
       }
     })
-    this.comprobarAdmin(token)
+    this.comprobarLogin(token)
   }
 
   login(nick: string, contraseña: string) {
@@ -34,12 +35,25 @@ export class AuthService {
       }
     });
   }
-  comprobarAdmin(token) {
+  comprobarLogin(token) {
     // Todo: comprobar si es admin
+    this.logueado = false
     this.permiso = false
-    console.log("Validado por la magia de nuestro señor jesucristo")
+    console.log("SALTADA LA COMPROBACION DE LOGIN,logueado",this.logueado,",permiso,",this.permiso)
   }
   esAdmin() {
-    return this.permiso
+    return this.permiso 
+  }
+
+  estaAutorizado (){
+    if (!this.logueado && this.permiso){
+      this.permiso = false
+      console.error("INCOHERENCIA, NO ESTAS LOGUEADO PERO SI QUE TIENES PERMISO")
+    }
+    return this.logueado && this.permiso
+  }
+
+  estaLogueado(){
+    return this.logueado
   }
 }
