@@ -53,7 +53,7 @@ export class ModalProductoComponent implements OnInit {
         console.error('Error AJAX al editar Producto');
         console.log('Producto:', this.productoEditado);
         console.log('XHR:', xhr);
-      })
+      });
   }
 
   crear() {
@@ -65,7 +65,7 @@ export class ModalProductoComponent implements OnInit {
         console.error('Error AJAX al crear Producto');
         console.log('Producto:', this.productoEditado);
         console.log('XHR:', xhr);
-      })
+      });
   }
 
   borrar() {
@@ -77,6 +77,6 @@ export class ModalProductoComponent implements OnInit {
         console.error('Error AJAX al borrar Producto');
         console.log('Producto:', this.productoEditado);
         console.log('XHR:', xhr);
-      })
+      });
   }
 }
