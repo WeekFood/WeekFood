@@ -38,5 +38,5 @@
   *ngIf="modalAbierto"
   [producto]="productoActual"
   [modo]="modoModal"
-  (cerrado)="destruirModal()"
+  (cerrado)="alCerrarseModal($event)"
 ></app-modal-producto>

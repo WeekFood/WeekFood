@@ -12,7 +12,7 @@ export class ModalProductoComponent implements OnInit {
   @Input() producto: Producto;
   @Input() modo: string;
 
-  @Output() cerrado = new EventEmitter();
+  @Output() cerrado = new EventEmitter<boolean>();
 
   productoEditado: Producto;
 
@@ -24,10 +24,10 @@ export class ModalProductoComponent implements OnInit {
     this.productoEditado = Object.assign({}, this.producto);
   }
 
-  cerrarse() {
+  cerrarse(actualizarVista: boolean = false) {
     $('.js-modal-producto').modal('hide').one('hidden.bs.modal', () => {
       // destuir modal solo cuando se haya ocultado visualmente
-      this.cerrado.emit();
+      this.cerrado.emit(actualizarVista);
     });
   }
 
@@ -47,7 +47,7 @@ export class ModalProductoComponent implements OnInit {
   guardar() {
     this.productosService.editarProducto(this.productoEditado)
       .then(res => {
-        this.cerrarse();
+        this.cerrarse(true);
       })
       .catch((xhr: any, status, err) => {
         console.error('TCL: ModalProductoComponent -> crear -> xhr', xhr.responseJSON);
@@ -57,7 +57,7 @@ export class ModalProductoComponent implements OnInit {
   crear() {
     this.productosService.crearProducto(this.productoEditado)
     .then(res => {
-      this.cerrarse();
+      this.cerrarse(true);
     })
     .catch((xhr:any, status, err) => {
 			console.error('TCL: ModalProductoComponent -> crear -> xhr', xhr.responseJSON);
@@ -66,6 +66,6 @@ export class ModalProductoComponent implements OnInit {
 
   borrar() {
     // TODO: enlazar con service
-    this.cerrarse();
+    this.cerrarse(true);
   }
 }
