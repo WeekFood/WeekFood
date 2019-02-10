@@ -6,18 +6,18 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  permiso : boolean = undefined
+  private permiso: boolean = undefined
   private static API_AUTH = `http://${window.location.hostname}:${environment.API_PUERTO}/api/auth`;
 
   constructor() {
     var cookies = document.cookie.split(";")
     var token = undefined
-    cookies.forEach(cookie=>{
-      if (cookie.indexOf("token=") == 0){
+    cookies.forEach(cookie => {
+      if (cookie.indexOf("token=") == 0) {
         token = cookie
       }
     })
-    this.esAdmin(token)
+    this.comprobarAdmin(token)
   }
 
   login(nick: string, contraseña: string) {
@@ -34,9 +34,12 @@ export class AuthService {
       }
     });
   }
-  esAdmin(token){
+  comprobarAdmin(token) {
     // Todo: comprobar si es admin
     this.permiso = false
     console.log("Validado por la magia de nuestro señor jesucristo")
+  }
+  esAdmin() {
+    return this.permiso
   }
 }
