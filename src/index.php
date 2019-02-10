@@ -6,16 +6,17 @@ $config = require_once "./configs/config.php";
 // CORS: permitir acceso desde otros dominios
 // no sirve la wildcard si se manejan cookies, tiene que ser explicito
 header('Access-Control-Allow-Origin: http://localhost:4200');
-// CORS: permitir más métodos aparte de los permitidos en "simple request"
-header('Access-Control-Allow-Methods: *');
 // CORS: permitir cookies
 header('Access-Control-Allow-Credentials: true');
 
-// CORS: devolver 200 (y no seguir con el enrutamiento) para peticiones OPTIONS
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     // CORS: permitir cualquier header solicitado por OPTIONS -- https://stackoverflow.com/questions/13146892/cors-access-control-allow-headers-wildcard-being-ignored#comment21412367_13147554
     header('Access-Control-Allow-Headers: ' . getallheaders()['Access-Control-Request-Headers']);
-
+    
+    // CORS: permitir cualquier método solicitado por OPTIONS
+    header('Access-Control-Allow-Methods: '. getallheaders()['Access-Control-Request-Method']);
+    
+    // CORS: devolver 200 (y no seguir con el enrutamiento) para peticiones OPTIONS
     http_response_code(200);
     exit();
 }
