@@ -20,7 +20,7 @@
             (input)="productoEditado.categoria = $event.target.value.split(',')" 
             class="form-control" 
             [readonly]="modo === 'ver' || modo === 'borrar'"
-            >
+          >
           <label>Descripción</label>
           <input type="text" [(ngModel)]="productoEditado.descripcion" class="form-control" [readonly]="modo === 'ver' || modo === 'borrar'">
           <label>Foto</label>
