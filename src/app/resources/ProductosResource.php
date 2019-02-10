@@ -21,7 +21,7 @@ class ProductosResource extends Resource {
 
         // preparar categoria para la BD
         $producto['categoria'] = implode(',', $producto['categoria']);
-        // hay que castear el boolean manualmente
+        // hay que castear a boolean manualmente
         $producto['destacado'] = (int) $producto['destacado'];
 
         $this->sql = 'INSERT INTO productos 
@@ -49,7 +49,7 @@ class ProductosResource extends Resource {
 
         // preparar categoria para la BD
         $producto['categoria'] = implode(',', $producto['categoria']);
-        // hay que castear el boolean manualmente
+        // hay que castear a boolean manualmente
         $producto['destacado'] = (int) $producto['destacado'];
 
         $this->sql = 'UPDATE productos
