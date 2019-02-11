@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,APP_INITIALIZER } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,8 @@ import { InicioComponent } from './views/inicio/inicio.component';
 import { NoEncontradoComponent } from './views/no-encontrado/no-encontrado.component';
 import { LoginComponent } from './views/login/login.component';
 import { DesautorizadoComponent } from './views/desautorizado/desautorizado.component';
+
+import { AuthProviderService } from './providers/authprovider.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,18 @@ import { DesautorizadoComponent } from './views/desautorizado/desautorizado.comp
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    AuthProviderService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: jokesProviderFactory,
+      deps: [AuthProviderService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+export function jokesProviderFactory(provider: AuthProviderService) {
+  return () => provider.validacionInicial();
+}

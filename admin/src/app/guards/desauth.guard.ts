@@ -12,10 +12,10 @@ export class DesAuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (!this.auth.estaLogueado()){
+    if (!this.auth.getEstaLogueado()){
       this.router.navigate(['login'])
     }
-    if (this.auth.estaAutorizado()){
+    if (this.auth.getEstaAutorizado()){
       this.router.navigate([''])
     }
     return true;

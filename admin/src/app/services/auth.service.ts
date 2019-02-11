@@ -6,63 +6,11 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  private permiso: boolean = undefined
+  private permiso: number = undefined
   private logueado: boolean = undefined
   private static API_AUTH = `http://${window.location.hostname}:${environment.API_PUERTO}/api/auth`;
 
   constructor() { }
-
-  esAdmin() {
-    return this.permiso
-  }
-
-  estaAutorizado() {
-    if (!this.logueado && this.permiso) {
-      this.permiso = false
-      console.error("INCOHERENCIA, NO ESTAS LOGUEADO PERO SI QUE TIENES PERMISO")
-    }
-    return this.logueado && this.permiso
-  }
-
-  estaLogueado() {
-    return this.logueado
-  }
-
-  validacionInicial() {
-    return $.when(this.comprobarToken())
-  }
-
-  leerToken() {
-    var cookies = document.cookie.split("; ")
-    var token = undefined
-    cookies.forEach(cookie => {
-      if (cookie.startsWith("token=")) {
-        token = cookie.split("token=")[1]
-      }
-    })
-    return token
-  }
-
-  comprobarToken() {
-    var token = this.leerToken()
-    this.logueado = true
-    this.permiso = true
-    if (token != undefined) {
-      $.ajax({
-        type: 'GET',
-        url: `${AuthService.API_AUTH}/renovar_login`,
-        contentType: 'application/x-www-form-urlencoded',
-        xhrFields: {
-          withCredentials: true
-        }
-      }).done(() => {
-        // Todo comprobar si permiso
-      }).fail(() => {
-        document.cookie = "token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/"
-      })
-    }
-    return true
-  }
 
   login(nick: string, contraseña: string) {
     return $.ajax({
@@ -78,4 +26,32 @@ export class AuthService {
       }
     });
   }
+  getAPI() {
+    return AuthService.API_AUTH
+  }
+
+  setLogueado() {
+    this.logueado = true
+  }
+
+  setPermiso() {
+    this.permiso = 9
+  }
+
+  getEsAdmin() {
+    return this.permiso > 0
+  }
+
+  getEstaAutorizado() {
+    if (!this.getEstaLogueado() && this.permiso != undefined) {
+      this.permiso = 0
+      console.error("LOGIN_INCOHERENTE")
+    }
+    return this.getEstaLogueado() && this.getEsAdmin()
+  }
+
+  getEstaLogueado() {
+    return this.logueado
+  }
+
 }

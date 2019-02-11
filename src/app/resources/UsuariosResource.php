@@ -32,7 +32,8 @@ class UsuariosResource extends Resource {
             return;
         }
         $this->nivelPrivilegioDelUsuario($idUsuarioCookie);
-        if ($this->data[0]['nivelprivilegio'] < 9){
+        // Este es el nivel que han en la tabla nivelesprivilegio, deberia cargarse dinamicamente o algo
+        if ($this->data[0]['nivelprivilegio'] > 0){
             $this->nivelPrivilegioDelUsuario($this->controller->getParam("idUsuario"));
         }else{
             $this->setError(401, 'NO_HAY_PERMISO');
