@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
     if (state.url !== "/desautorizado" && !this.auth.getEstaAutorizado()) {
       this.router.navigate(['login'])
     }
-    if (  state.url === "/desautorizado" && this.auth.getEstaAutorizado() ) {
+    if (state.url === "/desautorizado" && this.auth.getEstaAutorizado()) {
       this.router.navigate([''])
     }
     return true;
