@@ -14,7 +14,8 @@ export class AuthService {
 
   constructor(private injector: Injector) { this.preparado = false }
 
-  public get router(): Router { //this creates router property on your service.
+  //https://stackoverflow.com/questions/39767019/app-initializer-raises-cannot-instantiate-cyclic-dependency-applicationref-w
+  public get router(): Router {
     return this.injector.get(Router);
   }
   login(nick: string, contraseña: string) {
