@@ -19,13 +19,13 @@ export class LoginComponent {
     $(".js-nick").removeClass("c-login__error-campo")
     $(".js-contra").removeClass("c-login__error-campo")
 
-    if ($(".js-nick").val().length == 0) {
+    if ($(".js-nick").val().toString().length == 0) {
       $(".js-nick").addClass("c-login__error-campo")
       $(".js-error-usuario").html("Está vacio")
       valido = false
     }
 
-    if ($(".js-contra").val().length == 0) {
+    if ($(".js-contra").val().toString().length == 0) {
       $(".js-contra").addClass("c-login__error-campo")
       $(".js-error-contra").html("Está vacio")
       valido = false
