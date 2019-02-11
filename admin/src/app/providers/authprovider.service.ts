@@ -24,9 +24,11 @@ export class AuthProviderService {
     })
     return token
   }
+
   comprobarToken() {
     var token = this.leerToken()
     if (token != undefined) {
+
       return $.ajax({
         type: 'GET',
         url: this.auth.getAPI() + `/renovar_login`,
@@ -34,8 +36,10 @@ export class AuthProviderService {
         xhrFields: {
           withCredentials: true
         }
+
       })
         .done(() => {
+
           this.auth.setLogueado()
           var idUsuario = token.split(".")[0]
           return $.ajax({
@@ -45,19 +49,25 @@ export class AuthProviderService {
             xhrFields: {
               withCredentials: true
             }
-          }).done((respuesta) => {
-            if (respuesta.length > 0
-              && respuesta[0].hasOwnProperty("nivelprivilegio")
-              && respuesta[0].nivelprivilegio > 0
-            ) {
-              this.auth.setPermiso()
-              this.auth.setPreparado()
-            }
+
           })
+
+            .done((respuesta) => {
+              if (respuesta.length > 0
+                && respuesta[0].hasOwnProperty("nivelprivilegio")
+                && respuesta[0].nivelprivilegio > 0
+              ) {
+                this.auth.setPermiso()
+                this.auth.setPreparado()
+              }
+            })
+
             .fail(() => {
               this.auth.setPreparado()
             })
+
         })
+
         .fail(() => {
           console.log("Eliminadno token")
           document.cookie = "token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/"

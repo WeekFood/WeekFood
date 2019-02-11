@@ -25,23 +25,26 @@ class UsuariosResource extends Resource {
         $this->execSQL($params);
         $this->setData();
     }
-    public function getNivelPrivilegioAction(){
+
+    public function getNivelPrivilegioAction() {
         $idUsuarioCookie = $this->auth->getLoggedId();
         if ($idUsuarioCookie == null) {
             $this->setError(401, 'NO_HAY_LOGIN');
             return;
         }
+        
         $this->nivelPrivilegioDelUsuario($idUsuarioCookie);
         // Este es el nivel que han en la tabla nivelesprivilegio, deberia cargarse dinamicamente o algo
-        if ($this->data[0]['nivelprivilegio'] > 0){
+        if ($this->data[0]['nivelprivilegio'] > 0) {
             $this->nivelPrivilegioDelUsuario($this->controller->getParam("idUsuario"));
-        }else{
+        } else {
             $this->setError(401, 'NO_HAY_PERMISO');
             return;
         }
         $this->setData();
     }
-    private function nivelPrivilegioDelUsuario($id){
+
+    private function nivelPrivilegioDelUsuario($id) {
         $this->sql = 'SELECT nivelprivilegio FROM usuarios WHERE id = :idUsuario';
         $params = [
             "idUsuario" => $id
