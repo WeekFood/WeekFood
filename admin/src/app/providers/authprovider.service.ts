@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { AuthService } from '../services/auth.service';
 
 import { environment } from '../../environments/environment';
@@ -8,7 +10,7 @@ import { environment } from '../../environments/environment';
 })
 export class AuthProviderService {
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private injector: Injector) { }
   validacionInicial() {
     return $.when(this.comprobarToken())
   }
@@ -23,7 +25,9 @@ export class AuthProviderService {
     })
     return token
   }
-
+  public get router(): Router { //this creates router property on your service.
+    return this.injector.get(Router);
+  }
   comprobarToken() {
     var token = this.leerToken()
     if (token != undefined) {
@@ -49,7 +53,13 @@ export class AuthProviderService {
             && respuesta[0].hasOwnProperty("nivelprivilegio")
             && respuesta[0].nivelprivilegio > 0
           ) {
-            this.auth.setPermiso()
+            setTimeout(
+              ()=>{
+                this.auth.setPermiso()
+                this.auth.setPreparado()
+                this.router.navigate([''])
+              },5000
+            )
           }
         })
       }).fail(() => {

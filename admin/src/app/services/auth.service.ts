@@ -8,9 +8,10 @@ import { environment } from '../../environments/environment';
 export class AuthService {
   private permiso: number = undefined
   private logueado: boolean = undefined
+  private preparado: boolean = undefined
   private static API_AUTH = `http://${window.location.hostname}:${environment.API_PUERTO}/api/auth`;
 
-  constructor() { }
+  constructor() { this.preparado = false }
 
   login(nick: string, contraseña: string) {
     return $.ajax({
@@ -26,9 +27,6 @@ export class AuthService {
       }
     });
   }
-  getAPI() {
-    return AuthService.API_AUTH
-  }
 
   setLogueado() {
     this.logueado = true
@@ -36,6 +34,9 @@ export class AuthService {
 
   setPermiso() {
     this.permiso = 9
+  }
+  setPreparado() {
+    this.preparado = true
   }
 
   getEsAdmin() {
@@ -54,4 +55,10 @@ export class AuthService {
     return this.logueado
   }
 
+  getAPI() {
+    return AuthService.API_AUTH
+  }
+  getPreparado() {
+    return this.preparado
+  }
 }

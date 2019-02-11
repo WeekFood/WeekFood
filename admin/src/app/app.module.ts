@@ -14,6 +14,7 @@ import { LoginComponent } from './views/login/login.component';
 import { DesautorizadoComponent } from './views/desautorizado/desautorizado.component';
 
 import { AuthProviderService } from './providers/authprovider.service';
+import { CargandoComponent } from './views/cargando/cargando.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AuthProviderService } from './providers/authprovider.service';
     InicioComponent,
     NoEncontradoComponent,
     LoginComponent,
-    DesautorizadoComponent
+    DesautorizadoComponent,
+    CargandoComponent
   ],
   imports: [
     BrowserModule,

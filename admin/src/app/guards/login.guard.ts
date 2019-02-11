@@ -15,7 +15,7 @@ export class LoginGuard implements CanActivate {
     if (this.auth.getEstaAutorizado()) {
       this.router.navigate([''])
     }
-    if(this.auth.getEstaLogueado() && !this.auth.getEsAdmin()){
+    if (this.auth.getEstaLogueado() && !this.auth.getEsAdmin()) {
       this.router.navigate(['desautorizado'])
     }
     return true;
