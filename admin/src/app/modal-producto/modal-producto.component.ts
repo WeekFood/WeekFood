@@ -31,14 +31,14 @@ export class ModalProductoComponent implements OnInit {
     });
   }
 
-  cerrarseOverlay(evento) {
+  cerrarseOverlay(evento: MouseEvent) {
     // solo cerrar si se ha hecho click en el overlay, no en el modal como tal
     if (evento.target === document.querySelector('.modal')) {
       this.cerrarse();
     }
   }
 
-  cerrarseEsc(evento) {
+  cerrarseEsc(evento: KeyboardEvent) {
     if (evento.key === 'Escape') {
       this.cerrarse();
     }
