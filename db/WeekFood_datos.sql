@@ -109,6 +109,8 @@ DELETE FROM `ubicaciones`;
 -- Volcando datos para la tabla weekfood.usuarios: ~0 rows (aproximadamente)
 DELETE FROM `usuarios`;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` (`id`, `nick`, `contraseña`, `nombre`, `apellidos`, `foto`, `sexo`, `telefono`, `nacimiento`, `nivelprivilegio`) VALUES
+	(1, 'Admin', '$2y$10$60/ZXnzcdVVpHUdH63npgecJOAoGJhqpPtF3Ut4jRazhWQk3YD9p6', 'Admin', NULL, NULL, NULL, NULL, NULL, 9);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

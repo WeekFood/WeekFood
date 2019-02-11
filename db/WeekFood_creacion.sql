@@ -176,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   UNIQUE KEY `nick` (`nick`),
   KEY `nivelprivilegio` (`nivelprivilegio`),
   CONSTRAINT `nivelprivilegio` FOREIGN KEY (`nivelprivilegio`) REFERENCES `nivelesprivilegio` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 -- La exportación de datos fue deseleccionada.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

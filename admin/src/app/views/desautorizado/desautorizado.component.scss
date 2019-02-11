@@ -1,11 +1,17 @@
-.c-desautorizado{
+.c-desautorizado {
     width: 100%;
     @media (min-width: 426px) {
         width: 50%;
         margin: auto;
     }
 }
-.c-desautorizado__centrar{
+
+.c-desautorizado__centrar {
     width: 100%;
     text-align: center;
+}
+
+.c-desautorizado__boton {
+    margin: 10px;
+    color: white;
 }

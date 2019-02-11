@@ -121,7 +121,7 @@ class Auth {
         if ($this->isLoggedIn()) {
             session_destroy();
             if (isset($_COOKIE[self::COOKIE_NAME_TOKEN])) {
-                setcookie(self::COOKIE_NAME_TOKEN, '', 0);
+                setcookie(self::COOKIE_NAME_TOKEN, '', 0, '/');
             }
         } else {
             $this->sendError(self::ERR_LOGOUT_NO_LOGIN);
@@ -156,10 +156,10 @@ class Auth {
 
     public function isLoggedIn(): bool {
         return session_status() !== PHP_SESSION_NONE
-                && isset($_SESSION['logueado'])
-                && $_SESSION['logueado']
-                && isset($_SESSION['idUsuario'])
-                && $_SESSION['idUsuario'] > -1;
+        && isset($_SESSION['logueado'])
+        && $_SESSION['logueado']
+        && isset($_SESSION['idUsuario'])
+        && $_SESSION['idUsuario'] > -1;
     }
 
     public function getLoggedId() {
@@ -174,16 +174,16 @@ class Auth {
         $errorMessage;
 
         switch ($errorConst) {
-            case (self::ERR_NO_TOKEN):
-                $errorMessage = 'NO_HAY_TOKEN';
-                break;
-            case (self::ERR_RENEW_LOGIN_INVALID_SIGNATURE):
-                $errorMessage = 'FIRMA_INVALIDA';
-                break;
-            case (self::ERR_LOGOUT_NO_LOGIN):
-                $errorMessage = 'NO_HAY_LOGIN';
-                break;
-            default:
+        case (self::ERR_NO_TOKEN):
+            $errorMessage = 'NO_HAY_TOKEN';
+            break;
+        case (self::ERR_RENEW_LOGIN_INVALID_SIGNATURE):
+            $errorMessage = 'FIRMA_INVALIDA';
+            break;
+        case (self::ERR_LOGOUT_NO_LOGIN):
+            $errorMessage = 'NO_HAY_LOGIN';
+            break;
+        default:
         }
 
         if ($errorMessage) {
@@ -191,13 +191,13 @@ class Auth {
         }
 
         switch ($errorConst) {
-            case (self::ERR_NO_TOKEN):
-            case (self::ERR_RENEW_LOGIN_INVALID_SIGNATURE):
-            case (self::ERR_LOGOUT_NO_LOGIN):
-                http_response_code(401);
-                break;
-            default:
-                http_response_code(500);
+        case (self::ERR_NO_TOKEN):
+        case (self::ERR_RENEW_LOGIN_INVALID_SIGNATURE):
+        case (self::ERR_LOGOUT_NO_LOGIN):
+            http_response_code(401);
+            break;
+        default:
+            http_response_code(500);
         }
     }
 }
