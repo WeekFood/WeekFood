@@ -19,7 +19,7 @@
           <td>{{ producto.id }}</td>
           <td>{{ producto.nombre }}</td>
           <td>
-            <span *ngFor="let categoria of producto.categoria" class="badge badge-secondary">{{ categoria }}</span>
+            <span *ngFor="let categoria of producto.categoria" class="c-productos__categoria badge badge-secondary">{{ categoria }}</span>
           </td>
           <td>{{ producto.descripcion }}</td>
           <td><img [src]="producto.foto"></td>
