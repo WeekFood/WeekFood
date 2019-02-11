@@ -28,7 +28,6 @@ export class AuthProviderService {
   comprobarToken() {
     var token = this.leerToken()
     if (token != undefined) {
-
       return $.ajax({
         type: 'GET',
         url: this.auth.getAPI() + `/renovar_login`,
@@ -69,7 +68,6 @@ export class AuthProviderService {
         })
 
         .fail(() => {
-          console.log("Eliminadno token")
           document.cookie = "token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/"
           this.auth.setPreparado()
         })

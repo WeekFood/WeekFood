@@ -1,16 +1,31 @@
-import { Component } from '@angular/core';
+import { Component,Injector } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { environment } from '../../../environments/environment';
+import { AuthService } from 'src/app/services/auth.service';
+import { AuthProviderService } from 'src/app/providers/authprovider.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  constructor() { }
+
+  constructor(
+    private injector: Injector,
+    private authService: AuthService,
+    private authProvi: AuthProviderService
+  ) { }
+
   ngOnInit(): void {
-    $(".js-entrar").click(this.acceder)
+    $(".js-entrar").on('click',()=>{this.acceder})
   }
+
+  //https://stackoverflow.com/questions/39767019/app-initializer-raises-cannot-instantiate-cyclic-dependency-applicationref-w
+  public get router(): Router {
+    return this.injector.get(Router);
+  }
+
   acceder() {
     var valido = true
 
@@ -42,7 +57,8 @@ export class LoginComponent {
         }
       })
         .done(() => {
-          window.location.href = "/admin"
+          this.authService.setPreparando()
+          this.authProvi.comprobarToken()
         })
 
         .fail((respuesta) => {

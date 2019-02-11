@@ -12,7 +12,7 @@ export class AuthService {
   private preparado: boolean = undefined
   private static API_AUTH = `http://${window.location.hostname}:${environment.API_PUERTO}/api/auth`;
 
-  constructor(private injector: Injector) { this.preparado = false }
+  constructor(private injector: Injector) { this.setPreparando() }
 
   //https://stackoverflow.com/questions/39767019/app-initializer-raises-cannot-instantiate-cyclic-dependency-applicationref-w
   public get router(): Router {
@@ -43,6 +43,12 @@ export class AuthService {
   setPreparado() {
     this.preparado = true
     this.router.navigate([''])
+  }
+
+  setPreparando() {
+    this.preparado = false
+    this.logueado = undefined
+    this.permiso = undefined
   }
 
   getEsAdmin() {
