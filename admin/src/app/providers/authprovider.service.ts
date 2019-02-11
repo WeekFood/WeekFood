@@ -1,5 +1,4 @@
-import { Injectable, Injector } from '@angular/core';
-import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
 
 import { AuthService } from '../services/auth.service';
 
@@ -10,7 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class AuthProviderService {
 
-  constructor(private auth: AuthService, private injector: Injector) { }
+  constructor(private auth: AuthService) { }
   validacionInicial() {
     return $.when(this.comprobarToken())
   }
@@ -25,9 +24,6 @@ export class AuthProviderService {
     })
     return token
   }
-  public get router(): Router { //this creates router property on your service.
-    return this.injector.get(Router);
-  }
   comprobarToken() {
     var token = this.leerToken()
     if (token != undefined) {
@@ -38,33 +34,36 @@ export class AuthProviderService {
         xhrFields: {
           withCredentials: true
         }
-      }).done(() => {
-        this.auth.setLogueado()
-        var idUsuario = token.split(".")[0]
-        return $.ajax({
-          type: 'GET',
-          url: `http://${window.location.hostname}:${environment.API_PUERTO}/api/usuarios/` + idUsuario + '/nivelPrivilegio',
-          contentType: 'application/x-www-form-urlencoded',
-          xhrFields: {
-            withCredentials: true
-          }
-        }).done((respuesta) => {
-          if (respuesta.length > 0
-            && respuesta[0].hasOwnProperty("nivelprivilegio")
-            && respuesta[0].nivelprivilegio > 0
-          ) {
-            setTimeout(
-              ()=>{
-                this.auth.setPermiso()
-                this.auth.setPreparado()
-                this.router.navigate([''])
-              },5000
-            )
-          }
-        })
-      }).fail(() => {
-        document.cookie = "token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/"
       })
+        .done(() => {
+          this.auth.setLogueado()
+          var idUsuario = token.split(".")[0]
+          return $.ajax({
+            type: 'GET',
+            url: `http://${window.location.hostname}:${environment.API_PUERTO}/api/usuarios/` + idUsuario + '/nivelPrivilegio',
+            contentType: 'application/x-www-form-urlencoded',
+            xhrFields: {
+              withCredentials: true
+            }
+          }).done((respuesta) => {
+            if (respuesta.length > 0
+              && respuesta[0].hasOwnProperty("nivelprivilegio")
+              && respuesta[0].nivelprivilegio > 0
+            ) {
+              this.auth.setPermiso()
+              this.auth.setPreparado()
+            }
+          })
+            .fail(() => {
+              this.auth.setPreparado()
+            })
+        })
+        .fail(() => {
+          document.cookie = "token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/"
+          this.auth.setPreparado()
+        })
+    } else {
+      this.auth.setPreparado()
     }
   }
 }

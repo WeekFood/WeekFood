@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable,Injector } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { environment } from '../../environments/environment';
 
@@ -11,8 +12,11 @@ export class AuthService {
   private preparado: boolean = undefined
   private static API_AUTH = `http://${window.location.hostname}:${environment.API_PUERTO}/api/auth`;
 
-  constructor() { this.preparado = false }
+  constructor(private injector: Injector) { this.preparado = false }
 
+  public get router(): Router { //this creates router property on your service.
+    return this.injector.get(Router);
+  }
   login(nick: string, contraseña: string) {
     return $.ajax({
       type: 'POST',
@@ -37,6 +41,7 @@ export class AuthService {
   }
   setPreparado() {
     this.preparado = true
+    this.router.navigate([''])
   }
 
   getEsAdmin() {
