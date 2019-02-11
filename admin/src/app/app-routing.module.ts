@@ -9,7 +9,6 @@ import { DesautorizadoComponent } from './views/desautorizado/desautorizado.comp
 import { CargandoComponent } from './views/cargando/cargando.component';
 
 import { AuthGuard } from './guards/auth.guard';
-import { DesAuthGuard } from './guards/desauth.guard';
 import { LoginGuard } from './guards/login.guard';
 import { CargandoGuard } from './guards/cargando.guard';
 
@@ -32,7 +31,7 @@ const routes: Routes = [
   {
     path: 'desautorizado',
     component: DesautorizadoComponent,
-    canActivate: [CargandoGuard, DesAuthGuard]
+    canActivate: [CargandoGuard, AuthGuard]
   },
   {
     path: 'cargando',
