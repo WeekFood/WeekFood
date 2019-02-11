@@ -9,3 +9,14 @@
     text-align: center
 }
 
+.c-login__error-campo{
+    border: 2px solid red;
+}
+
+.c-login__titulo{
+    display: flex;
+}
+.c-login__error{
+    margin-left: auto;
+    color: red;
+}
