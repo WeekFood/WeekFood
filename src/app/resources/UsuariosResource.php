@@ -25,4 +25,29 @@ class UsuariosResource extends Resource {
         $this->execSQL($params);
         $this->setData();
     }
+    public function putUsuarioAction() {
+        $json = file_get_contents('php://input');
+        $usuario = json_decode($json, true);
+        //Cojo la idUsuario para luego poder filtrarlo en el
+        //update
+        $idUsuario = $this->controller->getParam('id');
+        $this->sql = 'UPDATE usuarios
+                        SET
+                            nombre = :nombre,
+                            apellidos = :apellidos,
+                            foto = :foto,
+                            sexo = :sexo,
+                            telefono = :telefono,
+                            nacimiento = :nacimiento
+                        WHERE id = :id';
+        $this->execSQL([
+            "nombre" => $usuario['nombre'],
+            "apellidos" => $usuario['apellidos'],
+            "foto" => $usuario['foto'],
+            "sexo" => $usuario['sexo'],
+            "telefono" => $usuario['telefono'],
+            "nacimiento" => $usuario['nacimiento'],
+            "id" => $idUsuario
+        ]);
+    }
 }

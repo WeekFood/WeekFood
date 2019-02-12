@@ -110,6 +110,11 @@ return [
             "route" => "api/carritos/:id",
             "resource" => "carritos",
             "action" => "putCarrito"
+        ],
+        "API, actualizar usuario" => [
+            "route" => "api/usuarios/:idUsuario",
+            "resource" => "usuarios",
+            "action" => "putUsuario"
         ]
     ],
     "delete" => [
