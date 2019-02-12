@@ -1,3 +1,23 @@
-<p>
-  categorias works!
-</p>
+<div class="c-categorias">
+  <button type="button" class="c-categorias__boton-nuevo btn btn-success" (click)="abrirModalNuevo()">Nuevo</button>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let categoria of categorias">
+          <td>{{ categoria.nombre }}</td>
+          <td class="c-categorias__acciones">
+            <button type="button" class="btn btn-secondary" (click)="abrirModalVer(categoria)">Ver</button>
+            <button type="button" class="btn btn-primary" (click)="abrirModalEditar(categoria)">Editar</button>
+            <button type="button" class="btn btn-danger" (click)="abrirModalBorrar(categoria)">Borrar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
