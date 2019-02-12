@@ -36,7 +36,7 @@ abstract class Resource {
             $this->data = [];
             foreach ($ps->fetchAll(\PDO::FETCH_ASSOC) as $row) {
                 foreach ($row as $key => $value) {
-                    $this->data[$i][$key] = $value;
+                    $this->data[$i][$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
                 }
                 $i++;
             }
