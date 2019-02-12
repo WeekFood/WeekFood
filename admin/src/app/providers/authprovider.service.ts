@@ -11,7 +11,7 @@ export class AuthProviderService {
 
   constructor(private auth: AuthService) { }
   validacionInicial() {
-    return $.when(this.comprobarToken())
+    return this.comprobarToken()
   }
 
   leerToken() {

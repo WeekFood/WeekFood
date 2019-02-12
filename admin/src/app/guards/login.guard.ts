@@ -12,8 +12,9 @@ export class LoginGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router) { }
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (this.auth.getEstaAutorizado()) {
+    state: RouterStateSnapshot
+  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    if (this.auth.getEstaAutorizado()) {
       this.router.navigate([''])
     }
     if (this.auth.getEstaLogueado() && !this.auth.getEsAdmin()) {

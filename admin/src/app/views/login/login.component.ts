@@ -1,9 +1,10 @@
-import { Component,Injector } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { environment } from '../../../environments/environment';
 import { AuthService } from 'src/app/services/auth.service';
 import { AuthProviderService } from 'src/app/providers/authprovider.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,15 +12,14 @@ import { AuthProviderService } from 'src/app/providers/authprovider.service';
 })
 export class LoginComponent {
 
+  private errorUsuario: String = ""
+  private errorContra: String = ""
+
   constructor(
     private injector: Injector,
     private authService: AuthService,
     private authProvi: AuthProviderService
   ) { }
-
-  ngOnInit(): void {
-    $(".js-entrar").on('click',()=>{this.acceder})
-  }
 
   //https://stackoverflow.com/questions/39767019/app-initializer-raises-cannot-instantiate-cyclic-dependency-applicationref-w
   public get router(): Router {
@@ -29,20 +29,16 @@ export class LoginComponent {
   acceder() {
     var valido = true
 
-    $(".js-error-usuario").html("")
-    $(".js-error-contra").html("")
-    $(".js-nick").removeClass("c-login__error-campo")
-    $(".js-contra").removeClass("c-login__error-campo")
+    this.errorUsuario = ""
+    this.errorContra = ""
 
     if ($(".js-nick").val().toString().length == 0) {
-      $(".js-nick").addClass("c-login__error-campo")
-      $(".js-error-usuario").html("Está vacio")
+      this.errorUsuario = "Está vacio"
       valido = false
     }
 
     if ($(".js-contra").val().toString().length == 0) {
-      $(".js-contra").addClass("c-login__error-campo")
-      $(".js-error-contra").html("Está vacio")
+      this.errorContra = "Está vacio"
       valido = false
     }
 
@@ -64,21 +60,17 @@ export class LoginComponent {
         .fail((respuesta) => {
           switch (respuesta.responseJSON.error) {
             case "USUARIO_NO_ENCONTRADO":
-              $(".js-nick").addClass("c-login__error-campo")
-              $(".js-error-usuario").html("No existe")
+              this.errorUsuario = "No existe"
               break
 
             case "CONTRASEÑA_INCORRECTA":
-              $(".js-contra").addClass("c-login__error-campo")
-              $(".js-error-contra").html("Incorrecta")
+              this.errorContra = "Incorrecta"
               break
 
             case "CAMPOS_VACIOS":
-              $(".js-nick,.js-contra").addClass("c-login__error-campo")
-              $(".js-error-usuario").html("Está vacio")
-              $(".js-error-contra").html("Está vacio")
+              this.errorUsuario = "Está vacio"
+              this.errorContra = "Está vacio"
           }
-
         })
     }
   }

@@ -18,6 +18,7 @@ export class AuthService {
   public get router(): Router {
     return this.injector.get(Router);
   }
+
   login(nick: string, contraseña: string) {
     return $.ajax({
       type: 'POST',
@@ -70,6 +71,7 @@ export class AuthService {
   getAPI() {
     return AuthService.API_AUTH
   }
+
   getPreparado() {
     return this.preparado
   }

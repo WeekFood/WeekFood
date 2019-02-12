@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule,APP_INITIALIZER } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -38,7 +38,7 @@ import { CargandoComponent } from './views/cargando/cargando.component';
     AuthProviderService,
     {
       provide: APP_INITIALIZER,
-      useFactory: jokesProviderFactory,
+      useFactory: validacionInicial,
       deps: [AuthProviderService],
       multi: true
     }
@@ -46,6 +46,6 @@ import { CargandoComponent } from './views/cargando/cargando.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-export function jokesProviderFactory(provider: AuthProviderService) {
+export function validacionInicial(provider: AuthProviderService) {
   return () => provider.validacionInicial();
 }

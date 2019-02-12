@@ -3,19 +3,19 @@
         <div class="form-group">
             <div class="c-login__titulo">
                 <label>Nick</label>
-                <span class="c-login__error js-error-usuario"></span>
+                <span class="c-login__error">{{errorUsuario}}</span>
             </div>
-            <input type="text" class="form-control js-nick" placeholder="Nick">
+            <input type="text" class="form-control js-nick" placeholder="Nick" [ngClass]="{true: 'c-login__error-campo', false: ''}[errorUsuario != '']">
         </div>
         <div class="form-group">
             <div class="c-login__titulo">
                 <label>Contraseña</label>
-                <span class="c-login__error js-error-contra"></span>
+                <span class="c-login__error">{{errorContra}}</span>
             </div>
-            <input type="password" class="form-control js-contra" placeholder="Contraseña">
+            <input type="password" class="form-control js-contra" placeholder="Contraseña" [ngClass]="{true: 'c-login__error-campo', false: ''}[errorContra != '']">
         </div>
         <div class="c-login__contenedor-boton">
-            <button type="submit" class="btn btn-primary js-entrar">Entrar</button>
+            <button type="submit" class="btn btn-primary" (click)="acceder()">Acceder</button>
         </div>
     </form>
 </div>

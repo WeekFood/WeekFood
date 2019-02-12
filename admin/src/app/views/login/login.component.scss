@@ -1,22 +1,26 @@
-.c-login{
+@import '../../../styles/abstracts/breakpoints';
+
+.c-login {
     margin: auto;
     width: 90%;
-    @media (min-width: 426px) {
+    @media (min-width: $mobile-l) {
         width: 50%;
     }
 }
-.c-login__contenedor-boton{
+
+.c-login__contenedor-boton {
     text-align: center
 }
 
-.c-login__error-campo{
+.c-login__error-campo {
     border: 2px solid red;
 }
 
-.c-login__titulo{
+.c-login__titulo {
     display: flex;
 }
-.c-login__error{
+
+.c-login__error {
     margin-left: auto;
     color: red;
 }
