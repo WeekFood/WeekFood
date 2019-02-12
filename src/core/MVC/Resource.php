@@ -32,6 +32,8 @@ abstract class Resource {
         switch (substr($this->sql, 0, 6)) {
         case "SELECT":
             $i = 0;
+            // limpiar data de queries anteriores
+            $this->data = [];
             foreach ($ps->fetchAll(\PDO::FETCH_ASSOC) as $row) {
                 foreach ($row as $key => $value) {
                     $this->data[$i][$key] = $value;

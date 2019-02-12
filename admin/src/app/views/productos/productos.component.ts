@@ -16,13 +16,17 @@ export class ProductosComponent implements OnInit {
   modalAbierto: boolean = false;
   modoModal: string = '';
 
-  constructor(private productosService: ProductosService) {}
-  
+  constructor(private productosService: ProductosService) { }
+
   ngOnInit() {
+    this.getProductos();
+  }
+
+  getProductos() {
     this.productosService.getProductos()
       .then((productos: Producto[]) => {
         this.productos = productos;
-      })
+      });
   }
 
   abrirModalVer(producto: Producto) {
@@ -53,28 +57,14 @@ export class ProductosComponent implements OnInit {
     this.productoActual = producto;
   }
 
-  destruirModal() {
+  alCerrarseModal(actualizarse: boolean) {
     this.modalAbierto = false;
     this.modoModal = '';
 
     this.productoActual = null;
-  }
 
-  editarProducto(productoEditado) {
-    console.log('recibido producto editado', productoEditado);
-    // TODO: mandar a ProductosService
-    this.destruirModal();
-  }
-
-  crearProducto(productoCreado) {
-    console.log('recibido producto creado', productoCreado);
-    // TODO: mandar a ProductosService
-    this.destruirModal();
-  }
-
-  borrarProducto(productoBorrado) {
-    console.log('recibido producto borrado', productoBorrado);
-    // TODO: mandar a ProductosService
-    this.destruirModal();
+    if (actualizarse) {
+      this.getProductos();
+    }
   }
 }

@@ -103,6 +103,11 @@ return [
             "route" => "api/auth/usuario_ya_existe",
             "resource" => "auth",
             "action" => "postUsuarioYaExiste"
+        ],
+        "CRUD, Productos, nuevo" => [
+            "route" => "api/productos",
+            "resource" => "productos",
+            "action" => "postProducto"
         ]
     ],
     "put" => [
@@ -110,8 +115,18 @@ return [
             "route" => "api/carritos/:id",
             "resource" => "carritos",
             "action" => "putCarrito"
+        ],
+        "CRUD, Productos, editar" => [
+            "route" => "api/productos/:id",
+            "resource" => "productos",
+            "action" => "putProducto"
         ]
     ],
     "delete" => [
+        "CRUD, Productos, borrar" => [
+            "route" => "api/productos/:id",
+            "resource" => "productos",
+            "action" => "deleteProducto"
+        ]
     ]
 ];

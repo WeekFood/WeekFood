@@ -8,3 +8,14 @@ html, body {
 .table td, .table th {
     padding: 0.5rem;
 }
+
+// Override global: ocultar flechas de input number -- https://stackoverflow.com/a/4298216/3499595
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
