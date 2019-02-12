@@ -3,20 +3,20 @@ class Usuario {
         this.id = undefined
         this.nick = undefined
         this.datos = {
-            foto : undefined,
-            nombre : undefined,
-            apellidos : undefined,
-            fechaNacimiento : undefined,
-            telefono : undefined,
-            sexo : undefined
+            foto: undefined,
+            nombre: undefined,
+            apellidos: undefined,
+            fechaNacimiento: undefined,
+            telefono: undefined,
+            sexo: undefined
         }
         this.diccionarioDatos = {
-            foto : "Foto",
-            nombre : "Nombre",
-            apellidos : "Apellidos",
-            fechaNacimiento : "Nacimiento",
-            telefono : "Teléfono",
-            sexo : "Género"
+            foto: "Foto",
+            nombre: "Nombre",
+            apellidos: "Apellidos",
+            fechaNacimiento: "Nacimiento",
+            telefono: "Teléfono",
+            sexo: "Género"
         }
         this.ubicaciones = []
         this.metodosPago = []
@@ -88,5 +88,8 @@ class Usuario {
     }
     cerrarSesion() {
         return $.getJSON("/api/auth/logout")
+    }
+    exportarNuevosDatos() {
+        return JSON.stringify(this.nuevosDatos)
     }
 }

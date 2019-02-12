@@ -628,7 +628,23 @@ function vista_Perfil_traducirSexoAGenero(sexo) {
     }
 }
 function vista_Perfil_guardarNuevosDatos(puntoMontaje) {
-    // Todo JL Subir a API y verificar
+    $.ajax({
+        url: '/api/usuarios/' + GLOBAL_USUARIO.id,
+        type: 'PUT',
+        contentType: "application/json",
+        data: GLOBAL_USUARIO.exportarNuevosDatos()
+    })
+        .done((respuesta) => {
+            console.log(respuesta)
+            /*
+            GLOBAL_USUARIO.datos = respuesta
+            delete GLOBAL_USUARIO.nuevosDatos
+            vista_Perfil_cambiarAFoto(GLOBAL_USUARIO.datos.foto)
+            vista_Perfil_generarHTML(puntoMontaje)
+            generarNotificacion("Se ha actualizado tu perfil", true)
+            */
+        })
+        .fail(() => generarNotificacion('<i class="far fa-frown"></i> No se ha podido actualizar tu perfil', true));
 
     // PASAR A JSON Y SUBIR GLOBAL_USUARIO.nuevosDatos
     // Mira como funciona codigo existente (carrito, registro, login, etc)
@@ -648,6 +664,7 @@ function vista_Perfil_guardarNuevosDatos(puntoMontaje) {
     */
 
     // Si se han guardado los datos correctamente
+    
     GLOBAL_USUARIO.datos = GLOBAL_USUARIO.nuevosDatos // Esla linea la sustituyes por lo que devuelva la API
     // es porque en el cliente estará la imagen codificada y habra que pedirla al server (pq devuelves la extension)
     delete GLOBAL_USUARIO.nuevosDatos

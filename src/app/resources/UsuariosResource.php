@@ -28,18 +28,39 @@ class UsuariosResource extends Resource {
     public function putUsuarioAction() {
         $json = file_get_contents('php://input');
         $usuario = json_decode($json, true);
-        //Cojo la idUsuario para luego poder filtrarlo en el
-        //update
-        $idUsuario = $this->controller->getParam('id');
+        $idUsuario = $this->auth->getLoggedId();
+        if ($idUsuario == null) {
+            $this->setError(401, 'NO_HAY_LOGIN');
+            return;
+        }
+
+        $idUsuarioUrl = $this->controller->getParam('idUsuario');
+        if ($idUsuarioUrl !== $idUsuario) {
+            $this->setError(401, 'NO_HAY_PERMISO');
+            return;
+        }
+
+        if (substr($usuario['foto'], 0, 4) === "data") {
+            $extensionImagen = explode(";",
+                explode("/",
+                    explode(",",
+                        $usuario['foto']// data:image/jpeg;base64,[...]
+                    )[0]// data:image/jpeg;base64
+                )[1]// jpeg;base64,
+            )[0]; // jpeg
+        }
+        var_dump($usuario);
+        /*
         $this->sql = 'UPDATE usuarios
-                        SET
-                            nombre = :nombre,
-                            apellidos = :apellidos,
-                            foto = :foto,
-                            sexo = :sexo,
-                            telefono = :telefono,
-                            nacimiento = :nacimiento
-                        WHERE id = :id';
+SET
+nombre = :nombre,
+apellidos = :apellidos,
+foto = :foto,
+sexo = :sexo,
+telefono = :telefono,
+nacimiento = :nacimiento
+WHERE id = :id';
+
         $this->execSQL([
             "nombre" => $usuario['nombre'],
             "apellidos" => $usuario['apellidos'],
@@ -48,6 +69,6 @@ class UsuariosResource extends Resource {
             "telefono" => $usuario['telefono'],
             "nacimiento" => $usuario['nacimiento'],
             "id" => $idUsuario
-        ]);
+        ]);*/
     }
 }
