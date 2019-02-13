@@ -49,6 +49,13 @@ export class SubcategoriasComponent implements OnInit {
     this.subcategoriaActual = new Subcategoria('', new Categoria(''));
   }
 
+  abrirModalBorrar(subcategoria: Subcategoria) {
+    this.modalAbierto = true;
+    this.modoModal = 'borrar';
+
+    this.subcategoriaActual = subcategoria;
+  }
+
   alCerrarseModal(actualizarse: boolean) {
     this.modalAbierto = false;
     this.modoModal = '';
