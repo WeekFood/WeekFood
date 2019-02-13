@@ -112,7 +112,7 @@ return [
     ],
     "put" => [
         "API, carrito" => [
-            "route" => "api/carritos/:idUsuario",
+            "route" => "api/carritos/:id",
             "resource" => "carritos",
             "action" => "putCarrito"
         ],
