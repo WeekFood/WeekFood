@@ -90,13 +90,13 @@ return [
             "route" => "api/auth/renovar_login",
             "resource" => "auth",
             "action" => "getRenovarLogin",
-            "nivelAuthGuard" => 0
+            "nivelAuthGuard" => -1
         ],
         "API, Auth, logout" => [
             "route" => "api/auth/logout",
             "resource" => "auth",
             "action" => "getLogout",
-            "nivelAuthGuard" => 0
+            "nivelAuthGuard" => -1
         ]
     ],
     "post" => [
@@ -104,7 +104,7 @@ return [
             "route" => "api/carritos",
             "resource" => "carritos",
             "action" => "postCarrito",
-            "nivelAuthGuard" => 0
+            "nivelAuthGuard" => -1
         ],
         "API, Auth, registro" => [
             "route" => "api/auth/registro",

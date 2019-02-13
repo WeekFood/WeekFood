@@ -16,6 +16,7 @@ class Controller extends Router {
 
     public function __construct() {
         $this->globals = core\Globals::getInstance();
+        $this->auth = $this->globals->get('auth');
         $config = $this->globals->get("config");
         $this->resourcePath = $config["site"]["resources"];
         $this->defaultRoutesConfig = $config["site"]["configs"] . "routes.php";
@@ -45,9 +46,13 @@ class Controller extends Router {
 
     public function run() {
         if (($route = $this->parseUriRouter()) != null) {
-            
-            $this->setResourceName($route["resource"]);
-            $this->setActionName($route["action"]);
+            if ($this->auth->canAccessProtectedRoute($route)) {
+                $this->setResourceName($route["resource"]);
+                $this->setActionName($route["action"]);
+            } else {
+                $this->setResourceName("auth");
+                $this->setActionName("authGuardRechazado");
+            }
         } else {
             if (substr($_SERVER["REQUEST_URI"], 0, 5) == "/api/") {
                 $this->setActionName("error");

@@ -156,10 +156,10 @@ class Auth {
 
     public function isLoggedIn(): bool {
         return session_status() !== PHP_SESSION_NONE
-                && isset($_SESSION['logueado'])
-                && $_SESSION['logueado']
-                && isset($_SESSION['idUsuario'])
-                && $_SESSION['idUsuario'] > -1;
+        && isset($_SESSION['logueado'])
+        && $_SESSION['logueado']
+        && isset($_SESSION['idUsuario'])
+        && $_SESSION['idUsuario'] > -1;
     }
 
     public function getLoggedId() {
@@ -174,16 +174,16 @@ class Auth {
         $errorMessage;
 
         switch ($errorConst) {
-            case (self::ERR_NO_TOKEN):
-                $errorMessage = 'NO_HAY_TOKEN';
-                break;
-            case (self::ERR_RENEW_LOGIN_INVALID_SIGNATURE):
-                $errorMessage = 'FIRMA_INVALIDA';
-                break;
-            case (self::ERR_LOGOUT_NO_LOGIN):
-                $errorMessage = 'NO_HAY_LOGIN';
-                break;
-            default:
+        case (self::ERR_NO_TOKEN):
+            $errorMessage = 'NO_HAY_TOKEN';
+            break;
+        case (self::ERR_RENEW_LOGIN_INVALID_SIGNATURE):
+            $errorMessage = 'FIRMA_INVALIDA';
+            break;
+        case (self::ERR_LOGOUT_NO_LOGIN):
+            $errorMessage = 'NO_HAY_LOGIN';
+            break;
+        default:
         }
 
         if ($errorMessage) {
@@ -191,16 +191,48 @@ class Auth {
         }
 
         switch ($errorConst) {
-            case (self::ERR_NO_TOKEN):
-            case (self::ERR_RENEW_LOGIN_INVALID_SIGNATURE):
-            case (self::ERR_LOGOUT_NO_LOGIN):
-                http_response_code(401);
-                break;
-            default:
-                http_response_code(500);
+        case (self::ERR_NO_TOKEN):
+        case (self::ERR_RENEW_LOGIN_INVALID_SIGNATURE):
+        case (self::ERR_LOGOUT_NO_LOGIN):
+            http_response_code(401);
+            break;
+        default:
+            http_response_code(500);
         }
     }
-    public function canAccessProtectedRoute(){
+
+    public function getPrivilegeLevel($userId) {
+        $sqlSelect = 'SELECT nivelprivilegio FROM usuarios WHERE id = :userId';
+        $psSelect = $this->db->prepare($sqlSelect);
+        $psSelect->bindParam(':userId', $userId);
+
+        $psSelect->execute();
+        return $psSelect->fetch(\PDO::FETCH_ASSOC)["nivelprivilegio"];
+    }
+
+    public function canAccessProtectedRoute($route) {
+
+        if ($route["nivelAuthGuard"] == -1) {
+            return true;
+        }
+
+        $userId = $this->getLoggedId();
+        $userPrivilege = -1;
+
+        if ($userId != null) {
+            $userPrivilege = $this->getPrivilegeLevel($userId);
+        }
+
+        if ($userPrivilege == 0 && $route["nivelAuthGuard"] == 0) {
+            return true;
+        }
+
+        if ($userPrivilege > 0) {
+            // Aquí habria que comprobar los distintios niveles de admins,
+            // pero como solo tenemos nivel 9 devuelve true
+            return true;
+        }
+
         return false;
     }
 }
