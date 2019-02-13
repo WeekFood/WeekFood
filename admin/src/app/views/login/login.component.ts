@@ -1,7 +1,6 @@
-import { Component, Injector } from '@angular/core';
+import { Component, Injector, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { environment } from '../../../environments/environment';
 import { AuthService } from 'src/app/services/auth.service';
 import { AuthProviderService } from 'src/app/providers/authprovider.service';
 
@@ -11,6 +10,9 @@ import { AuthProviderService } from 'src/app/providers/authprovider.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+
+  private nick: string = ""
+  private contra: string = ""
 
   private errorUsuario: String = ""
   private errorContra: String = ""
@@ -26,32 +28,27 @@ export class LoginComponent {
     return this.injector.get(Router);
   }
 
-  acceder() {
+  acceder(evento) {
+    if (evento != 'Enter') {
+      return
+    }
     var valido = true
 
     this.errorUsuario = ""
     this.errorContra = ""
 
-    if ($(".js-nick").val().toString().length == 0) {
+    if (this.nick == "") {
       this.errorUsuario = "Está vacio"
       valido = false
     }
 
-    if ($(".js-contra").val().toString().length == 0) {
+    if (this.contra == "") {
       this.errorContra = "Está vacio"
       valido = false
     }
 
     if (valido) {
-      $.ajax({
-        type: 'POST',
-        url: `http://${window.location.hostname}:${environment.API_PUERTO}/api/auth/login`,
-        contentType: "application/x-www-form-urlencoded",
-        data: "nick=" + $(".js-nick").val() + "&contraseña=" + $(".js-contra").val(),
-        xhrFields: {
-          withCredentials: true // cors: necesario para enviar Y RECIBIR cookies
-        }
-      })
+      this.authService.login(this.nick, this.contra)
         .done(() => {
           this.authService.setPreparando()
           this.authProvi.comprobarToken()

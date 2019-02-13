@@ -8,9 +8,9 @@ import { LoginComponent } from './views/login/login.component';
 import { DesautorizadoComponent } from './views/desautorizado/desautorizado.component';
 import { CargandoComponent } from './views/cargando/cargando.component';
 
-import { AuthGuard } from './guards/auth.guard';
-import { LoginGuard } from './guards/login.guard';
-import { CargandoGuard } from './guards/cargando.guard';
+import { AuthGuard } from 'src/app/guards/auth.guard';
+import { LoginGuard } from 'src/app/guards/login.guard';
+import { CargandoGuard } from 'src/app/guards/cargando.guard';
 
 const routes: Routes = [
   {
