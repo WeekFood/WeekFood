@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { environment } from '../../environments/environment';
-import { Categoria } from '../models/Categoria';
+import { environment } from 'src/environments/environment';
+import { Categoria } from 'src/app/models/Categoria';
 
 @Injectable({
   providedIn: 'root'

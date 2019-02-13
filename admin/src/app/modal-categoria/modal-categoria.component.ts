@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
-import { Categoria } from '../models/Categoria';
-import { CategoriasService } from '../services/categorias.service';
+import { Categoria } from 'src/app/models/Categoria';
+import { CategoriasService } from 'src/app/services/categorias.service';
 
 @Component({
   selector: 'app-modal-categoria',
