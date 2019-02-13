@@ -113,6 +113,11 @@ return [
             "route" => "api/productos/categorias",
             "resource" => "productos",
             "action" => "postCategoriaPrincipal"
+        ],
+        "CRUD, Subcategorias, nuevo" => [
+            "route" => "api/productos/categorias/subcategorias",
+            "resource" => "productos",
+            "action" => "postCategoria"
         ]
     ],
     "put" => [

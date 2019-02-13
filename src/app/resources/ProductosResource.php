@@ -160,6 +160,43 @@ class ProductosResource extends Resource {
         $this->setData();
     }
 
+    public function postCategoriaAction() {
+        $json = file_get_contents('php://input');
+        $subcategoria = json_decode($json, true);
+
+        // el CRUD manda subCategoriaDe como modelo de Categoria, solo nos hace falta el nombre
+        $subcategoria['subCategoriaDe'] = $subcategoria['subCategoriaDe']['nombre'];
+
+        $this->sql = 'INSERT INTO categorias 
+                        (nombre, subCategoriaDe) 
+                     VALUES
+                        (:nombre, :subCategoriaDe)';
+        
+        try {
+            $this->execSQL($subcategoria);
+        } catch (PDOException $e) {
+            switch($e->getCode()) {
+                case 23000: // Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails
+                    $this->setError(409, 'NO_EXISTE_CATEGORIA');
+                    break;
+                default:
+                    $this->setError(500, 'ERROR_PDO');
+            }
+
+            exit();
+        }
+
+        $nombreNuevaSubcategoria = $this->data;
+
+        $this->sql = 'SELECT * FROM categorias WHERE nombre = :nombre LIMIT 1';
+        $this->execSQL([
+            "nombre" => $nombreNuevaSubcategoria
+        ]);
+
+        http_response_code(201);
+        $this->setData();
+    }
+
     public function getCategoriasAction(){
         $this->sql = 'SELECT * FROM categorias';
         $this->execSQL();
