@@ -67,17 +67,4 @@ export class ModalCategoriaComponent implements OnInit {
         console.log('XHR:', xhr);
       });
   }
-
-  borrar() {
-    this.categoriasService.borrarCategoria(this.categoriaEditada)
-      .then(res => {
-        this.cerrarse(true);
-      })
-      .catch((xhr: any) => {
-        console.error('Error AJAX al borrar Categoria');
-        console.log('Categoria:', this.categoriaEditada);
-        console.log('XHR:', xhr);
-      });
-  }
-
 }

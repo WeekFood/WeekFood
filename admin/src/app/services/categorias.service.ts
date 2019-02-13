@@ -44,9 +44,4 @@ export class CategoriasService {
       }
     });
   }
-
-  borrarCategoria(categoria: Categoria) {
-    // TODO
-    return new Promise(() => {});
-  }
 }
