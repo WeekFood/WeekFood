@@ -1,12 +1,23 @@
 class Usuario {
     constructor() {
         this.id = undefined
-        this.foto = undefined
         this.nick = undefined
-        this.nombre = undefined
-        this.apellidos = undefined
-        this.telefono = undefined
-        this.fechaNacimiento = undefined
+        this.datos = {
+            foto: undefined,
+            nombre: undefined,
+            apellidos: undefined,
+            fechaNacimiento: undefined,
+            telefono: undefined,
+            sexo: undefined
+        }
+        this.diccionarioDatos = {
+            foto: "Foto",
+            nombre: "Nombre",
+            apellidos: "Apellidos",
+            fechaNacimiento: "Nacimiento",
+            telefono: "Teléfono",
+            sexo: "Género"
+        }
         this.ubicaciones = []
         this.metodosPago = []
         this.pedidos = []
@@ -77,5 +88,12 @@ class Usuario {
     }
     cerrarSesion() {
         return $.getJSON("/api/auth/logout")
+    }
+    exportarNuevosDatos() {
+        if (GLOBAL_USUARIO.nuevosDatos.fechaNacimiento != undefined) {
+            var fechaTroceada = this.nuevosDatos.fechaNacimiento.split("-")
+            this.nuevosDatos.fechaNacimiento = new Date(fechaTroceada[0], fechaTroceada[1] - 1, parseInt(fechaTroceada[2]) + 1).toISOString().split("T")[0]
+        }
+        return JSON.stringify(this.nuevosDatos)
     }
 }
