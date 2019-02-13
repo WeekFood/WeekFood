@@ -49,13 +49,6 @@ export class CategoriasComponent implements OnInit {
     this.categoriaActual = new Categoria('');
   }
 
-  abrirModalBorrar(categoria: Categoria) {
-    this.modalAbierto = true;
-    this.modoModal = 'borrar';
-
-    this.categoriaActual = categoria;
-  }
-
   alCerrarseModal(actualizarse: boolean) {
     this.modalAbierto = false;
     this.modoModal = '';
