@@ -1,6 +1,4 @@
-import { Injectable } from '@angular/core';
-
-import { AuthService } from 'src/app/services/auth.service';
+import { Injectable, Injector } from '@angular/core';
 
 import { environment } from 'src/environments/environment';
 
@@ -9,9 +7,9 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthProviderService {
 
-  constructor(private auth: AuthService) { }
-  validacionInicial() {
-    return this.comprobarToken()
+  constructor(private injector: Injector) { }
+  validacionInicial(auth) {
+    return this.comprobarToken(auth)
   }
 
   leerToken() {
@@ -25,12 +23,12 @@ export class AuthProviderService {
     return token
   }
 
-  comprobarToken() {
+  comprobarToken(auth) {
     var token = this.leerToken()
     if (token != undefined) {
       return $.ajax({
         type: 'GET',
-        url: this.auth.getAPI() + `/renovar_login`,
+        url: auth.getAPI() + `/renovar_login`,
         contentType: 'application/x-www-form-urlencoded',
         xhrFields: {
           withCredentials: true
@@ -39,7 +37,7 @@ export class AuthProviderService {
       })
         .done(() => {
 
-          this.auth.setLogueado()
+          auth.setLogueado()
           var idUsuario = token.split(".")[0]
           return $.ajax({
             type: 'GET',
@@ -56,23 +54,23 @@ export class AuthProviderService {
                 && respuesta[0].hasOwnProperty("nivelprivilegio")
                 && respuesta[0].nivelprivilegio > 0
               ) {
-                this.auth.setPermiso()
-                this.auth.setPreparado()
+                auth.setPermiso()
+                auth.setPreparado()
               }
             })
 
             .fail(() => {
-              this.auth.setPreparado()
+              auth.setPreparado()
             })
 
         })
 
         .fail(() => {
           document.cookie = "token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/"
-          this.auth.setPreparado()
+          auth.setPreparado()
         })
     } else {
-      this.auth.setPreparado()
+      auth.setPreparado()
     }
   }
 }

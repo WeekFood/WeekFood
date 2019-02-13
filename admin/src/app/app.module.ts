@@ -14,6 +14,7 @@ import { LoginComponent } from './views/login/login.component';
 import { DesautorizadoComponent } from './views/desautorizado/desautorizado.component';
 
 import { AuthProviderService } from './providers/authprovider.service';
+import { AuthService } from './services/auth.service';
 import { CargandoComponent } from './views/cargando/cargando.component';
 
 @NgModule({
@@ -39,13 +40,13 @@ import { CargandoComponent } from './views/cargando/cargando.component';
     {
       provide: APP_INITIALIZER,
       useFactory: validacionInicial,
-      deps: [AuthProviderService],
+      deps: [AuthProviderService,AuthService],
       multi: true
     }
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-export function validacionInicial(provider: AuthProviderService) {
-  return () => provider.validacionInicial();
+export function validacionInicial(provider: AuthProviderService, auth:AuthService) {
+  return () => provider.validacionInicial(auth);
 }

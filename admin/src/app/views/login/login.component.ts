@@ -51,7 +51,7 @@ export class LoginComponent {
       this.authService.login(this.nick, this.contra)
         .done(() => {
           this.authService.setPreparando()
-          this.authProvi.comprobarToken()
+          this.authProvi.comprobarToken(this.authService)
         })
 
         .fail((respuesta) => {

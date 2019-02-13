@@ -14,10 +14,7 @@ export class AuthService {
   private preparado: boolean = undefined
   private static API_AUTH = `http://${window.location.hostname}:${environment.API_PUERTO}/api/auth`;
 
-  constructor(
-    private injector: Injector,
-    private authProvi: AuthProviderService
-  ) {
+  constructor(private injector: Injector) {
     this.setPreparando()
   }
 
@@ -51,8 +48,9 @@ export class AuthService {
       }
     })
       .always(() => {
+        var authProvi = this.injector.get(AuthProviderService)
         this.setPreparando()
-        this.authProvi.comprobarToken()
+        authProvi.comprobarToken(this)
       })
   }
 
