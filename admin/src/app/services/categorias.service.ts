@@ -21,14 +21,28 @@ export class CategoriasService {
     });
   }
 
-  editarCategoria(categoria: Categoria) {
-    // TODO
-    return new Promise(() => {});
+  editarCategoria(categoria: Categoria, nombreAnterior: string) {
+    return $.ajax({
+      type: 'PUT',
+      url: `${CategoriasService.API_CATEGORIAS}/${nombreAnterior}`,
+      contentType: 'application/json',
+      data: JSON.stringify(categoria),
+      xhrFields: {
+        withCredentials: true
+      }
+    });
   }
 
   crearCategoria(categoria: Categoria) {
-    // TODO
-    return new Promise(() => {});
+    return $.ajax({
+      type: 'POST',
+      url: CategoriasService.API_CATEGORIAS,
+      contentType: 'application/json',
+      data: JSON.stringify(categoria),
+      xhrFields: {
+        withCredentials: true
+      }
+    });
   }
 
   borrarCategoria(categoria: Categoria) {

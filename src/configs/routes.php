@@ -108,6 +108,11 @@ return [
             "route" => "api/productos",
             "resource" => "productos",
             "action" => "postProducto"
+        ],
+        "CRUD, Categorias, nuevo" => [
+            "route" => "api/productos/categorias",
+            "resource" => "productos",
+            "action" => "postCategoriaPrincipal"
         ]
     ],
     "put" => [
@@ -120,6 +125,11 @@ return [
             "route" => "api/productos/:id",
             "resource" => "productos",
             "action" => "putProducto"
+        ],
+        "CRUD, Categorias, editar" => [
+            "route" => "api/productos/categorias/:nombre",
+            "resource" => "productos",
+            "action" => "putCategoriaPrincipal"
         ]
     ],
     "delete" => [

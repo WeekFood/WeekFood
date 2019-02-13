@@ -45,7 +45,7 @@ export class ModalCategoriaComponent implements OnInit {
   }
 
   editar() {
-    this.categoriasService.editarCategoria(this.categoriaEditada)
+    this.categoriasService.editarCategoria(this.categoriaEditada, this.categoria.nombre)
       .then(res => {
         this.cerrarse(true);
       })
