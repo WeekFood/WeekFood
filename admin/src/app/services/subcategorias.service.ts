@@ -47,4 +47,16 @@ export class SubcategoriasService {
       }
     });
   }
+
+  borrarSubcategoria(subcategoria: Subcategoria) {
+    return $.ajax({
+      type: 'DELETE',
+      url: `${SubcategoriasService.API_SUBCATEGORIAS}/${subcategoria.nombre}`,
+      contentType: 'application/json',
+      data: JSON.stringify(subcategoria),
+      xhrFields: {
+        withCredentials: true
+      }
+    });
+  }
 }

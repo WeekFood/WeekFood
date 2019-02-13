@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SubcategoriasService } from 'src/app/services/subcategorias.service';
 import { Subcategoria } from 'src/app/models/Subcategoria';
+import { Categoria } from 'src/app/models/Categoria';
 
 @Component({
   selector: 'app-subcategorias',
@@ -8,7 +9,11 @@ import { Subcategoria } from 'src/app/models/Subcategoria';
   styleUrls: ['./subcategorias.component.scss']
 })
 export class SubcategoriasComponent implements OnInit {
+  subcategoriaActual: Subcategoria;
   subcategorias: Subcategoria[];
+  
+  modalAbierto: boolean = false;
+  modoModal: string = '';
 
   constructor(private subcategoriasService: SubcategoriasService) { }
 
@@ -23,4 +28,35 @@ export class SubcategoriasComponent implements OnInit {
       });
   }
 
+  abrirModalVer(subcategoria: Subcategoria) {
+    this.modalAbierto = true;
+    this.modoModal = 'ver';
+
+    this.subcategoriaActual = subcategoria;
+  }
+
+  abrirModalEditar(subcategoria: Subcategoria) {
+    this.modalAbierto = true;
+    this.modoModal = 'editar';
+
+    this.subcategoriaActual = subcategoria;
+  }
+
+  abrirModalNuevo() {
+    this.modalAbierto = true;
+    this.modoModal = 'crear';
+
+    this.subcategoriaActual = new Subcategoria('', new Categoria(''));
+  }
+
+  alCerrarseModal(actualizarse: boolean) {
+    this.modalAbierto = false;
+    this.modoModal = '';
+
+    this.subcategoriaActual = null;
+
+    if (actualizarse) {
+      this.getSubcategorias();
+    }
+  }
 }
