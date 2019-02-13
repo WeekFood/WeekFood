@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SubcategoriasService } from 'src/app/services/subcategorias.service';
 
 @Component({
   selector: 'app-subcategorias',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubcategoriasComponent implements OnInit {
 
-  constructor() { }
+  constructor(private subcategoriasService: SubcategoriasService) { }
 
   ngOnInit() {
+    this.subcategoriasService.getSubcategorias()
+      .then(subcategorias => console.log(subcategorias));
   }
 
 }
