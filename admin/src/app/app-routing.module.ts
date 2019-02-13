@@ -4,6 +4,7 @@ import { ProductosComponent } from './views/productos/productos.component';
 import { InicioComponent } from './views/inicio/inicio.component';
 import { NoEncontradoComponent } from './views/no-encontrado/no-encontrado.component';
 import { CategoriasComponent } from './views/categorias/categorias.component';
+import { SubcategoriasComponent } from './views/subcategorias/subcategorias.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'categorias',
     component: CategoriasComponent
+  },
+  {
+    path: 'subcategorias',
+    component: SubcategoriasComponent
   },
   {
     path: '**',
