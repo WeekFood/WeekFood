@@ -11,6 +11,7 @@ import { ModalProductoComponent } from './modal-producto/modal-producto.componen
 import { InicioComponent } from './views/inicio/inicio.component';
 import { NoEncontradoComponent } from './views/no-encontrado/no-encontrado.component';
 import { CategoriasComponent } from './views/categorias/categorias.component';
+import { ModalCategoriaComponent } from './modal-categoria/modal-categoria.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CategoriasComponent } from './views/categorias/categorias.component';
     ModalProductoComponent,
     InicioComponent,
     NoEncontradoComponent,
-    CategoriasComponent
+    CategoriasComponent,
+    ModalCategoriaComponent
   ],
   imports: [
     BrowserModule,
