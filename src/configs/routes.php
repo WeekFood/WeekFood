@@ -140,6 +140,11 @@ return [
             "route" => "api/productos/categorias/:nombre",
             "resource" => "productos",
             "action" => "putCategoriaPrincipal"
+        ],
+        "CRUD, Subcategorias, editar" => [
+            "route" => "api/productos/categorias/subcategorias/:nombre",
+            "resource" => "productos",
+            "action" => "putCategoria"
         ]
     ],
     "delete" => [

@@ -134,7 +134,7 @@ class ProductosResource extends Resource {
             'nombreAnterior' => $nombreAnterior
         ]);
 
-        $this->sql = 'SELECT * FROM categorias WHERE nombre = :nombre';
+        $this->sql = 'SELECT * FROM categoriasprincipales WHERE nombre = :nombre';
         $this->execSQL([
             "nombre" => $categoria['nombre']
         ]);
@@ -164,7 +164,7 @@ class ProductosResource extends Resource {
         $json = file_get_contents('php://input');
         $subcategoria = json_decode($json, true);
 
-        // el CRUD manda subCategoriaDe como modelo de Categoria, solo nos hace falta el nombre
+        // el CRUD manda subCategoriaDe como modelo de Categoria, solo nos hace falta el string
         $subcategoria['subCategoriaDe'] = $subcategoria['subCategoriaDe']['nombre'];
 
         $this->sql = 'INSERT INTO categorias 
@@ -194,6 +194,46 @@ class ProductosResource extends Resource {
         ]);
 
         http_response_code(201);
+        $this->setData();
+    }
+
+    function putCategoriaAction() {
+        $json = file_get_contents('php://input');
+        $subcategoria = json_decode($json, true);
+
+        $nombreAnterior = $this->controller->getParam('nombre');
+
+        // el CRUD manda subCategoriaDe como modelo de Categoria, solo nos hace falta el string
+        $subcategoria['subCategoriaDe'] = $subcategoria['subCategoriaDe']['nombre'];
+
+        $this->sql = 'UPDATE categorias
+                      SET
+                        nombre = :nombreNuevo,
+                        subCategoriaDe = :subCategoriaDe
+                      WHERE nombre = :nombreAnterior';
+
+        try {
+            $this->execSQL([
+                'nombreNuevo' => $subcategoria['nombre'],
+                'subCategoriaDe' => $subcategoria['subCategoriaDe'],
+                'nombreAnterior' => $nombreAnterior
+            ]);
+        } catch (PDOException $e) {
+            switch($e->getCode()) {
+                case 23000: // Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails
+                    $this->setError(409, 'NO_EXISTE_CATEGORIA');
+                    break;
+                default:
+                    $this->setError(500, 'ERROR_PDO');
+            }
+
+        }
+
+        $this->sql = 'SELECT * FROM categorias WHERE nombre = :nombre';
+        $this->execSQL([
+            "nombre" => $subcategoria['nombre']
+        ]);
+
         $this->setData();
     }
 
