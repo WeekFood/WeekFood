@@ -231,6 +231,20 @@ class ProductosResource extends Resource {
             exit();
         }
 
+        // si ha habido cambio de nombre se tiene que cambiar en los productos correspondientes a mano
+        if ($nombreAnterior !== $subcategoria['nombre']) {
+            $this->sql = 'UPDATE productos
+                          SET
+                            categoria = REPLACE(categoria, :nombreAnterior, :nombreNuevo)
+                          WHERE
+                            FIND_IN_SET(:nombreAnterior, categoria)';
+
+            $this->execSQL([
+                'nombreAnterior' => $nombreAnterior,
+                'nombreNuevo' => $subcategoria['nombre']
+            ]);
+        }
+
         $this->sql = 'SELECT * FROM categorias WHERE nombre = :nombre';
         $this->execSQL([
             "nombre" => $subcategoria['nombre']
