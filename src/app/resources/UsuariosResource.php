@@ -39,7 +39,6 @@ class UsuariosResource extends Resource {
             $this->setError(401, 'NO_HAY_PERMISO');
             return;
         }
-
         if (substr($usuario['foto'], 0, 4) === "data") {
             $extensionImagen = explode(";",
                 explode("/",
@@ -48,27 +47,60 @@ class UsuariosResource extends Resource {
                     )[0]// data:image/jpeg;base64
                 )[1]// jpeg;base64,
             )[0]; // jpeg
-        }
-        var_dump($usuario);
-        /*
-        $this->sql = 'UPDATE usuarios
-SET
-nombre = :nombre,
-apellidos = :apellidos,
-foto = :foto,
-sexo = :sexo,
-telefono = :telefono,
-nacimiento = :nacimiento
-WHERE id = :id';
 
-        $this->execSQL([
-            "nombre" => $usuario['nombre'],
-            "apellidos" => $usuario['apellidos'],
-            "foto" => $usuario['foto'],
-            "sexo" => $usuario['sexo'],
-            "telefono" => $usuario['telefono'],
-            "nacimiento" => $usuario['nacimiento'],
-            "id" => $idUsuario
-        ]);*/
+            $imgExtensiones = [
+                "png",
+                "jpeg",
+                "jpg",
+                "gif",
+                "svg"
+            ];
+            foreach ($imgExtensiones as $imgExten) {
+                $imgABorrar = ROOT . DS . "cliente" . DS . "imagenes" . DS . "usuarios" . DS . $idUsuarioUrl . "." . $imgExten;
+                if (file_exists($imgABorrar)) {
+                    unlink($imgABorrar);
+                }
+            }
+            $nombreArchivoImagen = ROOT . DS . "cliente" . DS . "imagenes" . DS . "usuarios" . DS . $idUsuarioUrl . "." . $extensionImagen;
+            //https://stackoverflow.com/questions/15153776/convert-base64-string-to-an-image-file
+            $ifp = fopen($nombreArchivoImagen, 'wb');
+            fwrite($ifp,
+                base64_decode(
+                    explode(",", $usuario['foto'])[1]
+                )
+            );
+            fclose($ifp);
+
+            $usuario['foto'] = $extensionImagen;
+
+        } else {
+            unset($usuario['foto']);
+        }
+        if (array_key_exists("sexo", $usuario) && $usuario['sexo'] == NULL) {
+            $usuario['sexo'] = "";
+        }
+
+        $asignacionesSQL = [];
+
+        $this->sql = 'UPDATE usuarios SET ';
+        foreach ($usuario as $campo => $valor) {
+            if ($campo == "fechaNacimiento") {
+                $campo = "nacimiento";
+            }
+            if ($campo == "foto") {
+                $asignacionesSQL[$campo] = $extensionImagen;
+            } else {
+                $asignacionesSQL[$campo] = $valor;
+            }
+            $this->sql .= $campo . " = :" . $campo . ", ";
+        }
+        $this->sql = rtrim($this->sql, ", ");
+        $this->sql .= " WHERE id = :idUsuario";
+        $asignacionesSQL['idUsuario'] = $idUsuario;
+        
+        $this->execSQL($asignacionesSQL);
+
+        $this->data = $usuario;
+        $this->setData();
     }
 }

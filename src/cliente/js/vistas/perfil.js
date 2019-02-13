@@ -409,7 +409,14 @@ function vista_Perfil_cambiarFoto(evento) {
         if (datos.files.length == 1) {
             var lector = new FileReader();
             lector.onload = $.proxy((archi, event) => {
-                if (archi.type.match('image.*')) {
+                var imgExtensiones = [
+                    "image/png",
+                    "image/jpeg",
+                    "image/jpg",
+                    "image/gif",
+                    "image/svg"
+                ];
+                if (imgExtensiones.includes(archi.type)) {
                     GLOBAL_USUARIO.nuevosDatos.foto = event.target.result
                     $(".js-ventana-modal").remove()
                     vista_Perfil_cambiarAFoto(GLOBAL_USUARIO.nuevosDatos.foto)
@@ -420,11 +427,11 @@ function vista_Perfil_cambiarFoto(evento) {
             }, this, datos.files[0])
             lector.readAsDataURL(datos.files[0])
         } else {
-            generarNotificacion("Por favor sube sólo una imagen png, jpg o gif")
+            generarNotificacion("Por favor sube sólo una imagen png, jpg, jpeg, svg o gif")
             $(".js-ventana-modal").remove()
         }
     } else {
-        generarNotificacion("Por favor sube sólo una imagen png, jpg o gif")
+        generarNotificacion("Por favor sube sólo una imagen png, jpg, jpeg, svg o gif")
         $(".js-ventana-modal").remove()
     }
 }
@@ -664,7 +671,7 @@ function vista_Perfil_guardarNuevosDatos(puntoMontaje) {
     */
 
     // Si se han guardado los datos correctamente
-    
+
     GLOBAL_USUARIO.datos = GLOBAL_USUARIO.nuevosDatos // Esla linea la sustituyes por lo que devuelva la API
     // es porque en el cliente estará la imagen codificada y habra que pedirla al server (pq devuelves la extension)
     delete GLOBAL_USUARIO.nuevosDatos
