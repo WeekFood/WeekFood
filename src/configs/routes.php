@@ -36,7 +36,7 @@ return [
             "route" => "api/productos",
             "resource" => "productos",
             "action" => "getTodos",
-            "nivelAuthGuard" => 9
+            "nivelAuthGuard" => -1
         ],
         "API, productos, query todas categorias principales" => [
             "route" => "api/productos/categorias",
