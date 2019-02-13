@@ -393,7 +393,6 @@ function vista_Perfil_guardarEdicion(evento) {
                 delete GLOBAL_USUARIO.nuevosDatos
                 vista_Perfil_generarHTML(evento.data)
             },
-            callback_Cerrar: () => { vista_Perfil_cambiarAFoto(GLOBAL_USUARIO.datos.foto) },
             contenido: html
         })
     } else {
@@ -488,11 +487,11 @@ function vista_Perfil_activarEdicionCampo(campo) {
             <input type="number" maxlength="2" size="2" placeholder="12" class="c-vista-perfil__input-nacimiento c-vista-perfil__input-numerico js-fechaNacimiento-mes-input"> /
             <input type="number" maxlength="4" size="4" placeholder="1969" class="c-vista-perfil__input-nacimiento c-vista-perfil__input-numerico js-fechaNacimiento-año-input">
             `)
-            if (GLOBAL_USUARIO.datos.fechaNacimiento != undefined) {
-                var fechaNacimiento = GLOBAL_USUARIO.datos.fechaNacimiento.split("/")
-                $(".js-fechaNacimiento-dia-input").val(fechaNacimiento[0])
+            if (GLOBAL_USUARIO.nuevosDatos.fechaNacimiento != undefined) {
+                var fechaNacimiento = GLOBAL_USUARIO.nuevosDatos.fechaNacimiento.split("-")
+                $(".js-fechaNacimiento-dia-input").val(fechaNacimiento[2])
                 $(".js-fechaNacimiento-mes-input").val(fechaNacimiento[1])
-                $(".js-fechaNacimiento-año-input").val(fechaNacimiento[2])
+                $(".js-fechaNacimiento-año-input").val(fechaNacimiento[0])
             }
             $(".js-fechaNacimiento-dia-input").keyup((evento) => {
                 vista_Perfil_comprobarValidezCampo(".js-fechaNacimiento-dia-input", ".js-fechaNacimiento-boton-contenido")
@@ -593,6 +592,10 @@ function vista_Perfil_desactivarEdicionCampo(campo) {
             } else {
                 $(".js-" + campo + "-contenido").html("Añadir")
             }
+        }
+        else if (campo === "fechaNacimiento") {
+            var fechaTrozos = GLOBAL_USUARIO.nuevosDatos[campo].split("-")
+            $(".js-" + campo + "-contenido").html(fechaTrozos[2] + "-" + fechaTrozos[1] + "-" + fechaTrozos[0])
         } else {
             $(".js-" + campo + "-contenido").html(GLOBAL_USUARIO.nuevosDatos[campo])
         }
@@ -605,7 +608,7 @@ function vista_Perfil_guardarCampo(campo) {
     if (vista_Perfil_comprobarValidezCampo(".js-" + campo + "-input", ".js-" + campo + "-boton-contenido")) {
         switch (campo) {
             case "fechaNacimiento":
-                GLOBAL_USUARIO.nuevosDatos.fechaNacimiento = $(".js-fechaNacimiento-dia-input").val() + "/" + $(".js-fechaNacimiento-mes-input").val() + "/" + $(".js-fechaNacimiento-año-input").val()
+                GLOBAL_USUARIO.nuevosDatos.fechaNacimiento = $(".js-fechaNacimiento-año-input").val() + "-" + $(".js-fechaNacimiento-mes-input").val() + "-" + $(".js-fechaNacimiento-dia-input").val()
                 break
             case "sexo":
                 var valor = $(".js-sexo-input").val()
@@ -642,45 +645,14 @@ function vista_Perfil_guardarNuevosDatos(puntoMontaje) {
         data: GLOBAL_USUARIO.exportarNuevosDatos()
     })
         .done((respuesta) => {
-            console.log(respuesta)
-            /*
             GLOBAL_USUARIO.datos = respuesta
+            if (GLOBAL_USUARIO.datos.foto.length < 5) {
+                GLOBAL_USUARIO.datos.foto = "/imagenes/usuarios/" + GLOBAL_USUARIO.id + "." + respuesta.foto
+            }
             delete GLOBAL_USUARIO.nuevosDatos
             vista_Perfil_cambiarAFoto(GLOBAL_USUARIO.datos.foto)
             vista_Perfil_generarHTML(puntoMontaje)
             generarNotificacion("Se ha actualizado tu perfil", true)
-            */
         })
         .fail(() => generarNotificacion('<i class="far fa-frown"></i> No se ha podido actualizar tu perfil', true));
-
-    // PASAR A JSON Y SUBIR GLOBAL_USUARIO.nuevosDatos
-    // Mira como funciona codigo existente (carrito, registro, login, etc)
-
-    /* 
-    AVISO MUY MUY MUY IMPORTANTE
-
-    LA FOTO ESTA CODIFICADA, ES UNA String MUY LARGA, GRANDE GRANDE COMO LOS SUSPENSOS, TIENES QUE PARSEARLA.
-
-    TEN EN CUENTA QUE ESTA EN BASE64, Y QUE JS AÑADE EL TIPO DE IMAGEN Y LA BASE EN LA STRING.
-    https://stackoverflow.com/questions/15153776/convert-base64-string-to-an-image-file
-
-    GUARDA LA IMAGEN EN IMAGENES/USUARIOS/(NICK)(EXTENSION)
-
-    Y TIENES QUE DEVOLVER LA EXTENSION DE LA IMAGEN (PNG, GIF, JPG, JPEG),
-    LA TIENES QUE GUARDAR EN LA BASE DE DATOS,
-    */
-
-    // Si se han guardado los datos correctamente
-
-    GLOBAL_USUARIO.datos = GLOBAL_USUARIO.nuevosDatos // Esla linea la sustituyes por lo que devuelva la API
-    // es porque en el cliente estará la imagen codificada y habra que pedirla al server (pq devuelves la extension)
-    delete GLOBAL_USUARIO.nuevosDatos
-    vista_Perfil_cambiarAFoto(GLOBAL_USUARIO.datos.foto)
-    vista_Perfil_generarHTML(puntoMontaje)
-    generarNotificacion("Se ha actualizado tu perfil", true)
-
-    // Si no
-    /*
-    generarNotificacion("No se ha podido actualizar tu perfil", true)
-    */
 }

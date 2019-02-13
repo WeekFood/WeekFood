@@ -18,7 +18,7 @@ class UsuariosResource extends Resource {
             return;
         }
         // TODO nivel privilegios
-        $this->sql = 'SELECT id, nick, nombre, apellidos, foto, sexo FROM usuarios WHERE id = :idUsuario';
+        $this->sql = 'SELECT id, nick, nombre, apellidos, foto, sexo, telefono, nacimiento FROM usuarios WHERE id = :idUsuario';
         $params = [
             "idUsuario" => $this->controller->getParam("idUsuario")
         ];
@@ -74,8 +74,9 @@ class UsuariosResource extends Resource {
             $usuario['foto'] = $extensionImagen;
 
         } else {
-            unset($usuario['foto']);
+            $extensionImagen = explode(".", $usuario['foto'])[1];
         }
+
         if (array_key_exists("sexo", $usuario) && $usuario['sexo'] == NULL) {
             $usuario['sexo'] = "";
         }
@@ -97,7 +98,7 @@ class UsuariosResource extends Resource {
         $this->sql = rtrim($this->sql, ", ");
         $this->sql .= " WHERE id = :idUsuario";
         $asignacionesSQL['idUsuario'] = $idUsuario;
-        
+
         $this->execSQL($asignacionesSQL);
 
         $this->data = $usuario;

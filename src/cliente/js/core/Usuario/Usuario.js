@@ -91,8 +91,8 @@ class Usuario {
     }
     exportarNuevosDatos() {
         if (GLOBAL_USUARIO.nuevosDatos.fechaNacimiento != undefined) {
-            var fechaTroceada = this.nuevosDatos.fechaNacimiento.split("/")
-            this.nuevosDatos.fechaNacimiento = new Date(fechaTroceada[2], fechaTroceada[1] - 1, parseInt(fechaTroceada[0]) + 1).toISOString().split("T")[0]
+            var fechaTroceada = this.nuevosDatos.fechaNacimiento.split("-")
+            this.nuevosDatos.fechaNacimiento = new Date(fechaTroceada[0], fechaTroceada[1] - 1, parseInt(fechaTroceada[2]) + 1).toISOString().split("T")[0]
         }
         return JSON.stringify(this.nuevosDatos)
     }

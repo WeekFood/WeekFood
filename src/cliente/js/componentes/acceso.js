@@ -186,7 +186,16 @@ function acceso_LoginInicial(nuevoUsuario = false) {
                                     GLOBAL_USUARIO.datos.foto += "indefinido.png"
                             }
                         } else {
-                            GLOBAL_USUARIO.datos.foto = "/imagenes/usuarios/" + respuesta[0].nick + "/" + respuesta[0].foto
+                            GLOBAL_USUARIO.datos.foto = "/imagenes/usuarios/" + respuesta[0].id + "." + respuesta[0].foto
+                        }
+                        if (respuesta[0].apellidos !== null) {
+                            GLOBAL_USUARIO.datos.apellidos = respuesta[0].apellidos
+                        }
+                        if (respuesta[0].telefono !== null) {
+                            GLOBAL_USUARIO.datos.telefono = respuesta[0].telefono
+                        }
+                        if (respuesta[0].nacimiento !== null) {
+                            GLOBAL_USUARIO.datos.fechaNacimiento = respuesta[0].nacimiento
                         }
                         $(".js-acceso").remove()
                         $(".c-cabecera__botones").prepend(`<div data-modo="Entrar" class="c-cabecera__boton js-perfil">
