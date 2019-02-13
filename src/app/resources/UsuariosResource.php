@@ -63,13 +63,13 @@ class UsuariosResource extends Resource {
             }
             $nombreArchivoImagen = ROOT . DS . "cliente" . DS . "imagenes" . DS . "usuarios" . DS . $idUsuarioUrl . "." . $extensionImagen;
             //https://stackoverflow.com/questions/15153776/convert-base64-string-to-an-image-file
-            $ifp = fopen($nombreArchivoImagen, 'wb');
-            fwrite($ifp,
+            $archivo = fopen($nombreArchivoImagen, 'wb');
+            fwrite($archivo,
                 base64_decode(
                     explode(",", $usuario['foto'])[1]
                 )
             );
-            fclose($ifp);
+            fclose($archivo);
 
             $usuario['foto'] = $extensionImagen;
 
