@@ -24,8 +24,7 @@ export class ModalSubcategoriaComponent implements OnInit {
 
   ngOnInit() {
     // clonar subcategoria para no tocar la verdadera subcategoria
-    // deep copy para no tocar el objeto Categoria referenciado
-    this.subcategoriaEditada = JSON.parse(JSON.stringify(this.subcategoria));
+    this.subcategoriaEditada = Object.assign({}, this.subcategoria);
     
     this.categoriasService.getCategorias()
       .then((categorias: Categoria[]) => {
@@ -76,7 +75,7 @@ export class ModalSubcategoriaComponent implements OnInit {
   editar() {
     this.subcategoriasService.editarSubcategoria(this.subcategoriaEditada, this.subcategoria.nombre)
       .then(res => {
-        this.cerrarse(true);
+        this.cerrarse(false);
       })
       .catch((xhr: any) => {
         console.error('Error AJAX al editar Subcategoría');
