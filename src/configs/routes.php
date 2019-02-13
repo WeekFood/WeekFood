@@ -12,7 +12,7 @@ return [
             "route" => "/admin",
             "resource" => "admin",
             "action" => "index",
-            "nivelAuthGuard" => -1
+            "nivelAuthGuard" => 9
         ],
         "API" => [
             "route" => "api",
@@ -36,7 +36,7 @@ return [
             "route" => "api/productos",
             "resource" => "productos",
             "action" => "getTodos",
-            "nivelAuthGuard" => -1
+            "nivelAuthGuard" => 9
         ],
         "API, productos, query todas categorias principales" => [
             "route" => "api/productos/categorias",
@@ -96,7 +96,7 @@ return [
             "route" => "api/auth/logout",
             "resource" => "auth",
             "action" => "getLogout",
-            "nivelAuthGuard" => -1
+            "nivelAuthGuard" => 0
         ]
     ],
     "post" => [
@@ -104,7 +104,7 @@ return [
             "route" => "api/carritos",
             "resource" => "carritos",
             "action" => "postCarrito",
-            "nivelAuthGuard" => -1
+            "nivelAuthGuard" => 0
         ],
         "API, Auth, registro" => [
             "route" => "api/auth/registro",
