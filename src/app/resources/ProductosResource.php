@@ -263,7 +263,6 @@ class ProductosResource extends Resource {
 
         // hay que quitar la subcategoría de los productos correspondientes a mano
         // https://stackoverflow.com/questions/14642658/the-best-way-to-remove-value-from-set-field
-
         $this->sql = "UPDATE productos
                       SET
                         categoria =
