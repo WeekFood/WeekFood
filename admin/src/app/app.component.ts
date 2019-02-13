@@ -7,14 +7,15 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'WeekFood';
+  sidebarVisible: boolean = false;
 
   constructor(private authService: AuthService) {
     this.authService.login('juan', 'juan123')
-      .subscribe((res) => {
+      .then((res) => {
         console.log('POST login', res);
-      }, (res) => {
-        console.error('ERROR login', res);
+      })
+      .catch((err) => {
+        console.error('ERR login', err);
       });
   }
 }

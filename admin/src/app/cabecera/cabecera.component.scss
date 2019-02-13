@@ -1,0 +1,34 @@
+@import '../../styles/abstracts/colores';
+@import '../../styles/abstracts/breakpoints';
+@import '../../styles/abstracts/tipografia';
+
+.navbar {
+    background: $rojo;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.navbar-brand {
+    font-family: $fuente-logo;
+    font-style: italic;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.c-cabecera {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+}
+
+.c-cabecera__toggle-sidebar {
+    font-size: 1.25rem;
+    color: white;
+    justify-self: flex-start;
+    padding: 0 1rem;
+    @media only screen and (min-width: $mobile-l) {
+        visibility: hidden;
+    }
+}

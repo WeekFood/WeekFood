@@ -15,6 +15,82 @@ class ProductosResource extends Resource {
         $this->setData();
     }
 
+    public function postProductoAction() {
+        $json = file_get_contents('php://input');
+        $producto = json_decode($json, true);
+
+        // preparar categoria para la BD
+        $producto['categoria'] = implode(',', $producto['categoria']);
+        // hay que castear a boolean manualmente
+        $producto['destacado'] = (int) $producto['destacado'];
+
+        $this->sql = 'INSERT INTO productos 
+                        (nombre, categoria, descripcion, foto, destacado, precio) 
+                     VALUES
+                        (:nombre, :categoria, :descripcion, :foto, :destacado, :precio)';
+        
+        $this->execSQL($producto);
+        $idNuevoProducto = $this->data;
+
+        $this->sql = 'SELECT * FROM productos WHERE id = :id';
+        $this->execSQL([
+            "id" => $idNuevoProducto
+        ]);
+
+        http_response_code(201);
+        $this->setData();
+    }
+
+    public function putProductoAction() {
+        $json = file_get_contents('php://input');
+        $producto = json_decode($json, true);
+
+        $id = $this->controller->getParam('id');
+
+        // preparar categoria para la BD
+        $producto['categoria'] = implode(',', $producto['categoria']);
+        // hay que castear a boolean manualmente
+        $producto['destacado'] = (int) $producto['destacado'];
+
+        $this->sql = 'UPDATE productos
+                      SET
+                        nombre = :nombre,
+                        categoria = :categoria,
+                        descripcion = :descripcion,
+                        foto = :foto,
+                        destacado = :destacado,
+                        precio = :precio
+                      WHERE id = :id';
+
+        $this->execSQL([
+            "nombre" => $producto['nombre'],
+            "categoria" => $producto['categoria'],
+            "descripcion" => $producto['descripcion'],
+            "foto" => $producto['foto'],
+            "destacado" => $producto['destacado'],
+            "precio" => $producto['precio'],
+            "id" => $id
+        ]);
+
+        $this->sql = 'SELECT * FROM productos WHERE id = :id';
+        $this->execSQL([
+            "id" => $id
+        ]);
+
+        $this->setData();
+    }
+
+    public function deleteProductoAction() {
+        $id = $this->controller->getParam('id');
+
+        $this->sql = 'DELETE FROM productos WHERE id = :id';
+        $this->execSQL([
+            'id' => $id
+        ]);
+
+        http_response_code(204);
+    }
+
     public function getCategoriasPrincipalesAction() {
         $this->sql = 'SELECT nombre FROM categoriasprincipales';
         $this->execSQL();
