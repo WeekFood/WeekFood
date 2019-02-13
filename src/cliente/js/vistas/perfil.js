@@ -182,7 +182,7 @@ function vista_Perfil_generarHTML(puntoMontaje) {
     $(".js-edicion-general").click(puntoMontaje, vista_Perfil_activarEdicion)
 }
 function vista_Perfil_activarEdicion(evento) {
-    /*k
+    /*
     Lo de evento.data es porque al usar .click el parametro se añade al evento
     https://stackoverflow.com/questions/3273350/jquerys-click-pass-parameters-to-user-function
     */
