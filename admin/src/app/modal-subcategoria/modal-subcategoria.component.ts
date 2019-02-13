@@ -1,6 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Subcategoria } from '../models/Subcategoria';
-import { SubcategoriasService } from '../services/subcategorias.service';
+
+import { SubcategoriasService } from 'src/app/services/subcategorias.service';
+import { CategoriasService } from 'src/app/services/categorias.service';
+
+import { Subcategoria } from 'src/app/models/Subcategoria';
+import { Categoria } from 'src/app/models/Categoria';
 
 @Component({
   selector: 'app-modal-subcategoria',
@@ -14,15 +18,27 @@ export class ModalSubcategoriaComponent implements OnInit {
   @Output() cerrado = new EventEmitter<boolean>();
 
   subcategoriaEditada: Subcategoria;
+  categorias: Categoria[];
 
-  constructor(private subcategoriasService: SubcategoriasService) { }
+  constructor(private subcategoriasService: SubcategoriasService, private categoriasService: CategoriasService) { }
 
   ngOnInit() {
-    $('.js-modal-subcategoria').modal('show');
     // clonar subcategoria para no tocar la verdadera subcategoria
     // deep copy para no tocar el objeto Categoria referenciado
-    // TODO: no dará problemas al ser una copia sin clases? subCategoriaDe se copia como Object, no como Categoria
     this.subcategoriaEditada = JSON.parse(JSON.stringify(this.subcategoria));
+    
+    this.categoriasService.getCategorias()
+      .then((categorias: Categoria[]) => {
+        this.categorias = categorias;
+
+        // asignar referencia de objeto Categoria del array que tenemos (en vez de Categoria que se creó al vuelo)
+        // de forma que pueda ser relacionado en el <select>
+        // esto idealmente se haría con un array global de categorías o algo así
+        this.subcategoriaEditada.subCategoriaDe = this.categorias.find(categoria => categoria.nombre === this.subcategoriaEditada.subCategoriaDe.nombre);
+        
+        // mostrar el modal solo cuando se hayan descargado las categorias (evitar flash de select vacío)
+        $('.js-modal-subcategoria').modal('show');
+      });
   }
 
   cerrarse(actualizarVista: boolean = false) {

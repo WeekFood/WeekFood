@@ -18,12 +18,10 @@
             [readonly]="modo === 'ver' || modo === 'borrar'"
           >
           <label>Subcategoría de</label>
-          <input
-            type="text"
-            [(ngModel)]="subcategoriaEditada.subCategoriaDe.nombre" 
-            class="form-control"
-            [readonly]="modo === 'ver' || modo === 'borrar'"
-          >
+          <!-- https://stackoverflow.com/questions/37669365/getting-object-properties-via-ngmodel-select-list-in-angular-2 -->
+          <select [(ngModel)]="subcategoriaEditada.subCategoriaDe" class="form-control">
+            <option *ngFor="let categoria of categorias" [ngValue]="categoria">{{ categoria.nombre }}</option>
+          </select>
         </div>
       </div>
       <div class="modal-footer">
