@@ -10,6 +10,8 @@ import { ProductosComponent } from './views/productos/productos.component';
 import { ModalProductoComponent } from './modal-producto/modal-producto.component';
 import { InicioComponent } from './views/inicio/inicio.component';
 import { NoEncontradoComponent } from './views/no-encontrado/no-encontrado.component';
+import { CategoriasComponent } from './views/categorias/categorias.component';
+import { ModalCategoriaComponent } from './modal-categoria/modal-categoria.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { NoEncontradoComponent } from './views/no-encontrado/no-encontrado.compo
     ProductosComponent,
     ModalProductoComponent,
     InicioComponent,
-    NoEncontradoComponent
+    NoEncontradoComponent,
+    CategoriasComponent,
+    ModalCategoriaComponent
   ],
   imports: [
     BrowserModule,

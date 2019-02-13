@@ -129,6 +129,12 @@ return [
             "resource" => "productos",
             "action" => "postProducto",
             "nivelAuthGuard" => 9
+        ],
+        "CRUD, Categorias, nuevo" => [
+            "route" => "api/productos/categorias",
+            "resource" => "productos",
+            "action" => "postCategoriaPrincipal",
+            "nivelAuthGuard" => 9
         ]
     ],
     "put" => [
@@ -148,6 +154,12 @@ return [
             "route" => "api/productos/:id",
             "resource" => "productos",
             "action" => "putProducto",
+            "nivelAuthGuard" => 9
+        ],
+        "CRUD, Categorias, editar" => [
+            "route" => "api/productos/categorias/:nombre",
+            "resource" => "productos",
+            "action" => "putCategoriaPrincipal",
             "nivelAuthGuard" => 9
         ]
     ],

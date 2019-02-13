@@ -58,7 +58,7 @@ abstract class Resource {
     }
 
     protected function setError($httpStatus, $errorMessage) {
-        header('HTTP/1.1 ' . $httpStatus, true, $httpStatus);
+        http_response_code($httpStatus);
         header('Content-Type: application/json; charset=utf-8');
         echo \json_encode([
             "error" => $errorMessage
