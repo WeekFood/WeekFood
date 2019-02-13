@@ -1,3 +1,25 @@
-<p>
-  subcategorias works!
-</p>
+<div class="c-subcategorias">
+  <button type="button" class="c-subcategorias__boton-nuevo btn btn-success" (click)="abrirModalNuevo()">Nuevo</button>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Subcategoría de</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let subcategoria of subcategorias">
+          <td>{{ subcategoria.nombre }}</td>
+          <td>{{ subcategoria.subCategoriaDe.nombre }}</td>
+          <td class="c-subcategorias__acciones">
+            <button type="button" class="btn btn-secondary" (click)="abrirModalVer(subcategoria)">Ver</button>
+            <button type="button" class="btn btn-primary" (click)="abrirModalEditar(subcategoria)">Editar</button>
+            <button type="button" class="btn btn-danger" (click)="abrirModalBorrar(subcategoria)">Borrar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
