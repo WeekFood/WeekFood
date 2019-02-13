@@ -45,6 +45,7 @@ class Controller extends Router {
 
     public function run() {
         if (($route = $this->parseUriRouter()) != null) {
+            
             $this->setResourceName($route["resource"]);
             $this->setActionName($route["action"]);
         } else {

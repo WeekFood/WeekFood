@@ -200,4 +200,7 @@ class Auth {
                 http_response_code(500);
         }
     }
+    public function canAccessProtectedRoute(){
+        return false;
+    }
 }
