@@ -97,6 +97,51 @@ class ProductosResource extends Resource {
         $this->setData();
     }
 
+    public function postCategoriaPrincipalAction() {
+        $json = file_get_contents('php://input');
+        $categoria = json_decode($json, true);
+
+        $this->sql = 'INSERT INTO categoriasprincipales 
+                        (nombre) 
+                     VALUES
+                        (:nombre)';
+        
+        $this->execSQL($categoria);
+        $nombreNuevaCategoria = $this->data;
+
+        $this->sql = 'SELECT * FROM categoriasprincipales WHERE nombre = :nombre LIMIT 1';
+        $this->execSQL([
+            "nombre" => $nombreNuevaCategoria
+        ]);
+
+        http_response_code(201);
+        $this->setData();
+    }
+
+    public function putCategoriaPrincipalAction() {
+        $json = file_get_contents('php://input');
+        $categoria = json_decode($json, true);
+
+        $nombreAnterior = $this->controller->getParam('nombre');
+
+        $this->sql = 'UPDATE categoriasprincipales
+                      SET
+                        nombre = :nombreNuevo
+                      WHERE nombre = :nombreAnterior';
+
+        $this->execSQL([
+            'nombreNuevo' => $categoria['nombre'],
+            'nombreAnterior' => $nombreAnterior
+        ]);
+
+        $this->sql = 'SELECT * FROM categorias WHERE nombre = :nombre';
+        $this->execSQL([
+            "nombre" => $categoria['nombre']
+        ]);
+
+        $this->setData();
+    }
+
     public function getCategoriaPrincipalAction() {
         $params = [
             "nombre" => $this->controller->getParam("nombre")
