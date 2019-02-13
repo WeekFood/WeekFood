@@ -13,6 +13,7 @@ import { NoEncontradoComponent } from './views/no-encontrado/no-encontrado.compo
 import { CategoriasComponent } from './views/categorias/categorias.component';
 import { ModalCategoriaComponent } from './modal-categoria/modal-categoria.component';
 import { SubcategoriasComponent } from './views/subcategorias/subcategorias.component';
+import { ModalSubcategoriaComponent } from './modal-subcategoria/modal-subcategoria.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SubcategoriasComponent } from './views/subcategorias/subcategorias.comp
     NoEncontradoComponent,
     CategoriasComponent,
     ModalCategoriaComponent,
-    SubcategoriasComponent
+    SubcategoriasComponent,
+    ModalSubcategoriaComponent
   ],
   imports: [
     BrowserModule,
