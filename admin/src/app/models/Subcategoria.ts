@@ -1,4 +1,4 @@
-import { Categoria } from './Categoria';
+import { Categoria } from 'src/app/models/Categoria';
 
 export class Subcategoria {
     constructor(
