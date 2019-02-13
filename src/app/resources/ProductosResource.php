@@ -247,6 +247,21 @@ class ProductosResource extends Resource {
             'nombre' => $nombre
         ]);
 
+        // hay que quitar la subcategoría de los productos correspondientes a mano
+        // https://stackoverflow.com/questions/14642658/the-best-way-to-remove-value-from-set-field
+
+        $this->sql = "UPDATE productos
+                      SET
+                        categoria =
+                            TRIM(BOTH ',' FROM REPLACE(CONCAT(',', categoria, ','), :nombreSubcategoriaComas, ','))
+                      WHERE
+                        FIND_IN_SET(:nombreSubcategoria, categoria)";
+
+        $this->execSQL([
+            'nombreSubcategoriaComas' => ',' . $nombre . ',',
+            'nombreSubcategoria' => $nombre
+        ]);
+
         http_response_code(204);
     }
 
