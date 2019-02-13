@@ -10,6 +10,7 @@ class Auth {
     const ERR_LOGIN_WRONG_PASSWORD = 'ERR_LOGIN_WRONG_PASSWORD';
     const ERR_RENEW_LOGIN_INVALID_SIGNATURE = 'ERR_RENEW_LOGIN_INVALID_SIGNATURE';
     const ERR_LOGOUT_NO_LOGIN = 'ERR_LOGOUT_NO_LOGIN';
+    const ERR_NO_AUTHGUARD = 'ERR_NO_AUTHGUARD';
 
     private const SECRET_KEY = "F4Ev-17IbLRcEkwr2p8NRL62bys5fo6AqJrfWZwd5wBUBqDdDueKZz4VlJiWaD1TOXkmNtrU2gCmhNeZvimikm-3yI293zaufdnSoJ0isJ_i1SDmR8GeWVTVkBIPRewP4yBlb2uHbm1Uxppd0wkFau8iNmm5tqQppG0O5Rij5oojForsrvT8ahB9YYkX3fbM5u0RAW4AHbXqrN62xlN17FuXzZUtknI_W_HSOnnrQH5Rj0ZaT2GzRdR9PyaoXfLEduCq_2NowAxIzznsn-OnTFf7VuSrqmj5z1cvO_qyGM0sDNJiUQjKV-R-FQYK9yBkWsWclncU7CVN8uz44CSQng";
 
@@ -183,6 +184,9 @@ class Auth {
             case (self::ERR_LOGOUT_NO_LOGIN):
                 $errorMessage = 'NO_HAY_LOGIN';
                 break;
+            case (self::ERR_NO_AUTHGUARD):
+                $errorMessage = 'NO_HAY_AUTHGUARD';
+                break;
             default:
         }
 
@@ -194,6 +198,7 @@ class Auth {
             case (self::ERR_NO_TOKEN):
             case (self::ERR_RENEW_LOGIN_INVALID_SIGNATURE):
             case (self::ERR_LOGOUT_NO_LOGIN):
+            case (self::ERR_NO_AUTHGUARD):
                 http_response_code(401);
                 break;
             default:
@@ -211,6 +216,9 @@ class Auth {
     }
 
     public function canAccessProtectedRoute($route) {
+        if(!array_key_exists("nivelAuthGuard",$route)){
+            return null;
+        }
 
         if ($route["nivelAuthGuard"] == -1) {
             return true;
@@ -234,5 +242,9 @@ class Auth {
         }
 
         return false;
+    }
+
+    public function noAuthGuard(){
+        $this->sendError(self::ERR_NO_AUTHGUARD);
     }
 }

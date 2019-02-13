@@ -46,7 +46,12 @@ class Controller extends Router {
 
     public function run() {
         if (($route = $this->parseUriRouter()) != null) {
-            if ($this->auth->canAccessProtectedRoute($route)) {
+            $puedeAcceder = $this->auth->canAccessProtectedRoute($route);
+            if ($puedeAcceder == null) {
+                $this->auth->noAuthGuard();
+                return false;
+            }
+            if ($puedeAcceder) {
                 $this->setResourceName($route["resource"]);
                 $this->setActionName($route["action"]);
             } else {
