@@ -239,6 +239,17 @@ class ProductosResource extends Resource {
         $this->setData();
     }
 
+    public function deleteCategoriaAction() {
+        $nombre = $this->controller->getParam('nombre');
+
+        $this->sql = 'DELETE FROM categorias WHERE nombre = :nombre';
+        $this->execSQL([
+            'nombre' => $nombre
+        ]);
+
+        http_response_code(204);
+    }
+
     public function getCategoriasAction(){
         $this->sql = 'SELECT * FROM categorias';
         $this->execSQL();

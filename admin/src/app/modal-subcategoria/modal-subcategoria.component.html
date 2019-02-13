@@ -19,7 +19,7 @@
           >
           <label>Subcategoría de</label>
           <!-- https://stackoverflow.com/questions/37669365/getting-object-properties-via-ngmodel-select-list-in-angular-2 -->
-          <select [(ngModel)]="subcategoriaEditada.subCategoriaDe" class="form-control">
+          <select [(ngModel)]="subcategoriaEditada.subCategoriaDe" class="form-control" [disabled]="modo === 'ver' || modo === 'borrar'">
             <option *ngFor="let categoria of categorias" [ngValue]="categoria">{{ categoria.nombre }}</option>
           </select>
         </div>

@@ -152,6 +152,11 @@ return [
             "route" => "api/productos/:id",
             "resource" => "productos",
             "action" => "deleteProducto"
+        ],
+        "CRUD, Subcategorias, borrar" => [
+            "route" => "api/productos/categorias/subcategorias/:nombre",
+            "resource" => "productos",
+            "action" => "deleteCategoria"
         ]
     ]
 ];
