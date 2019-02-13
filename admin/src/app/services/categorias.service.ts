@@ -20,4 +20,19 @@ export class CategoriasService {
       });
     });
   }
+
+  editarCategoria(categoria: Categoria) {
+    // TODO
+    return new Promise(() => {});
+  }
+
+  crearCategoria(categoria: Categoria) {
+    // TODO
+    return new Promise(() => {});
+  }
+
+  borrarCategoria(categoria: Categoria) {
+    // TODO
+    return new Promise(() => {});
+  }
 }

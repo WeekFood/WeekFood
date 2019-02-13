@@ -21,3 +21,10 @@
     </table>
   </div>
 </div>
+
+<app-modal-categoria
+  *ngIf="modalAbierto"
+  [categoria]="categoriaActual"
+  [modo]="modoModal"
+  (cerrado)="alCerrarseModal($event)"
+></app-modal-categoria>
