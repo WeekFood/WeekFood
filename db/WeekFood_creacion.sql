@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   `subCategoriaDe` varchar(100) NOT NULL,
   PRIMARY KEY (`nombre`),
   KEY `Categoria-Principal` (`subCategoriaDe`),
-  CONSTRAINT `Categoria-Principal` FOREIGN KEY (`subCategoriaDe`) REFERENCES `categoriasprincipales` (`nombre`)
+  CONSTRAINT `Categoria-Principal` FOREIGN KEY (`subCategoriaDe`) REFERENCES `categoriasprincipales` (`nombre`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- La exportación de datos fue deseleccionada.
