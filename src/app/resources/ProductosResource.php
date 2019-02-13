@@ -107,11 +107,10 @@ class ProductosResource extends Resource {
                         (:nombre)';
         
         $this->execSQL($categoria);
-        $nombreNuevaCategoria = $this->data;
 
         $this->sql = 'SELECT * FROM categoriasprincipales WHERE nombre = :nombre LIMIT 1';
         $this->execSQL([
-            "nombre" => $nombreNuevaCategoria
+            "nombre" => $categoria['nombre']
         ]);
 
         http_response_code(201);
@@ -167,30 +166,30 @@ class ProductosResource extends Resource {
         // el CRUD manda subCategoriaDe como modelo de Categoria, solo nos hace falta el string
         $subcategoria['subCategoriaDe'] = $subcategoria['subCategoriaDe']['nombre'];
 
-        $this->sql = 'INSERT INTO categorias 
-                        (nombre, subCategoriaDe) 
+        $this->sql = 'INSERT INTO categorias
+                        (nombre, subCategoriaDe)
                      VALUES
                         (:nombre, :subCategoriaDe)';
-        
+
         try {
             $this->execSQL($subcategoria);
         } catch (PDOException $e) {
-            switch($e->getCode()) {
-                case 23000: // Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails
-                    $this->setError(409, 'NO_EXISTE_CATEGORIA');
-                    break;
-                default:
-                    $this->setError(500, 'ERROR_PDO');
+            switch ($e->errorInfo[1]) {
+            case 1062: // Duplicate entry
+                $this->setError(409, 'NOMBRE_CATEGORIA_REPETIDO');
+                break;
+            case 1452: // Cannot add or update a child row: a foreign key constraint fails
+                $this->setError(409, 'NO_EXISTE_CATEGORIA');
+            default:
+                $this->setError(500, 'ERROR_PDO');
             }
 
             exit();
         }
 
-        $nombreNuevaSubcategoria = $this->data;
-
         $this->sql = 'SELECT * FROM categorias WHERE nombre = :nombre LIMIT 1';
         $this->execSQL([
-            "nombre" => $nombreNuevaSubcategoria
+            "nombre" => $subcategoria['nombre']
         ]);
 
         http_response_code(201);
@@ -219,14 +218,17 @@ class ProductosResource extends Resource {
                 'nombreAnterior' => $nombreAnterior
             ]);
         } catch (PDOException $e) {
-            switch($e->getCode()) {
-                case 23000: // Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails
-                    $this->setError(409, 'NO_EXISTE_CATEGORIA');
+            switch ($e->errorInfo[1]) {
+                case 1062: // Duplicate entry
+                    $this->setError(409, 'NOMBRE_SUBCATEGORIA_REPETIDO');
                     break;
+                case 1452: // Cannot add or update a child row: a foreign key constraint fails
+                    $this->setError(409, 'NO_EXISTE_CATEGORIA');
                 default:
                     $this->setError(500, 'ERROR_PDO');
             }
 
+            exit();
         }
 
         $this->sql = 'SELECT * FROM categorias WHERE nombre = :nombre';
