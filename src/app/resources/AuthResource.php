@@ -125,6 +125,6 @@ class AuthResource extends Resource {
     }
 
     public function authGuardRechazadoAction() {
-          $this->setError(401, 'AUTH_GUARD_RECHAZADO');   
+          $this->setError(401, 'AUTHGUARD_RECHAZADO');   
     }
 }
