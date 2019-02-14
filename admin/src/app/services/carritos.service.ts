@@ -24,4 +24,40 @@ export class CarritosService {
       });
     });
   }
+
+  crearCarrito(carrito: Carrito) {
+    return $.ajax({
+      type: 'POST',
+      url: CarritosService.API_CARRITOS,
+      contentType: 'application/json',
+      data: JSON.stringify(carrito),
+      xhrFields: {
+        withCredentials: true
+      }
+    });
+  }
+
+  editarCarrito(carrito: Carrito) {
+    return $.ajax({
+      type: 'PUT',
+      url: `${CarritosService.API_CARRITOS}/${carrito.id}`,
+      contentType: 'application/json',
+      data: JSON.stringify(carrito),
+      xhrFields: {
+        withCredentials: true
+      }
+    });
+  }
+  
+  borrarCarrito(carrito: Carrito) {
+    return $.ajax({
+      type: 'DELETE',
+      url: `${CarritosService.API_CARRITOS}/${carrito.id}`,
+      contentType: 'application/json',
+      data: JSON.stringify(carrito),
+      xhrFields: {
+        withCredentials: true
+      }
+    });
+  }
 }

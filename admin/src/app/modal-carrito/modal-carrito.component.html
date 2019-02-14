@@ -1,0 +1,45 @@
+<div class="modal fade js-modal-carrito" tabindex="-1" data-backdrop="static" data-keyboard="false"
+  (click)="cerrarseOverlay($event)" (keydown)="cerrarseEsc($event)">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ carrito.id }}</h5>
+        <button type="button" class="close" (click)="cerrarse()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="c-modal-carrito">
+          <label>ID</label>
+          <input 
+            type="text"
+            [(ngModel)]="carritoEditado.id" 
+            class="form-control"
+            [readonly]="modo === 'ver' || modo === 'borrar'"
+          >
+          <label>ID Usuario</label>
+          <input 
+            type="text"
+            [(ngModel)]="carritoEditado.idUsuario" 
+            class="form-control"
+            [readonly]="modo === 'ver' || modo === 'borrar'"
+          >
+          <label>Fecha</label>
+          <input 
+            type="text"
+            [(ngModel)]="carritoEditado.fecha" 
+            class="form-control"
+            [readonly]="modo === 'ver' || modo === 'borrar'"
+          >
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button *ngIf="modo === 'editar'" type="button" class="btn btn-success" (click)="editar()">Guardar</button>
+        <button *ngIf="modo === 'crear'" type="button" class="btn btn-success" (click)="crear()">Crear</button>
+        <button *ngIf="modo === 'borrar'" type="button" class="btn btn-danger" (click)="borrar()">Borrar</button>
+        <button *ngIf="modo === 'ver'" type="button" class="btn btn-secondary" (click)="cerrarse()">Cerrar</button>
+        <button *ngIf="modo !== 'ver'" type="button" class="btn btn-secondary" (click)="cerrarse()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

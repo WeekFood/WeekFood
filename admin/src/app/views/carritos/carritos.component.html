@@ -16,12 +16,19 @@
           <td>{{ carrito.idUsuario }}</td>
           <td>{{ carrito.fecha.toLocaleString() }}</td>
           <td class="c-carritos__acciones">
-            <button type="button" class="btn btn-secondary" (click)="abrirModalVer(subcategoria)">Ver</button>
-            <button type="button" class="btn btn-primary" (click)="abrirModalEditar(subcategoria)">Editar</button>
-            <button type="button" class="btn btn-danger" (click)="abrirModalBorrar(subcategoria)">Borrar</button>
+            <button type="button" class="btn btn-secondary" (click)="abrirModalVer(carrito)">Ver</button>
+            <button type="button" class="btn btn-primary" (click)="abrirModalEditar(carrito)">Editar</button>
+            <button type="button" class="btn btn-danger" (click)="abrirModalBorrar(carrito)">Borrar</button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
+
+<app-modal-carrito
+  *ngIf="modalAbierto"
+  [carrito]="carritoActual"
+  [modo]="modoModal"
+  (cerrado)="alCerrarseModal($event)"
+></app-modal-carrito>
