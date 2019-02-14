@@ -9,29 +9,35 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="c-modal-carrito">
+        <form class="c-modal-carrito js-formulario" ngNativeValidate>
           <label>ID</label>
           <input 
             type="text"
-            [(ngModel)]="carritoEditado.id" 
+            [(ngModel)]="carritoEditado.id"
+            [ngModelOptions]="{standalone: true}" 
             class="form-control"
             readonly
           >
           <label>ID Usuario</label>
           <input 
             type="text"
-            [(ngModel)]="carritoEditado.idUsuario" 
+            [(ngModel)]="carritoEditado.idUsuario"
+            [ngModelOptions]="{standalone: true}" 
             class="form-control"
             [readonly]="modo === 'ver' || modo === 'borrar'"
+            required
           >
           <label>Fecha</label>
           <input 
             type="text"
-            [(ngModel)]="carritoEditado.fecha" 
+            [(ngModel)]="carritoEditado.fecha"
+            [ngModelOptions]="{standalone: true}" 
             class="form-control"
             [readonly]="modo === 'ver' || modo === 'borrar'"
+            pattern="\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}"
+            title="AAAA-MM-DD HH:MM:SS"
           >
-        </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button *ngIf="modo === 'editar'" type="button" class="btn btn-success" (click)="editar()">Guardar</button>

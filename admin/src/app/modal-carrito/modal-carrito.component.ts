@@ -47,6 +47,10 @@ export class ModalCarritoComponent implements OnInit {
   }
 
   crear() {
+    if (!this.formularioEsValido()) {
+      return;
+    }
+
     this.carritosService.crearCarrito(this.carritoEditado)
       .then(res => {
         this.cerrarse(true);
@@ -59,6 +63,10 @@ export class ModalCarritoComponent implements OnInit {
   }
 
   editar() {
+    if (!this.formularioEsValido()) {
+      return;
+    }
+
     this.carritosService.editarCarrito(this.carritoEditado)
       .then(res => {
         this.cerrarse(true);
@@ -82,4 +90,8 @@ export class ModalCarritoComponent implements OnInit {
       });
   }
 
+  formularioEsValido(): boolean {
+    console.log('validacionnnn');
+    return ($('.js-formulario')[0] as HTMLFormElement).reportValidity();
+  }
 }
