@@ -180,6 +180,7 @@ class ProductosResource extends Resource {
                 break;
             case 1452: // Cannot add or update a child row: a foreign key constraint fails
                 $this->setError(409, 'NO_EXISTE_CATEGORIA');
+                break;
             default:
                 $this->setError(500, 'ERROR_PDO');
             }
@@ -224,6 +225,7 @@ class ProductosResource extends Resource {
                     break;
                 case 1452: // Cannot add or update a child row: a foreign key constraint fails
                     $this->setError(409, 'NO_EXISTE_CATEGORIA');
+                    break;
                 default:
                     $this->setError(500, 'ERROR_PDO');
             }

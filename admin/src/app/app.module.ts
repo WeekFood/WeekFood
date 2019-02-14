@@ -22,6 +22,8 @@ import { AuthService } from './services/auth.service';
 import { CargandoComponent } from './views/cargando/cargando.component';
 import { UsuariosComponent } from './views/usuarios/usuarios.component';
 import { ModalUsuarioComponent } from './modal-usuario/modal-usuario.component';
+import { CarritosComponent } from './views/carritos/carritos.component';
+import { ModalCarritoComponent } from './modal-carrito/modal-carrito.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { ModalUsuarioComponent } from './modal-usuario/modal-usuario.component';
     SubcategoriasComponent,
     ModalSubcategoriaComponent,
     UsuariosComponent,
-    ModalUsuarioComponent
+    ModalUsuarioComponent,
+    CarritosComponent,
+    ModalCarritoComponent
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,7 @@ import { UsuariosComponent } from 'src/app/views/usuarios/usuarios.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { LoginGuard } from 'src/app/guards/login.guard';
 import { CargandoGuard } from 'src/app/guards/cargando.guard';
+import { CarritosComponent } from './views/carritos/carritos.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path: 'usuarios',
     component: UsuariosComponent
+  },
+  {
+    path: 'carritos',
+    component: CarritosComponent
   },
   {
     path: '**',
