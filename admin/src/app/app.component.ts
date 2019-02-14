@@ -8,5 +8,5 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
   sidebarVisible: boolean = false;
-  constructor(private auth: AuthService) { }
+  constructor(public auth: AuthService) { }
 }
