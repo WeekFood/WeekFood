@@ -15,6 +15,9 @@
           <label>Nick</label>
           <input type="text" [(ngModel)]="usuarioEditado.nick" class="form-control"
             [readonly]="modo === 'ver' || modo === 'borrar'">
+          <label [hidden]="modo !== 'editar' && modo !== 'crear'">Contraseña</label>
+          <button [hidden]="modo != 'editar' && modo !== 'crear'" type="button" class="btn btn-primary"
+            (click)="generarNuevaContra()">{{ nuevaContra }}</button>
           <label>Nombre</label>
           <!-- https://stackoverflow.com/questions/37669365/getting-object-properties-via-ngmodel-select-list-in-angular-2 -->
           <input type="text" [(ngModel)]="usuarioEditado.nombre" class="form-control"
@@ -22,9 +25,21 @@
           <label>Apellidos</label>
           <input type="text" [(ngModel)]="usuarioEditado.apellidos" class="form-control"
             [readonly]="modo === 'ver' || modo === 'borrar'">
-          <label>Extensión foto</label>
-          <input type="text" [(ngModel)]="usuarioEditado.foto" class="form-control"
-            [readonly]="modo === 'ver' || modo === 'borrar'">
+          <label [hidden]="modo == 'crear' || usuarioEditado.foto.length < 1">Foto</label>
+
+          <div class="c-modal-usuario__botones" [hidden]="modo == 'crear' || usuarioEditado.foto.length < 1">
+
+            <button type="button" class="btn btn-primary c-modal-usuario__boton" (click)="abrirFoto()"
+              [hidden]="fotoSeBorrara">Abrir</button>
+
+            <button type="button" class="btn btn-danger c-modal-usuario__boton" (click)="borrarFoto()"
+              [hidden]="modo != 'editar' || fotoSeBorrara">Borrar</button>
+
+            <button type="button" class="btn btn-danger c-modal-usuario__boton c-modal-usuario__boton--deshacer"
+              (click)="deshacerBorrarFoto()" [hidden]="modo != 'editar' || !fotoSeBorrara">Borrada, deshacer</button>
+
+          </div>
+
           <label>Sexo</label>
           <input type="text" [(ngModel)]="usuarioEditado.sexo" class="form-control"
             [readonly]="modo === 'ver' || modo === 'borrar'">

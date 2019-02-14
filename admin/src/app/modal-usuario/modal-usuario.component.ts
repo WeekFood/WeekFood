@@ -16,13 +16,17 @@ export class ModalUsuarioComponent implements OnInit {
   @Output() cerrado = new EventEmitter<boolean>();
 
   usuarioEditado: Usuario;
+  nuevaContra: string;
+  fotoSeBorrara: boolean = false;
 
-  constructor(private usuariosService: UsuariosService) { }
+  constructor(private usuariosService: UsuariosService) { this.nuevaContra = "Generar nueva" }
 
   ngOnInit() {
     // clonar usuario para no tocar el verdadero usuario
     this.usuarioEditado = Object.assign({}, this.usuario);
-
+    if (this.modo == 'crear') {
+      this.generarNuevaContra()
+    }
     $('.js-modal-usuario').modal('show');
   }
 
@@ -47,26 +51,24 @@ export class ModalUsuarioComponent implements OnInit {
   }
 
   crear() {
+    this.usuarioEditado.contraseña = this.nuevaContra
     this.usuariosService.crearUsuario(this.usuarioEditado)
       .then(res => {
         this.cerrarse(true);
       })
       .catch((xhr: any) => {
         console.error('Error AJAX al crear Usuario');
-        console.log('Categoria:', this.usuarioEditado);
-        console.log('XHR:', xhr);
       });
   }
 
   editar() {
+    this.usuarioEditado.contraseña = this.nuevaContra
     this.usuariosService.editarUsuario(this.usuarioEditado)
       .then(res => {
         this.cerrarse(true);
       })
       .catch((xhr: any) => {
         console.error('Error AJAX al editar Usuario');
-        console.log('Categoria:', this.usuarioEditado);
-        console.log('XHR:', xhr);
       });
   }
 
@@ -77,8 +79,23 @@ export class ModalUsuarioComponent implements OnInit {
       })
       .catch((xhr: any) => {
         console.error('Error AJAX al borrar Usuario');
-        console.log('Producto:', this.usuarioEditado);
-        console.log('XHR:', xhr);
       });
+  }
+  // https://stackoverflow.com/questions/1497481/javascript-password-generator
+  generarNuevaContra() {
+    var length = 15,
+      charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    this.nuevaContra = "";
+    for (var i = 0, n = charset.length; i < length; ++i) {
+      this.nuevaContra += charset.charAt(Math.floor(Math.random() * n));
+    }
+  }
+
+  borrarFoto() {
+    this.fotoSeBorrara = true
+  }
+
+  deshacerBorrarFoto() {
+    this.fotoSeBorrara = false
   }
 }

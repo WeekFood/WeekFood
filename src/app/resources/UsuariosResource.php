@@ -148,4 +148,37 @@ class UsuariosResource extends Resource {
         $this->execSQL();
         $this->setData();
     }
+
+    public function deleteUsuarioAction(){
+        $this->sql = "DELETE FROM usuarios WHERE id = :idUsuario";
+        $params = [
+            "idUsuario" => $this->controller->getParam("idUsuario")
+        ];
+        $this->execSQL($params);
+        http_response_code(204);
+    }
+
+    public function postUsuarioAction(){
+        $json = file_get_contents('php://input');
+        $usuario = json_decode($json, true);
+        $this->sql = "INSERT INTO usuarios (
+                                        nick,
+                                        contraseña,
+                                        nombre,
+                                        apellidos, 
+                                        sexo,
+                                        telefono, 
+                                        nacimiento, 
+                                        nivelprivilegio
+                                ) VALUES (
+                                        :nick,
+                                        :contraseña,
+                                        :nombre,
+                                        :apellidos, 
+                                        :sexo,
+                                        :telefono, 
+                                        :nacimiento, 
+                                        :nivelprivilegio
+                                )";
+                                                }
 }

@@ -5,7 +5,17 @@
     grid-gap: 1rem;
     align-items: center;
 }
-
+.c-modal-usuario__botones{
+    display: flex;
+    text-align: center
+}
+.c-modal-usuario__boton{
+    margin: 0 auto;
+    width: 45%;
+    &--deshacer{
+        width: auto;
+    }
+}
 label {
     text-align: right;
     margin: 0;

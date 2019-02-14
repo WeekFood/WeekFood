@@ -6,6 +6,7 @@
         <tr>
           <th scope="col">Nick</th>
           <th scope="col">Nombre</th>
+          <th scope="col">Foto</th>
           <th scope="col">Apellidos</th>
           <th scope="col">Sexo</th>
           <th scope="col">Telefono</th>
@@ -17,6 +18,12 @@
         <tr *ngFor="let usuario of usuarios" [ngClass]="{'table-primary': usuario.nivelprivilegio > 0 }">
           <td>{{ usuario.nick }}</td>
           <td>{{ usuario.nombre }}</td>
+          <td>
+            <div class="c-usuarios__imagen-contenedor">
+              <img [hidden]="usuario.foto.length == 0" class="c-usuarios__imagen"
+                src="imagenes/usuarios/{{usuario.id}}.{{usuario.foto}}">
+            </div>
+          </td>
           <td>{{ usuario.apellidos }}</td>
           <td>{{ usuario.sexo }}</td>
           <td>{{ usuario.telefono }}</td>

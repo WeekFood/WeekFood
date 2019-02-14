@@ -199,6 +199,12 @@ return [
             "resource" => "productos",
             "action" => "deleteCategoria",
             "nivelAuthGuard" => 9
+        ],
+        "CRUD, Usuarios, borrar" => [
+            "route" => "api/usuarios/:idUsuario",
+            "resource" => "usuarios",
+            "action" => "deleteUsuario",
+            "nivelAuthGuard" => 9
         ]
     ]
 ];
