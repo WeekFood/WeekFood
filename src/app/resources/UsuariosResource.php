@@ -65,7 +65,7 @@ class UsuariosResource extends Resource {
                 )[1]// jpeg;base64,
             )[0]; // jpeg
             $this->borrarImagenesDelUsuario($idUsuarioUrl);
-            $nombreArchivoImagen = ROOT . DS . "cliente" . DS . "imagenes" . DS . "usuarios" . DS . $idUsuarioUrl . "." . $extensionImagen;
+            $nombreArchivoImagen = $GLOBALS->get("config")['imagenes usuarios'] . $idUsuarioUrl . "." . $extensionImagen;
             //https://stackoverflow.com/questions/15153776/convert-base64-string-to-an-image-file
             $archivo = fopen($nombreArchivoImagen, 'wb');
             fwrite($archivo,
@@ -89,7 +89,7 @@ class UsuariosResource extends Resource {
             }
         }
 
-        if ( array_key_exists("contraseña",$usuario) && $usuario["contraseña"] == "") {
+        if (array_key_exists("contraseña", $usuario) && $usuario["contraseña"] == "") {
             unset($usuario["contraseña"]);
         }
         $asignacionesSQL = [];
@@ -216,7 +216,7 @@ class UsuariosResource extends Resource {
             "svg"
         ];
         foreach ($imgExtensiones as $imgExten) {
-            $imgABorrar = ROOT . DS . "cliente" . DS . "imagenes" . DS . "usuarios" . DS . $idUsuario . "." . $imgExten;
+            $imgABorrar = $GLOBALS->get("config")['imagenes usuarios'] . $idUsuario . "." . $imgExten;
             if (file_exists($imgABorrar)) {
                 unlink($imgABorrar);
             }
