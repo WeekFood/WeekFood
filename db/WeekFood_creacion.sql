@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS `articulosencarritos` (
   PRIMARY KEY (`idCarrito`,`idArticulo`),
   KEY `carritos_id_FK` (`idCarrito`),
   KEY `productos_id_FK` (`idArticulo`),
-  CONSTRAINT `carritos_id_FK` FOREIGN KEY (`idCarrito`) REFERENCES `carritos` (`id`),
-  CONSTRAINT `productos_id_FK` FOREIGN KEY (`idArticulo`) REFERENCES `productos` (`id`)
+  CONSTRAINT `carritos_id_FK` FOREIGN KEY (`idCarrito`) REFERENCES `carritos` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `productos_id_FK` FOREIGN KEY (`idArticulo`) REFERENCES `productos` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- La exportación de datos fue deseleccionada.
