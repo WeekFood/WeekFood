@@ -19,13 +19,15 @@ export class CarritosService {
         return new Carrito(
           carrito.id,
           carrito.idUsuario,
-          new Date(carrito.fecha)
+          carrito.fecha
         );
       });
     });
   }
 
   crearCarrito(carrito: Carrito) {
+    delete carrito.id;
+
     return $.ajax({
       type: 'POST',
       url: CarritosService.API_CARRITOS,
@@ -38,6 +40,7 @@ export class CarritosService {
   }
 
   editarCarrito(carrito: Carrito) {
+
     return $.ajax({
       type: 'PUT',
       url: `${CarritosService.API_CARRITOS}/${carrito.id}`,

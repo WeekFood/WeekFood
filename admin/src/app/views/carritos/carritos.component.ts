@@ -48,7 +48,7 @@ export class CarritosComponent implements OnInit {
     this.modalAbierto = true;
     this.modoModal = 'crear';
 
-    this.carritoActual = new Carrito(null, null, new Date());
+    this.carritoActual = new Carrito(null, null, new Date().toISOString().slice(0, 19).replace('T', ' '));
   }
 
   abrirModalBorrar(carrito: Carrito) {

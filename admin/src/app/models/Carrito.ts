@@ -2,6 +2,6 @@ export class Carrito {
     constructor(
         public id: number,
         public idUsuario: number,
-        public fecha: Date
+        public fecha: string
     ) { }
 }
