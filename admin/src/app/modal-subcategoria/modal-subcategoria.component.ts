@@ -61,6 +61,10 @@ export class ModalSubcategoriaComponent implements OnInit {
   }
 
   crear() {
+    if (!this.formularioEsValido()) {
+      return;
+    }
+    
     this.subcategoriasService.crearSubcategoria(this.subcategoriaEditada)
       .then(res => {
         this.cerrarse(true);
@@ -73,6 +77,10 @@ export class ModalSubcategoriaComponent implements OnInit {
   }
 
   editar() {
+    if (!this.formularioEsValido()) {
+      return;
+    }
+
     this.subcategoriasService.editarSubcategoria(this.subcategoriaEditada, this.subcategoria.nombre)
       .then(res => {
         this.cerrarse(true);
@@ -94,5 +102,9 @@ export class ModalSubcategoriaComponent implements OnInit {
         console.log('Producto:', this.subcategoriaEditada);
         console.log('XHR:', xhr);
       });
+  }
+
+  formularioEsValido(): boolean {
+    return ($('.js-formulario')[0] as HTMLFormElement).reportValidity();
   }
 }
