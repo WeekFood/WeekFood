@@ -5,7 +5,7 @@
             <span class="c-login__error">{{errorUsuario}}</span>
         </div>
         <input (keyup)="acceder($event.key)" type="text" [(ngModel)]="nick" class="form-control" placeholder="Nick"
-            ng-class="errorUsuario != '' ? 'c-login__error-campo' : ''">
+            [ngClass]="{ 'c-login__error-campo' :  errorUsuario != '' }">
     </div>
     <div class="form-group">
         <div class="c-login__titulo">
@@ -13,7 +13,7 @@
             <span class="c-login__error">{{errorContra}}</span>
         </div>
         <input (keyup)="acceder($event.key)" type="password" [(ngModel)]="contra" class="form-control"
-            placeholder="Contraseña" ng-class="errorContra != '' ? 'c-login__error-campo' : ''">
+            placeholder="Contraseña" [ngClass]="{ 'c-login__error-campo' : errorContra != '' }">
     </div>
     <div class="c-login__contenedor-boton">
         <button type="submit" class="btn btn-primary" (click)="acceder('Enter')">Acceder</button>
