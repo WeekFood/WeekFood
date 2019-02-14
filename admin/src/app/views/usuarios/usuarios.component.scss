@@ -1,0 +1,10 @@
+.c-usuarios__boton-nuevo {
+    margin-bottom: 1rem;
+}
+
+.c-usuarios__acciones {
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 16px;
+    justify-content: flex-end;
+}

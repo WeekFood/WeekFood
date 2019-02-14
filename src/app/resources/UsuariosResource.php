@@ -122,4 +122,10 @@ class UsuariosResource extends Resource {
         $this->data = $usuario;
         $this->setData();
     }
+
+    public function getTodosAction(){
+        $this->sql = "SELECT id, nick, nombre, apellidos, foto, sexo, telefono, nacimiento FROM usuarios";
+        $this->execSQL();
+        $this->setData();
+    }
 }

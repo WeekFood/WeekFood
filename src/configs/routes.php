@@ -103,7 +103,13 @@ return [
             "resource" => "usuarios",
             "action" => "getNivelPrivilegio",
             "nivelAuthGuard" => 0
-        ]
+        ],
+        "API, todos los usuarios" => [
+            "route" => "api/usuarios",
+            "resource" => "usuarios",
+            "action" => "getTodos",
+            "nivelAuthGuard" => 9
+        ],
     ],
     "post" => [
         "API, carrito" => [
