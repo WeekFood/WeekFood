@@ -40,7 +40,6 @@ export class CarritosService {
   }
 
   editarCarrito(carrito: Carrito) {
-
     return $.ajax({
       type: 'PUT',
       url: `${CarritosService.API_CARRITOS}/${carrito.id}`,
