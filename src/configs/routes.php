@@ -153,7 +153,13 @@ return [
             "resource" => "productos",
             "action" => "postCategoria",
             "nivelAuthGuard" => 9
-        ]
+        ],
+        "CRUD, Usuario, nuevo" => [
+            "route" => "api/usuarios/",
+            "resource" => "usuarios",
+            "action" => "postUsuario",
+            "nivelAuthGuard" => 9
+        ],
     ],
     "put" => [
         "API, carrito" => [

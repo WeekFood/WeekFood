@@ -89,7 +89,7 @@ class UsuariosResource extends Resource {
             }
         }
 
-        if ($usuario["contraseña"] == ""){
+        if ($usuario["contraseña"] == "") {
             unset($usuario["contraseña"]);
         }
         $asignacionesSQL = [];
@@ -102,7 +102,7 @@ class UsuariosResource extends Resource {
             if ($campo == "fechaNacimiento") {
                 $campo = "nacimiento";
             }
-            
+
             if ($campo == "contraseña" && $valor != null) {
                 $valor = password_hash($valor, PASSWORD_BCRYPT);
             }
@@ -164,7 +164,7 @@ class UsuariosResource extends Resource {
                                         nivelprivilegio
                                 ) VALUES (
                                         :nick,
-                                        :contraseña,
+                                        :contra,
                                         :nombre,
                                         :apellidos,
                                         :sexo,
@@ -172,6 +172,38 @@ class UsuariosResource extends Resource {
                                         :nacimiento,
                                         :nivelprivilegio
                                 )";
+        $asignacionesSQL = [];
+        foreach ($usuario as $campo => $valor) {
+            if ($valor == "") {
+                $valor = null;
+            }
+            switch ($campo) {
+            case "nombre":
+                if ($valor == null) {
+                    $valor = $usuario["nick"];
+                }
+                break;
+            case "nivelprivilegio":
+                if ($valor == null) {
+                    $valor = 0;
+                }
+                break;
+            }
+            if ($campo == "contraseña") {
+                $asignacionesSQL["contra"] = password_hash($valor, PASSWORD_BCRYPT);
+            } else {
+                $asignacionesSQL[$campo] = $valor;
+            }
+        }
+
+        $this->execSQL($asignacionesSQL);
+
+        $this->sql = 'SELECT id, nick, nombre, apellidos, foto, sexo, telefono, nacimiento FROM usuarios WHERE id = :idUsuario';
+        $params = [
+            "idUsuario" => $this->data
+        ];
+        $this->execSQL($params);
+        $this->setData();
     }
 
     private function borrarImagenesDelUsuario($idUsuario) {

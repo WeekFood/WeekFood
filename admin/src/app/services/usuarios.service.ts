@@ -39,6 +39,8 @@ export class UsuariosService {
   }
 
   crearUsuario(usuario: Usuario) {
+    delete usuario.id
+    delete usuario.foto
     return $.ajax({
       type: 'POST',
       url: UsuariosService.API_USUARIOS,

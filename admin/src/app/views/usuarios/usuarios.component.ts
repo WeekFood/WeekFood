@@ -47,7 +47,7 @@ export class UsuariosComponent implements OnInit {
     this.modalAbierto = true;
     this.modoModal = 'crear';
 
-    this.usuarioActual = new Usuario(null, 'Nuevo Usuario', '','','','',null,'',0);
+    this.usuarioActual = new Usuario(null, '', 'Nuevo Usuario','','','','',null,'',0);
   }
 
   abrirModalBorrar(usuario: Usuario) {

@@ -19,7 +19,7 @@ export class ModalUsuarioComponent implements OnInit {
   nuevaContra: string;
   fotoSeBorrara: boolean = false;
 
-  constructor(private usuariosService: UsuariosService) { this.nuevaContra = "Generar nueva" }
+  constructor(private usuariosService: UsuariosService) { this.nuevaContra = "" }
 
   ngOnInit() {
     // clonar usuario para no tocar el verdadero usuario
@@ -62,7 +62,7 @@ export class ModalUsuarioComponent implements OnInit {
   }
 
   editar() {
-    if ( this.nuevaContra != "Generar nueva"){
+    if ( this.nuevaContra != ""){
       this.usuarioEditado.contraseña = this.nuevaContra
     }
     if(this.fotoSeBorrara){
