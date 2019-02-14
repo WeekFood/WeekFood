@@ -53,7 +53,6 @@ export class UsuariosService {
   }
 
   editarUsuario(usuario: Usuario) {
-    console.log(usuario)
     return $.ajax({
       type: 'PUT',
       url: `${UsuariosService.API_USUARIOS}/${usuario.id}`,

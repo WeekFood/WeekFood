@@ -20,8 +20,8 @@ import { ModalSubcategoriaComponent } from './modal-subcategoria/modal-subcatego
 import { AuthProviderService } from './providers/authprovider.service';
 import { AuthService } from './services/auth.service';
 import { CargandoComponent } from './views/cargando/cargando.component';
-import { UsuariosComponent } from './views/usuarios/usuarios.component';
-import { ModalUsuarioComponent } from './modal-usuario/modal-usuario.component';
+import { UsuariosComponent } from 'src/app/views/usuarios/usuarios.component';
+import { ModalUsuarioComponent } from 'src/app/modal-usuario/modal-usuario.component';
 import { CarritosComponent } from './views/carritos/carritos.component';
 import { ModalCarritoComponent } from './modal-carrito/modal-carrito.component';
 
