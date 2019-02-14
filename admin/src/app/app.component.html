@@ -2,7 +2,7 @@
   <div class="l-distribucion__cabecera">
     <app-cabecera (toggleSidebar)="sidebarVisible = !sidebarVisible"></app-cabecera>
   </div>
-  <div class="l-distribucion__sidebar">
+  <div *ngIf="auth.permiso" class="l-distribucion__sidebar">
     <app-sidebar [estaVisible]="sidebarVisible"></app-sidebar>
   </div>
   <div class="l-distribucion__contenido">

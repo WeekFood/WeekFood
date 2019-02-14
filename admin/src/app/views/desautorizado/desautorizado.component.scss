@@ -1,0 +1,19 @@
+@import 'src/styles/abstracts/breakpoints';
+
+.c-desautorizado {
+    width: 100%;
+    @media (min-width: $mobile-l) {
+        width: 50%;
+        margin: auto;
+    }
+}
+
+.c-desautorizado__botones {
+    width: 100%;
+    text-align: center;
+}
+
+.c-desautorizado__boton {
+    margin: 10px;
+    color: white;
+}
