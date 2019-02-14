@@ -46,14 +46,13 @@ class UsuariosResource extends Resource {
     public function putUsuarioAction() {
         $json = file_get_contents('php://input');
         $usuario = json_decode($json, true);
-        $idUsuario = $this->auth->getLoggedId();
-        if ($idUsuario == null) {
-            $this->setError(401, 'NO_HAY_LOGIN');
-            return;
-        }
 
+        $idUsuario = $this->auth->getLoggedId();
         $idUsuarioUrl = $this->controller->getParam('idUsuario');
-        if ($idUsuarioUrl !== $idUsuario) {
+        if (
+            $this->auth->getPrivilegeLevel($idUsuario) < 1
+            && $idUsuarioUrl !== $idUsuario
+        ) {
             $this->setError(401, 'NO_HAY_PERMISO');
             return;
         }
