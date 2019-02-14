@@ -103,6 +103,12 @@ return [
             "resource" => "usuarios",
             "action" => "getNivelPrivilegio",
             "nivelAuthGuard" => 0
+        ],
+        "CRUD, Carritos, get" => [
+            "route" => "api/carritos",
+            "resource" => "carritos",
+            "action" => "getCarritos",
+            "nivelAuthGuard" => -1
         ]
     ],
     "post" => [
@@ -192,6 +198,12 @@ return [
             "route" => "api/productos/categorias/subcategorias/:nombre",
             "resource" => "productos",
             "action" => "deleteCategoria",
+            "nivelAuthGuard" => 9
+        ],
+        "CRUD, Carritos, borrar" => [
+            "route" => "api/carritos/:id",
+            "resource" => "carritos",
+            "action" => "deleteCarrito",
             "nivelAuthGuard" => 9
         ]
     ]
