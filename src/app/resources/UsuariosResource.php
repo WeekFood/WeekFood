@@ -35,7 +35,7 @@ class UsuariosResource extends Resource {
         
         $privilegioUsuarioCookie = $this->auth->getPrivilegeLevel($idUsuarioCookie);
         if ($privilegioUsuarioCookie > 0) {
-            $this->data = ["nivelprivilegio", $this->auth->getPrivilegeLevel($this->controller->getParam("idUsuario"))];
+            $this->data = [["nivelprivilegio"=> $this->auth->getPrivilegeLevel($this->controller->getParam("idUsuario"))]];
         } else {
             $this->setError(401, 'NO_HAY_PERMISO');
             return;
