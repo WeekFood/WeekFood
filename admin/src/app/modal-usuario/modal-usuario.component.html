@@ -22,7 +22,6 @@
             <span *ngIf="nuevaContra.length > 0">Generar otra nueva</span>
           </button>
           <label>Nombre</label>
-          <!-- https://stackoverflow.com/questions/37669365/getting-object-properties-via-ngmodel-select-list-in-angular-2 -->
           <input type="text" [(ngModel)]="usuarioEditado.nombre" class="form-control"
             [readonly]="modo === 'ver' || modo === 'borrar'">
           <label>Apellidos</label>
