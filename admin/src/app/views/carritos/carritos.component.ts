@@ -29,12 +29,10 @@ export class CarritosComponent implements OnInit {
   }
 
   abrirModalVer(carrito: Carrito) {
-		console.log('TCL: CarritosComponent -> abrirModalVer -> carrito', carrito)
     this.modalAbierto = true;
     this.modoModal = 'ver';
 
     this.carritoActual = carrito;
-		console.log('TCL: CarritosComponent -> abrirModalVer -> this.carritoActual', this.carritoActual)
   }
 
   abrirModalEditar(carrito: Carrito) {
