@@ -141,6 +141,12 @@ return [
             "resource" => "productos",
             "action" => "postCategoriaPrincipal",
             "nivelAuthGuard" => 9
+        ],
+        "CRUD, Subcategorias, nuevo" => [
+            "route" => "api/productos/categorias/subcategorias",
+            "resource" => "productos",
+            "action" => "postCategoria",
+            "nivelAuthGuard" => 9
         ]
     ],
     "put" => [
@@ -167,6 +173,12 @@ return [
             "resource" => "productos",
             "action" => "putCategoriaPrincipal",
             "nivelAuthGuard" => 9
+        ],
+        "CRUD, Subcategorias, editar" => [
+            "route" => "api/productos/categorias/subcategorias/:nombre",
+            "resource" => "productos",
+            "action" => "putCategoria",
+            "nivelAuthGuard" => 9
         ]
     ],
     "delete" => [
@@ -174,6 +186,12 @@ return [
             "route" => "api/productos/:id",
             "resource" => "productos",
             "action" => "deleteProducto",
+            "nivelAuthGuard" => 9
+        ],
+        "CRUD, Subcategorias, borrar" => [
+            "route" => "api/productos/categorias/subcategorias/:nombre",
+            "resource" => "productos",
+            "action" => "deleteCategoria",
             "nivelAuthGuard" => 9
         ]
     ]

@@ -14,6 +14,8 @@ import { LoginComponent } from './views/login/login.component';
 import { DesautorizadoComponent } from './views/desautorizado/desautorizado.component';
 import { CategoriasComponent } from './views/categorias/categorias.component';
 import { ModalCategoriaComponent } from './modal-categoria/modal-categoria.component';
+import { SubcategoriasComponent } from './views/subcategorias/subcategorias.component';
+import { ModalSubcategoriaComponent } from './modal-subcategoria/modal-subcategoria.component';
 
 import { AuthProviderService } from './providers/authprovider.service';
 import { AuthService } from './services/auth.service';
@@ -32,7 +34,9 @@ import { CargandoComponent } from './views/cargando/cargando.component';
     DesautorizadoComponent,
     CargandoComponent,
     CategoriasComponent,
-    ModalCategoriaComponent
+    ModalCategoriaComponent,
+    SubcategoriasComponent,
+    ModalSubcategoriaComponent
   ],
   imports: [
     BrowserModule,
