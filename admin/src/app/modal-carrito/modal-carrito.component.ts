@@ -91,7 +91,6 @@ export class ModalCarritoComponent implements OnInit {
   }
 
   formularioEsValido(): boolean {
-    console.log('validacionnnn');
     return ($('.js-formulario')[0] as HTMLFormElement).reportValidity();
   }
 }
