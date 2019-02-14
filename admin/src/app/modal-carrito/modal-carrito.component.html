@@ -25,6 +25,8 @@
             [ngModelOptions]="{standalone: true}" 
             class="form-control"
             [readonly]="modo === 'ver' || modo === 'borrar'"
+            pattern="\d+"
+            title="Número positivo sin signo"
             required
           >
           <label>Fecha</label>
