@@ -64,7 +64,7 @@ class UsuariosResource extends Resource {
                     )[0]// data:image/jpeg;base64
                 )[1]// jpeg;base64,
             )[0]; // jpeg
-            borrarImagenesDelUsuario($idUsuarioUrl);
+            $this->borrarImagenesDelUsuario($idUsuarioUrl);
             $nombreArchivoImagen = ROOT . DS . "cliente" . DS . "imagenes" . DS . "usuarios" . DS . $idUsuarioUrl . "." . $extensionImagen;
             //https://stackoverflow.com/questions/15153776/convert-base64-string-to-an-image-file
             $archivo = fopen($nombreArchivoImagen, 'wb');
@@ -89,7 +89,7 @@ class UsuariosResource extends Resource {
             }
         }
 
-        if ($usuario["contraseña"] == "") {
+        if ( array_key_exists("contraseña",$usuario) && $usuario["contraseña"] == "") {
             unset($usuario["contraseña"]);
         }
         $asignacionesSQL = [];
