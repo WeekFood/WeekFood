@@ -45,6 +45,10 @@ export class ModalCategoriaComponent implements OnInit {
   }
 
   editar() {
+    if (!this.formularioEsValido()) {
+      return;
+    }
+    
     this.categoriasService.editarCategoria(this.categoriaEditada, this.categoria.nombre)
       .then(res => {
         this.cerrarse(true);
@@ -57,6 +61,10 @@ export class ModalCategoriaComponent implements OnInit {
   }
 
   crear() {
+    if (!this.formularioEsValido()) {
+      return;
+    }
+
     this.categoriasService.crearCategoria(this.categoriaEditada)
       .then(res => {
         this.cerrarse(true);
@@ -66,5 +74,9 @@ export class ModalCategoriaComponent implements OnInit {
         console.log('Categoria:', this.categoriaEditada);
         console.log('XHR:', xhr);
       });
+  }
+
+  formularioEsValido(): boolean {
+    return ($('.js-formulario')[0] as HTMLFormElement).reportValidity();
   }
 }

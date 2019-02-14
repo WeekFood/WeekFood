@@ -8,10 +8,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="c-modal-categoria">
+        <form class="c-modal-categoria js-formulario" ngNativeValidate>
           <label>Nombre</label>
-          <input type="text" [(ngModel)]="categoriaEditada.nombre" class="form-control" [readonly]="modo === 'ver' || modo === 'borrar'">
-        </div>
+          <input type="text" [(ngModel)]="categoriaEditada.nombre" [ngModelOptions]="{standalone: true}" class="form-control" [readonly]="modo === 'ver' || modo === 'borrar'" required>
+        </form>
       </div>
       <div class="modal-footer">
         <button *ngIf="modo === 'editar'" type="button" class="btn btn-success" (click)="editar()">Guardar</button>
