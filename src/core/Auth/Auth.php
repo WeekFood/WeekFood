@@ -122,7 +122,7 @@ class Auth {
         if ($this->isLoggedIn()) {
             session_destroy();
             if (isset($_COOKIE[self::COOKIE_NAME_TOKEN])) {
-                setcookie(self::COOKIE_NAME_TOKEN, '', 0);
+                setcookie(self::COOKIE_NAME_TOKEN, '', 0, '/');
             }
         } else {
             $this->sendError(self::ERR_LOGOUT_NO_LOGIN);
@@ -157,10 +157,10 @@ class Auth {
 
     public function isLoggedIn(): bool {
         return session_status() !== PHP_SESSION_NONE
-                && isset($_SESSION['logueado'])
-                && $_SESSION['logueado']
-                && isset($_SESSION['idUsuario'])
-                && $_SESSION['idUsuario'] > -1;
+            && isset($_SESSION['logueado'])
+            && $_SESSION['logueado']
+            && isset($_SESSION['idUsuario'])
+            && $_SESSION['idUsuario'] > -1;
     }
 
     public function getLoggedId() {
@@ -216,7 +216,7 @@ class Auth {
     }
 
     public function canAccessProtectedRoute($route) {
-        if(!array_key_exists("nivelAuthGuard",$route)){
+        if (!array_key_exists("nivelAuthGuard", $route)) {
             return null;
         }
 
@@ -244,7 +244,7 @@ class Auth {
         return false;
     }
 
-    public function noAuthGuard(){
+    public function noAuthGuard() {
         $this->sendError(self::ERR_NO_AUTHGUARD);
     }
 }

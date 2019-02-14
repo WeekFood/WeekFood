@@ -71,8 +71,8 @@ DELETE FROM `metodospago`;
 DELETE FROM `nivelesprivilegio`;
 /*!40000 ALTER TABLE `nivelesprivilegio` DISABLE KEYS */;
 INSERT INTO `nivelesprivilegio` (`id`, `nombre`) VALUES
-	(0, 'Administrador General'),
-	(9, 'Usuario Basico');
+	(0, 'Usuario Basico'),
+	(9, 'Administrador General');
 /*!40000 ALTER TABLE `nivelesprivilegio` ENABLE KEYS */;
 
 -- Volcando datos para la tabla weekfood.pedidos: ~0 rows (aproximadamente)
@@ -109,6 +109,8 @@ DELETE FROM `ubicaciones`;
 -- Volcando datos para la tabla weekfood.usuarios: ~0 rows (aproximadamente)
 DELETE FROM `usuarios`;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` (`id`, `nick`, `contraseña`, `nombre`, `apellidos`, `foto`, `sexo`, `telefono`, `nacimiento`, `nivelprivilegio`) VALUES
+	(1, 'Admin', '$2y$10$60/ZXnzcdVVpHUdH63npgecJOAoGJhqpPtF3Ut4jRazhWQk3YD9p6', 'Admin', NULL, NULL, NULL, NULL, NULL, 9);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

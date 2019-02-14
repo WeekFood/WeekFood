@@ -97,6 +97,12 @@ return [
             "resource" => "auth",
             "action" => "getLogout",
             "nivelAuthGuard" => 0
+        ],
+        "API, usuario nivel privilegio" => [
+            "route" => "api/usuarios/:idUsuario/nivelPrivilegio",
+            "resource" => "usuarios",
+            "action" => "getNivelPrivilegio",
+            "nivelAuthGuard" => 0
         ]
     ],
     "post" => [
