@@ -199,6 +199,12 @@ return [
             "resource" => "productos",
             "action" => "deleteCategoria",
             "nivelAuthGuard" => 9
+        ],
+        "CRUD, Carritos, borrar" => [
+            "route" => "api/carritos/:id",
+            "resource" => "carritos",
+            "action" => "deleteCarrito",
+            "nivelAuthGuard" => 9
         ]
     ]
 ];

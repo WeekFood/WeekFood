@@ -285,4 +285,15 @@ class CarritosResource extends Resource {
 
         $this->setData();
     }
+
+    public function deleteCarritoAction() {
+        $id = $this->controller->getParam('id');
+
+        $this->sql = 'DELETE FROM carritos WHERE id = :id';
+        $this->execSQL([
+            'id' => $id
+        ]);
+
+        http_response_code(204);
+    }
 }
