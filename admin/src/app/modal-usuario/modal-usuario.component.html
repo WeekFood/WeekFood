@@ -10,12 +10,32 @@
       </div>
       <div class="modal-body">
         <div class="c-modal-usuario">
+          <label>ID</label>
+          <input type="number" [(ngModel)]="usuarioEditado.id" class="form-control" readonly>
           <label>Nick</label>
           <input type="text" [(ngModel)]="usuarioEditado.nick" class="form-control"
             [readonly]="modo === 'ver' || modo === 'borrar'">
           <label>Nombre</label>
           <!-- https://stackoverflow.com/questions/37669365/getting-object-properties-via-ngmodel-select-list-in-angular-2 -->
           <input type="text" [(ngModel)]="usuarioEditado.nombre" class="form-control"
+            [readonly]="modo === 'ver' || modo === 'borrar'">
+          <label>Apellidos</label>
+          <input type="text" [(ngModel)]="usuarioEditado.apellidos" class="form-control"
+            [readonly]="modo === 'ver' || modo === 'borrar'">
+          <label>Extensión foto</label>
+          <input type="text" [(ngModel)]="usuarioEditado.foto" class="form-control"
+            [readonly]="modo === 'ver' || modo === 'borrar'">
+          <label>Sexo</label>
+          <input type="text" [(ngModel)]="usuarioEditado.sexo" class="form-control"
+            [readonly]="modo === 'ver' || modo === 'borrar'">
+          <label>Telefono</label>
+          <input type="text" [(ngModel)]="usuarioEditado.telefono" class="form-control"
+            [readonly]="modo === 'ver' || modo === 'borrar'">
+          <label>Fecha de nacimiento</label>
+          <input type="text" [(ngModel)]="usuarioEditado.nacimiento" class="form-control"
+            [readonly]="modo === 'ver' || modo === 'borrar'">
+          <label>Nivel de privilegio</label>
+          <input type="text" [(ngModel)]="usuarioEditado.nivelprivilegio" class="form-control"
             [readonly]="modo === 'ver' || modo === 'borrar'">
         </div>
       </div>

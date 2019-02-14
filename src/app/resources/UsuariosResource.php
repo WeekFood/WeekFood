@@ -32,10 +32,10 @@ class UsuariosResource extends Resource {
             $this->setError(401, 'NO_HAY_LOGIN');
             return;
         }
-        
+
         $privilegioUsuarioCookie = $this->auth->getPrivilegeLevel($idUsuarioCookie);
         if ($privilegioUsuarioCookie > 0) {
-            $this->data = [["nivelprivilegio"=> $this->auth->getPrivilegeLevel($this->controller->getParam("idUsuario"))]];
+            $this->data = [["nivelprivilegio" => $this->auth->getPrivilegeLevel($this->controller->getParam("idUsuario"))]];
         } else {
             $this->setError(401, 'NO_HAY_PERMISO');
             return;
@@ -123,8 +123,19 @@ class UsuariosResource extends Resource {
         $this->setData();
     }
 
-    public function getTodosAction(){
-        $this->sql = "SELECT id, nick, nombre, apellidos, foto, sexo, telefono, nacimiento FROM usuarios";
+    public function getTodosAction() {
+        $this->sql = 'SELECT
+                        id,
+                        nick,
+                        nombre,
+                        apellidos,
+                        foto,
+                        sexo,
+                        telefono,
+                        nacimiento,
+                        nivelprivilegio
+                    FROM
+                        usuarios';
         $this->execSQL();
         $this->setData();
     }

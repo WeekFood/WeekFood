@@ -7,14 +7,20 @@
           <th scope="col">Nick</th>
           <th scope="col">Nombre</th>
           <th scope="col">Apellidos</th>
+          <th scope="col">Sexo</th>
+          <th scope="col">Telefono</th>
+          <th scope="col">Nacimiento</th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let usuario of usuarios">
+        <tr *ngFor="let usuario of usuarios" [ngClass]="{'table-primary': usuario.nick == 'Admin' }">
           <td>{{ usuario.nick }}</td>
           <td>{{ usuario.nombre }}</td>
           <td>{{ usuario.apellidos }}</td>
+          <td>{{ usuario.sexo }}</td>
+          <td>{{ usuario.telefono }}</td>
+          <td>{{ usuario.nacimiento }}</td>
           <td class="c-usuarios__acciones">
             <button type="button" class="btn btn-secondary" (click)="abrirModalVer(usuario)">Ver</button>
             <button type="button" class="btn btn-primary" (click)="abrirModalEditar(usuario)">Editar</button>

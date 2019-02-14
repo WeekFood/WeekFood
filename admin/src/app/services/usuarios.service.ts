@@ -10,19 +10,33 @@ export class UsuariosService {
   private static API_USUARIOS = `http://${window.location.hostname}:${environment.API_PUERTO}/api/usuarios`;
 
   constructor() { }
-  
+
   getUsuarios() {
-    return $.get(UsuariosService.API_USUARIOS).then((array: any[]) => {
-      return array.map(usuario => {
-        return new Usuario(
-          usuario.id,
-          usuario.nombre,
-          usuario.apellidos
-        );
+    return $.ajax({
+      type: 'GET',
+      url: UsuariosService.API_USUARIOS,
+      contentType: 'application/json',
+      xhrFields: {
+        withCredentials: true
+      }
+    })
+      .then((array: any[]) => {
+        return array.map(usuario => {
+          return new Usuario(
+            usuario.id,
+            usuario.nick,
+            usuario.nombre,
+            usuario.apellidos,
+            usuario.foto,
+            usuario.sexo,
+            usuario.telefono,
+            usuario.nacimiento,
+            usuario.nivelprivilegio
+          );
+        });
       });
-    });
   }
-  
+
   crearUsuario(usuario: Usuario) {
     return $.ajax({
       type: 'POST',
