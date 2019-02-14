@@ -20,6 +20,7 @@ import { ModalSubcategoriaComponent } from './modal-subcategoria/modal-subcatego
 import { AuthProviderService } from './providers/authprovider.service';
 import { AuthService } from './services/auth.service';
 import { CargandoComponent } from './views/cargando/cargando.component';
+import { CarritosComponent } from './views/carritos/carritos.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CargandoComponent } from './views/cargando/cargando.component';
     CategoriasComponent,
     ModalCategoriaComponent,
     SubcategoriasComponent,
-    ModalSubcategoriaComponent
+    ModalSubcategoriaComponent,
+    CarritosComponent
   ],
   imports: [
     BrowserModule,

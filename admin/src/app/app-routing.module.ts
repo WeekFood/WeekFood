@@ -13,6 +13,7 @@ import { SubcategoriasComponent } from './views/subcategorias/subcategorias.comp
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { LoginGuard } from 'src/app/guards/login.guard';
 import { CargandoGuard } from 'src/app/guards/cargando.guard';
+import { CarritosComponent } from './views/carritos/carritos.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path: 'subcategorias',
     component: SubcategoriasComponent
+  },
+  {
+    path: 'carritos',
+    component: CarritosComponent
   },
   {
     path: '**',
