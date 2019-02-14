@@ -7,6 +7,7 @@ import { NoEncontradoComponent } from './views/no-encontrado/no-encontrado.compo
 import { LoginComponent } from './views/login/login.component';
 import { DesautorizadoComponent } from './views/desautorizado/desautorizado.component';
 import { CargandoComponent } from './views/cargando/cargando.component';
+import { CategoriasComponent } from './views/categorias/categorias.component';
 
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { LoginGuard } from 'src/app/guards/login.guard';
@@ -37,6 +38,10 @@ const routes: Routes = [
     path: 'cargando',
     component: CargandoComponent,
     canActivate: [CargandoGuard]
+  },
+  {
+    path: 'categorias',
+    component: CategoriasComponent
   },
   {
     path: '**',

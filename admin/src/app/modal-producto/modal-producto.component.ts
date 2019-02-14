@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Producto } from '../models/Producto';
+import { ProductosService } from '../services/productos.service';
 
 @Component({
   selector: 'app-modal-producto',
@@ -11,14 +12,11 @@ export class ModalProductoComponent implements OnInit {
   @Input() producto: Producto;
   @Input() modo: string;
 
-  @Output() cerrado = new EventEmitter();
-  @Output() guardado = new EventEmitter();
-  @Output() creado = new EventEmitter();
-  @Output() borrado = new EventEmitter();
+  @Output() cerrado = new EventEmitter<boolean>();
 
   productoEditado: Producto;
 
-  constructor() { }
+  constructor(private productosService: ProductosService) { }
 
   ngOnInit() {
     $('.js-modal-producto').modal('show');
@@ -26,47 +24,59 @@ export class ModalProductoComponent implements OnInit {
     this.productoEditado = Object.assign({}, this.producto);
   }
 
-  cerrarse() {
+  cerrarse(actualizarVista: boolean = false) {
     $('.js-modal-producto').modal('hide').one('hidden.bs.modal', () => {
       // destuir modal solo cuando se haya ocultado visualmente
-      this.cerrado.emit();
+      this.cerrado.emit(actualizarVista);
     });
   }
 
-  cerrarseOverlay(evento) {
-    // solo cerrar si se ha hecho click en el overlay, no el el modal como tal
+  cerrarseOverlay(evento: MouseEvent) {
+    // solo cerrar si se ha hecho click en el overlay, no en el modal como tal
     if (evento.target === document.querySelector('.modal')) {
       this.cerrarse();
     }
   }
 
-  cerrarseEsc(evento) {
+  cerrarseEsc(evento: KeyboardEvent) {
     if (evento.key === 'Escape') {
       this.cerrarse();
     }
   }
 
-  guardar() {
-    // TODO: validacion
-    $('.js-modal-producto').modal('hide').one('hidden.bs.modal', () => {
-      // destuir modal solo cuando se haya ocultado visualmente
-      this.guardado.emit(this.productoEditado);
-    });
+  editar() {
+    this.productosService.editarProducto(this.productoEditado)
+      .then(res => {
+        this.cerrarse(true);
+      })
+      .catch((xhr: any) => {
+        console.error('Error AJAX al editar Producto');
+        console.log('Producto:', this.productoEditado);
+        console.log('XHR:', xhr);
+      });
   }
 
   crear() {
-    // TODO: validacion
-    $('.js-modal-producto').modal('hide').one('hidden.bs.modal', () => {
-      // destuir modal solo cuando se haya ocultado visualmente
-      this.creado.emit(this.productoEditado);
-    });
+    this.productosService.crearProducto(this.productoEditado)
+      .then(res => {
+        this.cerrarse(true);
+      })
+      .catch((xhr: any) => {
+        console.error('Error AJAX al crear Producto');
+        console.log('Producto:', this.productoEditado);
+        console.log('XHR:', xhr);
+      });
   }
 
   borrar() {
-    // TODO: validacion
-    $('.js-modal-producto').modal('hide').one('hidden.bs.modal', () => {
-      // destuir modal solo cuando se haya ocultado visualmente
-      this.borrado.emit(this.productoEditado);
-    });
+    this.productosService.borrarProducto(this.productoEditado)
+      .then(res => {
+        this.cerrarse(true);
+      })
+      .catch((xhr: any) => {
+        console.error('Error AJAX al borrar Producto');
+        console.log('Producto:', this.productoEditado);
+        console.log('XHR:', xhr);
+      });
   }
 }

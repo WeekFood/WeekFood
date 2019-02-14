@@ -30,8 +30,8 @@ printf "\t> Construyendo admin\n"
     mkdir ./dist/admin
     printf "\t\t> Cambiando a ./admin\n"
     cd ./admin
-    printf "\t\t> Ejecutando ng build (local) \n"
-    ./node_modules/.bin/ng build --configuration=local # --prod
+    printf "\t\t> Ejecutando ng build (prod) \n"
+    ./node_modules/.bin/ng build --prod
     printf "\t\t> Copiando todos los recursos generados, menos index.html\n a ../dist\n"
     cp -r ./dist/WeekFood/!(index.html) ../dist/
     printf "\t\t> Copiando index.html a ../dist/admin\n"

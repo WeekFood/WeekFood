@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   `subCategoriaDe` varchar(100) NOT NULL,
   PRIMARY KEY (`nombre`),
   KEY `Categoria-Principal` (`subCategoriaDe`),
-  CONSTRAINT `Categoria-Principal` FOREIGN KEY (`subCategoriaDe`) REFERENCES `categoriasprincipales` (`nombre`)
+  CONSTRAINT `Categoria-Principal` FOREIGN KEY (`subCategoriaDe`) REFERENCES `categoriasprincipales` (`nombre`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- La exportación de datos fue deseleccionada.
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `contraseña` varchar(100) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `apellidos` varchar(100) DEFAULT NULL,
-  `foto` varchar(100) DEFAULT NULL,
+  `foto` varchar(4) DEFAULT NULL,
   `sexo` varchar(1) DEFAULT NULL,
   `telefono` varchar(13) DEFAULT NULL,
   `nacimiento` date DEFAULT NULL,

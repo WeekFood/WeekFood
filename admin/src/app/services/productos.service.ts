@@ -27,4 +27,42 @@ export class ProductosService {
       });
     });
   }
+
+  crearProducto(producto: Producto) {
+    delete producto.id;
+
+    return $.ajax({
+      type: 'POST',
+      url: ProductosService.API_PRODUCTOS,
+      contentType: 'application/json',
+      data: JSON.stringify(producto),
+      xhrFields: {
+        withCredentials: true
+      }
+    });
+  }
+
+  editarProducto(producto: Producto) {
+    return $.ajax({
+      type: 'PUT',
+      url: `${ProductosService.API_PRODUCTOS}/${producto.id}`,
+      contentType: 'application/json',
+      data: JSON.stringify(producto),
+      xhrFields: {
+        withCredentials: true
+      }
+    });
+  }
+
+  borrarProducto(producto: Producto) {    
+    return $.ajax({
+      type: 'DELETE',
+      url: `${ProductosService.API_PRODUCTOS}/${producto.id}`,
+      contentType: 'application/json',
+      data: JSON.stringify(producto),
+      xhrFields: {
+        withCredentials: true
+      }
+    });
+  }
 }
