@@ -278,6 +278,20 @@ class CarritosResource extends Resource {
             "fecha" => $carrito["fecha"]
         ];
 
+        try {
+            $this->execSQL($params);
+        } catch (PDOException $e) {
+            switch ($e->errorInfo[1]) {
+                case 1452: // Cannot add or update a child row: a foreign key constraint fails
+                    $this->setError(409, 'USUARIO_INEXISTENTE');
+                    break;
+                default:
+                    $this->setError(500, 'ERROR_PDO');
+            }
+
+            exit();
+        }
+
         $this->sql = 'SELECT * FROM carritos WHERE id = :id';
         $this->execSQL([
             'id' => $this->controller->getParam("id")
