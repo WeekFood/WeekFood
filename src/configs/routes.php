@@ -103,6 +103,12 @@ return [
             "resource" => "usuarios",
             "action" => "getNivelPrivilegio",
             "nivelAuthGuard" => 0
+        ],
+        "CRUD, Carritos, get" => [
+            "route" => "api/carritos",
+            "resource" => "carritos",
+            "action" => "getCarritos",
+            "nivelAuthGuard" => -1
         ]
     ],
     "post" => [

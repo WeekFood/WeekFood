@@ -55,6 +55,12 @@ class CarritosResource extends Resource {
         $this->setData();
     }
 
+    public function getCarritosAction() {
+        $this->sql = 'SELECT * FROM carritos';
+        $this->execSQL();
+        $this->setData();
+    }
+
     public function postCarritoAction() {
 
         $json = file_get_contents('php://input');
