@@ -173,7 +173,7 @@ function acceso_LoginInicial(nuevoUsuario = false) {
                         GLOBAL_USUARIO.nick = respuesta[0].nick
                         GLOBAL_USUARIO.datos.nombre = respuesta[0].nombre
                         GLOBAL_USUARIO.datos.sexo = respuesta[0].sexo
-                        if (respuesta[0].foto == null) {
+                        if (respuesta[0].foto == "") {
                             GLOBAL_USUARIO.datos.foto = "imagenes/placeholders/perfil_defecto_"
                             switch (GLOBAL_USUARIO.datos.sexo) {
                                 case "H":
@@ -188,13 +188,13 @@ function acceso_LoginInicial(nuevoUsuario = false) {
                         } else {
                             GLOBAL_USUARIO.datos.foto = "/imagenes/usuarios/" + respuesta[0].id + "." + respuesta[0].foto
                         }
-                        if (respuesta[0].apellidos !== null) {
+                        if (respuesta[0].apellidos !== "") {
                             GLOBAL_USUARIO.datos.apellidos = respuesta[0].apellidos
                         }
-                        if (respuesta[0].telefono !== null) {
+                        if (respuesta[0].telefono !== "") {
                             GLOBAL_USUARIO.datos.telefono = respuesta[0].telefono
                         }
-                        if (respuesta[0].nacimiento !== null) {
+                        if (respuesta[0].nacimiento !== "") {
                             GLOBAL_USUARIO.datos.fechaNacimiento = respuesta[0].nacimiento
                         }
                         $(".js-acceso").remove()
