@@ -15,8 +15,8 @@
           <label>Nick</label>
           <input type="text" [(ngModel)]="usuarioEditado.nick" class="form-control"
             [readonly]="modo === 'ver' || modo === 'borrar'">
-          <label [hidden]="modo !== 'editar' && modo !== 'crear'">Contraseña</label>
-          <button [hidden]="modo != 'editar' && modo !== 'crear'" type="button" class="btn btn-primary"
+          <label *ngIf="modo == 'editar' || modo == 'crear'">Contraseña</label>
+          <button *ngIf="modo == 'editar' || modo == 'crear'" type="button" class="btn btn-primary"
             (click)="generarNuevaContra()">{{ nuevaContra }}</button>
           <label>Nombre</label>
           <!-- https://stackoverflow.com/questions/37669365/getting-object-properties-via-ngmodel-select-list-in-angular-2 -->
@@ -25,18 +25,19 @@
           <label>Apellidos</label>
           <input type="text" [(ngModel)]="usuarioEditado.apellidos" class="form-control"
             [readonly]="modo === 'ver' || modo === 'borrar'">
-          <label [hidden]="modo == 'crear' || usuarioEditado.foto.length < 1">Foto</label>
+          <label *ngIf="modo != 'crear' && usuarioEditado.foto.length > 0">Foto</label>
 
-          <div class="c-modal-usuario__botones" [hidden]="modo == 'crear' || usuarioEditado.foto.length < 1">
+          <div class="c-modal-usuario__botones" *ngIf="modo != 'crear' && usuarioEditado.foto.length > 0">
 
-            <button type="button" class="btn btn-primary c-modal-usuario__boton" (click)="abrirFoto()"
-              [hidden]="fotoSeBorrara">Abrir</button>
+            <a href="imagenes/usuarios/{{usuario.id}}.{{usuario.foto}}" target="_blank"
+              class="btn btn-primary btn-lg active c-modal-usuario__boton" role="button" aria-pressed="true"
+              *ngIf="!fotoSeBorrara">Abrir</a>
 
             <button type="button" class="btn btn-danger c-modal-usuario__boton" (click)="borrarFoto()"
-              [hidden]="modo != 'editar' || fotoSeBorrara">Borrar</button>
+              *ngIf="modo == 'editar' && !fotoSeBorrara">Borrar</button>
 
             <button type="button" class="btn btn-danger c-modal-usuario__boton c-modal-usuario__boton--deshacer"
-              (click)="deshacerBorrarFoto()" [hidden]="modo != 'editar' || !fotoSeBorrara">Borrada, deshacer</button>
+              (click)="deshacerBorrarFoto()" *ngIf="modo == 'editar' && fotoSeBorrara">Borrada, deshacer</button>
 
           </div>
 

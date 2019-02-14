@@ -1,8 +1,8 @@
 export class Usuario {
-    public contraseña : string = ""
     // shorthand https://www.stevefenton.co.uk/2013/04/stop-manually-assigning-typescript-constructor-parameters/
     constructor(
         public id: number,
+        public contraseña : string,
         public nick: string,
         public nombre: string,
         public apellidos: string,

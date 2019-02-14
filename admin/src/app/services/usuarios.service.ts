@@ -24,6 +24,7 @@ export class UsuariosService {
         return array.map(usuario => {
           return new Usuario(
             usuario.id,
+            "",
             usuario.nick,
             usuario.nombre,
             usuario.apellidos,
@@ -50,6 +51,7 @@ export class UsuariosService {
   }
 
   editarUsuario(usuario: Usuario) {
+    console.log(usuario)
     return $.ajax({
       type: 'PUT',
       url: `${UsuariosService.API_USUARIOS}/${usuario.id}`,

@@ -20,7 +20,7 @@
           <td>{{ usuario.nombre }}</td>
           <td>
             <div class="c-usuarios__imagen-contenedor">
-              <img [hidden]="usuario.foto.length == 0" class="c-usuarios__imagen"
+              <img *ngIf="usuario.foto.length > 0" class="c-usuarios__imagen"
                 src="imagenes/usuarios/{{usuario.id}}.{{usuario.foto}}">
             </div>
           </td>

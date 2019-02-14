@@ -62,7 +62,12 @@ export class ModalUsuarioComponent implements OnInit {
   }
 
   editar() {
-    this.usuarioEditado.contraseña = this.nuevaContra
+    if ( this.nuevaContra != "Generar nueva"){
+      this.usuarioEditado.contraseña = this.nuevaContra
+    }
+    if(this.fotoSeBorrara){
+      this.usuarioEditado.foto = "borrarImagen"
+    }
     this.usuariosService.editarUsuario(this.usuarioEditado)
       .then(res => {
         this.cerrarse(true);

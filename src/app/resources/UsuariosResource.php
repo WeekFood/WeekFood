@@ -64,20 +64,7 @@ class UsuariosResource extends Resource {
                     )[0]// data:image/jpeg;base64
                 )[1]// jpeg;base64,
             )[0]; // jpeg
-
-            $imgExtensiones = [
-                "png",
-                "jpeg",
-                "jpg",
-                "gif",
-                "svg"
-            ];
-            foreach ($imgExtensiones as $imgExten) {
-                $imgABorrar = ROOT . DS . "cliente" . DS . "imagenes" . DS . "usuarios" . DS . $idUsuarioUrl . "." . $imgExten;
-                if (file_exists($imgABorrar)) {
-                    unlink($imgABorrar);
-                }
-            }
+            borrarImagenesDelUsuario($idUsuarioUrl);
             $nombreArchivoImagen = ROOT . DS . "cliente" . DS . "imagenes" . DS . "usuarios" . DS . $idUsuarioUrl . "." . $extensionImagen;
             //https://stackoverflow.com/questions/15153776/convert-base64-string-to-an-image-file
             $archivo = fopen($nombreArchivoImagen, 'wb');
@@ -92,40 +79,45 @@ class UsuariosResource extends Resource {
 
         } else {
             if (strlen($usuario['foto']) > 5) {
-                $extensionImagen = explode(".", $usuario['foto'])[1];
+                if ($usuario['foto'] === "borrarImagen") {
+                    $extensionImagen = null;
+                } else {
+                    $extensionImagen = explode(".", $usuario['foto'])[1];
+                }
             } else {
                 $extensionImagen = $usuario['foto'];
             }
         }
 
-        if (array_key_exists("sexo", $usuario) && $usuario['sexo'] == NULL) {
-            $usuario['sexo'] = "";
+        if ($usuario["contraseña"] == ""){
+            unset($usuario["contraseña"]);
         }
-
         $asignacionesSQL = [];
-
         $this->sql = 'UPDATE usuarios SET ';
         foreach ($usuario as $campo => $valor) {
-            if($valor == ""){
+            if ($valor == "") {
                 $valor = null;
             }
 
             if ($campo == "fechaNacimiento") {
                 $campo = "nacimiento";
             }
+            
+            if ($campo == "contraseña" && $valor != null) {
+                $valor = password_hash($valor, PASSWORD_BCRYPT);
+            }
 
             if ($campo == "foto") {
                 $asignacionesSQL[$campo] = $extensionImagen;
             } else {
-                $asignacionesSQL[$campo] = $valor;
+                $asignacionesSQL[($campo == "contraseña" ? "contra" : $campo)] = $valor;
             }
 
-            $this->sql .= $campo . " = :" . $campo . ", ";
+            $this->sql .= $campo . " = :" . ($campo == "contraseña" ? "contra" : $campo) . ", ";
         }
         $this->sql = rtrim($this->sql, ", ");
         $this->sql .= " WHERE id = :idUsuario";
         $asignacionesSQL['idUsuario'] = $idUsuarioUrl;
-
         $this->execSQL($asignacionesSQL);
 
         $this->data = $usuario;
@@ -149,7 +141,7 @@ class UsuariosResource extends Resource {
         $this->setData();
     }
 
-    public function deleteUsuarioAction(){
+    public function deleteUsuarioAction() {
         $this->sql = "DELETE FROM usuarios WHERE id = :idUsuario";
         $params = [
             "idUsuario" => $this->controller->getParam("idUsuario")
@@ -158,27 +150,44 @@ class UsuariosResource extends Resource {
         http_response_code(204);
     }
 
-    public function postUsuarioAction(){
+    public function postUsuarioAction() {
         $json = file_get_contents('php://input');
         $usuario = json_decode($json, true);
         $this->sql = "INSERT INTO usuarios (
                                         nick,
                                         contraseña,
                                         nombre,
-                                        apellidos, 
+                                        apellidos,
                                         sexo,
-                                        telefono, 
-                                        nacimiento, 
+                                        telefono,
+                                        nacimiento,
                                         nivelprivilegio
                                 ) VALUES (
                                         :nick,
                                         :contraseña,
                                         :nombre,
-                                        :apellidos, 
+                                        :apellidos,
                                         :sexo,
-                                        :telefono, 
-                                        :nacimiento, 
+                                        :telefono,
+                                        :nacimiento,
                                         :nivelprivilegio
                                 )";
-                                                }
+    }
+
+    private function borrarImagenesDelUsuario($idUsuario) {
+
+        $imgExtensiones = [
+            "png",
+            "jpeg",
+            "jpg",
+            "gif",
+            "svg"
+        ];
+        foreach ($imgExtensiones as $imgExten) {
+            $imgABorrar = ROOT . DS . "cliente" . DS . "imagenes" . DS . "usuarios" . DS . $idUsuario . "." . $imgExten;
+            if (file_exists($imgABorrar)) {
+                unlink($imgABorrar);
+            }
+        }
+    }
 }
