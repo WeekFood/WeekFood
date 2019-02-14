@@ -5,143 +5,170 @@ return [
         "/" => [
             "route" => "/",
             "resource" => "cliente",
-            "action" => "index"
+            "action" => "index",
+            "nivelAuthGuard" => -1
         ],
         "Admin" => [
             "route" => "/admin",
             "resource" => "admin",
-            "action" => "index"
+            "action" => "index",
+            "nivelAuthGuard" => 9
         ],
         "API" => [
             "route" => "api",
             "resource" => "api",
-            "action" => "error"
+            "action" => "error",
+            "nivelAuthGuard" => -1
         ],
         "API, carrusel" => [
             "route" => "api/carrusel",
             "resource" => "productos",
-            "action" => "getCarrusel"
+            "action" => "getCarrusel",
+            "nivelAuthGuard" => -1
         ],
         "API, menu" => [
             "route" => "api/menu",
             "resource" => "menu",
-            "action" => "getTodos"
+            "action" => "getTodos",
+            "nivelAuthGuard" => -1
         ],
         "API, productos" => [
             "route" => "api/productos",
             "resource" => "productos",
-            "action" => "getTodos"
+            "action" => "getTodos",
+            "nivelAuthGuard" => -1
         ],
         "API, productos, query todas categorias principales" => [
             "route" => "api/productos/categorias",
             "resource" => "productos",
-            "action" => "getCategoriasPrincipales"
+            "action" => "getCategoriasPrincipales",
+            "nivelAuthGuard" => -1
         ],
         "API, productos, query categorias principales" => [
             "route" => "api/productos/categorias/:nombre/subcategorias",
             "resource" => "productos",
-            "action" => "getCategoriaPrincipal"
+            "action" => "getCategoriaPrincipal",
+            "nivelAuthGuard" => -1
         ],
         "API, productos, query categorias" => [
             "route" => "api/productos?categoria=:categoria",
             "resource" => "productos",
-            "action" => "getCategoria"
+            "action" => "getCategoria",
+            "nivelAuthGuard" => -1
         ],
         "API, productos, categorias" => [
             "route" => "api/productos/categorias/subcategorias",
             "resource" => "productos",
-            "action" => "getCategorias"
+            "action" => "getCategorias",
+            "nivelAuthGuard" => -1
         ],
         "API, Productos destacados" => [
             "route" => "api/productos?destacado=:destacado",
             "resource" => "productos",
-            "action" => "getDestacados"
+            "action" => "getDestacados",
+            "nivelAuthGuard" => -1
         ],
         "API, Productos, por id" => [
             "route" => "api/productos/:id",
             "resource" => "productos",
-            "action" => "getProductoID"
+            "action" => "getProductoID",
+            "nivelAuthGuard" => -1
         ],
         "API, carritos por id usuario" => [
             "route" => "api/carritos?usuario=:idUsuario",
             "resource" => "carritos",
-            "action" => "getCarrito"
+            "action" => "getCarrito",
+            "nivelAuthGuard" => 0
         ],
         "API, datos de usuario" => [
             "route" => "api/usuarios/:idUsuario",
             "resource" => "usuarios",
-            "action" => "getUsuario"
+            "action" => "getUsuario",
+            "nivelAuthGuard" => 0
         ],
         "API, Auth, renovar login" => [
             "route" => "api/auth/renovar_login",
             "resource" => "auth",
-            "action" => "getRenovarLogin"
+            "action" => "getRenovarLogin",
+            "nivelAuthGuard" => -1
         ],
         "API, Auth, logout" => [
             "route" => "api/auth/logout",
             "resource" => "auth",
-            "action" => "getLogout"
+            "action" => "getLogout",
+            "nivelAuthGuard" => 0
         ]
     ],
     "post" => [
         "API, carrito" => [
             "route" => "api/carritos",
             "resource" => "carritos",
-            "action" => "postCarrito"
+            "action" => "postCarrito",
+            "nivelAuthGuard" => 0
         ],
         "API, Auth, registro" => [
             "route" => "api/auth/registro",
             "resource" => "auth",
-            "action" => "postRegistro"
+            "action" => "postRegistro",
+            "nivelAuthGuard" => -1
         ],
         "API, Auth, login" => [
             "route" => "api/auth/login",
             "resource" => "auth",
-            "action" => "postLogin"
+            "action" => "postLogin",
+            "nivelAuthGuard" => -1
         ],
         "API, Auth, usuario ya existe" => [
             "route" => "api/auth/usuario_ya_existe",
             "resource" => "auth",
-            "action" => "postUsuarioYaExiste"
+            "action" => "postUsuarioYaExiste",
+            "nivelAuthGuard" => -1
         ],
         "CRUD, Productos, nuevo" => [
             "route" => "api/productos",
             "resource" => "productos",
-            "action" => "postProducto"
+            "action" => "postProducto",
+            "nivelAuthGuard" => 9
         ],
         "CRUD, Categorias, nuevo" => [
             "route" => "api/productos/categorias",
             "resource" => "productos",
-            "action" => "postCategoriaPrincipal"
+            "action" => "postCategoriaPrincipal",
+            "nivelAuthGuard" => 9
         ]
     ],
     "put" => [
         "API, carrito" => [
             "route" => "api/carritos/:id",
             "resource" => "carritos",
-            "action" => "putCarrito"
+            "action" => "putCarrito",
+            "nivelAuthGuard" => 0
         ],
         "API, actualizar usuario" => [
             "route" => "api/usuarios/:idUsuario",
             "resource" => "usuarios",
-            "action" => "putUsuario"
+            "action" => "putUsuario",
+            "nivelAuthGuard" => 0
         ],
         "CRUD, Productos, editar" => [
             "route" => "api/productos/:id",
             "resource" => "productos",
-            "action" => "putProducto"
+            "action" => "putProducto",
+            "nivelAuthGuard" => 9
         ],
         "CRUD, Categorias, editar" => [
             "route" => "api/productos/categorias/:nombre",
             "resource" => "productos",
-            "action" => "putCategoriaPrincipal"
+            "action" => "putCategoriaPrincipal",
+            "nivelAuthGuard" => 9
         ]
     ],
     "delete" => [
         "CRUD, Productos, borrar" => [
             "route" => "api/productos/:id",
             "resource" => "productos",
-            "action" => "deleteProducto"
+            "action" => "deleteProducto",
+            "nivelAuthGuard" => 9
         ]
     ]
 ];
