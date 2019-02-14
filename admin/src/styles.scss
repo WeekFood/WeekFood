@@ -21,9 +21,7 @@ input[type=number] {
 }
 
 // Basado en estilos de Bootstrap https://getbootstrap.com/docs/4.2/components/forms/#validation
-.form-control:invalid {
+.form-control:focus:invalid {
     border-color: #dc3545;
-    &:focus {
-        box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25);
-    }
+    box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25);
 }
