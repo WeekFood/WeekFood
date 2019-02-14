@@ -11,11 +11,11 @@ import { AuthProviderService } from 'src/app/providers/authprovider.service';
 })
 export class LoginComponent {
 
-  private nick: string = ""
-  private contra: string = ""
+  public nick: string = ""
+  public contra: string = ""
 
-  private errorUsuario: String = ""
-  private errorContra: String = ""
+  public errorUsuario: String = ""
+  public errorContra: String = ""
 
   constructor(
     private injector: Injector,
