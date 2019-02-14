@@ -75,7 +75,7 @@ export class ModalSubcategoriaComponent implements OnInit {
   editar() {
     this.subcategoriasService.editarSubcategoria(this.subcategoriaEditada, this.subcategoria.nombre)
       .then(res => {
-        this.cerrarse(false);
+        this.cerrarse(true);
       })
       .catch((xhr: any) => {
         console.error('Error AJAX al editar Subcategoría');
