@@ -91,7 +91,11 @@ class UsuariosResource extends Resource {
             $usuario['foto'] = $extensionImagen;
 
         } else {
-            $extensionImagen = explode(".", $usuario['foto'])[1];
+            if (strlen($usuario['foto']) > 5) {
+                $extensionImagen = explode(".", $usuario['foto'])[1];
+            } else {
+                $extensionImagen = $usuario['foto'];
+            }
         }
 
         if (array_key_exists("sexo", $usuario) && $usuario['sexo'] == NULL) {
@@ -102,19 +106,25 @@ class UsuariosResource extends Resource {
 
         $this->sql = 'UPDATE usuarios SET ';
         foreach ($usuario as $campo => $valor) {
+            if($valor == ""){
+                $valor = null;
+            }
+
             if ($campo == "fechaNacimiento") {
                 $campo = "nacimiento";
             }
+
             if ($campo == "foto") {
                 $asignacionesSQL[$campo] = $extensionImagen;
             } else {
                 $asignacionesSQL[$campo] = $valor;
             }
+
             $this->sql .= $campo . " = :" . $campo . ", ";
         }
         $this->sql = rtrim($this->sql, ", ");
         $this->sql .= " WHERE id = :idUsuario";
-        $asignacionesSQL['idUsuario'] = $idUsuario;
+        $asignacionesSQL['idUsuario'] = $idUsuarioUrl;
 
         $this->execSQL($asignacionesSQL);
 

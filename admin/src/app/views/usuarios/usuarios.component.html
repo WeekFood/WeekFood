@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let usuario of usuarios" [ngClass]="{'table-primary': usuario.nick == 'Admin' }">
+        <tr *ngFor="let usuario of usuarios" [ngClass]="{'table-primary': usuario.nivelprivilegio > 0 }">
           <td>{{ usuario.nick }}</td>
           <td>{{ usuario.nombre }}</td>
           <td>{{ usuario.apellidos }}</td>
