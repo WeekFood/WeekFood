@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Producto } from 'src/app/models/Producto';
-import { ProductosService } from 'src/app/services/productos.service';
+import { Producto } from '../models/Producto';
+import { ProductosService } from '../services/productos.service';
 
 @Component({
   selector: 'app-modal-producto',
