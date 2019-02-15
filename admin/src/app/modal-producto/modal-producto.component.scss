@@ -6,6 +6,12 @@
     align-items: center;
 }
 
+c-modal-producto__imagen {
+    height: 100px;
+    width: 100px;
+    object-fit: cover
+}
+
 label {
     text-align: right;
     margin: 0;
