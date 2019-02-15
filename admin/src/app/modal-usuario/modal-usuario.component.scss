@@ -1,0 +1,22 @@
+.c-modal-usuario {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-auto-rows: auto;
+    grid-gap: 1rem;
+    align-items: center;
+}
+.c-modal-usuario__botones{
+    display: flex;
+    text-align: center
+}
+.c-modal-usuario__boton{
+    margin: 0 auto;
+    width: 45%;
+    &--deshacer{
+        width: auto;
+    }
+}
+label {
+    text-align: right;
+    margin: 0;
+}

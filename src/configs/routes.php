@@ -104,6 +104,12 @@ return [
             "action" => "getNivelPrivilegio",
             "nivelAuthGuard" => 0
         ],
+        "API, todos los usuarios" => [
+            "route" => "api/usuarios",
+            "resource" => "usuarios",
+            "action" => "getTodos",
+            "nivelAuthGuard" => 9
+        ],
         "CRUD, Carritos, get" => [
             "route" => "api/carritos",
             "resource" => "carritos",
@@ -153,6 +159,12 @@ return [
             "resource" => "productos",
             "action" => "postCategoria",
             "nivelAuthGuard" => 9
+        ],
+        "CRUD, Usuario, nuevo" => [
+            "route" => "api/usuarios/",
+            "resource" => "usuarios",
+            "action" => "postUsuario",
+            "nivelAuthGuard" => 9
         ]
     ],
     "put" => [
@@ -199,6 +211,11 @@ return [
             "resource" => "productos",
             "action" => "deleteCategoria",
             "nivelAuthGuard" => 9
+        ],
+        "CRUD, Usuarios, borrar" => [
+            "route" => "api/usuarios/:idUsuario",
+            "resource" => "usuarios",
+            "action" => "deleteUsuario"
         ],
         "CRUD, Carritos, borrar" => [
             "route" => "api/carritos/:id",

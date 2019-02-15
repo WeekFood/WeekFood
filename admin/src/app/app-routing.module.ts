@@ -9,6 +9,7 @@ import { DesautorizadoComponent } from 'src/app/views/desautorizado/desautorizad
 import { CargandoComponent } from 'src/app/views/cargando/cargando.component';
 import { CategoriasComponent } from 'src/app/views/categorias/categorias.component';
 import { SubcategoriasComponent } from 'src/app/views/subcategorias/subcategorias.component';
+import { UsuariosComponent } from 'src/app/views/usuarios/usuarios.component';
 
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { LoginGuard } from 'src/app/guards/login.guard';
@@ -48,6 +49,10 @@ const routes: Routes = [
   {
     path: 'subcategorias',
     component: SubcategoriasComponent
+  },
+  {
+    path: 'usuarios',
+    component: UsuariosComponent
   },
   {
     path: 'carritos',

@@ -1,0 +1,24 @@
+.c-usuarios__boton-nuevo {
+    margin-bottom: 1rem;
+}
+
+.c-usuarios__acciones {
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 16px;
+    justify-content: flex-end;
+}
+
+.c-usuarios__imagen-contenedor{
+    height: 50px;
+    width: 50px;
+    border-radius: 100px;
+    margin: -5px;
+    overflow: hidden;
+}
+
+.c-usuarios__imagen{
+    height: 50px;
+    width: 50px;
+    object-fit: cover
+}
