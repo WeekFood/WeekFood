@@ -186,7 +186,7 @@ function acceso_LoginInicial(nuevoUsuario = false) {
                                     GLOBAL_USUARIO.datos.foto += "indefinido.png"
                             }
                         } else {
-                            GLOBAL_USUARIO.datos.foto = "/imagenes/usuarios/" + respuesta[0].id + "." + respuesta[0].foto
+                            GLOBAL_USUARIO.datos.foto = "/imagenesUsuarios/" + respuesta[0].id + "." + respuesta[0].foto
                         }
                         if (respuesta[0].apellidos !== "") {
                             GLOBAL_USUARIO.datos.apellidos = respuesta[0].apellidos
