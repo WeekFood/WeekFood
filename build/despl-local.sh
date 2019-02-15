@@ -6,6 +6,7 @@ if [ "$EUID" -eq 0 ]; then
     sudo mkdir /var/www/html &&
     sudo cp ./build/config/htaccess /var/www/html/.htaccess &&
     sudo cp ./dist/* /var/www/html/ -r
+    sudo chown  www-data:www-data /var/www/html/* -R
     echo "Copiado correctamente."
 else
     echo "Ejecutame como root."
