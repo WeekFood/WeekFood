@@ -215,7 +215,8 @@ return [
         "CRUD, Usuarios, borrar" => [
             "route" => "api/usuarios/:idUsuario",
             "resource" => "usuarios",
-            "action" => "deleteUsuario"
+            "action" => "deleteUsuario",
+            "nivelAuthGuard" => 9
         ],
         "CRUD, Carritos, borrar" => [
             "route" => "api/carritos/:id",
