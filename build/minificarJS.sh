@@ -3,7 +3,7 @@ set -e
 shopt -s globstar
 
 # ruta por defecto si no se pasa parametro
-OUTPUT=${1:-./dist/js/WeekFood_fix.js}
+OUTPUT=${1:-./dist/js/WeekFood.js}
 
 terser \
     src/cliente/js/modelos/**/*.js \
