@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { Carrito } from '../models/Carrito';
+import { Carrito } from 'src/app/models/Carrito';
 
-import { CarritosService } from '../services/carritos.service';
+import { CarritosService } from 'src/app/services/carritos.service';
 
 @Component({
   selector: 'app-modal-carrito',
