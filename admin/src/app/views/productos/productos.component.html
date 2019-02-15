@@ -22,7 +22,7 @@
             <span *ngFor="let categoria of producto.categoria" class="c-productos__categoria badge badge-secondary">{{ categoria }}</span>
           </td>
           <td>{{ producto.descripcion }}</td>
-          <td><img [src]="producto.foto"></td>
+          <td><img class="c-productos__imagen" src="imagenes/productos/{{ producto.foto }}"></td>
           <td class="c-productos__columna-checkbox"><input type="checkbox" [checked]="producto.destacado" disabled></td>
           <td>{{ producto.precio }}</td>
           <td><button type="button" class="btn btn-secondary" (click)="abrirModalVer(producto)">Ver</button></td>

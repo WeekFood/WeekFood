@@ -24,7 +24,7 @@
           <label>Descripción</label>
           <input type="text" [(ngModel)]="productoEditado.descripcion" class="form-control" [readonly]="modo === 'ver' || modo === 'borrar'">
           <label>Foto</label>
-          <img *ngIf="modo === 'ver' || modo === 'borrar'" [src]="productoEditado.foto">
+          <img *ngIf="modo === 'ver' || modo === 'borrar'" src="imagenes/productos/{{ productoEditado.foto }}" class="c-modal-producto__imagen">
           <input *ngIf="modo !== 'ver' && modo !== 'borrar'" [(ngModel)]="productoEditado.foto" class="form-control">
           <label>Destacado</label>
           <input type="checkbox" [(ngModel)]="productoEditado.destacado" [disabled]="modo === 'ver' || modo === 'borrar'">
