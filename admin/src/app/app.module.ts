@@ -2,28 +2,28 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { CabeceraComponent } from './cabecera/cabecera.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { ProductosComponent } from './views/productos/productos.component';
-import { ModalProductoComponent } from './modal-producto/modal-producto.component';
-import { InicioComponent } from './views/inicio/inicio.component';
-import { NoEncontradoComponent } from './views/no-encontrado/no-encontrado.component';
-import { LoginComponent } from './views/login/login.component';
-import { DesautorizadoComponent } from './views/desautorizado/desautorizado.component';
-import { CategoriasComponent } from './views/categorias/categorias.component';
-import { ModalCategoriaComponent } from './modal-categoria/modal-categoria.component';
-import { SubcategoriasComponent } from './views/subcategorias/subcategorias.component';
-import { ModalSubcategoriaComponent } from './modal-subcategoria/modal-subcategoria.component';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { AppComponent } from 'src/app/app.component';
+import { CabeceraComponent } from 'src/app/cabecera/cabecera.component';
+import { SidebarComponent } from 'src/app/sidebar/sidebar.component';
+import { ProductosComponent } from 'src/app/views/productos/productos.component';
+import { ModalProductoComponent } from 'src/app/modal-producto/modal-producto.component';
+import { InicioComponent } from 'src/app/views/inicio/inicio.component';
+import { NoEncontradoComponent } from 'src/app/views/no-encontrado/no-encontrado.component';
+import { LoginComponent } from 'src/app/views/login/login.component';
+import { DesautorizadoComponent } from 'src/app/views/desautorizado/desautorizado.component';
+import { CategoriasComponent } from 'src/app/views/categorias/categorias.component';
+import { ModalCategoriaComponent } from 'src/app/modal-categoria/modal-categoria.component';
+import { SubcategoriasComponent } from 'src/app/views/subcategorias/subcategorias.component';
+import { ModalSubcategoriaComponent } from 'src/app/modal-subcategoria/modal-subcategoria.component';
 
-import { AuthProviderService } from './providers/authprovider.service';
-import { AuthService } from './services/auth.service';
-import { CargandoComponent } from './views/cargando/cargando.component';
+import { AuthProviderService } from 'src/app/providers/authprovider.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { CargandoComponent } from 'src/app/views/cargando/cargando.component';
+import { CarritosComponent } from 'src/app/views/carritos/carritos.component';
+import { ModalCarritoComponent } from 'src/app/modal-carrito/modal-carrito.component';
 import { UsuariosComponent } from 'src/app/views/usuarios/usuarios.component';
 import { ModalUsuarioComponent } from 'src/app/modal-usuario/modal-usuario.component';
-import { CarritosComponent } from './views/carritos/carritos.component';
-import { ModalCarritoComponent } from './modal-carrito/modal-carrito.component';
 
 @NgModule({
   declarations: [
