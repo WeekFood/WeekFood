@@ -21,7 +21,7 @@ export class ProductosService {
           producto.categoria.split(','),
           producto.descripcion,
           producto.foto,
-          Boolean(producto.destacado),
+          Boolean(Number(producto.destacado)), // "0" es true, por lo que hace falta pasarlo a 0 primero
           parseInt(producto.precio)
         );
       });
