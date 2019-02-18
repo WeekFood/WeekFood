@@ -2,13 +2,10 @@
     position: fixed;
     z-index: 50;
     background: $blanco;
-    padding: 1% 3%;
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    animation: c-notificacion-aparecer;
-    animation-duration: 15s;
-    animation-fill-mode: both;
-    animation-timing-function: ease-out;
+    overflow: hidden;
     &--top {
         width: 80vw;
         left: 10vw;
@@ -23,6 +20,22 @@
         bottom: 50px;
         animation: c-notificacion--flash;
         animation-duration: 5s;
+    }
+}
+
+.c-notificacion__barra-tiempo {
+    position: absolute;
+    height: 5px;
+    right:  0;
+    bottom: 0;
+    background: $rojo;
+    animation: c-notificacion__barra-tiempo linear;
+    border-radius: 10px;
+    &--top {
+        animation-duration: 9.6s;
+    }
+    &--flash {
+        animation-duration: 4.5s;
     }
 }
 
@@ -69,5 +82,14 @@
     }
     100% {
         right: -100%;
+    }
+}
+
+@keyframes c-notificacion__barra-tiempo{
+    0%{
+        width: 100%;
+    }
+    100%{
+        width: 0%;
     }
 }

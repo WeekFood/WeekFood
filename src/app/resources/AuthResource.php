@@ -119,4 +119,12 @@ class AuthResource extends Resource {
 
         $this->setData();
     }
+
+    public function getNivelPrivilegioDelUsuario($idUsuario){
+        return $this->auth->getPrivilegeLevel($idUsuario);
+    }
+
+    public function authGuardRechazadoAction() {
+          $this->setError(401, 'AUTHGUARD_RECHAZADO');   
+    }
 }

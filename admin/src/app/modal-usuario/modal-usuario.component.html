@@ -1,0 +1,69 @@
+<div class="modal fade js-modal-usuario" tabindex="-1" data-backdrop="static" data-keyboard="false"
+  (click)="cerrarseOverlay($event)" (keydown)="cerrarseEsc($event)">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ usuario.nick }}</h5>
+        <button type="button" class="close" (click)="cerrarse()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="c-modal-usuario">
+          <label>ID</label>
+          <input type="number" [(ngModel)]="usuarioEditado.id" class="form-control" readonly>
+          <label>Nick</label>
+          <input type="text" [(ngModel)]="usuarioEditado.nick" class="form-control"
+            [readonly]="modo === 'ver' || modo === 'borrar'">
+          <label *ngIf="modo == 'editar' || modo == 'crear'">Contraseña</label>
+          <button *ngIf="modo == 'editar' || modo == 'crear'" type="button" class="btn btn-primary"
+            (click)="generarNuevaContra()">
+            <span *ngIf="nuevaContra.length == 0">Generar nueva</span>
+            <span *ngIf="nuevaContra.length > 0">Generar otra nueva</span>
+          </button>
+          <label>Nombre</label>
+          <input type="text" [(ngModel)]="usuarioEditado.nombre" class="form-control"
+            [readonly]="modo === 'ver' || modo === 'borrar'">
+          <label>Apellidos</label>
+          <input type="text" [(ngModel)]="usuarioEditado.apellidos" class="form-control"
+            [readonly]="modo === 'ver' || modo === 'borrar'">
+          <label *ngIf="modo != 'crear' && usuarioEditado.foto.length > 0">Foto</label>
+
+          <div class="c-modal-usuario__botones" *ngIf="modo != 'crear' && usuarioEditado.foto.length > 0">
+
+            <a href="imagenesUsuarios/{{usuario.id}}.{{usuario.foto}}" target="_blank"
+              class="btn btn-primary btn-lg active c-modal-usuario__boton" role="button" aria-pressed="true"
+              *ngIf="!fotoSeBorrara">Abrir</a>
+
+            <button type="button" class="btn btn-danger c-modal-usuario__boton" (click)="borrarFoto()"
+              *ngIf="modo == 'editar' && !fotoSeBorrara">Borrar</button>
+
+            <button type="button" class="btn btn-danger c-modal-usuario__boton c-modal-usuario__boton--deshacer"
+              (click)="deshacerBorrarFoto()" *ngIf="modo == 'editar' && fotoSeBorrara">Borrada, deshacer</button>
+
+          </div>
+
+          <label>Sexo</label>
+          <input type="text" [(ngModel)]="usuarioEditado.sexo" class="form-control"
+            [readonly]="modo === 'ver' || modo === 'borrar'">
+          <label>Telefono</label>
+          <input type="text" [(ngModel)]="usuarioEditado.telefono" class="form-control"
+            [readonly]="modo === 'ver' || modo === 'borrar'">
+          <label>Fecha de nacimiento</label>
+          <input type="text" [(ngModel)]="usuarioEditado.nacimiento" class="form-control"
+            [readonly]="modo === 'ver' || modo === 'borrar'">
+          <label>Nivel de privilegio</label>
+          <input type="text" [(ngModel)]="usuarioEditado.nivelprivilegio" class="form-control"
+            [readonly]="modo === 'ver' || modo === 'borrar'">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button *ngIf="modo === 'editar'" type="button" class="btn btn-success" (click)="editar()">Guardar</button>
+        <button *ngIf="modo === 'crear'" type="button" class="btn btn-success" (click)="crear()">Crear</button>
+        <button *ngIf="modo === 'borrar'" type="button" class="btn btn-danger" (click)="borrar()">Borrar</button>
+        <button *ngIf="modo === 'ver'" type="button" class="btn btn-secondary" (click)="cerrarse()">Cerrar</button>
+        <button *ngIf="modo !== 'ver'" type="button" class="btn btn-secondary" (click)="cerrarse()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

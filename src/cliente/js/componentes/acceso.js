@@ -171,27 +171,36 @@ function acceso_LoginInicial(nuevoUsuario = false) {
                 GLOBAL_CACHE_JSONS.getJSON("/api/usuarios/" + GLOBAL_USUARIO.id)
                     .then((respuesta) => {
                         GLOBAL_USUARIO.nick = respuesta[0].nick
-                        GLOBAL_USUARIO.nombre = respuesta[0].nombre
-                        GLOBAL_USUARIO.sexo = respuesta[0].sexo
-                        if (respuesta[0].foto == null) {
-                            GLOBAL_USUARIO.foto = "imagenes/placeholders/perfil_defecto_"
-                            switch (GLOBAL_USUARIO.sexo) {
+                        GLOBAL_USUARIO.datos.nombre = respuesta[0].nombre
+                        GLOBAL_USUARIO.datos.sexo = respuesta[0].sexo
+                        if (respuesta[0].foto == "") {
+                            GLOBAL_USUARIO.datos.foto = "imagenes/placeholders/perfil_defecto_"
+                            switch (GLOBAL_USUARIO.datos.sexo) {
                                 case "H":
-                                    GLOBAL_USUARIO.foto += "hombre.png"
+                                    GLOBAL_USUARIO.datos.foto += "hombre.png"
                                     break
                                 case "M":
-                                    GLOBAL_USUARIO.foto += "mujer.png"
+                                    GLOBAL_USUARIO.datos.foto += "mujer.png"
                                     break
                                 default:
-                                    GLOBAL_USUARIO.foto += "indefinido.png"
+                                    GLOBAL_USUARIO.datos.foto += "indefinido.png"
                             }
                         } else {
-                            GLOBAL_USUARIO.foto = "/imagenes/usuarios/" + respuesta[0].foto
+                            GLOBAL_USUARIO.datos.foto = "/imagenesUsuarios/" + respuesta[0].id + "." + respuesta[0].foto
+                        }
+                        if (respuesta[0].apellidos !== "") {
+                            GLOBAL_USUARIO.datos.apellidos = respuesta[0].apellidos
+                        }
+                        if (respuesta[0].telefono !== "") {
+                            GLOBAL_USUARIO.datos.telefono = respuesta[0].telefono
+                        }
+                        if (respuesta[0].nacimiento !== "") {
+                            GLOBAL_USUARIO.datos.fechaNacimiento = respuesta[0].nacimiento
                         }
                         $(".js-acceso").remove()
                         $(".c-cabecera__botones").prepend(`<div data-modo="Entrar" class="c-cabecera__boton js-perfil">
                         <div class="c-cabecera__contenedor-imagen">
-                        <img class='c-cabecera__imagen' src='`+ GLOBAL_USUARIO.foto + `'>
+                        <img class='c-cabecera__imagen' src='`+ GLOBAL_USUARIO.datos.foto + `'>
                         </div></div>`)
                         $(".js-perfil").on("click", perfil_Alternar)
                         $(".c-acceso, .c-acceso__errores").remove()

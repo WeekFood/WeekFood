@@ -1,0 +1,34 @@
+<div class="c-carritos">
+  <button type="button" class="c-carritos__boton-nuevo btn btn-success" (click)="abrirModalNuevo()">Nuevo</button>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">ID Usuario</th>
+          <th scope="col">Fecha</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let carrito of carritos">
+          <td>{{ carrito.id }}</td>
+          <td>{{ carrito.idUsuario }}</td>
+          <td>{{ carrito.fecha }}</td>
+          <td class="c-carritos__acciones">
+            <button type="button" class="btn btn-secondary" (click)="abrirModalVer(carrito)">Ver</button>
+            <button type="button" class="btn btn-primary" (click)="abrirModalEditar(carrito)">Editar</button>
+            <button type="button" class="btn btn-danger" (click)="abrirModalBorrar(carrito)">Borrar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-modal-carrito
+  *ngIf="modalAbierto"
+  [carrito]="carritoActual"
+  [modo]="modoModal"
+  (cerrado)="alCerrarseModal($event)"
+></app-modal-carrito>

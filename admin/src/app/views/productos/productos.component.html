@@ -1,0 +1,42 @@
+<div class="c-productos">
+  <button type="button" class="c-productos__boton-nuevo btn btn-success" (click)="abrirModalNuevo()">Nuevo</button>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Categoría</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Foto</th>
+          <th scope="col">Destacado</th>
+          <th scope="col">Precio</th>
+          <th scope="col" colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of productos">
+          <td>{{ producto.id }}</td>
+          <td>{{ producto.nombre }}</td>
+          <td>
+            <span *ngFor="let categoria of producto.categoria" class="c-productos__categoria badge badge-secondary">{{ categoria }}</span>
+          </td>
+          <td>{{ producto.descripcion }}</td>
+          <td><img class="c-productos__imagen" src="imagenes/productos/{{ producto.foto }}"></td>
+          <td class="c-productos__columna-checkbox"><input type="checkbox" [checked]="producto.destacado" disabled></td>
+          <td>{{ producto.precio }}</td>
+          <td><button type="button" class="btn btn-secondary" (click)="abrirModalVer(producto)">Ver</button></td>
+          <td><button type="button" class="btn btn-primary" (click)="abrirModalEditar(producto)">Editar</button></td>
+          <td><button type="button" class="btn btn-danger" (click)="abrirModalBorrar(producto)">Borrar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-modal-producto
+  *ngIf="modalAbierto"
+  [producto]="productoActual"
+  [modo]="modoModal"
+  (cerrado)="alCerrarseModal($event)"
+></app-modal-producto>

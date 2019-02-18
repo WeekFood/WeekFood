@@ -1,0 +1,54 @@
+<div class="modal fade js-modal-carrito" tabindex="-1" data-backdrop="static" data-keyboard="false"
+  (click)="cerrarseOverlay($event)" (keydown)="cerrarseEsc($event)">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ carrito.id }}</h5>
+        <button type="button" class="close" (click)="cerrarse()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="c-modal-carrito js-formulario" ngNativeValidate>
+          <label>ID</label>
+          <input 
+            type="text"
+            [(ngModel)]="carritoEditado.id"
+            [ngModelOptions]="{standalone: true}" 
+            class="form-control"
+            readonly
+          >
+          <label>ID Usuario</label>
+          <input 
+            type="text"
+            [(ngModel)]="carritoEditado.idUsuario"
+            [ngModelOptions]="{standalone: true}" 
+            class="form-control"
+            [readonly]="modo === 'ver' || modo === 'borrar'"
+            pattern="\d+"
+            title="Número positivo sin signo"
+            required
+          >
+          <label>Fecha</label>
+          <input 
+            type="text"
+            [(ngModel)]="carritoEditado.fecha"
+            [ngModelOptions]="{standalone: true}" 
+            class="form-control"
+            [readonly]="modo === 'ver' || modo === 'borrar'"
+            pattern="\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}"
+            title="AAAA-MM-DD HH:MM:SS"
+            required
+          >
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button *ngIf="modo === 'editar'" type="button" class="btn btn-success" (click)="editar()">Guardar</button>
+        <button *ngIf="modo === 'crear'" type="button" class="btn btn-success" (click)="crear()">Crear</button>
+        <button *ngIf="modo === 'borrar'" type="button" class="btn btn-danger" (click)="borrar()">Borrar</button>
+        <button *ngIf="modo === 'ver'" type="button" class="btn btn-secondary" (click)="cerrarse()">Cerrar</button>
+        <button *ngIf="modo !== 'ver'" type="button" class="btn btn-secondary" (click)="cerrarse()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

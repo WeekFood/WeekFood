@@ -1,0 +1,38 @@
+<div class="modal fade js-modal-subcategoria" tabindex="-1" data-backdrop="static" data-keyboard="false"
+  (click)="cerrarseOverlay($event)" (keydown)="cerrarseEsc($event)">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ subcategoria.nombre }}</h5>
+        <button type="button" class="close" (click)="cerrarse()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="c-modal-subcategoria js-formulario" ngNativeValidate>
+          <label>Nombre</label>
+          <input 
+            type="text"
+            [(ngModel)]="subcategoriaEditada.nombre"
+            [ngModelOptions]="{standalone: true}" 
+            class="form-control"
+            [readonly]="modo === 'ver' || modo === 'borrar'"
+            required
+          >
+          <label>Subcategoría de</label>
+          <!-- https://stackoverflow.com/questions/37669365/getting-object-properties-via-ngmodel-select-list-in-angular-2 -->
+          <select [(ngModel)]="subcategoriaEditada.subCategoriaDe" [ngModelOptions]="{standalone: true}" class="form-control" [disabled]="modo === 'ver' || modo === 'borrar'" required>
+            <option *ngFor="let categoria of categorias" [ngValue]="categoria">{{ categoria.nombre }}</option>
+          </select>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button *ngIf="modo === 'editar'" type="button" class="btn btn-success" (click)="editar()">Guardar</button>
+        <button *ngIf="modo === 'crear'" type="button" class="btn btn-success" (click)="crear()">Crear</button>
+        <button *ngIf="modo === 'borrar'" type="button" class="btn btn-danger" (click)="borrar()">Borrar</button>
+        <button *ngIf="modo === 'ver'" type="button" class="btn btn-secondary" (click)="cerrarse()">Cerrar</button>
+        <button *ngIf="modo !== 'ver'" type="button" class="btn btn-secondary" (click)="cerrarse()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

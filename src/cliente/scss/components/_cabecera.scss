@@ -78,6 +78,7 @@
 .c-cabecera__imagen {
     height: 40px;
     width: 40px;
+    object-fit: cover;
 }
 
 @keyframes c-cabecera__notificacion {

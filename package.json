@@ -1,6 +1,6 @@
 {
   "name": "weekfood",
-  "version": "2.0.0",
+  "version": "4.0.4",
   "description": "Proyecto WeekFood para 2º curso de Desarrollo de Aplicaciones Web",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,8 @@
     "dev:miniJS:watch": "onchange \"./src/cliente/js/**/*.js\" --exclude \"./src/cliente/js/WeekFood.js\" -- npm run dev:miniJS",
     "dev:browser-sync": "browser-sync start --proxy http://127.0.0.1:7272 --files ./src/cliente --serveStatic ./src/cliente --ignore \"src/cliente/scss\" \"src/cliente/css/estilo.css.map\" \"src/cliente/js/**/!(WeekFood).js\" --no-ghost-mode --no-notify",
     "cliente": "run-p dev:sass:compile dev:miniJS && run-p dev:sass:watch dev:miniJS:watch dev:browser-sync",
-    "server": "php -S 127.0.0.1:7272 -t ./src"
+    "server": "php -S 127.0.0.1:7272 -t ./src",
+    "admin": "cd ./admin && bash ./node_modules/.bin/ng serve --open"
   },
   "repository": {
     "type": "git",

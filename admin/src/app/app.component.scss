@@ -1,0 +1,24 @@
+.l-distribucion {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 'cabecera cabecera'
+                         'sidebar contenido';
+    height: 100%;
+    min-height: 100%;
+}
+
+.l-distribucion__cabecera {
+    grid-area: cabecera;
+}
+
+.l-distribucion__sidebar {
+    grid-area: sidebar;
+}
+
+.l-distribucion__contenido {
+    grid-area: contenido;
+    background: #f9f9f9;
+    padding: 1rem;
+    overflow-x: auto;
+}

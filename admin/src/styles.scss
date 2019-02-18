@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+    height: 100%;
+}
+
+// Override bootstrap: tablas mas densas
+.table td, .table th {
+    padding: 0.5rem;
+}
+
+// Override global: ocultar flechas de input number -- https://stackoverflow.com/a/4298216/3499595
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+// Basado en estilos de Bootstrap https://getbootstrap.com/docs/4.2/components/forms/#validation
+.form-control:focus:invalid {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25);
+}

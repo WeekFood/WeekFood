@@ -11,56 +11,15 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
-
--- Volcando estructura de base de datos para weekfood
-DROP DATABASE IF EXISTS `weekfood`;
-CREATE DATABASE IF NOT EXISTS `weekfood` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
-USE `weekfood`;
-
--- Volcando estructura para tabla weekfood.articulosencarritos
-DROP TABLE IF EXISTS `articulosencarritos`;
-CREATE TABLE IF NOT EXISTS `articulosencarritos` (
-  `idCarrito` int(11) NOT NULL,
-  `idArticulo` int(11) NOT NULL,
-  `cantidad` int(2) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`idCarrito`,`idArticulo`),
-  KEY `carritos_id_FK` (`idCarrito`),
-  KEY `productos_id_FK` (`idArticulo`),
-  CONSTRAINT `carritos_id_FK` FOREIGN KEY (`idCarrito`) REFERENCES `carritos` (`id`),
-  CONSTRAINT `productos_id_FK` FOREIGN KEY (`idArticulo`) REFERENCES `productos` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 -- Volcando datos para la tabla weekfood.articulosencarritos: ~0 rows (aproximadamente)
 DELETE FROM `articulosencarritos`;
 /*!40000 ALTER TABLE `articulosencarritos` DISABLE KEYS */;
 /*!40000 ALTER TABLE `articulosencarritos` ENABLE KEYS */;
 
--- Volcando estructura para tabla weekfood.carritos
-DROP TABLE IF EXISTS `carritos`;
-CREATE TABLE IF NOT EXISTS `carritos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idUsuario` int(11) NOT NULL,
-  `fecha` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id` (`id`),
-  KEY `carritos_usuarios_FK` (`idUsuario`),
-  CONSTRAINT `carritos_usuarios_FK` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 -- Volcando datos para la tabla weekfood.carritos: ~0 rows (aproximadamente)
 DELETE FROM `carritos`;
 /*!40000 ALTER TABLE `carritos` DISABLE KEYS */;
 /*!40000 ALTER TABLE `carritos` ENABLE KEYS */;
-
--- Volcando estructura para tabla weekfood.categorias
-DROP TABLE IF EXISTS `categorias`;
-CREATE TABLE IF NOT EXISTS `categorias` (
-  `nombre` varchar(100) NOT NULL,
-  `subCategoriaDe` varchar(100) NOT NULL,
-  PRIMARY KEY (`nombre`),
-  KEY `Categoria-Principal` (`subCategoriaDe`),
-  CONSTRAINT `Categoria-Principal` FOREIGN KEY (`subCategoriaDe`) REFERENCES `categoriasprincipales` (`nombre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla weekfood.categorias: ~13 rows (aproximadamente)
 DELETE FROM `categorias`;
@@ -81,13 +40,6 @@ INSERT INTO `categorias` (`nombre`, `subCategoriaDe`) VALUES
 	('Pisto', 'Verduras');
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 
--- Volcando estructura para tabla weekfood.categoriasprincipales
-DROP TABLE IF EXISTS `categoriasprincipales`;
-CREATE TABLE IF NOT EXISTS `categoriasprincipales` (
-  `nombre` varchar(100) NOT NULL,
-  PRIMARY KEY (`nombre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 -- Volcando datos para la tabla weekfood.categoriasprincipales: ~7 rows (aproximadamente)
 DELETE FROM `categoriasprincipales`;
 /*!40000 ALTER TABLE `categoriasprincipales` DISABLE KEYS */;
@@ -101,15 +53,6 @@ INSERT INTO `categoriasprincipales` (`nombre`) VALUES
 	('Verduras');
 /*!40000 ALTER TABLE `categoriasprincipales` ENABLE KEYS */;
 
--- Volcando estructura para tabla weekfood.menu
-DROP TABLE IF EXISTS `menu`;
-CREATE TABLE IF NOT EXISTS `menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `valor` varchar(100) NOT NULL,
-  `direccion` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
-
 -- Volcando datos para la tabla weekfood.menu: ~3 rows (aproximadamente)
 DELETE FROM `menu`;
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
@@ -119,18 +62,23 @@ INSERT INTO `menu` (`id`, `valor`, `direccion`) VALUES
 	(3, 'Quiénes somos', 'quienesSomos');
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 
--- Volcando estructura para tabla weekfood.productos
-DROP TABLE IF EXISTS `productos`;
-CREATE TABLE IF NOT EXISTS `productos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `categoria` varchar(1000) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `descripcion` varchar(1000) NOT NULL DEFAULT 'Un delicioso plato.',
-  `foto` varchar(50) NOT NULL DEFAULT '404.png',
-  `destacado` tinyint(1) NOT NULL DEFAULT '0',
-  `precio` int(5) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+-- Volcando datos para la tabla weekfood.metodospago: ~0 rows (aproximadamente)
+DELETE FROM `metodospago`;
+/*!40000 ALTER TABLE `metodospago` DISABLE KEYS */;
+/*!40000 ALTER TABLE `metodospago` ENABLE KEYS */;
+
+-- Volcando datos para la tabla weekfood.nivelesprivilegio: ~2 rows (aproximadamente)
+DELETE FROM `nivelesprivilegio`;
+/*!40000 ALTER TABLE `nivelesprivilegio` DISABLE KEYS */;
+INSERT INTO `nivelesprivilegio` (`id`, `nombre`) VALUES
+	(0, 'Usuario Basico'),
+	(9, 'Administrador General');
+/*!40000 ALTER TABLE `nivelesprivilegio` ENABLE KEYS */;
+
+-- Volcando datos para la tabla weekfood.pedidos: ~0 rows (aproximadamente)
+DELETE FROM `pedidos`;
+/*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 
 -- Volcando datos para la tabla weekfood.productos: ~10 rows (aproximadamente)
 DELETE FROM `productos`;
@@ -148,22 +96,21 @@ INSERT INTO `productos` (`id`, `categoria`, `nombre`, `descripcion`, `foto`, `de
 	(10, 'Tortilla,Puerros,Espinacas', 'Tortilla de espinacas y puerros', 'Tortilla deliciosa y con muchos nutrientes', 'tortilla-espinacas-puerros.jpg', 0, 450);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 
--- Volcando estructura para tabla weekfood.usuarios
-DROP TABLE IF EXISTS `usuarios`;
-CREATE TABLE IF NOT EXISTS `usuarios` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nick` varchar(100) NOT NULL UNIQUE,
-  `contraseña` varchar(100) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `apellidos` varchar(100),
-  `foto` varchar(100),
-  `sexo` varchar(1),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Volcando datos para la tabla weekfood.tiposmetodospago: ~0 rows (aproximadamente)
+DELETE FROM `tiposmetodospago`;
+/*!40000 ALTER TABLE `tiposmetodospago` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tiposmetodospago` ENABLE KEYS */;
+
+-- Volcando datos para la tabla weekfood.ubicaciones: ~0 rows (aproximadamente)
+DELETE FROM `ubicaciones`;
+/*!40000 ALTER TABLE `ubicaciones` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ubicaciones` ENABLE KEYS */;
 
 -- Volcando datos para la tabla weekfood.usuarios: ~0 rows (aproximadamente)
 DELETE FROM `usuarios`;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` (`id`, `nick`, `contraseña`, `nombre`, `apellidos`, `foto`, `sexo`, `telefono`, `nacimiento`, `nivelprivilegio`) VALUES
+	(1, 'Admin', '$2y$10$60/ZXnzcdVVpHUdH63npgecJOAoGJhqpPtF3Ut4jRazhWQk3YD9p6', 'Admin', NULL, NULL, NULL, NULL, NULL, 9);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

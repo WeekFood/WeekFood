@@ -15,9 +15,129 @@ class ProductosResource extends Resource {
         $this->setData();
     }
 
+    public function postProductoAction() {
+        $json = file_get_contents('php://input');
+        $producto = json_decode($json, true);
+
+        // preparar categoria para la BD
+        $producto['categoria'] = implode(',', $producto['categoria']);
+        // hay que castear a boolean manualmente
+        $producto['destacado'] = (int) $producto['destacado'];
+
+        $this->sql = 'INSERT INTO productos 
+                        (nombre, categoria, descripcion, foto, destacado, precio) 
+                     VALUES
+                        (:nombre, :categoria, :descripcion, :foto, :destacado, :precio)';
+        
+        $this->execSQL($producto);
+        $idNuevoProducto = $this->data;
+
+        $this->sql = 'SELECT * FROM productos WHERE id = :id';
+        $this->execSQL([
+            "id" => $idNuevoProducto
+        ]);
+
+        http_response_code(201);
+        $this->setData();
+    }
+
+    public function putProductoAction() {
+        $json = file_get_contents('php://input');
+        $producto = json_decode($json, true);
+
+        $id = $this->controller->getParam('id');
+
+        // preparar categoria para la BD
+        $producto['categoria'] = implode(',', $producto['categoria']);
+        // hay que castear a boolean manualmente
+        $producto['destacado'] = (int) $producto['destacado'];
+
+        $this->sql = 'UPDATE productos
+                      SET
+                        nombre = :nombre,
+                        categoria = :categoria,
+                        descripcion = :descripcion,
+                        foto = :foto,
+                        destacado = :destacado,
+                        precio = :precio
+                      WHERE id = :id';
+
+        $this->execSQL([
+            "nombre" => $producto['nombre'],
+            "categoria" => $producto['categoria'],
+            "descripcion" => $producto['descripcion'],
+            "foto" => $producto['foto'],
+            "destacado" => $producto['destacado'],
+            "precio" => $producto['precio'],
+            "id" => $id
+        ]);
+
+        $this->sql = 'SELECT * FROM productos WHERE id = :id';
+        $this->execSQL([
+            "id" => $id
+        ]);
+
+        $this->setData();
+    }
+
+    public function deleteProductoAction() {
+        $id = $this->controller->getParam('id');
+
+        $this->sql = 'DELETE FROM productos WHERE id = :id';
+        $this->execSQL([
+            'id' => $id
+        ]);
+
+        http_response_code(204);
+    }
+
     public function getCategoriasPrincipalesAction() {
         $this->sql = 'SELECT nombre FROM categoriasprincipales';
         $this->execSQL();
+        $this->setData();
+    }
+
+    public function postCategoriaPrincipalAction() {
+        $json = file_get_contents('php://input');
+        $categoria = json_decode($json, true);
+
+        $this->sql = 'INSERT INTO categoriasprincipales 
+                        (nombre) 
+                     VALUES
+                        (:nombre)';
+        
+        $this->execSQL($categoria);
+
+        $this->sql = 'SELECT * FROM categoriasprincipales WHERE nombre = :nombre LIMIT 1';
+        $this->execSQL([
+            "nombre" => $categoria['nombre']
+        ]);
+
+        http_response_code(201);
+        $this->setData();
+    }
+
+    public function putCategoriaPrincipalAction() {
+        $json = file_get_contents('php://input');
+        $categoria = json_decode($json, true);
+
+        $nombreAnterior = $this->controller->getParam('nombre');
+
+        $this->sql = 'UPDATE categoriasprincipales
+                      SET
+                        nombre = :nombreNuevo
+                      WHERE nombre = :nombreAnterior';
+
+        $this->execSQL([
+            'nombreNuevo' => $categoria['nombre'],
+            'nombreAnterior' => $nombreAnterior
+        ]);
+
+        $this->sql = 'SELECT * FROM categoriasprincipales WHERE nombre = :nombre';
+        $this->execSQL([
+            "nombre" => $categoria['nombre']
+        ]);
+
         $this->setData();
     }
 
@@ -37,6 +157,127 @@ class ProductosResource extends Resource {
         $this->sql = 'SELECT * FROM productos WHERE FIND_IN_SET(:categoriaEspecifica,categoria)';
         $this->execSQL($params);
         $this->setData();
+    }
+
+    public function postCategoriaAction() {
+        $json = file_get_contents('php://input');
+        $subcategoria = json_decode($json, true);
+
+        // el CRUD manda subCategoriaDe como modelo de Categoria, solo nos hace falta el string
+        $subcategoria['subCategoriaDe'] = $subcategoria['subCategoriaDe']['nombre'];
+
+        $this->sql = 'INSERT INTO categorias
+                        (nombre, subCategoriaDe)
+                     VALUES
+                        (:nombre, :subCategoriaDe)';
+
+        try {
+            $this->execSQL($subcategoria);
+        } catch (PDOException $e) {
+            switch ($e->errorInfo[1]) {
+            case 1062: // Duplicate entry
+                $this->setError(409, 'NOMBRE_CATEGORIA_REPETIDO');
+                break;
+            case 1452: // Cannot add or update a child row: a foreign key constraint fails
+                $this->setError(409, 'NO_EXISTE_CATEGORIA');
+                break;
+            default:
+                $this->setError(500, 'ERROR_PDO');
+            }
+
+            exit();
+        }
+
+        $this->sql = 'SELECT * FROM categorias WHERE nombre = :nombre LIMIT 1';
+        $this->execSQL([
+            "nombre" => $subcategoria['nombre']
+        ]);
+
+        http_response_code(201);
+        $this->setData();
+    }
+
+    function putCategoriaAction() {
+        $json = file_get_contents('php://input');
+        $subcategoria = json_decode($json, true);
+
+        $nombreAnterior = $this->controller->getParam('nombre');
+
+        // el CRUD manda subCategoriaDe como modelo de Categoria, solo nos hace falta el string
+        $subcategoria['subCategoriaDe'] = $subcategoria['subCategoriaDe']['nombre'];
+
+        $this->sql = 'UPDATE categorias
+                      SET
+                        nombre = :nombreNuevo,
+                        subCategoriaDe = :subCategoriaDe
+                      WHERE nombre = :nombreAnterior';
+
+        try {
+            $this->execSQL([
+                'nombreNuevo' => $subcategoria['nombre'],
+                'subCategoriaDe' => $subcategoria['subCategoriaDe'],
+                'nombreAnterior' => $nombreAnterior
+            ]);
+        } catch (PDOException $e) {
+            switch ($e->errorInfo[1]) {
+                case 1062: // Duplicate entry
+                    $this->setError(409, 'NOMBRE_SUBCATEGORIA_REPETIDO');
+                    break;
+                case 1452: // Cannot add or update a child row: a foreign key constraint fails
+                    $this->setError(409, 'NO_EXISTE_CATEGORIA');
+                    break;
+                default:
+                    $this->setError(500, 'ERROR_PDO');
+            }
+
+            exit();
+        }
+
+        // si ha habido cambio de nombre se tiene que cambiar en los productos correspondientes a mano
+        if ($nombreAnterior !== $subcategoria['nombre']) {
+            $this->sql = 'UPDATE productos
+                          SET
+                            categoria = REPLACE(categoria, :nombreAnterior, :nombreNuevo)
+                          WHERE
+                            FIND_IN_SET(:nombreAnterior, categoria)';
+
+            $this->execSQL([
+                'nombreAnterior' => $nombreAnterior,
+                'nombreNuevo' => $subcategoria['nombre']
+            ]);
+        }
+
+        $this->sql = 'SELECT * FROM categorias WHERE nombre = :nombre';
+        $this->execSQL([
+            "nombre" => $subcategoria['nombre']
+        ]);
+
+        $this->setData();
+    }
+
+    public function deleteCategoriaAction() {
+        $nombre = $this->controller->getParam('nombre');
+
+        $this->sql = 'DELETE FROM categorias WHERE nombre = :nombre';
+        $this->execSQL([
+            'nombre' => $nombre
+        ]);
+
+        // hay que quitar la subcategoría de los productos correspondientes a mano
+        // https://stackoverflow.com/questions/14642658/the-best-way-to-remove-value-from-set-field
+        $this->sql = "UPDATE productos
+                      SET
+                        categoria =
+                            TRIM(BOTH ',' FROM REPLACE(CONCAT(',', categoria, ','), :nombreSubcategoriaComas, ','))
+                      WHERE
+                        FIND_IN_SET(:nombreSubcategoria, categoria)";
+
+        $this->execSQL([
+            'nombreSubcategoriaComas' => ',' . $nombre . ',',
+            'nombreSubcategoria' => $nombre
+        ]);
+
+        http_response_code(204);
     }
 
     public function getCategoriasAction(){

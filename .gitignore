@@ -4,3 +4,4 @@ node_modules
 npm-debug.log
 src/cliente/css
 src/cliente/js/WeekFood.js
+src/cliente/imageneUsuarios/
