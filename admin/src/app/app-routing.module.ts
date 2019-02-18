@@ -44,19 +44,23 @@ const routes: Routes = [
   },
   {
     path: 'categorias',
-    component: CategoriasComponent
+    component: CategoriasComponent,
+    canActivate: [CargandoGuard, AuthGuard]
   },
   {
     path: 'subcategorias',
-    component: SubcategoriasComponent
+    component: SubcategoriasComponent,
+    canActivate: [CargandoGuard, AuthGuard]
   },
   {
     path: 'usuarios',
-    component: UsuariosComponent
+    component: UsuariosComponent,
+    canActivate: [CargandoGuard, AuthGuard]
   },
   {
     path: 'carritos',
-    component: CarritosComponent
+    component: CarritosComponent,
+    canActivate: [CargandoGuard, AuthGuard]
   },
   {
     path: '**',
