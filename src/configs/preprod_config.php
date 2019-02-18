@@ -15,6 +15,6 @@ return [
         'coreMVC' => ROOT . DS . 'core' . DS . 'MVC' . DS,
         'configs' => ROOT . DS . 'configs' . DS,
         'resources' => ROOT . DS . 'app' . DS . 'resources' . DS,
-        'imagenes usuarios' => ROOT . DS . 'imagenes' . DS . 'usuarios' . DS
+        'imagenes usuarios' => ROOT . DS . 'imagenesUsuarios' . DS
     ]
 ];

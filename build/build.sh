@@ -15,6 +15,7 @@ printf "\t> Copiando archivos\n"
     mkdir dist/js
     mv dist/cliente/libs dist/libs
     mv dist/cliente/imagenes dist/imagenes
+    mv dist/cliente/imagenesUsuarios dist/imagenesUsuarios
     mv dist/cliente/fonts dist/fonts
     # borrar directorios copiados que se tienen que construir en vez de copiar/mover
     rm -r dist/cliente/{scss,js}

@@ -647,7 +647,7 @@ function vista_Perfil_guardarNuevosDatos(puntoMontaje) {
         .done((respuesta) => {
             GLOBAL_USUARIO.datos = respuesta
             if (GLOBAL_USUARIO.datos.foto.length < 5) {
-                GLOBAL_USUARIO.datos.foto = "/imagenes/usuarios/" + GLOBAL_USUARIO.id + "." + respuesta.foto
+                GLOBAL_USUARIO.datos.foto = "/imagenesUsuarios/" + GLOBAL_USUARIO.id + "." + respuesta.foto
             }
             delete GLOBAL_USUARIO.nuevosDatos
             vista_Perfil_cambiarAFoto(GLOBAL_USUARIO.datos.foto)
